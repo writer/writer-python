@@ -91,7 +91,7 @@ class WriterAI(SyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("WRITER_AI_BASE_URL")
+            base_url = os.environ.get("WRITERAI_BASE_URL")
         if base_url is None:
             base_url = f"https://api.qordobadev.com"
 
@@ -265,7 +265,7 @@ class AsyncWriterAI(AsyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("WRITER_AI_BASE_URL")
+            base_url = os.environ.get("WRITERAI_BASE_URL")
         if base_url is None:
             base_url = f"https://api.qordobadev.com"
 

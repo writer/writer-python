@@ -6,8 +6,8 @@ import httpx
 import pytest
 import pydantic
 
-from writer_ai import WriterAI, BaseModel, AsyncWriterAI
-from writer_ai._response import (
+from writerai import WriterAI, BaseModel, AsyncWriterAI
+from writerai._response import (
     APIResponse,
     BaseAPIResponse,
     AsyncAPIResponse,
@@ -15,8 +15,8 @@ from writer_ai._response import (
     AsyncBinaryAPIResponse,
     extract_response_type,
 )
-from writer_ai._streaming import Stream
-from writer_ai._base_client import FinalRequestOptions
+from writerai._streaming import Stream
+from writerai._base_client import FinalRequestOptions
 
 
 class ConcreteBaseAPIResponse(APIResponse[bytes]):
@@ -40,7 +40,7 @@ def test_extract_response_type_direct_classes() -> None:
 def test_extract_response_type_direct_class_missing_type_arg() -> None:
     with pytest.raises(
         RuntimeError,
-        match="Expected type <class 'writer_ai._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
+        match="Expected type <class 'writerai._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
     ):
         extract_response_type(AsyncAPIResponse)
 
@@ -72,7 +72,7 @@ def test_response_parse_mismatched_basemodel(client: WriterAI) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from writer_ai import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from writerai import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 
@@ -90,7 +90,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncWrit
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from writer_ai import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from writerai import BaseModel`",
     ):
         await response.parse(to=PydanticModel)
 

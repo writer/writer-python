@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from writer_ai._qs import Querystring, stringify
+from writerai._qs import Querystring, stringify
 
 
 def test_empty() -> None:

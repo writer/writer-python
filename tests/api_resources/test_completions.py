@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from writer_ai import WriterAI, AsyncWriterAI
+from writerai import WriterAI, AsyncWriterAI
 from tests.utils import assert_matches_type
-from writer_ai.types import Completion
+from writerai.types import Completion
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

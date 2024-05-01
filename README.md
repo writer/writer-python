@@ -28,7 +28,7 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from writer_ai import WriterAI
+from writerai import WriterAI
 
 client = WriterAI(
     # This is the default and can be omitted
@@ -59,7 +59,7 @@ Simply import `AsyncWriterAI` instead of `WriterAI` and use `await` with each AP
 ```python
 import os
 import asyncio
-from writer_ai import AsyncWriterAI
+from writerai import AsyncWriterAI
 
 client = AsyncWriterAI(
     # This is the default and can be omitted
@@ -90,7 +90,7 @@ Functionality between the synchronous and asynchronous clients is otherwise iden
 We provide support for streaming responses using Server Side Events (SSE).
 
 ```python
-from writer_ai import WriterAI
+from writerai import WriterAI
 
 client = WriterAI()
 
@@ -106,7 +106,7 @@ for completion in stream:
 The async client uses the exact same interface.
 
 ```python
-from writer_ai import AsyncWriterAI
+from writerai import AsyncWriterAI
 
 client = AsyncWriterAI()
 
@@ -130,16 +130,16 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writer_ai.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writerai.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `writer_ai.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `writerai.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `writer_ai.APIError`.
+All errors inherit from `writerai.APIError`.
 
 ```python
-import writer_ai
-from writer_ai import WriterAI
+import writerai
+from writerai import WriterAI
 
 client = WriterAI()
 
@@ -153,12 +153,12 @@ try:
         ],
         model="string",
     )
-except writer_ai.APIConnectionError as e:
+except writerai.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except writer_ai.RateLimitError as e:
+except writerai.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except writer_ai.APIStatusError as e:
+except writerai.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -186,7 +186,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from writer_ai import WriterAI
+from writerai import WriterAI
 
 # Configure the default for all requests:
 client = WriterAI(
@@ -212,7 +212,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from writer_ai import WriterAI
+from writerai import WriterAI
 
 # Configure the default for all requests:
 client = WriterAI(
@@ -247,10 +247,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `WRITER_AI_LOG` to `debug`.
+You can enable logging by setting the environment variable `WRITERAI_LOG` to `debug`.
 
 ```shell
-$ export WRITER_AI_LOG=debug
+$ export WRITERAI_LOG=debug
 ```
 
 ### How to tell whether `None` means `null` or missing
@@ -270,7 +270,7 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from writer_ai import WriterAI
+from writerai import WriterAI
 
 client = WriterAI()
 response = client.chat.with_raw_response.chat(
@@ -286,9 +286,9 @@ chat = response.parse()  # get the object that `chat.chat()` would have returned
 print(chat.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/tree/main/src/writer_ai/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/tree/main/src/writerai/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/tree/main/src/writer_ai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -358,10 +358,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/#client-instances) functionality
 
 ```python
-from writer_ai import WriterAI, DefaultHttpxClient
+from writerai import WriterAI, DefaultHttpxClient
 
 client = WriterAI(
-    # Or use the `WRITER_AI_BASE_URL` env var
+    # Or use the `WRITERAI_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxies="http://my.test.proxy.example.com",
