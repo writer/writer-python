@@ -4,7 +4,7 @@
 # - An API key from writer.com
 # - Rye installed, see https://rye-up.com
 #
-# Run the following commands:
+# Run the following commands from the root of the repository:
 # $ rye sync --all-features
 # $ WRITERAI_API_KEY="<your api key>" rye run python examples/completions_streaming.py
 
