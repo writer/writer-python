@@ -1,4 +1,4 @@
-# This example demonstrates writer.com completion streaming.
+# This example demonstrates writer.com completion streaming
 #
 # To run it locally you will need:
 # - An API key from writer.com
