@@ -38,7 +38,7 @@ jobs:
 
       - name: Ensure importable
         run: |
-          rye run python -c 'import writer_ai'
+          rye run python -c 'import writerai'
   test:
     name: test
     runs-on: ubuntu-latest

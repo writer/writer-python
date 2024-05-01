@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from writer_ai import WriterAI, AsyncWriterAI
-from writer_ai._streaming import Stream, AsyncStream, ServerSentEvent
+from writerai import WriterAI, AsyncWriterAI
+from writerai._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio
