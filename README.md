@@ -32,7 +32,7 @@ from writer_ai import WriterAI
 
 client = WriterAI(
     # This is the default and can be omitted
-    api_key=os.environ.get("WRITERAI_AUTH_TOKEN"),
+    api_key=os.environ.get("WRITERAI_API_KEY"),
 )
 
 chat_chat_response = client.chat.chat(
@@ -49,7 +49,7 @@ print(chat_chat_response.id)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `WRITERAI_AUTH_TOKEN="My API Key"` to your `.env` file
+to add `WRITERAI_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -63,7 +63,7 @@ from writer_ai import AsyncWriterAI
 
 client = AsyncWriterAI(
     # This is the default and can be omitted
-    api_key=os.environ.get("WRITERAI_AUTH_TOKEN"),
+    api_key=os.environ.get("WRITERAI_API_KEY"),
 )
 
 
