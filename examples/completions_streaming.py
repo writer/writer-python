@@ -8,8 +8,9 @@
 # $ rye sync --all-features
 # $ WRITERAI_API_KEY="<your api key>" rye run python examples/completions_streaming.py
 
-from writerai import AsyncClient, BadRequestError
 import random
+
+from writerai import AsyncClient, BadRequestError
 
 
 async def main():
