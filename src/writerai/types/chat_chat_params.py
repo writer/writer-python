@@ -19,6 +19,8 @@ class ChatChatParams(TypedDict, total=False):
 
     stop: Union[List[str], str]
 
+    stream: bool
+
     temperature: float
 
     top_p: float

@@ -16,7 +16,7 @@ The REST API documentation can be found [on dev.writer.com](https://dev.writer.c
 
 ```sh
 # install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/writerai/writer-python.git
+pip install git+ssh://git@github.com/stainless-sdks/writer-python.git
 ```
 
 > [!NOTE]
@@ -38,11 +38,11 @@ client = WriterAI(
 chat_chat_response = client.chat.chat(
     messages=[
         {
-            "content": "string",
+            "content": "Hello!",
             "role": "user",
         }
     ],
-    model="string",
+    model="palmyra-x-chat-v2-32k",
 )
 print(chat_chat_response.id)
 ```
@@ -71,11 +71,11 @@ async def main() -> None:
     chat_chat_response = await client.chat.chat(
         messages=[
             {
-                "content": "string",
+                "content": "Hello!",
                 "role": "user",
             }
         ],
-        model="string",
+        model="palmyra-x-chat-v2-32k",
     )
     print(chat_chat_response.id)
 
@@ -147,11 +147,11 @@ try:
     client.chat.chat(
         messages=[
             {
-                "content": "string",
+                "content": "Hello!",
                 "role": "user",
             }
         ],
-        model="string",
+        model="palmyra-x-chat-v2-32k",
     )
 except writerai.APIConnectionError as e:
     print("The server could not be reached")
@@ -198,11 +198,11 @@ client = WriterAI(
 client.with_options(max_retries=5).chat.chat(
     messages=[
         {
-            "content": "string",
+            "content": "Hello!",
             "role": "user",
         }
     ],
-    model="string",
+    model="palmyra-x-chat-v2-32k",
 )
 ```
 
@@ -226,14 +226,14 @@ client = WriterAI(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).chat.chat(
+client.with_options(timeout=5.0).chat.chat(
     messages=[
         {
-            "content": "string",
+            "content": "Hello!",
             "role": "user",
         }
     ],
-    model="string",
+    model="palmyra-x-chat-v2-32k",
 )
 ```
 
@@ -275,10 +275,10 @@ from writerai import WriterAI
 client = WriterAI()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "content": "string",
+        "content": "Hello!",
         "role": "user",
     }],
-    model="string",
+    model="palmyra-x-chat-v2-32k",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -300,11 +300,11 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.chat.with_streaming_response.chat(
     messages=[
         {
-            "content": "string",
+            "content": "Hello!",
             "role": "user",
         }
     ],
-    model="string",
+    model="palmyra-x-chat-v2-32k",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -384,7 +384,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/writerai/writer-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/writer-python/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

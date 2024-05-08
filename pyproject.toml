@@ -39,8 +39,8 @@ classifiers = [
 
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/writerai/writer-python"
-Repository = "https://github.com/stainless-sdks/writerai/writer-python"
+Homepage = "https://github.com/stainless-sdks/writer-python"
+Repository = "https://github.com/stainless-sdks/writer-python"
 
 
 

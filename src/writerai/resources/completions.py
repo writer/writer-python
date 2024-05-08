@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, overload
+from typing import List, Union, overload
 from typing_extensions import Literal
 
 import httpx
@@ -50,7 +50,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
@@ -85,7 +85,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -119,7 +119,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -152,7 +152,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
@@ -206,7 +206,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
@@ -241,7 +241,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -275,7 +275,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -308,7 +308,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: List[str] | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,

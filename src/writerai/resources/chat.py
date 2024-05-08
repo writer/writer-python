@@ -45,6 +45,7 @@ class ChatResource(SyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -75,6 +76,7 @@ class ChatResource(SyncAPIResource):
                     "max_tokens": max_tokens,
                     "n": n,
                     "stop": stop,
+                    "stream": stream,
                     "temperature": temperature,
                     "top_p": top_p,
                 },
@@ -104,6 +106,7 @@ class AsyncChatResource(AsyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,6 +137,7 @@ class AsyncChatResource(AsyncAPIResource):
                     "max_tokens": max_tokens,
                     "n": n,
                     "stop": stop,
+                    "stream": stream,
                     "temperature": temperature,
                     "top_p": top_p,
                 },

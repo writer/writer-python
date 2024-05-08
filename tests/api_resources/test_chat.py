@@ -22,11 +22,11 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
         )
         assert_matches_type(ChatChatResponse, chat, path=["response"])
 
@@ -35,15 +35,16 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                     "name": "string",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
+            stream=True,
             temperature=0,
             top_p=0,
         )
@@ -54,11 +55,11 @@ class TestChat:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
         )
 
         assert response.is_closed is True
@@ -71,11 +72,11 @@ class TestChat:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,11 +95,11 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
         )
         assert_matches_type(ChatChatResponse, chat, path=["response"])
 
@@ -107,15 +108,16 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                     "name": "string",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
+            stream=True,
             temperature=0,
             top_p=0,
         )
@@ -126,11 +128,11 @@ class TestAsyncChat:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
         )
 
         assert response.is_closed is True
@@ -143,11 +145,11 @@ class TestAsyncChat:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "Hello!",
                     "role": "user",
                 }
             ],
-            model="string",
+            model="palmyra-x-chat-v2-32k",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
