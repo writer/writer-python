@@ -726,11 +726,11 @@ class TestWriterAI:
                     dict(
                         messages=[
                             {
-                                "content": "string",
+                                "content": "Hello!",
                                 "role": "user",
                             }
                         ],
-                        model="string",
+                        model="palmyra-x-chat-v2-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -752,11 +752,11 @@ class TestWriterAI:
                     dict(
                         messages=[
                             {
-                                "content": "string",
+                                "content": "Hello!",
                                 "role": "user",
                             }
                         ],
-                        model="string",
+                        model="palmyra-x-chat-v2-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1457,11 +1457,11 @@ class TestAsyncWriterAI:
                     dict(
                         messages=[
                             {
-                                "content": "string",
+                                "content": "Hello!",
                                 "role": "user",
                             }
                         ],
-                        model="string",
+                        model="palmyra-x-chat-v2-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1483,11 +1483,11 @@ class TestAsyncWriterAI:
                     dict(
                         messages=[
                             {
-                                "content": "string",
+                                "content": "Hello!",
                                 "role": "user",
                             }
                         ],
-                        model="string",
+                        model="palmyra-x-chat-v2-32k",
                     ),
                 ),
                 cast_to=httpx.Response,

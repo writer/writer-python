@@ -19,7 +19,7 @@ class CompletionCreateParamsBase(TypedDict, total=False):
 
     random_seed: int
 
-    stop: List[str]
+    stop: Union[List[str], str]
 
     temperature: float
 
