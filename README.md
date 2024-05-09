@@ -35,7 +35,7 @@ client = WriterAI(
     api_key=os.environ.get("WRITERAI_API_KEY"),
 )
 
-chat_chat_response = client.chat.chat(
+chat = client.chat.chat(
     messages=[
         {
             "content": "Hello!",
@@ -44,7 +44,7 @@ chat_chat_response = client.chat.chat(
     ],
     model="palmyra-x-chat-v2-32k",
 )
-print(chat_chat_response.id)
+print(chat.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -68,7 +68,7 @@ client = AsyncWriterAI(
 
 
 async def main() -> None:
-    chat_chat_response = await client.chat.chat(
+    chat = await client.chat.chat(
         messages=[
             {
                 "content": "Hello!",
@@ -77,7 +77,7 @@ async def main() -> None:
         ],
         model="palmyra-x-chat-v2-32k",
     )
-    print(chat_chat_response.id)
+    print(chat.id)
 
 
 asyncio.run(main())
