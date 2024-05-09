@@ -3,12 +3,12 @@
 Types:
 
 ```python
-from writerai.types import ChatChatResponse
+from writerai.types import Chat, ChatStreamingData
 ```
 
 Methods:
 
-- <code title="post /v1/chat">client.chat.<a href="./src/writerai/resources/chat.py">chat</a>(\*\*<a href="src/writerai/types/chat_chat_params.py">params</a>) -> <a href="./src/writerai/types/chat_chat_response.py">ChatChatResponse</a></code>
+- <code title="post /v1/chat">client.chat.<a href="./src/writerai/resources/chat.py">chat</a>(\*\*<a href="src/writerai/types/chat_chat_params.py">params</a>) -> <a href="./src/writerai/types/chat.py">Chat</a></code>
 
 # Completions
 

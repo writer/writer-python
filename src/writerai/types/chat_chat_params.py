@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ChatChatParams", "Message"]
+__all__ = ["ChatChatParamsBase", "Message", "ChatChatParamsNonStreaming", "ChatChatParamsStreaming"]
 
 
-class ChatChatParams(TypedDict, total=False):
+class ChatChatParamsBase(TypedDict, total=False):
     messages: Required[Iterable[Message]]
 
     model: Required[str]
@@ -18,8 +18,6 @@ class ChatChatParams(TypedDict, total=False):
     n: int
 
     stop: Union[List[str], str]
-
-    stream: bool
 
     temperature: float
 
@@ -32,3 +30,14 @@ class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system"]]
 
     name: str
+
+
+class ChatChatParamsNonStreaming(ChatChatParamsBase):
+    stream: Literal[False]
+
+
+class ChatChatParamsStreaming(ChatChatParamsBase):
+    stream: Required[Literal[True]]
+
+
+ChatChatParams = Union[ChatChatParamsNonStreaming, ChatChatParamsStreaming]

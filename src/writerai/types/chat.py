@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["ChatChatResponse", "Choice", "ChoiceMessage"]
+__all__ = ["Chat", "Choice", "ChoiceMessage"]
 
 
 class ChoiceMessage(BaseModel):
@@ -20,7 +20,7 @@ class Choice(BaseModel):
     message: ChoiceMessage
 
 
-class ChatChatResponse(BaseModel):
+class Chat(BaseModel):
     id: str
 
     choices: List[Choice]
