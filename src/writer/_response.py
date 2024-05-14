@@ -29,7 +29,7 @@ from ._utils import is_given, extract_type_arg, is_annotated_type, extract_type_
 from ._models import BaseModel, is_basemodel
 from ._constants import RAW_RESPONSE_HEADER, OVERRIDE_CAST_TO_HEADER
 from ._streaming import Stream, AsyncStream, is_stream_class_type, extract_stream_chunk_type
-from ._exceptions import WriterAIError, APIResponseValidationError
+from ._exceptions import WriterError, APIResponseValidationError
 
 if TYPE_CHECKING:
     from ._models import FinalRequestOptions
@@ -203,7 +203,7 @@ class BaseAPIResponse(Generic[R]):
             return cast(R, response)
 
         if inspect.isclass(origin) and not issubclass(origin, BaseModel) and issubclass(origin, pydantic.BaseModel):
-            raise TypeError("Pydantic models must subclass our base model type, e.g. `from writerai import BaseModel`")
+            raise TypeError("Pydantic models must subclass our base model type, e.g. `from writer import BaseModel`")
 
         if (
             cast_to is not object
@@ -271,7 +271,7 @@ class APIResponse(BaseAPIResponse[R]):
         the `to` argument, e.g.
 
         ```py
-        from writerai import BaseModel
+        from writer import BaseModel
 
 
         class MyModel(BaseModel):
@@ -375,7 +375,7 @@ class AsyncAPIResponse(BaseAPIResponse[R]):
         the `to` argument, e.g.
 
         ```py
-        from writerai import BaseModel
+        from writer import BaseModel
 
 
         class MyModel(BaseModel):
@@ -546,11 +546,11 @@ class AsyncStreamedBinaryAPIResponse(AsyncAPIResponse[bytes]):
 class MissingStreamClassError(TypeError):
     def __init__(self) -> None:
         super().__init__(
-            "The `stream` argument was set to `True` but the `stream_cls` argument was not given. See `writerai._streaming` for reference",
+            "The `stream` argument was set to `True` but the `stream_cls` argument was not given. See `writer._streaming` for reference",
         )
 
 
-class StreamAlreadyConsumed(WriterAIError):
+class StreamAlreadyConsumed(WriterError):
     """
     Attempted to read or stream content, but the content has already
     been streamed.

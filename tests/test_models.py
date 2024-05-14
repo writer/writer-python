@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from writerai._utils import PropertyInfo
-from writerai._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from writerai._models import BaseModel, construct_type
+from writer._utils import PropertyInfo
+from writer._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from writer._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

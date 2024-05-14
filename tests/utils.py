@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from writerai._types import NoneType
-from writerai._utils import (
+from writer._types import NoneType
+from writer._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -17,8 +17,8 @@ from writerai._utils import (
     extract_type_arg,
     is_annotated_type,
 )
-from writerai._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from writerai._models import BaseModel
+from writer._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from writer._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 

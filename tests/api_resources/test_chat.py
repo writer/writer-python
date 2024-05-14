@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from writerai import WriterAI, AsyncWriterAI
+from writer import Writer, AsyncWriter
 from tests.utils import assert_matches_type
-from writerai.types import Chat
+from writer.types import Chat
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +18,7 @@ class TestChat:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_chat_overload_1(self, client: WriterAI) -> None:
+    def test_method_chat_overload_1(self, client: Writer) -> None:
         chat = client.chat.chat(
             messages=[
                 {
@@ -31,7 +31,7 @@ class TestChat:
         assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
-    def test_method_chat_with_all_params_overload_1(self, client: WriterAI) -> None:
+    def test_method_chat_with_all_params_overload_1(self, client: Writer) -> None:
         chat = client.chat.chat(
             messages=[
                 {
@@ -51,7 +51,7 @@ class TestChat:
         assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
-    def test_raw_response_chat_overload_1(self, client: WriterAI) -> None:
+    def test_raw_response_chat_overload_1(self, client: Writer) -> None:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
@@ -68,7 +68,7 @@ class TestChat:
         assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
-    def test_streaming_response_chat_overload_1(self, client: WriterAI) -> None:
+    def test_streaming_response_chat_overload_1(self, client: Writer) -> None:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
@@ -87,7 +87,7 @@ class TestChat:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_chat_overload_2(self, client: WriterAI) -> None:
+    def test_method_chat_overload_2(self, client: Writer) -> None:
         chat_stream = client.chat.chat(
             messages=[
                 {
@@ -101,7 +101,7 @@ class TestChat:
         chat_stream.response.close()
 
     @parametrize
-    def test_method_chat_with_all_params_overload_2(self, client: WriterAI) -> None:
+    def test_method_chat_with_all_params_overload_2(self, client: Writer) -> None:
         chat_stream = client.chat.chat(
             messages=[
                 {
@@ -121,7 +121,7 @@ class TestChat:
         chat_stream.response.close()
 
     @parametrize
-    def test_raw_response_chat_overload_2(self, client: WriterAI) -> None:
+    def test_raw_response_chat_overload_2(self, client: Writer) -> None:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
@@ -138,7 +138,7 @@ class TestChat:
         stream.close()
 
     @parametrize
-    def test_streaming_response_chat_overload_2(self, client: WriterAI) -> None:
+    def test_streaming_response_chat_overload_2(self, client: Writer) -> None:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
@@ -162,7 +162,7 @@ class TestAsyncChat:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_chat_overload_1(self, async_client: AsyncWriterAI) -> None:
+    async def test_method_chat_overload_1(self, async_client: AsyncWriter) -> None:
         chat = await async_client.chat.chat(
             messages=[
                 {
@@ -175,7 +175,7 @@ class TestAsyncChat:
         assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
-    async def test_method_chat_with_all_params_overload_1(self, async_client: AsyncWriterAI) -> None:
+    async def test_method_chat_with_all_params_overload_1(self, async_client: AsyncWriter) -> None:
         chat = await async_client.chat.chat(
             messages=[
                 {
@@ -195,7 +195,7 @@ class TestAsyncChat:
         assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
-    async def test_raw_response_chat_overload_1(self, async_client: AsyncWriterAI) -> None:
+    async def test_raw_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
@@ -212,7 +212,7 @@ class TestAsyncChat:
         assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
-    async def test_streaming_response_chat_overload_1(self, async_client: AsyncWriterAI) -> None:
+    async def test_streaming_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {
@@ -231,7 +231,7 @@ class TestAsyncChat:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_chat_overload_2(self, async_client: AsyncWriterAI) -> None:
+    async def test_method_chat_overload_2(self, async_client: AsyncWriter) -> None:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
@@ -245,7 +245,7 @@ class TestAsyncChat:
         await chat_stream.response.aclose()
 
     @parametrize
-    async def test_method_chat_with_all_params_overload_2(self, async_client: AsyncWriterAI) -> None:
+    async def test_method_chat_with_all_params_overload_2(self, async_client: AsyncWriter) -> None:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
@@ -265,7 +265,7 @@ class TestAsyncChat:
         await chat_stream.response.aclose()
 
     @parametrize
-    async def test_raw_response_chat_overload_2(self, async_client: AsyncWriterAI) -> None:
+    async def test_raw_response_chat_overload_2(self, async_client: AsyncWriter) -> None:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
@@ -282,7 +282,7 @@ class TestAsyncChat:
         await stream.close()
 
     @parametrize
-    async def test_streaming_response_chat_overload_2(self, async_client: AsyncWriterAI) -> None:
+    async def test_streaming_response_chat_overload_2(self, async_client: AsyncWriter) -> None:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {

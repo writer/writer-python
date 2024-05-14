@@ -16,17 +16,12 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from writerai import WriterAI, AsyncWriterAI, APIResponseValidationError
-from writerai._models import BaseModel, FinalRequestOptions
-from writerai._constants import RAW_RESPONSE_HEADER
-from writerai._streaming import Stream, AsyncStream
-from writerai._exceptions import WriterAIError, APIStatusError, APITimeoutError, APIResponseValidationError
-from writerai._base_client import (
-    DEFAULT_TIMEOUT,
-    HTTPX_DEFAULT_TIMEOUT,
-    BaseClient,
-    make_request_options,
-)
+from writer import Writer, AsyncWriter, APIResponseValidationError
+from writer._models import BaseModel, FinalRequestOptions
+from writer._constants import RAW_RESPONSE_HEADER
+from writer._streaming import Stream, AsyncStream
+from writer._exceptions import WriterError, APIStatusError, APITimeoutError, APIResponseValidationError
+from writer._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
 
 from .utils import update_env
 
@@ -44,7 +39,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: WriterAI | AsyncWriterAI) -> int:
+def _get_open_connections(client: Writer | AsyncWriter) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -52,8 +47,8 @@ def _get_open_connections(client: WriterAI | AsyncWriterAI) -> int:
     return len(pool._requests)
 
 
-class TestWriterAI:
-    client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestWriter:
+    client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -100,7 +95,7 @@ class TestWriterAI:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = WriterAI(
+        client = Writer(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -134,7 +129,7 @@ class TestWriterAI:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = WriterAI(
+        client = Writer(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -225,10 +220,10 @@ class TestWriterAI:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "writerai/_legacy_response.py",
-                        "writerai/_response.py",
+                        "writer/_legacy_response.py",
+                        "writer/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "writerai/_compat.py",
+                        "writer/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -259,9 +254,7 @@ class TestWriterAI:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = WriterAI(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
-        )
+        client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0))
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -270,7 +263,7 @@ class TestWriterAI:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = WriterAI(
+            client = Writer(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -280,7 +273,7 @@ class TestWriterAI:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = WriterAI(
+            client = Writer(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -290,7 +283,7 @@ class TestWriterAI:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = WriterAI(
+            client = Writer(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -301,7 +294,7 @@ class TestWriterAI:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                WriterAI(
+                Writer(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -309,14 +302,14 @@ class TestWriterAI:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = WriterAI(
+        client = Writer(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = WriterAI(
+        client2 = Writer(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -330,16 +323,16 @@ class TestWriterAI:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(WriterAIError):
-            client2 = WriterAI(base_url=base_url, api_key=None, _strict_response_validation=True)
+        with pytest.raises(WriterError):
+            client2 = Writer(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = WriterAI(
+        client = Writer(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -453,7 +446,7 @@ class TestWriterAI:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: WriterAI) -> None:
+    def test_multipart_repeating_array(self, client: Writer) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -540,7 +533,7 @@ class TestWriterAI:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = WriterAI(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
+        client = Writer(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -548,15 +541,15 @@ class TestWriterAI:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(WRITERAI_BASE_URL="http://localhost:5000/from/env"):
-            client = WriterAI(api_key=api_key, _strict_response_validation=True)
+        with update_env(WRITER_BASE_URL="http://localhost:5000/from/env"):
+            client = Writer(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            WriterAI(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            WriterAI(
+            Writer(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
+            Writer(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -565,7 +558,7 @@ class TestWriterAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: WriterAI) -> None:
+    def test_base_url_trailing_slash(self, client: Writer) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -578,8 +571,8 @@ class TestWriterAI:
     @pytest.mark.parametrize(
         "client",
         [
-            WriterAI(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            WriterAI(
+            Writer(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
+            Writer(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -588,7 +581,7 @@ class TestWriterAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: WriterAI) -> None:
+    def test_base_url_no_trailing_slash(self, client: Writer) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -601,8 +594,8 @@ class TestWriterAI:
     @pytest.mark.parametrize(
         "client",
         [
-            WriterAI(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            WriterAI(
+            Writer(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
+            Writer(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -611,7 +604,7 @@ class TestWriterAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: WriterAI) -> None:
+    def test_absolute_request_url(self, client: Writer) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -622,7 +615,7 @@ class TestWriterAI:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -633,7 +626,7 @@ class TestWriterAI:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -654,7 +647,7 @@ class TestWriterAI:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None))
+            Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     def test_default_stream_cls(self, respx_mock: MockRouter) -> None:
@@ -674,12 +667,12 @@ class TestWriterAI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -706,14 +699,14 @@ class TestWriterAI:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Writer(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -739,7 +732,7 @@ class TestWriterAI:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(return_value=httpx.Response(500))
@@ -766,8 +759,8 @@ class TestWriterAI:
         assert _get_open_connections(self.client) == 0
 
 
-class TestAsyncWriterAI:
-    client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestAsyncWriter:
+    client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -816,7 +809,7 @@ class TestAsyncWriterAI:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncWriterAI(
+        client = AsyncWriter(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -850,7 +843,7 @@ class TestAsyncWriterAI:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncWriterAI(
+        client = AsyncWriter(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -941,10 +934,10 @@ class TestAsyncWriterAI:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "writerai/_legacy_response.py",
-                        "writerai/_response.py",
+                        "writer/_legacy_response.py",
+                        "writer/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "writerai/_compat.py",
+                        "writer/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -975,7 +968,7 @@ class TestAsyncWriterAI:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncWriterAI(
+        client = AsyncWriter(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -986,7 +979,7 @@ class TestAsyncWriterAI:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncWriterAI(
+            client = AsyncWriter(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -996,7 +989,7 @@ class TestAsyncWriterAI:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncWriterAI(
+            client = AsyncWriter(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1006,7 +999,7 @@ class TestAsyncWriterAI:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncWriterAI(
+            client = AsyncWriter(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1017,7 +1010,7 @@ class TestAsyncWriterAI:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncWriterAI(
+                AsyncWriter(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -1025,14 +1018,14 @@ class TestAsyncWriterAI:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncWriterAI(
+        client = AsyncWriter(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncWriterAI(
+        client2 = AsyncWriter(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -1046,16 +1039,16 @@ class TestAsyncWriterAI:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(WriterAIError):
-            client2 = AsyncWriterAI(base_url=base_url, api_key=None, _strict_response_validation=True)
+        with pytest.raises(WriterError):
+            client2 = AsyncWriter(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = AsyncWriterAI(
+        client = AsyncWriter(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1169,7 +1162,7 @@ class TestAsyncWriterAI:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncWriterAI) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncWriter) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1256,7 +1249,7 @@ class TestAsyncWriterAI:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncWriterAI(
+        client = AsyncWriter(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1266,17 +1259,17 @@ class TestAsyncWriterAI:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(WRITERAI_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncWriterAI(api_key=api_key, _strict_response_validation=True)
+        with update_env(WRITER_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncWriter(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1285,7 +1278,7 @@ class TestAsyncWriterAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncWriterAI) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncWriter) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1298,10 +1291,10 @@ class TestAsyncWriterAI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1310,7 +1303,7 @@ class TestAsyncWriterAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncWriterAI) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncWriter) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1323,10 +1316,10 @@ class TestAsyncWriterAI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1335,7 +1328,7 @@ class TestAsyncWriterAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncWriterAI) -> None:
+    def test_absolute_request_url(self, client: AsyncWriter) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1346,7 +1339,7 @@ class TestAsyncWriterAI:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1358,7 +1351,7 @@ class TestAsyncWriterAI:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1380,7 +1373,7 @@ class TestAsyncWriterAI:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncWriterAI(
+            AsyncWriter(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -1404,12 +1397,12 @@ class TestAsyncWriterAI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1437,14 +1430,14 @@ class TestAsyncWriterAI:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -1470,7 +1463,7 @@ class TestAsyncWriterAI:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(return_value=httpx.Response(500))
