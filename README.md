@@ -32,7 +32,7 @@ from writerai import WriterAI
 
 client = WriterAI(
     # This is the default and can be omitted
-    api_key=os.environ.get("WRITERAI_API_KEY"),
+    api_key=os.environ.get("WRITER_API_KEY"),
 )
 
 chat = client.chat.chat(
@@ -49,7 +49,7 @@ print(chat.id)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `WRITERAI_API_KEY="My API Key"` to your `.env` file
+to add `WRITER_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -63,7 +63,7 @@ from writerai import AsyncWriterAI
 
 client = AsyncWriterAI(
     # This is the default and can be omitted
-    api_key=os.environ.get("WRITERAI_API_KEY"),
+    api_key=os.environ.get("WRITER_API_KEY"),
 )
 
 
@@ -286,9 +286,9 @@ chat = response.parse()  # get the object that `chat.chat()` would have returned
 print(chat.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/tree/main/src/writerai/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/writer-python/tree/main/src/writerai/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/writer-python/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 

@@ -80,13 +80,13 @@ class WriterAI(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous writerai client instance.
 
-        This automatically infers the `api_key` argument from the `WRITERAI_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `WRITER_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("WRITERAI_API_KEY")
+            api_key = os.environ.get("WRITER_API_KEY")
         if api_key is None:
             raise WriterAIError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the WRITERAI_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the WRITER_API_KEY environment variable"
             )
         self.api_key = api_key
 
@@ -254,13 +254,13 @@ class AsyncWriterAI(AsyncAPIClient):
     ) -> None:
         """Construct a new async writerai client instance.
 
-        This automatically infers the `api_key` argument from the `WRITERAI_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `WRITER_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("WRITERAI_API_KEY")
+            api_key = os.environ.get("WRITER_API_KEY")
         if api_key is None:
             raise WriterAIError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the WRITERAI_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the WRITER_API_KEY environment variable"
             )
         self.api_key = api_key
 
