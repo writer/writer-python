@@ -7,14 +7,14 @@ from typing import TYPE_CHECKING, Iterator, AsyncIterator
 
 import pytest
 
-from writerai import WriterAI, AsyncWriterAI
+from writer import Writer, AsyncWriter
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("writerai").setLevel(logging.DEBUG)
+logging.getLogger("writer").setLevel(logging.DEBUG)
 
 
 @pytest.fixture(scope="session")
@@ -30,20 +30,20 @@ api_key = "My API Key"
 
 
 @pytest.fixture(scope="session")
-def client(request: FixtureRequest) -> Iterator[WriterAI]:
+def client(request: FixtureRequest) -> Iterator[Writer]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with WriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
+    with Writer(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
         yield client
 
 
 @pytest.fixture(scope="session")
-async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncWriterAI]:
+async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncWriter]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    async with AsyncWriterAI(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
+    async with AsyncWriter(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
         yield client

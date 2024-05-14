@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from writerai._types import Base64FileInput
-from writerai._utils import (
+from writer._types import Base64FileInput
+from writer._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from writerai._compat import PYDANTIC_V2
-from writerai._models import BaseModel
+from writer._compat import PYDANTIC_V2
+from writer._models import BaseModel
 
 _T = TypeVar("_T")
 

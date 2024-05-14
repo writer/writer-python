@@ -25,7 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import WriterAIError, APIStatusError
+from ._exceptions import WriterError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -38,19 +38,19 @@ __all__ = [
     "ProxiesTypes",
     "RequestOptions",
     "resources",
-    "WriterAI",
-    "AsyncWriterAI",
+    "Writer",
+    "AsyncWriter",
     "Client",
     "AsyncClient",
 ]
 
 
-class WriterAI(SyncAPIClient):
+class Writer(SyncAPIClient):
     chat: resources.ChatResource
     completions: resources.CompletionsResource
     models: resources.ModelsResource
-    with_raw_response: WriterAIWithRawResponse
-    with_streaming_response: WriterAIWithStreamedResponse
+    with_raw_response: WriterWithRawResponse
+    with_streaming_response: WriterWithStreamedResponse
 
     # client options
     api_key: str
@@ -78,20 +78,20 @@ class WriterAI(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous writerai client instance.
+        """Construct a new synchronous writer client instance.
 
         This automatically infers the `api_key` argument from the `WRITER_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
             api_key = os.environ.get("WRITER_API_KEY")
         if api_key is None:
-            raise WriterAIError(
+            raise WriterError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the WRITER_API_KEY environment variable"
             )
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("WRITERAI_BASE_URL")
+            base_url = os.environ.get("WRITER_BASE_URL")
         if base_url is None:
             base_url = f"https://api.qordobadev.com"
 
@@ -111,8 +111,8 @@ class WriterAI(SyncAPIClient):
         self.chat = resources.ChatResource(self)
         self.completions = resources.CompletionsResource(self)
         self.models = resources.ModelsResource(self)
-        self.with_raw_response = WriterAIWithRawResponse(self)
-        self.with_streaming_response = WriterAIWithStreamedResponse(self)
+        self.with_raw_response = WriterWithRawResponse(self)
+        self.with_streaming_response = WriterWithStreamedResponse(self)
 
     @property
     @override
@@ -219,12 +219,12 @@ class WriterAI(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncWriterAI(AsyncAPIClient):
+class AsyncWriter(AsyncAPIClient):
     chat: resources.AsyncChatResource
     completions: resources.AsyncCompletionsResource
     models: resources.AsyncModelsResource
-    with_raw_response: AsyncWriterAIWithRawResponse
-    with_streaming_response: AsyncWriterAIWithStreamedResponse
+    with_raw_response: AsyncWriterWithRawResponse
+    with_streaming_response: AsyncWriterWithStreamedResponse
 
     # client options
     api_key: str
@@ -252,20 +252,20 @@ class AsyncWriterAI(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async writerai client instance.
+        """Construct a new async writer client instance.
 
         This automatically infers the `api_key` argument from the `WRITER_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
             api_key = os.environ.get("WRITER_API_KEY")
         if api_key is None:
-            raise WriterAIError(
+            raise WriterError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the WRITER_API_KEY environment variable"
             )
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("WRITERAI_BASE_URL")
+            base_url = os.environ.get("WRITER_BASE_URL")
         if base_url is None:
             base_url = f"https://api.qordobadev.com"
 
@@ -285,8 +285,8 @@ class AsyncWriterAI(AsyncAPIClient):
         self.chat = resources.AsyncChatResource(self)
         self.completions = resources.AsyncCompletionsResource(self)
         self.models = resources.AsyncModelsResource(self)
-        self.with_raw_response = AsyncWriterAIWithRawResponse(self)
-        self.with_streaming_response = AsyncWriterAIWithStreamedResponse(self)
+        self.with_raw_response = AsyncWriterWithRawResponse(self)
+        self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
 
     @property
     @override
@@ -393,34 +393,34 @@ class AsyncWriterAI(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class WriterAIWithRawResponse:
-    def __init__(self, client: WriterAI) -> None:
+class WriterWithRawResponse:
+    def __init__(self, client: Writer) -> None:
         self.chat = resources.ChatResourceWithRawResponse(client.chat)
         self.completions = resources.CompletionsResourceWithRawResponse(client.completions)
         self.models = resources.ModelsResourceWithRawResponse(client.models)
 
 
-class AsyncWriterAIWithRawResponse:
-    def __init__(self, client: AsyncWriterAI) -> None:
+class AsyncWriterWithRawResponse:
+    def __init__(self, client: AsyncWriter) -> None:
         self.chat = resources.AsyncChatResourceWithRawResponse(client.chat)
         self.completions = resources.AsyncCompletionsResourceWithRawResponse(client.completions)
         self.models = resources.AsyncModelsResourceWithRawResponse(client.models)
 
 
-class WriterAIWithStreamedResponse:
-    def __init__(self, client: WriterAI) -> None:
+class WriterWithStreamedResponse:
+    def __init__(self, client: Writer) -> None:
         self.chat = resources.ChatResourceWithStreamingResponse(client.chat)
         self.completions = resources.CompletionsResourceWithStreamingResponse(client.completions)
         self.models = resources.ModelsResourceWithStreamingResponse(client.models)
 
 
-class AsyncWriterAIWithStreamedResponse:
-    def __init__(self, client: AsyncWriterAI) -> None:
+class AsyncWriterWithStreamedResponse:
+    def __init__(self, client: AsyncWriter) -> None:
         self.chat = resources.AsyncChatResourceWithStreamingResponse(client.chat)
         self.completions = resources.AsyncCompletionsResourceWithStreamingResponse(client.completions)
         self.models = resources.AsyncModelsResourceWithStreamingResponse(client.models)
 
 
-Client = WriterAI
+Client = Writer
 
-AsyncClient = AsyncWriterAI
+AsyncClient = AsyncWriter

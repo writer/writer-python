@@ -1,8 +1,8 @@
-# Writer AI Python API library
+# Writer Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/writerai.svg)](https://pypi.org/project/writerai/)
+[![PyPI version](https://img.shields.io/pypi/v/writer-sdk.svg)](https://pypi.org/project/writer-sdk/)
 
-The Writer AI Python library provides convenient access to the Writer AI REST API from any Python 3.7+
+The Writer Python library provides convenient access to the Writer REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -20,7 +20,7 @@ pip install git+ssh://git@github.com/stainless-sdks/writer-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre writerai`
+> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre writer-sdk`
 
 ## Usage
 
@@ -28,9 +28,9 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from writerai import WriterAI
+from writer import Writer
 
-client = WriterAI(
+client = Writer(
     # This is the default and can be omitted
     api_key=os.environ.get("WRITER_API_KEY"),
 )
@@ -54,14 +54,14 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncWriterAI` instead of `WriterAI` and use `await` with each API call:
+Simply import `AsyncWriter` instead of `Writer` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from writerai import AsyncWriterAI
+from writer import AsyncWriter
 
-client = AsyncWriterAI(
+client = AsyncWriter(
     # This is the default and can be omitted
     api_key=os.environ.get("WRITER_API_KEY"),
 )
@@ -90,9 +90,9 @@ Functionality between the synchronous and asynchronous clients is otherwise iden
 We provide support for streaming responses using Server Side Events (SSE).
 
 ```python
-from writerai import WriterAI
+from writer import Writer
 
-client = WriterAI()
+client = Writer()
 
 stream = client.completions.create(
     model="palmyra-x-v2",
@@ -106,9 +106,9 @@ for completion in stream:
 The async client uses the exact same interface.
 
 ```python
-from writerai import AsyncWriterAI
+from writer import AsyncWriter
 
-client = AsyncWriterAI()
+client = AsyncWriter()
 
 stream = await client.completions.create(
     model="palmyra-x-v2",
@@ -130,18 +130,18 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writerai.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writer.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `writerai.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `writer.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `writerai.APIError`.
+All errors inherit from `writer.APIError`.
 
 ```python
-import writerai
-from writerai import WriterAI
+import writer
+from writer import Writer
 
-client = WriterAI()
+client = Writer()
 
 try:
     client.chat.chat(
@@ -153,12 +153,12 @@ try:
         ],
         model="palmyra-x-chat-v2-32k",
     )
-except writerai.APIConnectionError as e:
+except writer.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except writerai.RateLimitError as e:
+except writer.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except writerai.APIStatusError as e:
+except writer.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -186,10 +186,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from writerai import WriterAI
+from writer import Writer
 
 # Configure the default for all requests:
-client = WriterAI(
+client = Writer(
     # default is 2
     max_retries=0,
 )
@@ -212,16 +212,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from writerai import WriterAI
+from writer import Writer
 
 # Configure the default for all requests:
-client = WriterAI(
+client = Writer(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = WriterAI(
+client = Writer(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -247,10 +247,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `WRITERAI_LOG` to `debug`.
+You can enable logging by setting the environment variable `WRITER_LOG` to `debug`.
 
 ```shell
-$ export WRITERAI_LOG=debug
+$ export WRITER_LOG=debug
 ```
 
 ### How to tell whether `None` means `null` or missing
@@ -270,9 +270,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from writerai import WriterAI
+from writer import Writer
 
-client = WriterAI()
+client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
         "content": "Hello!",
@@ -286,9 +286,9 @@ chat = response.parse()  # get the object that `chat.chat()` would have returned
 print(chat.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/writer-python/tree/main/src/writerai/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/writer-python/tree/main/src/writer/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/writer-python/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/writer-python/tree/main/src/writer/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -358,10 +358,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/#client-instances) functionality
 
 ```python
-from writerai import WriterAI, DefaultHttpxClient
+from writer import Writer, DefaultHttpxClient
 
-client = WriterAI(
-    # Or use the `WRITERAI_BASE_URL` env var
+client = Writer(
+    # Or use the `WRITER_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxies="http://my.test.proxy.example.com",

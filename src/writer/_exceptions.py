@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class WriterAIError(Exception):
+class WriterError(Exception):
     pass
 
 
-class APIError(WriterAIError):
+class APIError(WriterError):
     message: str
     request: httpx.Request
 
