@@ -16,12 +16,17 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from writer import Writer, AsyncWriter, APIResponseValidationError
-from writer._models import BaseModel, FinalRequestOptions
-from writer._constants import RAW_RESPONSE_HEADER
-from writer._streaming import Stream, AsyncStream
-from writer._exceptions import WriterError, APIStatusError, APITimeoutError, APIResponseValidationError
-from writer._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
+from writerai import Writer, AsyncWriter, APIResponseValidationError
+from writerai._models import BaseModel, FinalRequestOptions
+from writerai._constants import RAW_RESPONSE_HEADER
+from writerai._streaming import Stream, AsyncStream
+from writerai._exceptions import WriterError, APIStatusError, APITimeoutError, APIResponseValidationError
+from writerai._base_client import (
+    DEFAULT_TIMEOUT,
+    HTTPX_DEFAULT_TIMEOUT,
+    BaseClient,
+    make_request_options,
+)
 
 from .utils import update_env
 
@@ -220,10 +225,10 @@ class TestWriter:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "writer/_legacy_response.py",
-                        "writer/_response.py",
+                        "writerai/_legacy_response.py",
+                        "writerai/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "writer/_compat.py",
+                        "writerai/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -706,7 +711,7 @@ class TestWriter:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -732,7 +737,7 @@ class TestWriter:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(return_value=httpx.Response(500))
@@ -934,10 +939,10 @@ class TestAsyncWriter:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "writer/_legacy_response.py",
-                        "writer/_response.py",
+                        "writerai/_legacy_response.py",
+                        "writerai/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "writer/_compat.py",
+                        "writerai/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1437,7 +1442,7 @@ class TestAsyncWriter:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -1463,7 +1468,7 @@ class TestAsyncWriter:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("writer._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/v1/chat").mock(return_value=httpx.Response(500))

@@ -61,6 +61,6 @@
   ],
   "release-type": "python",
   "extra-files": [
-    "src/writer/_version.py"
+    "src/writerai/_version.py"
   ]
 }
