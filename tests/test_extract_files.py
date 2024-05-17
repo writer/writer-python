@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from writer._types import FileTypes
-from writer._utils import extract_files
+from writerai._types import FileTypes
+from writerai._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

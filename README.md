@@ -25,7 +25,7 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from writer import Writer
+from writerai import Writer
 
 client = Writer(
     # This is the default and can be omitted
@@ -56,7 +56,7 @@ Simply import `AsyncWriter` instead of `Writer` and use `await` with each API ca
 ```python
 import os
 import asyncio
-from writer import AsyncWriter
+from writerai import AsyncWriter
 
 client = AsyncWriter(
     # This is the default and can be omitted
@@ -87,7 +87,7 @@ Functionality between the synchronous and asynchronous clients is otherwise iden
 We provide support for streaming responses using Server Side Events (SSE).
 
 ```python
-from writer import Writer
+from writerai import Writer
 
 client = Writer()
 
@@ -103,7 +103,7 @@ for completion in stream:
 The async client uses the exact same interface.
 
 ```python
-from writer import AsyncWriter
+from writerai import AsyncWriter
 
 client = AsyncWriter()
 
@@ -127,16 +127,16 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writer.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writerai.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `writer.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `writerai.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `writer.APIError`.
+All errors inherit from `writerai.APIError`.
 
 ```python
-import writer
-from writer import Writer
+import writerai
+from writerai import Writer
 
 client = Writer()
 
@@ -150,12 +150,12 @@ try:
         ],
         model="palmyra-x-chat-v2-32k",
     )
-except writer.APIConnectionError as e:
+except writerai.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except writer.RateLimitError as e:
+except writerai.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except writer.APIStatusError as e:
+except writerai.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -183,7 +183,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from writer import Writer
+from writerai import Writer
 
 # Configure the default for all requests:
 client = Writer(
@@ -209,7 +209,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from writer import Writer
+from writerai import Writer
 
 # Configure the default for all requests:
 client = Writer(
@@ -267,7 +267,7 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from writer import Writer
+from writerai import Writer
 
 client = Writer()
 response = client.chat.with_raw_response.chat(
@@ -283,9 +283,9 @@ chat = response.parse()  # get the object that `chat.chat()` would have returned
 print(chat.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/WriterColab/sdk.python/tree/main/src/writer/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/WriterColab/sdk.python/tree/main/src/writerai/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/WriterColab/sdk.python/tree/main/src/writer/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/WriterColab/sdk.python/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -355,7 +355,7 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/#client-instances) functionality
 
 ```python
-from writer import Writer, DefaultHttpxClient
+from writerai import Writer, DefaultHttpxClient
 
 client = Writer(
     # Or use the `WRITER_BASE_URL` env var
