@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2024-05-24)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/WriterColab/sdk.python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** update via SDK Studio ([#7](https://github.com/WriterColab/sdk.python/issues/7)) ([c65c32f](https://github.com/WriterColab/sdk.python/commit/c65c32f753a4fab19c87cc6d6a3e5fedc937460f))
+
 ## 0.1.0-alpha.2 (2024-05-16)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/WriterColab/sdk.python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
