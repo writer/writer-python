@@ -93,7 +93,7 @@ class Writer(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("WRITER_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.qordobadev.com"
+            base_url = f"https://api.writer.com"
 
         super().__init__(
             version=__version__,
@@ -267,7 +267,7 @@ class AsyncWriter(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("WRITER_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.qordobadev.com"
+            base_url = f"https://api.writer.com"
 
         super().__init__(
             version=__version__,
