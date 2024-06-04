@@ -39,7 +39,7 @@ chat = client.chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-v2",
+    model="palmyra-chat-v2-32k",
 )
 print(chat.id)
 ```
@@ -72,7 +72,7 @@ async def main() -> None:
                 "role": "user",
             }
         ],
-        model="palmyra-x-v2",
+        model="palmyra-chat-v2-32k",
     )
     print(chat.id)
 
@@ -148,7 +148,7 @@ try:
                 "role": "user",
             }
         ],
-        model="palmyra-x-v2",
+        model="[object Object]",
     )
 except writerai.APIConnectionError as e:
     print("The server could not be reached")
@@ -199,7 +199,7 @@ client.with_options(max_retries=5).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-v2",
+    model="[object Object]",
 )
 ```
 
@@ -230,7 +230,7 @@ client.with_options(timeout=5.0).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-v2",
+    model="[object Object]",
 )
 ```
 
@@ -275,7 +275,7 @@ response = client.chat.with_raw_response.chat(
         "content": "Hello!",
         "role": "user",
     }],
-    model="palmyra-x-v2",
+    model="[object Object]",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -301,7 +301,7 @@ with client.chat.with_streaming_response.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-v2",
+    model="[object Object]",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

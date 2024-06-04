@@ -728,7 +728,7 @@ class TestWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-v2",
+                        model="[object Object]",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -754,7 +754,7 @@ class TestWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-v2",
+                        model="[object Object]",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1459,7 +1459,7 @@ class TestAsyncWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-v2",
+                        model="[object Object]",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1485,7 +1485,7 @@ class TestAsyncWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-v2",
+                        model="[object Object]",
                     ),
                 ),
                 cast_to=httpx.Response,
