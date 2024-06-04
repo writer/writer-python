@@ -61,9 +61,40 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat:
         """
-        Create chat completion
+        Chat completion
 
         Args:
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          model: Specifies the model to be used for generating responses. The chat model is
+              always `palmyra-x-002-32k` for conversational use.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows multiple responses to be generated,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          stream: Indicates whether the response should be streamed incrementally as it is
+              generated or only returned once fully complete. Streaming can be useful for
+              providing real-time feedback in interactive applications.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -94,9 +125,40 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stream[ChatStreamingData]:
         """
-        Create chat completion
+        Chat completion
 
         Args:
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          model: Specifies the model to be used for generating responses. The chat model is
+              always `palmyra-x-002-32k` for conversational use.
+
+          stream: Indicates whether the response should be streamed incrementally as it is
+              generated or only returned once fully complete. Streaming can be useful for
+              providing real-time feedback in interactive applications.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows multiple responses to be generated,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,9 +189,40 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat | Stream[ChatStreamingData]:
         """
-        Create chat completion
+        Chat completion
 
         Args:
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          model: Specifies the model to be used for generating responses. The chat model is
+              always `palmyra-x-002-32k` for conversational use.
+
+          stream: Indicates whether the response should be streamed incrementally as it is
+              generated or only returned once fully complete. Streaming can be useful for
+              providing real-time feedback in interactive applications.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows multiple responses to be generated,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -212,9 +305,40 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat:
         """
-        Create chat completion
+        Chat completion
 
         Args:
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          model: Specifies the model to be used for generating responses. The chat model is
+              always `palmyra-x-002-32k` for conversational use.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows multiple responses to be generated,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          stream: Indicates whether the response should be streamed incrementally as it is
+              generated or only returned once fully complete. Streaming can be useful for
+              providing real-time feedback in interactive applications.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -245,9 +369,40 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncStream[ChatStreamingData]:
         """
-        Create chat completion
+        Chat completion
 
         Args:
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          model: Specifies the model to be used for generating responses. The chat model is
+              always `palmyra-x-002-32k` for conversational use.
+
+          stream: Indicates whether the response should be streamed incrementally as it is
+              generated or only returned once fully complete. Streaming can be useful for
+              providing real-time feedback in interactive applications.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows multiple responses to be generated,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -278,9 +433,40 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat | AsyncStream[ChatStreamingData]:
         """
-        Create chat completion
+        Chat completion
 
         Args:
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          model: Specifies the model to be used for generating responses. The chat model is
+              always `palmyra-x-002-32k` for conversational use.
+
+          stream: Indicates whether the response should be streamed incrementally as it is
+              generated or only returned once fully complete. Streaming can be useful for
+              providing real-time feedback in interactive applications.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows multiple responses to be generated,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
