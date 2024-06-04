@@ -62,9 +62,36 @@ class CompletionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion:
         """
-        Create completion using LLM model
+        Text generation
 
         Args:
+          model: The identifier of the model to be used for processing the request.
+
+          prompt: The input text that the model will process to generate a response.
+
+          best_of: Specifies the number of completions to generate and return the best one. Useful
+              for generating multiple outputs and choosing the best based on some criteria.
+
+          max_tokens: The maximum number of tokens that the model can generate in the response.
+
+          random_seed: A seed used to initialize the random number generator for the model, ensuring
+              reproducibility of the output when the same inputs are provided.
+
+          stop: Specifies stopping conditions for the model's output generation. This can be an
+              array of strings or a single string that the model will look for as a signal to
+              stop generating further tokens.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          temperature: Controls the randomness of the model's outputs. Higher values lead to more
+              random outputs, while lower values make the model more deterministic.
+
+          top_p: Used to control the nucleus sampling, where only the most probable tokens with a
+              cumulative probability of top_p are considered for sampling, providing a way to
+              fine-tune the randomness of predictions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -96,9 +123,36 @@ class CompletionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stream[StreamingData]:
         """
-        Create completion using LLM model
+        Text generation
 
         Args:
+          model: The identifier of the model to be used for processing the request.
+
+          prompt: The input text that the model will process to generate a response.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          best_of: Specifies the number of completions to generate and return the best one. Useful
+              for generating multiple outputs and choosing the best based on some criteria.
+
+          max_tokens: The maximum number of tokens that the model can generate in the response.
+
+          random_seed: A seed used to initialize the random number generator for the model, ensuring
+              reproducibility of the output when the same inputs are provided.
+
+          stop: Specifies stopping conditions for the model's output generation. This can be an
+              array of strings or a single string that the model will look for as a signal to
+              stop generating further tokens.
+
+          temperature: Controls the randomness of the model's outputs. Higher values lead to more
+              random outputs, while lower values make the model more deterministic.
+
+          top_p: Used to control the nucleus sampling, where only the most probable tokens with a
+              cumulative probability of top_p are considered for sampling, providing a way to
+              fine-tune the randomness of predictions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -130,9 +184,36 @@ class CompletionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion | Stream[StreamingData]:
         """
-        Create completion using LLM model
+        Text generation
 
         Args:
+          model: The identifier of the model to be used for processing the request.
+
+          prompt: The input text that the model will process to generate a response.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          best_of: Specifies the number of completions to generate and return the best one. Useful
+              for generating multiple outputs and choosing the best based on some criteria.
+
+          max_tokens: The maximum number of tokens that the model can generate in the response.
+
+          random_seed: A seed used to initialize the random number generator for the model, ensuring
+              reproducibility of the output when the same inputs are provided.
+
+          stop: Specifies stopping conditions for the model's output generation. This can be an
+              array of strings or a single string that the model will look for as a signal to
+              stop generating further tokens.
+
+          temperature: Controls the randomness of the model's outputs. Higher values lead to more
+              random outputs, while lower values make the model more deterministic.
+
+          top_p: Used to control the nucleus sampling, where only the most probable tokens with a
+              cumulative probability of top_p are considered for sampling, providing a way to
+              fine-tune the randomness of predictions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,9 +299,36 @@ class AsyncCompletionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion:
         """
-        Create completion using LLM model
+        Text generation
 
         Args:
+          model: The identifier of the model to be used for processing the request.
+
+          prompt: The input text that the model will process to generate a response.
+
+          best_of: Specifies the number of completions to generate and return the best one. Useful
+              for generating multiple outputs and choosing the best based on some criteria.
+
+          max_tokens: The maximum number of tokens that the model can generate in the response.
+
+          random_seed: A seed used to initialize the random number generator for the model, ensuring
+              reproducibility of the output when the same inputs are provided.
+
+          stop: Specifies stopping conditions for the model's output generation. This can be an
+              array of strings or a single string that the model will look for as a signal to
+              stop generating further tokens.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          temperature: Controls the randomness of the model's outputs. Higher values lead to more
+              random outputs, while lower values make the model more deterministic.
+
+          top_p: Used to control the nucleus sampling, where only the most probable tokens with a
+              cumulative probability of top_p are considered for sampling, providing a way to
+              fine-tune the randomness of predictions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,9 +360,36 @@ class AsyncCompletionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncStream[StreamingData]:
         """
-        Create completion using LLM model
+        Text generation
 
         Args:
+          model: The identifier of the model to be used for processing the request.
+
+          prompt: The input text that the model will process to generate a response.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          best_of: Specifies the number of completions to generate and return the best one. Useful
+              for generating multiple outputs and choosing the best based on some criteria.
+
+          max_tokens: The maximum number of tokens that the model can generate in the response.
+
+          random_seed: A seed used to initialize the random number generator for the model, ensuring
+              reproducibility of the output when the same inputs are provided.
+
+          stop: Specifies stopping conditions for the model's output generation. This can be an
+              array of strings or a single string that the model will look for as a signal to
+              stop generating further tokens.
+
+          temperature: Controls the randomness of the model's outputs. Higher values lead to more
+              random outputs, while lower values make the model more deterministic.
+
+          top_p: Used to control the nucleus sampling, where only the most probable tokens with a
+              cumulative probability of top_p are considered for sampling, providing a way to
+              fine-tune the randomness of predictions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -286,9 +421,36 @@ class AsyncCompletionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion | AsyncStream[StreamingData]:
         """
-        Create completion using LLM model
+        Text generation
 
         Args:
+          model: The identifier of the model to be used for processing the request.
+
+          prompt: The input text that the model will process to generate a response.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          best_of: Specifies the number of completions to generate and return the best one. Useful
+              for generating multiple outputs and choosing the best based on some criteria.
+
+          max_tokens: The maximum number of tokens that the model can generate in the response.
+
+          random_seed: A seed used to initialize the random number generator for the model, ensuring
+              reproducibility of the output when the same inputs are provided.
+
+          stop: Specifies stopping conditions for the model's output generation. This can be an
+              array of strings or a single string that the model will look for as a signal to
+              stop generating further tokens.
+
+          temperature: Controls the randomness of the model's outputs. Higher values lead to more
+              random outputs, while lower values make the model more deterministic.
+
+          top_p: Used to control the nucleus sampling, where only the most probable tokens with a
+              cumulative probability of top_p are considered for sampling, providing a way to
+              fine-tune the randomness of predictions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
