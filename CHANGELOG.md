@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.2 (2024-06-05)
+
+Full Changelog: [v0.1.0...v0.1.2](https://github.com/writerai/writer-python/compare/v0.1.0...v0.1.2)
+
+### Features
+
+* **api:** update via SDK Studio ([#7](https://github.com/writerai/writer-python/issues/7)) ([84a564e](https://github.com/writerai/writer-python/commit/84a564e0c6c1acce33bd56b72caceac1a1a7e049))
+* **api:** update via SDK Studio ([#8](https://github.com/writerai/writer-python/issues/8)) ([c0594c3](https://github.com/writerai/writer-python/commit/c0594c3099939bf3cd2b541ed8c87f5c68b13d79))
+
+
+### Chores
+
+* **internal:** version bump ([#5](https://github.com/writerai/writer-python/issues/5)) ([2252270](https://github.com/writerai/writer-python/commit/225227022ca403d8a60fdd7496b74c51314404e4))
+
 ## 0.1.0 (2024-06-05)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0](https://github.com/writerai/writer-python/compare/v0.1.0-alpha.3...v0.1.0)
