@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.0 (2024-06-05)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0](https://github.com/writerai/writer-python/compare/v0.1.0-alpha.3...v0.1.0)
+
+### Features
+
+* **api:** update via SDK Studio ([fe993a2](https://github.com/writerai/writer-python/commit/fe993a27d2d71e3d9f989a1900c2b413a26f6954))
+* **api:** update via SDK Studio ([#10](https://github.com/writerai/writer-python/issues/10)) ([6ebe199](https://github.com/writerai/writer-python/commit/6ebe199e0b1043ed345ab6b3434d2ee116365737))
+* **api:** update via SDK Studio ([#12](https://github.com/writerai/writer-python/issues/12)) ([e668e94](https://github.com/writerai/writer-python/commit/e668e9498dab939754e4dbd351f8f29ece18b622))
+* **api:** update via SDK Studio ([#13](https://github.com/writerai/writer-python/issues/13)) ([aa08d76](https://github.com/writerai/writer-python/commit/aa08d76ac7a9dd0d8a40032bce986c23f8655130))
+* **api:** update via SDK Studio ([#14](https://github.com/writerai/writer-python/issues/14)) ([87ce38f](https://github.com/writerai/writer-python/commit/87ce38fa40ead36136a674bfc8c330c270fb8d5e))
+* **api:** update via SDK Studio ([#3](https://github.com/writerai/writer-python/issues/3)) ([3c3ae55](https://github.com/writerai/writer-python/commit/3c3ae55e3da824e8722514d589f9ccbeec62b1bb))
+* **api:** update via SDK Studio ([#4](https://github.com/writerai/writer-python/issues/4)) ([2523970](https://github.com/writerai/writer-python/commit/252397069fc7012de4328fa4f874ea674d507af1))
+
+
+### Chores
+
+* go live ([#2](https://github.com/writerai/writer-python/issues/2)) ([f812fc4](https://github.com/writerai/writer-python/commit/f812fc4f9c9137907bd790477651dc8425bac0e0))
+
 ## 0.1.0-alpha.3 (2024-05-24)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/WriterColab/sdk.python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)

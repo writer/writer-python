@@ -724,7 +724,7 @@ class TestWriter:
                     dict(
                         messages=[
                             {
-                                "content": "Hello!",
+                                "content": "string",
                                 "role": "user",
                             }
                         ],
@@ -750,7 +750,7 @@ class TestWriter:
                     dict(
                         messages=[
                             {
-                                "content": "Hello!",
+                                "content": "string",
                                 "role": "user",
                             }
                         ],
@@ -1455,7 +1455,7 @@ class TestAsyncWriter:
                     dict(
                         messages=[
                             {
-                                "content": "Hello!",
+                                "content": "string",
                                 "role": "user",
                             }
                         ],
@@ -1481,7 +1481,7 @@ class TestAsyncWriter:
                     dict(
                         messages=[
                             {
-                                "content": "Hello!",
+                                "content": "string",
                                 "role": "user",
                             }
                         ],

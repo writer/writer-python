@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Documentation
 
-The REST API documentation can be found [on dev.writer.com](https://dev.writer.com/docs/quickstart). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on dev.writer.com](https://dev.writer.com/api-guides/introduction). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -35,7 +35,7 @@ client = Writer(
 chat = client.chat.chat(
     messages=[
         {
-            "content": "Hello!",
+            "content": "string",
             "role": "user",
         }
     ],
@@ -68,7 +68,7 @@ async def main() -> None:
     chat = await client.chat.chat(
         messages=[
             {
-                "content": "Hello!",
+                "content": "string",
                 "role": "user",
             }
         ],
@@ -144,7 +144,7 @@ try:
     client.chat.chat(
         messages=[
             {
-                "content": "Hello!",
+                "content": "string",
                 "role": "user",
             }
         ],
@@ -195,7 +195,7 @@ client = Writer(
 client.with_options(max_retries=5).chat.chat(
     messages=[
         {
-            "content": "Hello!",
+            "content": "string",
             "role": "user",
         }
     ],
@@ -226,7 +226,7 @@ client = Writer(
 client.with_options(timeout=5.0).chat.chat(
     messages=[
         {
-            "content": "Hello!",
+            "content": "string",
             "role": "user",
         }
     ],
@@ -272,7 +272,7 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "content": "Hello!",
+        "content": "string",
         "role": "user",
     }],
     model="palmyra-x-32k",
@@ -283,9 +283,9 @@ chat = response.parse()  # get the object that `chat.chat()` would have returned
 print(chat.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/WriterColab/sdk.python/tree/main/src/writerai/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/writerai/writer-python/tree/main/src/writerai/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/WriterColab/sdk.python/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/writerai/writer-python/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -297,7 +297,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.chat.with_streaming_response.chat(
     messages=[
         {
-            "content": "Hello!",
+            "content": "string",
             "role": "user",
         }
     ],
@@ -381,7 +381,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/WriterColab/sdk.python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/writerai/writer-python/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

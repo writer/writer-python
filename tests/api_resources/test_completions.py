@@ -20,31 +20,31 @@ class TestCompletions:
     @parametrize
     def test_method_create_overload_1(self, client: Writer) -> None:
         completion = client.completions.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
         )
         assert_matches_type(Completion, completion, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Writer) -> None:
         completion = client.completions.create(
-            model="string",
-            prompt="string",
-            best_of=0,
-            max_tokens=0,
-            random_seed=0,
-            stop=["string", "string", "string"],
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
+            best_of=1,
+            max_tokens=150,
+            random_seed=42,
+            stop=["."],
             stream=False,
-            temperature=0,
-            top_p=0,
+            temperature=0.7,
+            top_p=0.9,
         )
         assert_matches_type(Completion, completion, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_1(self, client: Writer) -> None:
         response = client.completions.with_raw_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
         )
 
         assert response.is_closed is True
@@ -55,8 +55,8 @@ class TestCompletions:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Writer) -> None:
         with client.completions.with_streaming_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,8 +69,8 @@ class TestCompletions:
     @parametrize
     def test_method_create_overload_2(self, client: Writer) -> None:
         completion_stream = client.completions.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
         )
         completion_stream.response.close()
@@ -78,23 +78,23 @@ class TestCompletions:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Writer) -> None:
         completion_stream = client.completions.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
-            best_of=0,
-            max_tokens=0,
-            random_seed=0,
-            stop=["string", "string", "string"],
-            temperature=0,
-            top_p=0,
+            best_of=1,
+            max_tokens=150,
+            random_seed=42,
+            stop=["."],
+            temperature=0.7,
+            top_p=0.9,
         )
         completion_stream.response.close()
 
     @parametrize
     def test_raw_response_create_overload_2(self, client: Writer) -> None:
         response = client.completions.with_raw_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
         )
 
@@ -105,8 +105,8 @@ class TestCompletions:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Writer) -> None:
         with client.completions.with_streaming_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
         ) as response:
             assert not response.is_closed
@@ -124,31 +124,31 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncWriter) -> None:
         completion = await async_client.completions.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
         )
         assert_matches_type(Completion, completion, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncWriter) -> None:
         completion = await async_client.completions.create(
-            model="string",
-            prompt="string",
-            best_of=0,
-            max_tokens=0,
-            random_seed=0,
-            stop=["string", "string", "string"],
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
+            best_of=1,
+            max_tokens=150,
+            random_seed=42,
+            stop=["."],
             stream=False,
-            temperature=0,
-            top_p=0,
+            temperature=0.7,
+            top_p=0.9,
         )
         assert_matches_type(Completion, completion, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncWriter) -> None:
         response = await async_client.completions.with_raw_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
         )
 
         assert response.is_closed is True
@@ -159,8 +159,8 @@ class TestAsyncCompletions:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncWriter) -> None:
         async with async_client.completions.with_streaming_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,8 +173,8 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncWriter) -> None:
         completion_stream = await async_client.completions.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
         )
         await completion_stream.response.aclose()
@@ -182,23 +182,23 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncWriter) -> None:
         completion_stream = await async_client.completions.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
-            best_of=0,
-            max_tokens=0,
-            random_seed=0,
-            stop=["string", "string", "string"],
-            temperature=0,
-            top_p=0,
+            best_of=1,
+            max_tokens=150,
+            random_seed=42,
+            stop=["."],
+            temperature=0.7,
+            top_p=0.9,
         )
         await completion_stream.response.aclose()
 
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncWriter) -> None:
         response = await async_client.completions.with_raw_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
         )
 
@@ -209,8 +209,8 @@ class TestAsyncCompletions:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncWriter) -> None:
         async with async_client.completions.with_streaming_response.create(
-            model="string",
-            prompt="string",
+            model="palmyra-x-002-instruct",
+            prompt="Write me an SEO article about...",
             stream=True,
         ) as response:
             assert not response.is_closed
