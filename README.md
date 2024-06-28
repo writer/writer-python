@@ -14,8 +14,9 @@ The REST API documentation can be found [on dev.writer.com](https://dev.writer.c
 
 ## Installation
 
+To install the package from PyPI, use the following command:
+
 ```sh
-# install from PyPI
 pip install writer-sdk
 ```
 
@@ -39,7 +40,7 @@ chat = client.chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-32k",
+    model="palmyra-x-002-32k",
 )
 print(chat.id)
 ```
@@ -72,7 +73,7 @@ async def main() -> None:
                 "role": "user",
             }
         ],
-        model="palmyra-x-32k",
+        model="palmyra-x-002-32k",
     )
     print(chat.id)
 
@@ -92,28 +93,32 @@ from writerai import Writer
 client = Writer()
 
 stream = client.completions.create(
-    model="palmyra-x-32k",
+    model="palmyra-x-002-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
 for completion in stream:
-    print(completion.choices)
+    print(completion.value)
 ```
 
 The async client uses the exact same interface.
 
 ```python
+import asyncio
 from writerai import AsyncWriter
 
 client = AsyncWriter()
 
-stream = await client.completions.create(
-    model="palmyra-x-32k",
-    prompt="Hi, my name is",
-    stream=True,
-)
-async for completion in stream:
-    print(completion.choices)
+async def main() -> None:
+    stream = await client.completions.create(
+        model="palmyra-x-002-instruct",
+        prompt="Hi, my name is",
+        stream=True,
+    )
+    async for completion in stream:
+        print(completion.value)
+
+asyncio.run(main())
 ```
 
 ## Using types
@@ -148,7 +153,7 @@ try:
                 "role": "user",
             }
         ],
-        model="palmyra-x-32k",
+        model="palmyra-x-002-32k",
     )
 except writerai.APIConnectionError as e:
     print("The server could not be reached")
@@ -199,7 +204,7 @@ client.with_options(max_retries=5).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-32k",
+    model="palmyra-x-002-32k",
 )
 ```
 
@@ -230,7 +235,7 @@ client.with_options(timeout=5.0).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-32k",
+    model="palmyra-x-002-32k",
 )
 ```
 
@@ -275,7 +280,7 @@ response = client.chat.with_raw_response.chat(
         "content": "string",
         "role": "user",
     }],
-    model="palmyra-x-32k",
+    model="palmyra-x-002-32k",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -301,7 +306,7 @@ with client.chat.with_streaming_response.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-32k",
+    model="palmyra-x-002-32k",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
