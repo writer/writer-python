@@ -13,7 +13,7 @@ import random
 from writerai import AsyncClient, BadRequestError
 
 
-async def main():
+async def main() -> None:
     client = AsyncClient()
 
     print("Supported models:")
