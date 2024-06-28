@@ -39,8 +39,8 @@ classifiers = [
 
 
 [project.urls]
-Homepage = "https://github.com/writerai/writer-python"
-Repository = "https://github.com/writerai/writer-python"
+Homepage = "https://github.com/writer/writer-python"
+Repository = "https://github.com/writer/writer-python"
 
 
 
@@ -123,7 +123,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/writerai/writer-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/writer/writer-python/tree/main/\g<2>)'
 
 [tool.black]
 line-length = 120
