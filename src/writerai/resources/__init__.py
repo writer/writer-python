@@ -8,6 +8,22 @@ from .chat import (
     ChatResourceWithStreamingResponse,
     AsyncChatResourceWithStreamingResponse,
 )
+from .files import (
+    FilesResource,
+    AsyncFilesResource,
+    FilesResourceWithRawResponse,
+    AsyncFilesResourceWithRawResponse,
+    FilesResourceWithStreamingResponse,
+    AsyncFilesResourceWithStreamingResponse,
+)
+from .graphs import (
+    GraphsResource,
+    AsyncGraphsResource,
+    GraphsResourceWithRawResponse,
+    AsyncGraphsResourceWithRawResponse,
+    GraphsResourceWithStreamingResponse,
+    AsyncGraphsResourceWithStreamingResponse,
+)
 from .models import (
     ModelsResource,
     AsyncModelsResource,
@@ -44,4 +60,16 @@ __all__ = [
     "AsyncModelsResourceWithRawResponse",
     "ModelsResourceWithStreamingResponse",
     "AsyncModelsResourceWithStreamingResponse",
+    "GraphsResource",
+    "AsyncGraphsResource",
+    "GraphsResourceWithRawResponse",
+    "AsyncGraphsResourceWithRawResponse",
+    "GraphsResourceWithStreamingResponse",
+    "AsyncGraphsResourceWithStreamingResponse",
+    "FilesResource",
+    "AsyncFilesResource",
+    "FilesResourceWithRawResponse",
+    "AsyncFilesResourceWithRawResponse",
+    "FilesResourceWithStreamingResponse",
+    "AsyncFilesResourceWithStreamingResponse",
 ]
