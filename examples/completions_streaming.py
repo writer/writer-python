@@ -8,8 +8,6 @@
 # $ rye sync --all-features
 # $ WRITERAI_API_KEY="<your api key>" rye run python examples/completions_streaming.py
 
-import random
-
 from writerai import AsyncClient, BadRequestError
 
 
@@ -36,7 +34,7 @@ async def main() -> None:
             async for response in stream_res:
                 print(f"< {response.value}")
 
-    except Exception as e:
+    except BadRequestError as e:
         print(f"Error: {e.body}")
 
 
