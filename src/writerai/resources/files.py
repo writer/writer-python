@@ -6,12 +6,9 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import file_list_params, file_upload_params
+from ..types import file_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -199,7 +196,6 @@ class FilesResource(SyncAPIResource):
         *,
         content: FileTypes,
         content_disposition: str,
-        content_length: int,
         content_type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -222,7 +218,6 @@ class FilesResource(SyncAPIResource):
         """
         extra_headers = {
             "Content-Disposition": content_disposition,
-            "Content-Length": str(content_length),
             "Content-Type": content_type,
             **(extra_headers or {}),
         }
@@ -399,7 +394,6 @@ class AsyncFilesResource(AsyncAPIResource):
         *,
         content: FileTypes,
         content_disposition: str,
-        content_length: int,
         content_type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -422,7 +416,6 @@ class AsyncFilesResource(AsyncAPIResource):
         """
         extra_headers = {
             "Content-Disposition": content_disposition,
-            "Content-Length": str(content_length),
             "Content-Type": content_type,
             **(extra_headers or {}),
         }
