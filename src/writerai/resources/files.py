@@ -228,10 +228,10 @@ class FilesResource(SyncAPIResource):
         }
         return self._post(
             "/v1/files",
-            body=maybe_transform(content, file_upload_params.FileUploadParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            files=[("file", content)],
             cast_to=File,
         )
 
@@ -428,10 +428,10 @@ class AsyncFilesResource(AsyncAPIResource):
         }
         return await self._post(
             "/v1/files",
-            body=await async_maybe_transform(content, file_upload_params.FileUploadParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            files=[('file', content)],
             cast_to=File,
         )
 
