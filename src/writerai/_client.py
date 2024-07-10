@@ -49,6 +49,8 @@ class Writer(SyncAPIClient):
     chat: resources.ChatResource
     completions: resources.CompletionsResource
     models: resources.ModelsResource
+    graphs: resources.GraphsResource
+    files: resources.FilesResource
     with_raw_response: WriterWithRawResponse
     with_streaming_response: WriterWithStreamedResponse
 
@@ -111,6 +113,8 @@ class Writer(SyncAPIClient):
         self.chat = resources.ChatResource(self)
         self.completions = resources.CompletionsResource(self)
         self.models = resources.ModelsResource(self)
+        self.graphs = resources.GraphsResource(self)
+        self.files = resources.FilesResource(self)
         self.with_raw_response = WriterWithRawResponse(self)
         self.with_streaming_response = WriterWithStreamedResponse(self)
 
@@ -223,6 +227,8 @@ class AsyncWriter(AsyncAPIClient):
     chat: resources.AsyncChatResource
     completions: resources.AsyncCompletionsResource
     models: resources.AsyncModelsResource
+    graphs: resources.AsyncGraphsResource
+    files: resources.AsyncFilesResource
     with_raw_response: AsyncWriterWithRawResponse
     with_streaming_response: AsyncWriterWithStreamedResponse
 
@@ -285,6 +291,8 @@ class AsyncWriter(AsyncAPIClient):
         self.chat = resources.AsyncChatResource(self)
         self.completions = resources.AsyncCompletionsResource(self)
         self.models = resources.AsyncModelsResource(self)
+        self.graphs = resources.AsyncGraphsResource(self)
+        self.files = resources.AsyncFilesResource(self)
         self.with_raw_response = AsyncWriterWithRawResponse(self)
         self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
 
@@ -398,6 +406,8 @@ class WriterWithRawResponse:
         self.chat = resources.ChatResourceWithRawResponse(client.chat)
         self.completions = resources.CompletionsResourceWithRawResponse(client.completions)
         self.models = resources.ModelsResourceWithRawResponse(client.models)
+        self.graphs = resources.GraphsResourceWithRawResponse(client.graphs)
+        self.files = resources.FilesResourceWithRawResponse(client.files)
 
 
 class AsyncWriterWithRawResponse:
@@ -405,6 +415,8 @@ class AsyncWriterWithRawResponse:
         self.chat = resources.AsyncChatResourceWithRawResponse(client.chat)
         self.completions = resources.AsyncCompletionsResourceWithRawResponse(client.completions)
         self.models = resources.AsyncModelsResourceWithRawResponse(client.models)
+        self.graphs = resources.AsyncGraphsResourceWithRawResponse(client.graphs)
+        self.files = resources.AsyncFilesResourceWithRawResponse(client.files)
 
 
 class WriterWithStreamedResponse:
@@ -412,6 +424,8 @@ class WriterWithStreamedResponse:
         self.chat = resources.ChatResourceWithStreamingResponse(client.chat)
         self.completions = resources.CompletionsResourceWithStreamingResponse(client.completions)
         self.models = resources.ModelsResourceWithStreamingResponse(client.models)
+        self.graphs = resources.GraphsResourceWithStreamingResponse(client.graphs)
+        self.files = resources.FilesResourceWithStreamingResponse(client.files)
 
 
 class AsyncWriterWithStreamedResponse:
@@ -419,6 +433,8 @@ class AsyncWriterWithStreamedResponse:
         self.chat = resources.AsyncChatResourceWithStreamingResponse(client.chat)
         self.completions = resources.AsyncCompletionsResourceWithStreamingResponse(client.completions)
         self.models = resources.AsyncModelsResourceWithStreamingResponse(client.models)
+        self.graphs = resources.AsyncGraphsResourceWithStreamingResponse(client.graphs)
+        self.files = resources.AsyncFilesResourceWithStreamingResponse(client.files)
 
 
 Client = Writer

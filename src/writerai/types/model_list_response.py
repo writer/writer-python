@@ -12,7 +12,7 @@ class Model(BaseModel):
     """The ID of the particular LLM that you want to use"""
 
     name: str
-    """The name of the particular LLM that you want to use"""
+    """The name of the particular LLM that you want to use."""
 
 
 class ModelListResponse(BaseModel):

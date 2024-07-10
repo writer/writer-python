@@ -1,6 +1,6 @@
 [project]
 name = "writer-sdk"
-version = "0.1.2"
+version = "0.2.0"
 description = "The official Python library for the writer API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -39,8 +39,8 @@ classifiers = [
 
 
 [project.urls]
-Homepage = "https://github.com/writerai/writer-python"
-Repository = "https://github.com/writerai/writer-python"
+Homepage = "https://github.com/writer/writer-python"
+Repository = "https://github.com/writer/writer-python"
 
 
 
@@ -99,6 +99,21 @@ include = [
 [tool.hatch.build.targets.wheel]
 packages = ["src/writerai"]
 
+[tool.hatch.build.targets.sdist]
+# Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
+include = [
+  "/*.toml",
+  "/*.json",
+  "/*.lock",
+  "/*.md",
+  "/mypy.ini",
+  "/noxfile.py",
+  "bin/*",
+  "examples/*",
+  "src/*",
+  "tests/*",
+]
+
 [tool.hatch.metadata.hooks.fancy-pypi-readme]
 content-type = "text/markdown"
 
@@ -108,7 +123,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/writerai/writer-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/writer/writer-python/tree/main/\g<2>)'
 
 [tool.black]
 line-length = 120
