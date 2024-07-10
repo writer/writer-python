@@ -8,15 +8,13 @@
 # $ rye sync --all-features
 # $ WRITERAI_API_KEY="<your api key>" rye run python examples/completions_streaming.py
 
-import random
-
 from writerai import AsyncClient, BadRequestError
 
 
 async def main() -> None:
     client = AsyncClient()
 
-    print("Supported models:")
+    print("Available models:")
     res = await client.models.list()
     for model in res.models:
         print(model.id)
@@ -27,7 +25,7 @@ async def main() -> None:
     print(f"> {prompt}")
     try:
         stream_res = await client.completions.create(
-            model=random.choice(res.models).id,
+            model="palmyra-x-002-instruct",
             prompt=prompt,
             stream=True,
             max_tokens=64,
