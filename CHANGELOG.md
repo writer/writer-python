@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0 (2024-07-10)
+
+Full Changelog: [v0.1.2...v0.2.0](https://github.com/writer/writer-python/compare/v0.1.2...v0.2.0)
+
+### Features
+
+* **api:** add support for graphs and files endpoints ([#15](https://github.com/writer/writer-python/issues/15)) ([173c935](https://github.com/writer/writer-python/commit/173c935d0bf8cde498e571ea4cc793994b002cc7))
+* **api:** OpenAPI spec update via Stainless API ([#10](https://github.com/writer/writer-python/issues/10)) ([35aa63d](https://github.com/writer/writer-python/commit/35aa63dbd12cce5911e10671055dd1f914fbae64))
+* **api:** update via SDK Studio ([#16](https://github.com/writer/writer-python/issues/16)) ([55beac6](https://github.com/writer/writer-python/commit/55beac6c92a74b2f90a5dcc10623c602d671ff03))
+* **api:** update via SDK Studio ([#17](https://github.com/writer/writer-python/issues/17)) ([e098020](https://github.com/writer/writer-python/commit/e098020272202cad65f9233b238c156ca2383ec9))
+* **api:** update via SDK Studio ([#18](https://github.com/writer/writer-python/issues/18)) ([ca78421](https://github.com/writer/writer-python/commit/ca78421478e6055d1147eb0bcafd88e4795c5c1f))
+* Update completions_streaming.py ([764b30e](https://github.com/writer/writer-python/commit/764b30e52f6037bab4248d5f4fa2356435e2b9b2))
+* Update completions_streaming.py ([00c67cc](https://github.com/writer/writer-python/commit/00c67ccacfe0d2955f00cd6f9f16a646ab2a5f22))
+
 ## 0.1.2 (2024-06-05)
 
 Full Changelog: [v0.1.0...v0.1.2](https://github.com/writerai/writer-python/compare/v0.1.0...v0.1.2)
