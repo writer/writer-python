@@ -9,3 +9,4 @@ __all__ = ["GraphAddFileToGraphParams"]
 
 class GraphAddFileToGraphParams(TypedDict, total=False):
     file_id: Required[str]
+    """The unique identifier of the file."""

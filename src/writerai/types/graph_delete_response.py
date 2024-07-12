@@ -9,5 +9,7 @@ __all__ = ["GraphDeleteResponse"]
 
 class GraphDeleteResponse(BaseModel):
     id: str
+    """A unique identifier of the deleted file."""
 
     deleted: bool
+    """Indicates whether the file was successfully deleted."""
