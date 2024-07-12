@@ -22,7 +22,7 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -35,9 +35,9 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
-                    "name": "string",
+                    "name": "name",
                 }
             ],
             model="palmyra-x-002-32k",
@@ -55,7 +55,7 @@ class TestChat:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -72,7 +72,7 @@ class TestChat:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -91,7 +91,7 @@ class TestChat:
         chat_stream = client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -105,9 +105,9 @@ class TestChat:
         chat_stream = client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
-                    "name": "string",
+                    "name": "name",
                 }
             ],
             model="palmyra-x-002-32k",
@@ -125,7 +125,7 @@ class TestChat:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -142,7 +142,7 @@ class TestChat:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -166,7 +166,7 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -179,9 +179,9 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
-                    "name": "string",
+                    "name": "name",
                 }
             ],
             model="palmyra-x-002-32k",
@@ -199,7 +199,7 @@ class TestAsyncChat:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -216,7 +216,7 @@ class TestAsyncChat:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -235,7 +235,7 @@ class TestAsyncChat:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -249,9 +249,9 @@ class TestAsyncChat:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
-                    "name": "string",
+                    "name": "name",
                 }
             ],
             model="palmyra-x-002-32k",
@@ -269,7 +269,7 @@ class TestAsyncChat:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
@@ -286,7 +286,7 @@ class TestAsyncChat:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "string",
+                    "content": "content",
                     "role": "user",
                 }
             ],
