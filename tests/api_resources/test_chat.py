@@ -26,7 +26,7 @@ class TestChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
         )
         assert_matches_type(Chat, chat, path=["response"])
 
@@ -40,7 +40,7 @@ class TestChat:
                     "name": "name",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
@@ -59,7 +59,7 @@ class TestChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
         )
 
         assert response.is_closed is True
@@ -76,7 +76,7 @@ class TestChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -95,7 +95,7 @@ class TestChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
         )
         chat_stream.response.close()
@@ -110,7 +110,7 @@ class TestChat:
                     "name": "name",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
             max_tokens=0,
             n=0,
@@ -129,7 +129,7 @@ class TestChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
         )
 
@@ -146,7 +146,7 @@ class TestChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
         ) as response:
             assert not response.is_closed
@@ -170,7 +170,7 @@ class TestAsyncChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
         )
         assert_matches_type(Chat, chat, path=["response"])
 
@@ -184,7 +184,7 @@ class TestAsyncChat:
                     "name": "name",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
@@ -203,7 +203,7 @@ class TestAsyncChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
         )
 
         assert response.is_closed is True
@@ -220,7 +220,7 @@ class TestAsyncChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +239,7 @@ class TestAsyncChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
         )
         await chat_stream.response.aclose()
@@ -254,7 +254,7 @@ class TestAsyncChat:
                     "name": "name",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
             max_tokens=0,
             n=0,
@@ -273,7 +273,7 @@ class TestAsyncChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
         )
 
@@ -290,7 +290,7 @@ class TestAsyncChat:
                     "role": "user",
                 }
             ],
-            model="palmyra-x-002-32k",
+            model="model",
             stream=True,
         ) as response:
             assert not response.is_closed
