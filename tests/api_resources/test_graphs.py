@@ -28,22 +28,22 @@ class TestGraphs:
     @parametrize
     def test_method_create(self, client: Writer) -> None:
         graph = client.graphs.create(
-            name="string",
+            name="name",
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Writer) -> None:
         graph = client.graphs.create(
-            name="string",
-            description="string",
+            name="name",
+            description="description",
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Writer) -> None:
         response = client.graphs.with_raw_response.create(
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -54,7 +54,7 @@ class TestGraphs:
     @parametrize
     def test_streaming_response_create(self, client: Writer) -> None:
         with client.graphs.with_streaming_response.create(
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,25 +105,25 @@ class TestGraphs:
     @parametrize
     def test_method_update(self, client: Writer) -> None:
         graph = client.graphs.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Writer) -> None:
         graph = client.graphs.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
-            description="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
+            description="description",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Writer) -> None:
         response = client.graphs.with_raw_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -134,8 +134,8 @@ class TestGraphs:
     @parametrize
     def test_streaming_response_update(self, client: Writer) -> None:
         with client.graphs.with_streaming_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -149,8 +149,8 @@ class TestGraphs:
     def test_path_params_update(self, client: Writer) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             client.graphs.with_raw_response.update(
-                "",
-                name="string",
+                graph_id="",
+                name="name",
             )
 
     @parametrize
@@ -229,16 +229,16 @@ class TestGraphs:
     @parametrize
     def test_method_add_file_to_graph(self, client: Writer) -> None:
         graph = client.graphs.add_file_to_graph(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            file_id="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            file_id="file_id",
         )
         assert_matches_type(File, graph, path=["response"])
 
     @parametrize
     def test_raw_response_add_file_to_graph(self, client: Writer) -> None:
         response = client.graphs.with_raw_response.add_file_to_graph(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            file_id="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            file_id="file_id",
         )
 
         assert response.is_closed is True
@@ -249,8 +249,8 @@ class TestGraphs:
     @parametrize
     def test_streaming_response_add_file_to_graph(self, client: Writer) -> None:
         with client.graphs.with_streaming_response.add_file_to_graph(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            file_id="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            file_id="file_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -264,14 +264,14 @@ class TestGraphs:
     def test_path_params_add_file_to_graph(self, client: Writer) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             client.graphs.with_raw_response.add_file_to_graph(
-                "",
-                file_id="string",
+                graph_id="",
+                file_id="file_id",
             )
 
     @parametrize
     def test_method_remove_file_from_graph(self, client: Writer) -> None:
         graph = client.graphs.remove_file_from_graph(
-            "string",
+            file_id="file_id",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(GraphRemoveFileFromGraphResponse, graph, path=["response"])
@@ -279,7 +279,7 @@ class TestGraphs:
     @parametrize
     def test_raw_response_remove_file_from_graph(self, client: Writer) -> None:
         response = client.graphs.with_raw_response.remove_file_from_graph(
-            "string",
+            file_id="file_id",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -291,7 +291,7 @@ class TestGraphs:
     @parametrize
     def test_streaming_response_remove_file_from_graph(self, client: Writer) -> None:
         with client.graphs.with_streaming_response.remove_file_from_graph(
-            "string",
+            file_id="file_id",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -306,13 +306,13 @@ class TestGraphs:
     def test_path_params_remove_file_from_graph(self, client: Writer) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             client.graphs.with_raw_response.remove_file_from_graph(
-                "string",
+                file_id="file_id",
                 graph_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_id` but received ''"):
             client.graphs.with_raw_response.remove_file_from_graph(
-                "",
+                file_id="",
                 graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
@@ -323,22 +323,22 @@ class TestAsyncGraphs:
     @parametrize
     async def test_method_create(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.create(
-            name="string",
+            name="name",
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.create(
-            name="string",
-            description="string",
+            name="name",
+            description="description",
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncWriter) -> None:
         response = await async_client.graphs.with_raw_response.create(
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -349,7 +349,7 @@ class TestAsyncGraphs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncWriter) -> None:
         async with async_client.graphs.with_streaming_response.create(
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -400,25 +400,25 @@ class TestAsyncGraphs:
     @parametrize
     async def test_method_update(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
-            description="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
+            description="description",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncWriter) -> None:
         response = await async_client.graphs.with_raw_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -429,8 +429,8 @@ class TestAsyncGraphs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncWriter) -> None:
         async with async_client.graphs.with_streaming_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -444,8 +444,8 @@ class TestAsyncGraphs:
     async def test_path_params_update(self, async_client: AsyncWriter) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             await async_client.graphs.with_raw_response.update(
-                "",
-                name="string",
+                graph_id="",
+                name="name",
             )
 
     @parametrize
@@ -524,16 +524,16 @@ class TestAsyncGraphs:
     @parametrize
     async def test_method_add_file_to_graph(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.add_file_to_graph(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            file_id="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            file_id="file_id",
         )
         assert_matches_type(File, graph, path=["response"])
 
     @parametrize
     async def test_raw_response_add_file_to_graph(self, async_client: AsyncWriter) -> None:
         response = await async_client.graphs.with_raw_response.add_file_to_graph(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            file_id="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            file_id="file_id",
         )
 
         assert response.is_closed is True
@@ -544,8 +544,8 @@ class TestAsyncGraphs:
     @parametrize
     async def test_streaming_response_add_file_to_graph(self, async_client: AsyncWriter) -> None:
         async with async_client.graphs.with_streaming_response.add_file_to_graph(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            file_id="string",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            file_id="file_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -559,14 +559,14 @@ class TestAsyncGraphs:
     async def test_path_params_add_file_to_graph(self, async_client: AsyncWriter) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             await async_client.graphs.with_raw_response.add_file_to_graph(
-                "",
-                file_id="string",
+                graph_id="",
+                file_id="file_id",
             )
 
     @parametrize
     async def test_method_remove_file_from_graph(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.remove_file_from_graph(
-            "string",
+            file_id="file_id",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(GraphRemoveFileFromGraphResponse, graph, path=["response"])
@@ -574,7 +574,7 @@ class TestAsyncGraphs:
     @parametrize
     async def test_raw_response_remove_file_from_graph(self, async_client: AsyncWriter) -> None:
         response = await async_client.graphs.with_raw_response.remove_file_from_graph(
-            "string",
+            file_id="file_id",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -586,7 +586,7 @@ class TestAsyncGraphs:
     @parametrize
     async def test_streaming_response_remove_file_from_graph(self, async_client: AsyncWriter) -> None:
         async with async_client.graphs.with_streaming_response.remove_file_from_graph(
-            "string",
+            file_id="file_id",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -601,12 +601,12 @@ class TestAsyncGraphs:
     async def test_path_params_remove_file_from_graph(self, async_client: AsyncWriter) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             await async_client.graphs.with_raw_response.remove_file_from_graph(
-                "string",
+                file_id="file_id",
                 graph_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_id` but received ''"):
             await async_client.graphs.with_raw_response.remove_file_from_graph(
-                "",
+                file_id="",
                 graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
