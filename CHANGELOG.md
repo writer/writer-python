@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.4.0 (2024-07-12)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/writer/writer-python/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#25](https://github.com/writer/writer-python/issues/25)) ([14d73d7](https://github.com/writer/writer-python/commit/14d73d7d933e8a8ed737e0deb94e163060e99e00))
+* **api:** update via SDK Studio ([#26](https://github.com/writer/writer-python/issues/26)) ([3c48690](https://github.com/writer/writer-python/commit/3c48690799da3dfeef8b3e3f76fca7c15ebbd0d6))
+* **api:** update via SDK Studio ([#27](https://github.com/writer/writer-python/issues/27)) ([773967a](https://github.com/writer/writer-python/commit/773967a17191c64e8b12dd9568cca7846a371e09))
+
+
+### Bug Fixes
+
+* **client:** correct file uploads setup ([269d7e5](https://github.com/writer/writer-python/commit/269d7e503d176832bb61eca6830d159d4b5154c4))
+* **files:** remove content_length argument ([9a57374](https://github.com/writer/writer-python/commit/9a57374ed7bd8735ae11b97339ac19d5564e4038))
+* **pkg:** remove unwanted files ([270fe31](https://github.com/writer/writer-python/commit/270fe3188a9dd0bba89fe3f0e69d32cc4ce77c3b))
+
 ## 0.3.0 (2024-07-12)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/writer/writer-python/compare/v0.2.0...v0.3.0)

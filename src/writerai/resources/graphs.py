@@ -59,7 +59,13 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphCreateResponse:
         """
+        Create graph
+
         Args:
+          name: The name of the graph.
+
+          description: A description of the graph.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -95,6 +101,8 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Graph:
         """
+        Retrieve graph
+
         Args:
           extra_headers: Send extra headers
 
@@ -128,7 +136,13 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphUpdateResponse:
         """
+        Update graph
+
         Args:
+          name: The name of the graph.
+
+          description: A description of the graph.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -168,8 +182,23 @@ class GraphsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncCursorPage[Graph]:
-        """
+        """List graphs
+
         Args:
+          after: The ID of the last object in the previous page.
+
+        This parameter instructs the API
+              to return the next page of results.
+
+          before: The ID of the first object in the previous page. This parameter instructs the
+              API to return the previous page of results.
+
+          limit: Specifies the maximum number of objects returned in a page. The default value
+              is 50. The minimum value is 1, and the maximum value is 100.
+
+          order: Specifies the order of the results. Valid values are asc for ascending and desc
+              for descending.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -211,6 +240,8 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphDeleteResponse:
         """
+        Delete graph
+
         Args:
           extra_headers: Send extra headers
 
@@ -243,7 +274,11 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
         """
+        Add file to graph
+
         Args:
+          file_id: The unique identifier of the file.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -276,6 +311,8 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphRemoveFileFromGraphResponse:
         """
+        Remove file from graph
+
         Args:
           extra_headers: Send extra headers
 
@@ -320,7 +357,13 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphCreateResponse:
         """
+        Create graph
+
         Args:
+          name: The name of the graph.
+
+          description: A description of the graph.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -356,6 +399,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Graph:
         """
+        Retrieve graph
+
         Args:
           extra_headers: Send extra headers
 
@@ -389,7 +434,13 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphUpdateResponse:
         """
+        Update graph
+
         Args:
+          name: The name of the graph.
+
+          description: A description of the graph.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -429,8 +480,23 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Graph, AsyncCursorPage[Graph]]:
-        """
+        """List graphs
+
         Args:
+          after: The ID of the last object in the previous page.
+
+        This parameter instructs the API
+              to return the next page of results.
+
+          before: The ID of the first object in the previous page. This parameter instructs the
+              API to return the previous page of results.
+
+          limit: Specifies the maximum number of objects returned in a page. The default value
+              is 50. The minimum value is 1, and the maximum value is 100.
+
+          order: Specifies the order of the results. Valid values are asc for ascending and desc
+              for descending.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -472,6 +538,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphDeleteResponse:
         """
+        Delete graph
+
         Args:
           extra_headers: Send extra headers
 
@@ -504,7 +572,11 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
         """
+        Add file to graph
+
         Args:
+          file_id: The unique identifier of the file.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -539,6 +611,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphRemoveFileFromGraphResponse:
         """
+        Remove file from graph
+
         Args:
           extra_headers: Send extra headers
 
