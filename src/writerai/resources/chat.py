@@ -24,9 +24,7 @@ from .._response import (
 )
 from .._streaming import Stream, AsyncStream
 from ..types.chat import Chat
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.chat_streaming_data import ChatStreamingData
 
 __all__ = ["ChatResource", "AsyncChatResource"]

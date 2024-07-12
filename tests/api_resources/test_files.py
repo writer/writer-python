@@ -29,14 +29,14 @@ class TestFiles:
     @parametrize
     def test_method_retrieve(self, client: Writer) -> None:
         file = client.files.retrieve(
-            "string",
+            "fileId",
         )
         assert_matches_type(File, file, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Writer) -> None:
         response = client.files.with_raw_response.retrieve(
-            "string",
+            "fileId",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestFiles:
     @parametrize
     def test_streaming_response_retrieve(self, client: Writer) -> None:
         with client.files.with_streaming_response.retrieve(
-            "string",
+            "fileId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,8 +72,8 @@ class TestFiles:
     @parametrize
     def test_method_list_with_all_params(self, client: Writer) -> None:
         file = client.files.list(
-            after="string",
-            before="string",
+            after="after",
+            before="before",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
@@ -103,14 +103,14 @@ class TestFiles:
     @parametrize
     def test_method_delete(self, client: Writer) -> None:
         file = client.files.delete(
-            "string",
+            "fileId",
         )
         assert_matches_type(FileDeleteResponse, file, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Writer) -> None:
         response = client.files.with_raw_response.delete(
-            "string",
+            "fileId",
         )
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestFiles:
     @parametrize
     def test_streaming_response_delete(self, client: Writer) -> None:
         with client.files.with_streaming_response.delete(
-            "string",
+            "fileId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -142,9 +142,9 @@ class TestFiles:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_download(self, client: Writer, respx_mock: MockRouter) -> None:
-        respx_mock.get("/v1/files/string/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/v1/files/fileId/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         file = client.files.download(
-            "string",
+            "fileId",
         )
         assert file.is_closed
         assert file.json() == {"foo": "bar"}
@@ -155,10 +155,10 @@ class TestFiles:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_download(self, client: Writer, respx_mock: MockRouter) -> None:
-        respx_mock.get("/v1/files/string/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/v1/files/fileId/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         file = client.files.with_raw_response.download(
-            "string",
+            "fileId",
         )
 
         assert file.is_closed is True
@@ -170,9 +170,9 @@ class TestFiles:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_download(self, client: Writer, respx_mock: MockRouter) -> None:
-        respx_mock.get("/v1/files/string/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/v1/files/fileId/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.files.with_streaming_response.download(
-            "string",
+            "fileId",
         ) as file:
             assert not file.is_closed
             assert file.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,9 +197,9 @@ class TestFiles:
     def test_method_upload(self, client: Writer) -> None:
         file = client.files.upload(
             content=b"raw file contents",
-            content_disposition="string",
+            content_disposition="Content-Disposition",
             content_length=0,
-            content_type="string",
+            content_type="Content-Type",
         )
         assert_matches_type(File, file, path=["response"])
 
@@ -208,9 +208,9 @@ class TestFiles:
     def test_raw_response_upload(self, client: Writer) -> None:
         response = client.files.with_raw_response.upload(
             content=b"raw file contents",
-            content_disposition="string",
+            content_disposition="Content-Disposition",
             content_length=0,
-            content_type="string",
+            content_type="Content-Type",
         )
 
         assert response.is_closed is True
@@ -223,9 +223,9 @@ class TestFiles:
     def test_streaming_response_upload(self, client: Writer) -> None:
         with client.files.with_streaming_response.upload(
             content=b"raw file contents",
-            content_disposition="string",
+            content_disposition="Content-Disposition",
             content_length=0,
-            content_type="string",
+            content_type="Content-Type",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -242,14 +242,14 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncWriter) -> None:
         file = await async_client.files.retrieve(
-            "string",
+            "fileId",
         )
         assert_matches_type(File, file, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncWriter) -> None:
         response = await async_client.files.with_raw_response.retrieve(
-            "string",
+            "fileId",
         )
 
         assert response.is_closed is True
@@ -260,7 +260,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncWriter) -> None:
         async with async_client.files.with_streaming_response.retrieve(
-            "string",
+            "fileId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -285,8 +285,8 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncWriter) -> None:
         file = await async_client.files.list(
-            after="string",
-            before="string",
+            after="after",
+            before="before",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
@@ -316,14 +316,14 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_delete(self, async_client: AsyncWriter) -> None:
         file = await async_client.files.delete(
-            "string",
+            "fileId",
         )
         assert_matches_type(FileDeleteResponse, file, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncWriter) -> None:
         response = await async_client.files.with_raw_response.delete(
-            "string",
+            "fileId",
         )
 
         assert response.is_closed is True
@@ -334,7 +334,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncWriter) -> None:
         async with async_client.files.with_streaming_response.delete(
-            "string",
+            "fileId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -355,9 +355,9 @@ class TestAsyncFiles:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_download(self, async_client: AsyncWriter, respx_mock: MockRouter) -> None:
-        respx_mock.get("/v1/files/string/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/v1/files/fileId/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         file = await async_client.files.download(
-            "string",
+            "fileId",
         )
         assert file.is_closed
         assert await file.json() == {"foo": "bar"}
@@ -368,10 +368,10 @@ class TestAsyncFiles:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_download(self, async_client: AsyncWriter, respx_mock: MockRouter) -> None:
-        respx_mock.get("/v1/files/string/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/v1/files/fileId/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         file = await async_client.files.with_raw_response.download(
-            "string",
+            "fileId",
         )
 
         assert file.is_closed is True
@@ -383,9 +383,9 @@ class TestAsyncFiles:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_download(self, async_client: AsyncWriter, respx_mock: MockRouter) -> None:
-        respx_mock.get("/v1/files/string/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/v1/files/fileId/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.files.with_streaming_response.download(
-            "string",
+            "fileId",
         ) as file:
             assert not file.is_closed
             assert file.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -410,9 +410,9 @@ class TestAsyncFiles:
     async def test_method_upload(self, async_client: AsyncWriter) -> None:
         file = await async_client.files.upload(
             content=b"raw file contents",
-            content_disposition="string",
+            content_disposition="Content-Disposition",
             content_length=0,
-            content_type="string",
+            content_type="Content-Type",
         )
         assert_matches_type(File, file, path=["response"])
 
@@ -421,9 +421,9 @@ class TestAsyncFiles:
     async def test_raw_response_upload(self, async_client: AsyncWriter) -> None:
         response = await async_client.files.with_raw_response.upload(
             content=b"raw file contents",
-            content_disposition="string",
+            content_disposition="Content-Disposition",
             content_length=0,
-            content_type="string",
+            content_type="Content-Type",
         )
 
         assert response.is_closed is True
@@ -436,9 +436,9 @@ class TestAsyncFiles:
     async def test_streaming_response_upload(self, async_client: AsyncWriter) -> None:
         async with async_client.files.with_streaming_response.upload(
             content=b"raw file contents",
-            content_disposition="string",
+            content_disposition="Content-Disposition",
             content_length=0,
-            content_type="string",
+            content_type="Content-Type",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
