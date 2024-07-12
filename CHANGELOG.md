@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (2024-07-12)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/writer/writer-python/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#20](https://github.com/writer/writer-python/issues/20)) ([018271a](https://github.com/writer/writer-python/commit/018271a7c8a4a7a98937e708fe02f0b8b944df5d))
+
 ## 0.2.0 (2024-07-10)
 
 Full Changelog: [v0.1.2...v0.2.0](https://github.com/writer/writer-python/compare/v0.1.2...v0.2.0)
