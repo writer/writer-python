@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["FileListParams"]
@@ -20,7 +21,7 @@ class FileListParams(TypedDict, total=False):
     This parameter instructs the API to return the previous page of results.
     """
 
-    graph_id: str
+    graph_id: List[str]
     """The unique identifier of the graph to which the files belong."""
 
     limit: int
