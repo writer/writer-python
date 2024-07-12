@@ -10,9 +10,13 @@ __all__ = ["GraphCreateResponse"]
 
 class GraphCreateResponse(BaseModel):
     id: str
+    """A unique identifier of the graph."""
 
     created_at: datetime
+    """The timestamp when the graph was created."""
 
     name: str
+    """The name of the graph."""
 
     description: Optional[str] = None
+    """A description of the graph."""

@@ -9,5 +9,7 @@ __all__ = ["GraphCreateParams"]
 
 class GraphCreateParams(TypedDict, total=False):
     name: Required[str]
+    """The name of the graph."""
 
     description: str
+    """A description of the graph."""
