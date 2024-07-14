@@ -15,6 +15,7 @@ from .chat_streaming_data import ChatStreamingData as ChatStreamingData
 from .graph_create_params import GraphCreateParams as GraphCreateParams
 from .graph_update_params import GraphUpdateParams as GraphUpdateParams
 from .model_list_response import ModelListResponse as ModelListResponse
+from .file_delete_response import FileDeleteResponse as FileDeleteResponse
 from .graph_create_response import GraphCreateResponse as GraphCreateResponse
 from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
