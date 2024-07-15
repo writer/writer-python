@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 (2024-07-14)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/writer/writer-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** codegen changes ([08baa7a](https://github.com/writer/writer-python/commit/08baa7a7826a1f613ac04659e6ff7a4962853b10))
+* **api:** OpenAPI spec update via Stainless API ([#29](https://github.com/writer/writer-python/issues/29)) ([2f3b3f1](https://github.com/writer/writer-python/commit/2f3b3f1f95e56c6b98c3d9e41e1def6530388179))
+* **api:** OpenAPI spec update via Stainless API ([#31](https://github.com/writer/writer-python/issues/31)) ([b59f86f](https://github.com/writer/writer-python/commit/b59f86f66dc573eb4d315bb983ac00a330d9b38c))
+* **api:** OpenAPI spec update via Stainless API ([#33](https://github.com/writer/writer-python/issues/33)) ([01fa9b6](https://github.com/writer/writer-python/commit/01fa9b6fb143962d671940caa2194594d5451baf))
+* **api:** update via SDK Studio ([#32](https://github.com/writer/writer-python/issues/32)) ([5dc4cba](https://github.com/writer/writer-python/commit/5dc4cba87ea0102780ff603d34c44327e2927235))
+
 ## 0.4.0 (2024-07-12)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/writer/writer-python/compare/v0.3.0...v0.4.0)
