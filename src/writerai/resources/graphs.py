@@ -12,7 +12,7 @@ from ..types import (
     graph_update_params,
     graph_add_file_to_graph_params,
 )
-from .._types import NOT_GIVEN, Body, FileTypes, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from .._utils import (
     maybe_transform,
     async_maybe_transform,
