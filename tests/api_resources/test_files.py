@@ -198,7 +198,6 @@ class TestFiles:
         file = client.files.upload(
             content=b"raw file contents",
             content_disposition="Content-Disposition",
-            content_length=0,
             content_type="Content-Type",
         )
         assert_matches_type(File, file, path=["response"])
@@ -209,7 +208,6 @@ class TestFiles:
         response = client.files.with_raw_response.upload(
             content=b"raw file contents",
             content_disposition="Content-Disposition",
-            content_length=0,
             content_type="Content-Type",
         )
 
@@ -224,7 +222,6 @@ class TestFiles:
         with client.files.with_streaming_response.upload(
             content=b"raw file contents",
             content_disposition="Content-Disposition",
-            content_length=0,
             content_type="Content-Type",
         ) as response:
             assert not response.is_closed
@@ -411,7 +408,6 @@ class TestAsyncFiles:
         file = await async_client.files.upload(
             content=b"raw file contents",
             content_disposition="Content-Disposition",
-            content_length=0,
             content_type="Content-Type",
         )
         assert_matches_type(File, file, path=["response"])
@@ -422,7 +418,6 @@ class TestAsyncFiles:
         response = await async_client.files.with_raw_response.upload(
             content=b"raw file contents",
             content_disposition="Content-Disposition",
-            content_length=0,
             content_type="Content-Type",
         )
 
@@ -437,7 +432,6 @@ class TestAsyncFiles:
         async with async_client.files.with_streaming_response.upload(
             content=b"raw file contents",
             content_disposition="Content-Disposition",
-            content_length=0,
             content_type="Content-Type",
         ) as response:
             assert not response.is_closed
