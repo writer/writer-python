@@ -71,7 +71,7 @@ class TestCompletions:
         completion_stream = client.completions.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
         )
         completion_stream.response.close()
 
@@ -80,7 +80,7 @@ class TestCompletions:
         completion_stream = client.completions.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
             best_of=1,
             max_tokens=150,
             random_seed=42,
@@ -95,7 +95,7 @@ class TestCompletions:
         response = client.completions.with_raw_response.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
         )
 
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,7 +107,7 @@ class TestCompletions:
         with client.completions.with_streaming_response.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,7 +175,7 @@ class TestAsyncCompletions:
         completion_stream = await async_client.completions.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
         )
         await completion_stream.response.aclose()
 
@@ -184,7 +184,7 @@ class TestAsyncCompletions:
         completion_stream = await async_client.completions.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
             best_of=1,
             max_tokens=150,
             random_seed=42,
@@ -199,7 +199,7 @@ class TestAsyncCompletions:
         response = await async_client.completions.with_raw_response.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
         )
 
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -211,7 +211,7 @@ class TestAsyncCompletions:
         async with async_client.completions.with_streaming_response.create(
             model="palmyra-x-002-instruct",
             prompt="Write me an SEO article about...",
-            stream=True,
+            stream=False,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
