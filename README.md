@@ -92,7 +92,7 @@ from writerai import Writer
 client = Writer()
 
 stream = client.completions.create(
-    model="palmyra-x-002-32k",
+    model="palmyra-x-002-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
@@ -108,7 +108,7 @@ from writerai import AsyncWriter
 client = AsyncWriter()
 
 stream = await client.completions.create(
-    model="palmyra-x-002-32k",
+    model="palmyra-x-002-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
