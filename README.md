@@ -93,7 +93,7 @@ client = Writer()
 
 stream = client.completions.create(
     model="palmyra-x-002-instruct",
-    prompt="Hi, my name is",
+    prompt="Hi, my name is .",
     stream=True,
 )
 for completion in stream:
@@ -109,7 +109,7 @@ client = AsyncWriter()
 
 stream = await client.completions.create(
     model="palmyra-x-002-instruct",
-    prompt="Hi, my name is",
+    prompt="Hi, my name is .",
     stream=True,
 )
 async for completion in stream:
