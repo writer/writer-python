@@ -17,6 +17,7 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from writerai import Writer, AsyncWriter, APIResponseValidationError
+from writerai._types import Omit
 from writerai._models import BaseModel, FinalRequestOptions
 from writerai._constants import RAW_RESPONSE_HEADER
 from writerai._streaming import Stream, AsyncStream
@@ -333,7 +334,8 @@ class TestWriter:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(WriterError):
-            client2 = Writer(base_url=base_url, api_key=None, _strict_response_validation=True)
+            with update_env(**{"WRITER_API_KEY": Omit()}):
+                client2 = Writer(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
@@ -1078,7 +1080,8 @@ class TestAsyncWriter:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(WriterError):
-            client2 = AsyncWriter(base_url=base_url, api_key=None, _strict_response_validation=True)
+            with update_env(**{"WRITER_API_KEY": Omit()}):
+                client2 = AsyncWriter(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
