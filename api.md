@@ -1,3 +1,15 @@
+# Applications
+
+Types:
+
+```python
+from writerai.types import ApplicationGenerateContentResponse
+```
+
+Methods:
+
+- <code title="post /v1/applications/{application_id}">client.applications.<a href="./src/writerai/resources/applications.py">generate_content</a>(application_id, \*\*<a href="src/writerai/types/application_generate_content_params.py">params</a>) -> <a href="./src/writerai/types/application_generate_content_response.py">ApplicationGenerateContentResponse</a></code>
+
 # Chat
 
 Types:

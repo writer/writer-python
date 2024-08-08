@@ -40,8 +40,22 @@ from .completions import (
     CompletionsResourceWithStreamingResponse,
     AsyncCompletionsResourceWithStreamingResponse,
 )
+from .applications import (
+    ApplicationsResource,
+    AsyncApplicationsResource,
+    ApplicationsResourceWithRawResponse,
+    AsyncApplicationsResourceWithRawResponse,
+    ApplicationsResourceWithStreamingResponse,
+    AsyncApplicationsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "ApplicationsResource",
+    "AsyncApplicationsResource",
+    "ApplicationsResourceWithRawResponse",
+    "AsyncApplicationsResourceWithRawResponse",
+    "ApplicationsResourceWithStreamingResponse",
+    "AsyncApplicationsResourceWithStreamingResponse",
     "ChatResource",
     "AsyncChatResource",
     "ChatResourceWithRawResponse",
