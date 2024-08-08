@@ -24,15 +24,15 @@ class FileStatus(BaseModel):
 
 class Graph(BaseModel):
     id: str
-    """A unique identifier of the file."""
+    """A unique identifier of the graph."""
 
     created_at: datetime
-    """The timestamp when the file was created."""
+    """The timestamp when the graph was created."""
 
     file_status: FileStatus
 
     name: str
-    """The name of the file."""
+    """The name of the graph."""
 
     description: Optional[str] = None
     """A description of the graph."""

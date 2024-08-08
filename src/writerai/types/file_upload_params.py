@@ -15,6 +15,4 @@ class FileUploadParams(TypedDict, total=False):
 
     content_disposition: Required[Annotated[str, PropertyInfo(alias="Content-Disposition")]]
 
-    content_length: Required[Annotated[int, PropertyInfo(alias="Content-Length")]]
-
     content_type: Required[Annotated[str, PropertyInfo(alias="Content-Type")]]

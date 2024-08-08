@@ -46,6 +46,7 @@ __all__ = [
 
 
 class Writer(SyncAPIClient):
+    applications: resources.ApplicationsResource
     chat: resources.ChatResource
     completions: resources.CompletionsResource
     models: resources.ModelsResource
@@ -110,6 +111,7 @@ class Writer(SyncAPIClient):
 
         self._default_stream_cls = Stream
 
+        self.applications = resources.ApplicationsResource(self)
         self.chat = resources.ChatResource(self)
         self.completions = resources.CompletionsResource(self)
         self.models = resources.ModelsResource(self)
@@ -224,6 +226,7 @@ class Writer(SyncAPIClient):
 
 
 class AsyncWriter(AsyncAPIClient):
+    applications: resources.AsyncApplicationsResource
     chat: resources.AsyncChatResource
     completions: resources.AsyncCompletionsResource
     models: resources.AsyncModelsResource
@@ -288,6 +291,7 @@ class AsyncWriter(AsyncAPIClient):
 
         self._default_stream_cls = AsyncStream
 
+        self.applications = resources.AsyncApplicationsResource(self)
         self.chat = resources.AsyncChatResource(self)
         self.completions = resources.AsyncCompletionsResource(self)
         self.models = resources.AsyncModelsResource(self)
@@ -403,6 +407,7 @@ class AsyncWriter(AsyncAPIClient):
 
 class WriterWithRawResponse:
     def __init__(self, client: Writer) -> None:
+        self.applications = resources.ApplicationsResourceWithRawResponse(client.applications)
         self.chat = resources.ChatResourceWithRawResponse(client.chat)
         self.completions = resources.CompletionsResourceWithRawResponse(client.completions)
         self.models = resources.ModelsResourceWithRawResponse(client.models)
@@ -412,6 +417,7 @@ class WriterWithRawResponse:
 
 class AsyncWriterWithRawResponse:
     def __init__(self, client: AsyncWriter) -> None:
+        self.applications = resources.AsyncApplicationsResourceWithRawResponse(client.applications)
         self.chat = resources.AsyncChatResourceWithRawResponse(client.chat)
         self.completions = resources.AsyncCompletionsResourceWithRawResponse(client.completions)
         self.models = resources.AsyncModelsResourceWithRawResponse(client.models)
@@ -421,6 +427,7 @@ class AsyncWriterWithRawResponse:
 
 class WriterWithStreamedResponse:
     def __init__(self, client: Writer) -> None:
+        self.applications = resources.ApplicationsResourceWithStreamingResponse(client.applications)
         self.chat = resources.ChatResourceWithStreamingResponse(client.chat)
         self.completions = resources.CompletionsResourceWithStreamingResponse(client.completions)
         self.models = resources.ModelsResourceWithStreamingResponse(client.models)
@@ -430,6 +437,7 @@ class WriterWithStreamedResponse:
 
 class AsyncWriterWithStreamedResponse:
     def __init__(self, client: AsyncWriter) -> None:
+        self.applications = resources.AsyncApplicationsResourceWithStreamingResponse(client.applications)
         self.chat = resources.AsyncChatResourceWithStreamingResponse(client.chat)
         self.completions = resources.AsyncCompletionsResourceWithStreamingResponse(client.completions)
         self.models = resources.AsyncModelsResourceWithStreamingResponse(client.models)

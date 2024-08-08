@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["GraphCreateParams"]
 
 
 class GraphCreateParams(TypedDict, total=False):
-    name: Required[str]
-    """The name of the graph."""
-
     description: str
-    """A description of the graph."""
+    """A description of the graph. This can be at most 255 characters."""
+
+    name: str
+    """The name of the graph. This can be at most 255 characters."""

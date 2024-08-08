@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Documentation
 
-The REST API documentation can be found [on dev.writer.com](https://dev.writer.com/api-guides/introduction). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [dev.writer.com](https://dev.writer.com/api-guides/introduction). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -109,16 +109,13 @@ from writerai import AsyncWriter
 
 client = AsyncWriter()
 
-async def main() -> None:
-    stream = await client.completions.create(
-        model="palmyra-x-002-instruct",
-        prompt="Hi, my name is",
-        stream=True,
-    )
-    async for completion in stream:
-        print(completion.value)
-
-asyncio.run(main())
+stream = await client.completions.create(
+    model="palmyra-x-002-instruct",
+    prompt="Hi, my name is",
+    stream=True,
+)
+async for completion in stream:
+    print(completion.choices)
 ```
 
 ## Using types
@@ -370,6 +367,12 @@ client = Writer(
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
 )
+```
+
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
 ```
 
 ### Managing HTTP resources

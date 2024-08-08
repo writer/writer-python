@@ -17,6 +17,7 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from writerai import Writer, AsyncWriter, APIResponseValidationError
+from writerai._types import Omit
 from writerai._models import BaseModel, FinalRequestOptions
 from writerai._constants import RAW_RESPONSE_HEADER
 from writerai._streaming import Stream, AsyncStream
@@ -333,7 +334,8 @@ class TestWriter:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(WriterError):
-            client2 = Writer(base_url=base_url, api_key=None, _strict_response_validation=True)
+            with update_env(**{"WRITER_API_KEY": Omit()}):
+                client2 = Writer(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
@@ -728,7 +730,7 @@ class TestWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-32k",
+                        model="palmyra-x-002-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -754,7 +756,7 @@ class TestWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-32k",
+                        model="palmyra-x-002-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -762,6 +764,35 @@ class TestWriter:
             )
 
         assert _get_open_connections(self.client) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_retries_taken(self, client: Writer, failures_before_success: int, respx_mock: MockRouter) -> None:
+        client = client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/v1/chat").mock(side_effect=retry_handler)
+
+        response = client.chat.with_raw_response.chat(
+            messages=[
+                {
+                    "content": "content",
+                    "role": "user",
+                }
+            ],
+            model="model",
+        )
+
+        assert response.retries_taken == failures_before_success
 
 
 class TestAsyncWriter:
@@ -1049,7 +1080,8 @@ class TestAsyncWriter:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(WriterError):
-            client2 = AsyncWriter(base_url=base_url, api_key=None, _strict_response_validation=True)
+            with update_env(**{"WRITER_API_KEY": Omit()}):
+                client2 = AsyncWriter(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
@@ -1459,7 +1491,7 @@ class TestAsyncWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-32k",
+                        model="palmyra-x-002-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1485,7 +1517,7 @@ class TestAsyncWriter:
                                 "role": "user",
                             }
                         ],
-                        model="palmyra-x-32k",
+                        model="palmyra-x-002-32k",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1493,3 +1525,35 @@ class TestAsyncWriter:
             )
 
         assert _get_open_connections(self.client) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_retries_taken(
+        self, async_client: AsyncWriter, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = async_client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/v1/chat").mock(side_effect=retry_handler)
+
+        response = await client.chat.with_raw_response.chat(
+            messages=[
+                {
+                    "content": "content",
+                    "role": "user",
+                }
+            ],
+            model="model",
+        )
+
+        assert response.retries_taken == failures_before_success
