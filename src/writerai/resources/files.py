@@ -200,7 +200,7 @@ class FilesResource(SyncAPIResource):
         """
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
-        extra_headers = {"Accept": "file contents", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
             f"/v1/files/{file_id}/download",
             options=make_request_options(
@@ -408,7 +408,7 @@ class AsyncFilesResource(AsyncAPIResource):
         """
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
-        extra_headers = {"Accept": "file contents", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
             f"/v1/files/{file_id}/download",
             options=make_request_options(
