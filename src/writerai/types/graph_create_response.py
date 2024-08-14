@@ -16,7 +16,7 @@ class GraphCreateResponse(BaseModel):
     """The timestamp when the graph was created."""
 
     name: str
-    """The name of the graph."""
+    """The name of the graph. This can be at most 255 characters."""
 
     description: Optional[str] = None
-    """A description of the graph."""
+    """A description of the graph. This can be at most 255 characters."""
