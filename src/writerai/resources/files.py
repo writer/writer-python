@@ -211,7 +211,6 @@ class FilesResource(SyncAPIResource):
         *,
         content: FileTypes,
         content_disposition: str,
-        content_type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -231,11 +230,7 @@ class FilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {
-            "Content-Disposition": content_disposition,
-            "Content-Type": content_type,
-            **(extra_headers or {}),
-        }
+        extra_headers = {"Content-Disposition": content_disposition, **(extra_headers or {})}
         return self._post(
             "/v1/files",
             options=make_request_options(
@@ -424,7 +419,6 @@ class AsyncFilesResource(AsyncAPIResource):
         *,
         content: FileTypes,
         content_disposition: str,
-        content_type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -444,11 +438,7 @@ class AsyncFilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {
-            "Content-Disposition": content_disposition,
-            "Content-Type": content_type,
-            **(extra_headers or {}),
-        }
+        extra_headers = {"Content-Disposition": content_disposition, **(extra_headers or {})}
         return await self._post(
             "/v1/files",
             options=make_request_options(
