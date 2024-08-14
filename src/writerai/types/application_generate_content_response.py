@@ -9,5 +9,7 @@ __all__ = ["ApplicationGenerateContentResponse"]
 
 class ApplicationGenerateContentResponse(BaseModel):
     suggestion: str
+    """The response from the model specified in the application."""
 
     title: Optional[str] = None
+    """The name of the output field."""
