@@ -1,5 +1,44 @@
 # Changelog
 
+## 0.6.0 (2024-08-14)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/writer/writer-python/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** added method to generate applications content ([#47](https://github.com/writer/writer-python/issues/47)) ([36cbfa1](https://github.com/writer/writer-python/commit/36cbfa1ea96a7d2b01d1c58ebab482d5bbdd6719))
+* **api:** update via SDK Studio ([#41](https://github.com/writer/writer-python/issues/41)) ([99b6f5b](https://github.com/writer/writer-python/commit/99b6f5b881f678812a8cf68dbb4c6422f06343c0))
+* **api:** update via SDK Studio ([#45](https://github.com/writer/writer-python/issues/45)) ([c5fdc23](https://github.com/writer/writer-python/commit/c5fdc23b766254505b5b11bc111ba64746da3139))
+* **api:** update via SDK Studio ([#46](https://github.com/writer/writer-python/issues/46)) ([fab32ca](https://github.com/writer/writer-python/commit/fab32ca296f1f63fac0f03ae4045df61b06341d0))
+* joint `upload_and_add_file_to_graph` method for graph resources ([f330ec5](https://github.com/writer/writer-python/commit/f330ec5a707d33d4355ae1f1e57e597bf9bad8ab))
+
+
+### Bug Fixes
+
+* lint (import order) ([61cf4d7](https://github.com/writer/writer-python/commit/61cf4d7f44fb7166486e2bffe06fc12bfe524119))
+
+
+### Chores
+
+* **ci:** bump prism mock server version ([#54](https://github.com/writer/writer-python/issues/54)) ([7c2f07b](https://github.com/writer/writer-python/commit/7c2f07bc8cd729e9b31b8b0eb258c2278624123b))
+* fix error message import example ([#39](https://github.com/writer/writer-python/issues/39)) ([275bdd3](https://github.com/writer/writer-python/commit/275bdd379329ee5d84959fa650d62f26d93ff781))
+* **internal:** add type construction helper ([#40](https://github.com/writer/writer-python/issues/40)) ([8c8b921](https://github.com/writer/writer-python/commit/8c8b921e761d96759dcf5cd531cc94ddaaae7423))
+* **internal:** bump ruff version ([#50](https://github.com/writer/writer-python/issues/50)) ([4357329](https://github.com/writer/writer-python/commit/4357329088788e12fcf6a868808f708aa93897f9))
+* **internal:** codegen related update ([#37](https://github.com/writer/writer-python/issues/37)) ([5427b56](https://github.com/writer/writer-python/commit/5427b5646f1f2ce8a2bab1765f21a6efe05ffcac))
+* **internal:** codegen related update ([#48](https://github.com/writer/writer-python/issues/48)) ([af27fe8](https://github.com/writer/writer-python/commit/af27fe82a848f170ce800125c86acd813f452069))
+* **internal:** codegen related update ([#57](https://github.com/writer/writer-python/issues/57)) ([a154150](https://github.com/writer/writer-python/commit/a1541509487aff4a5434366f1629d4729d13b692))
+* **internal:** ensure package is importable in lint cmd ([#55](https://github.com/writer/writer-python/issues/55)) ([0a92c06](https://github.com/writer/writer-python/commit/0a92c067501fb9626c158caf77e133ab9102ae6f))
+* **internal:** remove deprecated ruff config ([#52](https://github.com/writer/writer-python/issues/52)) ([fa82a92](https://github.com/writer/writer-python/commit/fa82a921feee401ea63cee0806c96a74826ad088))
+* **internal:** test updates ([#49](https://github.com/writer/writer-python/issues/49)) ([f69e598](https://github.com/writer/writer-python/commit/f69e5980200f4e4b86b4ec76d459f1596c356396))
+* **internal:** update pydantic compat helper function ([#51](https://github.com/writer/writer-python/issues/51)) ([91e721c](https://github.com/writer/writer-python/commit/91e721cf8afccae63f80659d76d1ee57a4cde228))
+* **tests:** update prism version ([#38](https://github.com/writer/writer-python/issues/38)) ([c496af8](https://github.com/writer/writer-python/commit/c496af8f26608e3613f252e40c17eb2efda17c88))
+
+
+### Documentation
+
+* **api:** updates to API spec ([#53](https://github.com/writer/writer-python/issues/53)) ([df694a3](https://github.com/writer/writer-python/commit/df694a33992f622a555e708d91b2380aff0a4441))
+* **api:** updates to API spec ([#58](https://github.com/writer/writer-python/issues/58)) ([f69da53](https://github.com/writer/writer-python/commit/f69da53cdede71c713ac3562eda49b87c3bd9fed))
+
 ## 0.5.0 (2024-07-14)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/writer/writer-python/compare/v0.4.0...v0.5.0)
