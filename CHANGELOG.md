@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.1 (2024-09-06)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/writer/writer-python/compare/v0.6.0...v0.6.1)
+
+### Chores
+
+* **internal:** codegen related update ([#60](https://github.com/writer/writer-python/issues/60)) ([861c8e5](https://github.com/writer/writer-python/commit/861c8e598b8dd280601013cbd4e28d4293d12a4a))
+* pyproject.toml formatting changes ([#62](https://github.com/writer/writer-python/issues/62)) ([8839b69](https://github.com/writer/writer-python/commit/8839b699921b37f464bfa37a721cf86205355273))
+
 ## 0.6.0 (2024-08-14)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/writer/writer-python/compare/v0.5.0...v0.6.0)
