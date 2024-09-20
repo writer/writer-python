@@ -114,7 +114,7 @@ class Tool(TypedDict, total=False):
     type: Required[str]
 
 
-class ChatChatParamsNonStreaming(ChatChatParamsBase):
+class ChatChatParamsNonStreaming(ChatChatParamsBase, total=False):
     stream: Literal[False]
     """
     Indicates whether the response should be streamed incrementally as it is
