@@ -3,9 +3,19 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["ChatChatParamsBase", "Message", "ChatChatParamsNonStreaming", "ChatChatParamsStreaming"]
+__all__ = [
+    "ChatChatParamsBase",
+    "Message",
+    "ToolChoice",
+    "ToolChoiceJsonObjectToolChoice",
+    "ToolChoiceStringToolChoice",
+    "Tool",
+    "ToolFunction",
+    "ChatChatParamsNonStreaming",
+    "ChatChatParamsStreaming",
+]
 
 
 class ChatChatParamsBase(TypedDict, total=False):
@@ -18,7 +28,7 @@ class ChatChatParamsBase(TypedDict, total=False):
     model: Required[str]
     """Specifies the model to be used for generating responses.
 
-    The chat model is always `palmyra-x-002-32k` for conversational use.
+    The chat model is always `palmyra-x-004` for conversational use.
     """
 
     max_tokens: int
@@ -49,6 +59,19 @@ class ChatChatParamsBase(TypedDict, total=False):
     lower temperature produces more deterministic and conservative outputs.
     """
 
+    tool_choice: ToolChoice
+    """
+    Configure how the model will call functions: `auto` will allow the model to
+    automatically choose the best tool, `none` disables tool calling. You can also
+    pass a specific previously defined function as a string.
+    """
+
+    tools: Iterable[Tool]
+    """
+    An array of tools described to the model using JSON schema that the model can
+    use to generate responses.
+    """
+
     top_p: float
     """
     Sets the threshold for "nucleus sampling," a technique to focus the model's
@@ -64,6 +87,31 @@ class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system"]]
 
     name: str
+
+
+class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
+    value: Required[object]
+
+
+class ToolChoiceStringToolChoice(TypedDict, total=False):
+    value: Required[Literal["none", "auto", "required"]]
+
+
+ToolChoice: TypeAlias = Union[ToolChoiceJsonObjectToolChoice, ToolChoiceStringToolChoice]
+
+
+class ToolFunction(TypedDict, total=False):
+    name: Required[str]
+
+    description: str
+
+    parameters: object
+
+
+class Tool(TypedDict, total=False):
+    function: Required[ToolFunction]
+
+    type: Required[str]
 
 
 class ChatChatParamsNonStreaming(ChatChatParamsBase):

@@ -77,6 +77,7 @@ class TestFiles:
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
+            status="in_progress",
         )
         assert_matches_type(SyncCursorPage[File], file, path=["response"])
 
@@ -284,6 +285,7 @@ class TestAsyncFiles:
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
+            status="in_progress",
         )
         assert_matches_type(AsyncCursorPage[File], file, path=["response"])
 

@@ -50,6 +50,8 @@ class ChatResource(SyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -66,7 +68,7 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           max_tokens: Defines the maximum number of tokens (words and characters) that the model can
               generate in the response. The default value is set to 16, but it can be adjusted
@@ -87,6 +89,13 @@ class ChatResource(SyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function as a string.
+
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -114,6 +123,8 @@ class ChatResource(SyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -130,7 +141,7 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -151,6 +162,13 @@ class ChatResource(SyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function as a string.
+
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -178,6 +196,8 @@ class ChatResource(SyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -194,7 +214,7 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -215,6 +235,13 @@ class ChatResource(SyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function as a string.
+
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -242,6 +269,8 @@ class ChatResource(SyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -261,6 +290,8 @@ class ChatResource(SyncAPIResource):
                     "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
+                    "tool_choice": tool_choice,
+                    "tools": tools,
                     "top_p": top_p,
                 },
                 chat_chat_params.ChatChatParams,
@@ -294,6 +325,8 @@ class AsyncChatResource(AsyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -310,7 +343,7 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           max_tokens: Defines the maximum number of tokens (words and characters) that the model can
               generate in the response. The default value is set to 16, but it can be adjusted
@@ -331,6 +364,13 @@ class AsyncChatResource(AsyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function as a string.
+
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -358,6 +398,8 @@ class AsyncChatResource(AsyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -374,7 +416,7 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -395,6 +437,13 @@ class AsyncChatResource(AsyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function as a string.
+
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -422,6 +471,8 @@ class AsyncChatResource(AsyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -438,7 +489,7 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -459,6 +510,13 @@ class AsyncChatResource(AsyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function as a string.
+
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -486,6 +544,8 @@ class AsyncChatResource(AsyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -505,6 +565,8 @@ class AsyncChatResource(AsyncAPIResource):
                     "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
+                    "tool_choice": tool_choice,
+                    "tools": tools,
                     "top_p": top_p,
                 },
                 chat_chat_params.ChatChatParams,
