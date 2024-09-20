@@ -726,7 +726,7 @@ class TestWriter:
                     dict(
                         messages=[
                             {
-                                "content": "content",
+                                "content": "Write a memo summarizing this earnings report.",
                                 "role": "user",
                             }
                         ],
@@ -752,7 +752,7 @@ class TestWriter:
                     dict(
                         messages=[
                             {
-                                "content": "content",
+                                "content": "Write a memo summarizing this earnings report.",
                                 "role": "user",
                             }
                         ],
@@ -785,11 +785,11 @@ class TestWriter:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         )
 
         assert response.retries_taken == failures_before_success
@@ -1487,7 +1487,7 @@ class TestAsyncWriter:
                     dict(
                         messages=[
                             {
-                                "content": "content",
+                                "content": "Write a memo summarizing this earnings report.",
                                 "role": "user",
                             }
                         ],
@@ -1513,7 +1513,7 @@ class TestAsyncWriter:
                     dict(
                         messages=[
                             {
-                                "content": "content",
+                                "content": "Write a memo summarizing this earnings report.",
                                 "role": "user",
                             }
                         ],
@@ -1549,11 +1549,11 @@ class TestAsyncWriter:
         response = await client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         )
 
         assert response.retries_taken == failures_before_success
