@@ -36,7 +36,7 @@ client = Writer(
 chat = client.chat.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -69,7 +69,7 @@ async def main() -> None:
     chat = await client.chat.chat(
         messages=[
             {
-                "content": "content",
+                "content": "Write a memo summarizing this earnings report.",
                 "role": "user",
             }
         ],
@@ -146,7 +146,7 @@ try:
     client.chat.chat(
         messages=[
             {
-                "content": "content",
+                "content": "Write a memo summarizing this earnings report.",
                 "role": "user",
             }
         ],
@@ -197,7 +197,7 @@ client = Writer(
 client.with_options(max_retries=5).chat.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -228,7 +228,7 @@ client = Writer(
 client.with_options(timeout=5.0).chat.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -274,7 +274,7 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "content": "content",
+        "content": "Write a memo summarizing this earnings report.",
         "role": "user",
     }],
     model="palmyra-x-002-32k",
@@ -299,7 +299,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.chat.with_streaming_response.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],

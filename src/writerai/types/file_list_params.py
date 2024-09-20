@@ -34,3 +34,9 @@ class FileListParams(TypedDict, total=False):
 
     Valid values are asc for ascending and desc for descending.
     """
+
+    status: Literal["in_progress", "completed", "failed"]
+    """Specifies the status of the files to retrieve.
+
+    Valid values are in_progress, completed or failed.
+    """

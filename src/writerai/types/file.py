@@ -20,3 +20,6 @@ class File(BaseModel):
 
     name: str
     """The name of the file."""
+
+    status: str
+    """The processing status of the file."""
