@@ -22,11 +22,11 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         )
         assert_matches_type(Chat, chat, path=["response"])
 
@@ -35,12 +35,12 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                     "name": "name",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
@@ -55,11 +55,11 @@ class TestChat:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         )
 
         assert response.is_closed is True
@@ -72,11 +72,11 @@ class TestChat:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -91,11 +91,11 @@ class TestChat:
         chat_stream = client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
         )
         chat_stream.response.close()
@@ -105,12 +105,12 @@ class TestChat:
         chat_stream = client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                     "name": "name",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
             max_tokens=0,
             n=0,
@@ -125,11 +125,11 @@ class TestChat:
         response = client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
         )
 
@@ -142,11 +142,11 @@ class TestChat:
         with client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
         ) as response:
             assert not response.is_closed
@@ -166,11 +166,11 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         )
         assert_matches_type(Chat, chat, path=["response"])
 
@@ -179,12 +179,12 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                     "name": "name",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
@@ -199,11 +199,11 @@ class TestAsyncChat:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         )
 
         assert response.is_closed is True
@@ -216,11 +216,11 @@ class TestAsyncChat:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -235,11 +235,11 @@ class TestAsyncChat:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
         )
         await chat_stream.response.aclose()
@@ -249,12 +249,12 @@ class TestAsyncChat:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                     "name": "name",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
             max_tokens=0,
             n=0,
@@ -269,11 +269,11 @@ class TestAsyncChat:
         response = await async_client.chat.with_raw_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
         )
 
@@ -286,11 +286,11 @@ class TestAsyncChat:
         async with async_client.chat.with_streaming_response.chat(
             messages=[
                 {
-                    "content": "content",
+                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
                 }
             ],
-            model="model",
+            model="palmyra-x-004",
             stream=True,
         ) as response:
             assert not response.is_closed

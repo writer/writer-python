@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, overload
-from typing_extensions import Literal
+from typing import List, Union, Iterable
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -33,10 +33,21 @@ __all__ = ["ChatResource", "AsyncChatResource"]
 class ChatResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ChatResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return ChatResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ChatResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return ChatResourceWithStreamingResponse(self)
 
     @overload
@@ -66,7 +77,7 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           max_tokens: Defines the maximum number of tokens (words and characters) that the model can
               generate in the response. The default value is set to 16, but it can be adjusted
@@ -130,7 +141,7 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -194,7 +205,7 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -277,10 +288,21 @@ class ChatResource(SyncAPIResource):
 class AsyncChatResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncChatResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncChatResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncChatResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return AsyncChatResourceWithStreamingResponse(self)
 
     @overload
@@ -310,7 +332,7 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           max_tokens: Defines the maximum number of tokens (words and characters) that the model can
               generate in the response. The default value is set to 16, but it can be adjusted
@@ -374,7 +396,7 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -438,7 +460,7 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: Specifies the model to be used for generating responses. The chat model is
-              always `palmyra-x-002-32k` for conversational use.
+              always `palmyra-x-004` for conversational use.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for

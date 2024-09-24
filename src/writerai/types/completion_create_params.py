@@ -53,7 +53,7 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     """
 
 
-class CompletionCreateParamsNonStreaming(CompletionCreateParamsBase):
+class CompletionCreateParamsNonStreaming(CompletionCreateParamsBase, total=False):
     stream: Literal[False]
     """Determines whether the model's output should be streamed.
 

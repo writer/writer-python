@@ -36,7 +36,7 @@ client = Writer(
 chat = client.chat.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -69,7 +69,7 @@ async def main() -> None:
     chat = await client.chat.chat(
         messages=[
             {
-                "content": "content",
+                "content": "Write a memo summarizing this earnings report.",
                 "role": "user",
             }
         ],
@@ -146,7 +146,7 @@ try:
     client.chat.chat(
         messages=[
             {
-                "content": "content",
+                "content": "Write a memo summarizing this earnings report.",
                 "role": "user",
             }
         ],
@@ -197,7 +197,7 @@ client = Writer(
 client.with_options(max_retries=5).chat.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -228,7 +228,7 @@ client = Writer(
 client.with_options(timeout=5.0).chat.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -274,7 +274,7 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "content": "content",
+        "content": "Write a memo summarizing this earnings report.",
         "role": "user",
     }],
     model="palmyra-x-002-32k",
@@ -299,7 +299,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.chat.with_streaming_response.chat(
     messages=[
         {
-            "content": "content",
+            "content": "Write a memo summarizing this earnings report.",
             "role": "user",
         }
     ],
@@ -390,6 +390,17 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
 We are keen for your feedback; please open an [issue](https://www.github.com/writer/writer-python/issues) with questions, bugs, or suggestions.
+
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import writerai
+print(writerai.__version__)
+```
 
 ## Requirements
 

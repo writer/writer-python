@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.7.0 (2024-09-24)
+
+Full Changelog: [v0.6.1...v0.7.0](https://github.com/writer/writer-python/compare/v0.6.1...v0.7.0)
+
+### Features
+
+* **api:** manual updates ([#69](https://github.com/writer/writer-python/issues/69)) ([f245fa4](https://github.com/writer/writer-python/commit/f245fa4082148f22230fd73d135276ca7202ce40))
+* **api:** manual updates ([#71](https://github.com/writer/writer-python/issues/71)) ([247eef8](https://github.com/writer/writer-python/commit/247eef8d2b42f1e87284f8d50c269bad903d4e0c))
+* **client:** send retry count header ([#68](https://github.com/writer/writer-python/issues/68)) ([8853d08](https://github.com/writer/writer-python/commit/8853d088a69d9f4451bf262a86b57d0af317fc56))
+
+
+### Bug Fixes
+
+* **client:** handle domains with underscores ([#67](https://github.com/writer/writer-python/issues/67)) ([73fced9](https://github.com/writer/writer-python/commit/73fced94a02d4d8cf1a93af14f577f5dba414c52))
+* **lint:** format ([9ce59b1](https://github.com/writer/writer-python/commit/9ce59b1bbc7a07459c01cbc38e8a124d165b7160))
+
+
+### Chores
+
+* **internal:** codegen related update ([#65](https://github.com/writer/writer-python/issues/65)) ([8ecc8f5](https://github.com/writer/writer-python/commit/8ecc8f538ccbdb4474afedaaa58a6092c7daae38))
+
+
+### Documentation
+
+* **api:** updates to API spec ([#64](https://github.com/writer/writer-python/issues/64)) ([a86b730](https://github.com/writer/writer-python/commit/a86b730cdc19f239ac88c164d69750209b7a7df1))
+* **api:** updates to API spec ([#70](https://github.com/writer/writer-python/issues/70)) ([a87a2d6](https://github.com/writer/writer-python/commit/a87a2d6cfba46d0f510fa1fcc0500dd30df2d339))
+
 ## 0.6.1 (2024-09-06)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/writer/writer-python/compare/v0.6.0...v0.6.1)

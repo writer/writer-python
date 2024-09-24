@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import file_list_params
+from ..types import file_list_params, file_retry_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -36,10 +37,21 @@ __all__ = ["FilesResource", "AsyncFilesResource"]
 class FilesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FilesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return FilesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FilesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return FilesResourceWithStreamingResponse(self)
 
     def retrieve(
@@ -83,6 +95,7 @@ class FilesResource(SyncAPIResource):
         graph_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: Literal["in_progress", "completed", "failed"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -109,6 +122,9 @@ class FilesResource(SyncAPIResource):
           order: Specifies the order of the results. Valid values are asc for ascending and desc
               for descending.
 
+          status: Specifies the status of the files to retrieve. Valid values are in_progress,
+              completed or failed.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,6 +148,7 @@ class FilesResource(SyncAPIResource):
                         "graph_id": graph_id,
                         "limit": limit,
                         "order": order,
+                        "status": status,
                     },
                     file_list_params.FileListParams,
                 ),
@@ -206,6 +223,40 @@ class FilesResource(SyncAPIResource):
             cast_to=BinaryAPIResponse,
         )
 
+    def retry(
+        self,
+        *,
+        file_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Retry failed files
+
+        Args:
+          file_ids: The unique identifier of the files to be retried.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/files/retry",
+            body=maybe_transform({"file_ids": file_ids}, file_retry_params.FileRetryParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     def upload(
         self,
         *,
@@ -249,10 +300,21 @@ class FilesResource(SyncAPIResource):
 class AsyncFilesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFilesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFilesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFilesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return AsyncFilesResourceWithStreamingResponse(self)
 
     async def retrieve(
@@ -296,6 +358,7 @@ class AsyncFilesResource(AsyncAPIResource):
         graph_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: Literal["in_progress", "completed", "failed"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -322,6 +385,9 @@ class AsyncFilesResource(AsyncAPIResource):
           order: Specifies the order of the results. Valid values are asc for ascending and desc
               for descending.
 
+          status: Specifies the status of the files to retrieve. Valid values are in_progress,
+              completed or failed.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -345,6 +411,7 @@ class AsyncFilesResource(AsyncAPIResource):
                         "graph_id": graph_id,
                         "limit": limit,
                         "order": order,
+                        "status": status,
                     },
                     file_list_params.FileListParams,
                 ),
@@ -419,6 +486,40 @@ class AsyncFilesResource(AsyncAPIResource):
             cast_to=AsyncBinaryAPIResponse,
         )
 
+    async def retry(
+        self,
+        *,
+        file_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Retry failed files
+
+        Args:
+          file_ids: The unique identifier of the files to be retried.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/files/retry",
+            body=await async_maybe_transform({"file_ids": file_ids}, file_retry_params.FileRetryParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     async def upload(
         self,
         *,
@@ -454,7 +555,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            files=[('file', content)],
+            files=[("file", content)],
             cast_to=File,
         )
 
@@ -475,6 +576,9 @@ class FilesResourceWithRawResponse:
         self.download = to_custom_raw_response_wrapper(
             files.download,
             BinaryAPIResponse,
+        )
+        self.retry = to_raw_response_wrapper(
+            files.retry,
         )
         self.upload = to_raw_response_wrapper(
             files.upload,
@@ -498,6 +602,9 @@ class AsyncFilesResourceWithRawResponse:
             files.download,
             AsyncBinaryAPIResponse,
         )
+        self.retry = async_to_raw_response_wrapper(
+            files.retry,
+        )
         self.upload = async_to_raw_response_wrapper(
             files.upload,
         )
@@ -520,6 +627,9 @@ class FilesResourceWithStreamingResponse:
             files.download,
             StreamedBinaryAPIResponse,
         )
+        self.retry = to_streamed_response_wrapper(
+            files.retry,
+        )
         self.upload = to_streamed_response_wrapper(
             files.upload,
         )
@@ -541,6 +651,9 @@ class AsyncFilesResourceWithStreamingResponse:
         self.download = async_to_custom_streamed_response_wrapper(
             files.download,
             AsyncStreamedBinaryAPIResponse,
+        )
+        self.retry = async_to_streamed_response_wrapper(
+            files.retry,
         )
         self.upload = async_to_streamed_response_wrapper(
             files.upload,

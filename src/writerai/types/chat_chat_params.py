@@ -18,7 +18,7 @@ class ChatChatParamsBase(TypedDict, total=False):
     model: Required[str]
     """Specifies the model to be used for generating responses.
 
-    The chat model is always `palmyra-x-002-32k` for conversational use.
+    The chat model is always `palmyra-x-004` for conversational use.
     """
 
     max_tokens: int
@@ -66,7 +66,7 @@ class Message(TypedDict, total=False):
     name: str
 
 
-class ChatChatParamsNonStreaming(ChatChatParamsBase):
+class ChatChatParamsNonStreaming(ChatChatParamsBase, total=False):
     stream: Literal[False]
     """
     Indicates whether the response should be streamed incrementally as it is

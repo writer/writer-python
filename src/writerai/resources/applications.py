@@ -29,10 +29,21 @@ __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 class ApplicationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return ApplicationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ApplicationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return ApplicationsResourceWithStreamingResponse(self)
 
     def generate_content(
@@ -76,10 +87,21 @@ class ApplicationsResource(SyncAPIResource):
 class AsyncApplicationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncApplicationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncApplicationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return AsyncApplicationsResourceWithStreamingResponse(self)
 
     async def generate_content(

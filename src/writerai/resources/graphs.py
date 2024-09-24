@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal
 
 import httpx
@@ -10,6 +11,7 @@ from ..types import (
     graph_list_params,
     graph_create_params,
     graph_update_params,
+    graph_question_params,
     graph_add_file_to_graph_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
@@ -32,6 +34,7 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.graph_create_response import GraphCreateResponse
 from ..types.graph_delete_response import GraphDeleteResponse
 from ..types.graph_update_response import GraphUpdateResponse
+from ..types.graph_question_response import GraphQuestionResponse
 from ..types.graph_remove_file_from_graph_response import GraphRemoveFileFromGraphResponse
 
 __all__ = ["GraphsResource", "AsyncGraphsResource"]
@@ -40,10 +43,21 @@ __all__ = ["GraphsResource", "AsyncGraphsResource"]
 class GraphsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> GraphsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return GraphsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> GraphsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return GraphsResourceWithStreamingResponse(self)
 
     def create(
@@ -323,7 +337,7 @@ class GraphsResource(SyncAPIResource):
             extra_body=extra_body,
             extra_query=extra_query,
             extra_headers=extra_headers,
-            timeout=timeout
+            timeout=timeout,
         )
         return self.add_file_to_graph(
             graph_id=graph_id,
@@ -331,7 +345,60 @@ class GraphsResource(SyncAPIResource):
             extra_body=extra_body,
             extra_headers=extra_headers,
             extra_query=extra_query,
-            timeout=timeout
+            timeout=timeout,
+        )
+
+    def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: bool,
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GraphQuestionResponse:
+        """
+        Knowledge Graph question
+
+        Args:
+          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+
+          question: The question to be answered using the Knowledge Graph.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          subqueries: Specify whether to include subqueries.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/graphs/question",
+            body=maybe_transform(
+                {
+                    "graph_ids": graph_ids,
+                    "question": question,
+                    "stream": stream,
+                    "subqueries": subqueries,
+                },
+                graph_question_params.GraphQuestionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GraphQuestionResponse,
         )
 
     def remove_file_from_graph(
@@ -374,10 +441,21 @@ class GraphsResource(SyncAPIResource):
 class AsyncGraphsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncGraphsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncGraphsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncGraphsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/writer/writer-python#with_streaming_response
+        """
         return AsyncGraphsResourceWithStreamingResponse(self)
 
     async def create(
@@ -659,7 +737,7 @@ class AsyncGraphsResource(AsyncAPIResource):
             extra_body=extra_body,
             extra_query=extra_query,
             extra_headers=extra_headers,
-            timeout=timeout
+            timeout=timeout,
         )
         return await self.add_file_to_graph(
             graph_id=graph_id,
@@ -667,7 +745,60 @@ class AsyncGraphsResource(AsyncAPIResource):
             extra_body=extra_body,
             extra_headers=extra_headers,
             extra_query=extra_query,
-            timeout=timeout
+            timeout=timeout,
+        )
+
+    async def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: bool,
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GraphQuestionResponse:
+        """
+        Knowledge Graph question
+
+        Args:
+          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+
+          question: The question to be answered using the Knowledge Graph.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          subqueries: Specify whether to include subqueries.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/graphs/question",
+            body=await async_maybe_transform(
+                {
+                    "graph_ids": graph_ids,
+                    "question": question,
+                    "stream": stream,
+                    "subqueries": subqueries,
+                },
+                graph_question_params.GraphQuestionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GraphQuestionResponse,
         )
 
     async def remove_file_from_graph(
@@ -732,6 +863,9 @@ class GraphsResourceWithRawResponse:
         self.upload_and_add_file_to_graph = to_raw_response_wrapper(
             graphs.upload_and_add_file_to_graph,
         )
+        self.question = to_raw_response_wrapper(
+            graphs.question,
+        )
         self.remove_file_from_graph = to_raw_response_wrapper(
             graphs.remove_file_from_graph,
         )
@@ -761,6 +895,9 @@ class AsyncGraphsResourceWithRawResponse:
         )
         self.upload_and_add_file_to_graph = async_to_raw_response_wrapper(
             graphs.upload_and_add_file_to_graph,
+        )
+        self.question = async_to_raw_response_wrapper(
+            graphs.question,
         )
         self.remove_file_from_graph = async_to_raw_response_wrapper(
             graphs.remove_file_from_graph,
@@ -792,6 +929,9 @@ class GraphsResourceWithStreamingResponse:
         self.upload_and_add_file_to_graph = to_streamed_response_wrapper(
             graphs.upload_and_add_file_to_graph,
         )
+        self.question = to_streamed_response_wrapper(
+            graphs.question,
+        )
         self.remove_file_from_graph = to_streamed_response_wrapper(
             graphs.remove_file_from_graph,
         )
@@ -821,6 +961,9 @@ class AsyncGraphsResourceWithStreamingResponse:
         )
         self.upload_and_add_file_to_graph = async_to_streamed_response_wrapper(
             graphs.upload_and_add_file_to_graph,
+        )
+        self.question = async_to_streamed_response_wrapper(
+            graphs.question,
         )
         self.remove_file_from_graph = async_to_streamed_response_wrapper(
             graphs.remove_file_from_graph,
