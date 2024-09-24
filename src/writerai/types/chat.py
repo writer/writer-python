@@ -1,27 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Chat", "Choice", "ChoiceMessage", "ChoiceMessageToolCall", "ChoiceMessageToolCallFunction"]
-
-
-class ChoiceMessageToolCallFunction(BaseModel):
-    arguments: Optional[str] = None
-
-    name: Optional[str] = None
-
-
-class ChoiceMessageToolCall(BaseModel):
-    id: Optional[str] = None
-
-    function: Optional[ChoiceMessageToolCallFunction] = None
-
-    index: Optional[int] = None
-
-    type: Optional[str] = None
+__all__ = ["Chat", "Choice", "ChoiceMessage"]
 
 
 class ChoiceMessage(BaseModel):
@@ -39,11 +23,9 @@ class ChoiceMessage(BaseModel):
     output within the interaction flow.
     """
 
-    tool_calls: Optional[List[ChoiceMessageToolCall]] = None
-
 
 class Choice(BaseModel):
-    finish_reason: Literal["stop", "length", "content_filter", "tool_calls"]
+    finish_reason: Literal["stop", "length", "content_filter"]
     """Describes the condition under which the model ceased generating content.
 
     Common reasons include 'length' (reached the maximum output size), 'stop'

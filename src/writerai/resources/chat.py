@@ -61,8 +61,6 @@ class ChatResource(SyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -72,7 +70,7 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat:
         """
-        Chat completion v2
+        Chat completion
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -100,13 +98,6 @@ class ChatResource(SyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
-
-          tool_choice: Configure how the model will call functions: `auto` will allow the model to
-              automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
-
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -134,8 +125,6 @@ class ChatResource(SyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -145,7 +134,7 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stream[ChatStreamingData]:
         """
-        Chat completion v2
+        Chat completion
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -173,13 +162,6 @@ class ChatResource(SyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
-
-          tool_choice: Configure how the model will call functions: `auto` will allow the model to
-              automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
-
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -207,8 +189,6 @@ class ChatResource(SyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -218,7 +198,7 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat | Stream[ChatStreamingData]:
         """
-        Chat completion v2
+        Chat completion
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -247,13 +227,6 @@ class ChatResource(SyncAPIResource):
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
 
-          tool_choice: Configure how the model will call functions: `auto` will allow the model to
-              automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
-
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses.
-
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
               cumulative probability above this threshold are considered, controlling the
@@ -280,8 +253,6 @@ class ChatResource(SyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,8 +272,6 @@ class ChatResource(SyncAPIResource):
                     "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
-                    "tool_choice": tool_choice,
-                    "tools": tools,
                     "top_p": top_p,
                 },
                 chat_chat_params.ChatChatParams,
@@ -347,8 +316,6 @@ class AsyncChatResource(AsyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -358,7 +325,7 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat:
         """
-        Chat completion v2
+        Chat completion
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -386,13 +353,6 @@ class AsyncChatResource(AsyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
-
-          tool_choice: Configure how the model will call functions: `auto` will allow the model to
-              automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
-
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -420,8 +380,6 @@ class AsyncChatResource(AsyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -431,7 +389,7 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncStream[ChatStreamingData]:
         """
-        Chat completion v2
+        Chat completion
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -459,13 +417,6 @@ class AsyncChatResource(AsyncAPIResource):
           temperature: Controls the randomness or creativity of the model's responses. A higher
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
-
-          tool_choice: Configure how the model will call functions: `auto` will allow the model to
-              automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
-
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -493,8 +444,6 @@ class AsyncChatResource(AsyncAPIResource):
         n: int | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -504,7 +453,7 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat | AsyncStream[ChatStreamingData]:
         """
-        Chat completion v2
+        Chat completion
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -533,13 +482,6 @@ class AsyncChatResource(AsyncAPIResource):
               temperature results in more varied and less predictable text, while a lower
               temperature produces more deterministic and conservative outputs.
 
-          tool_choice: Configure how the model will call functions: `auto` will allow the model to
-              automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
-
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses.
-
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
               cumulative probability above this threshold are considered, controlling the
@@ -566,8 +508,6 @@ class AsyncChatResource(AsyncAPIResource):
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -587,8 +527,6 @@ class AsyncChatResource(AsyncAPIResource):
                     "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
-                    "tool_choice": tool_choice,
-                    "tools": tools,
                     "top_p": top_p,
                 },
                 chat_chat_params.ChatChatParams,
