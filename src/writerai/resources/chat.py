@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, overload
-from typing_extensions import Literal
+from typing import List, Union, Iterable
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -72,7 +72,7 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat:
         """
-        Chat completion
+        Chat completion v2
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -145,7 +145,7 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stream[ChatStreamingData]:
         """
-        Chat completion
+        Chat completion v2
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -218,7 +218,7 @@ class ChatResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat | Stream[ChatStreamingData]:
         """
-        Chat completion
+        Chat completion v2
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -358,7 +358,7 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat:
         """
-        Chat completion
+        Chat completion v2
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -431,7 +431,7 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncStream[ChatStreamingData]:
         """
-        Chat completion
+        Chat completion v2
 
         Args:
           messages: An array of message objects that form the conversation history or context for
@@ -504,7 +504,7 @@ class AsyncChatResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Chat | AsyncStream[ChatStreamingData]:
         """
-        Chat completion
+        Chat completion v2
 
         Args:
           messages: An array of message objects that form the conversation history or context for
