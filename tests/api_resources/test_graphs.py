@@ -15,6 +15,7 @@ from writerai.types import (
     GraphCreateResponse,
     GraphDeleteResponse,
     GraphUpdateResponse,
+    GraphQuestionResponse,
     GraphRemoveFileFromGraphResponse,
 )
 from writerai.pagination import SyncCursorPage, AsyncCursorPage
@@ -257,6 +258,46 @@ class TestGraphs:
                 graph_id="",
                 file_id="file_id",
             )
+
+    @parametrize
+    def test_method_question(self, client: Writer) -> None:
+        graph = client.graphs.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+
+    @parametrize
+    def test_raw_response_question(self, client: Writer) -> None:
+        response = client.graphs.with_raw_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        graph = response.parse()
+        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+
+    @parametrize
+    def test_streaming_response_question(self, client: Writer) -> None:
+        with client.graphs.with_streaming_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            graph = response.parse()
+            assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_remove_file_from_graph(self, client: Writer) -> None:
@@ -542,6 +583,46 @@ class TestAsyncGraphs:
                 graph_id="",
                 file_id="file_id",
             )
+
+    @parametrize
+    async def test_method_question(self, async_client: AsyncWriter) -> None:
+        graph = await async_client.graphs.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+
+    @parametrize
+    async def test_raw_response_question(self, async_client: AsyncWriter) -> None:
+        response = await async_client.graphs.with_raw_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        graph = await response.parse()
+        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_question(self, async_client: AsyncWriter) -> None:
+        async with async_client.graphs.with_streaming_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            graph = await response.parse()
+            assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_remove_file_from_graph(self, async_client: AsyncWriter) -> None:

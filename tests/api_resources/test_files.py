@@ -193,6 +193,49 @@ class TestFiles:
                 "",
             )
 
+    @parametrize
+    def test_method_retry(self, client: Writer) -> None:
+        file = client.files.retry(
+            file_ids=[
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ],
+        )
+        assert_matches_type(object, file, path=["response"])
+
+    @parametrize
+    def test_raw_response_retry(self, client: Writer) -> None:
+        response = client.files.with_raw_response.retry(
+            file_ids=[
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file = response.parse()
+        assert_matches_type(object, file, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retry(self, client: Writer) -> None:
+        with client.files.with_streaming_response.retry(
+            file_ids=[
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file = response.parse()
+            assert_matches_type(object, file, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
     @pytest.mark.skip(reason="requests with binary data not yet supported in test environment")
     @parametrize
     def test_method_upload(self, client: Writer) -> None:
@@ -400,6 +443,49 @@ class TestAsyncFiles:
             await async_client.files.with_raw_response.download(
                 "",
             )
+
+    @parametrize
+    async def test_method_retry(self, async_client: AsyncWriter) -> None:
+        file = await async_client.files.retry(
+            file_ids=[
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ],
+        )
+        assert_matches_type(object, file, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retry(self, async_client: AsyncWriter) -> None:
+        response = await async_client.files.with_raw_response.retry(
+            file_ids=[
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file = await response.parse()
+        assert_matches_type(object, file, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retry(self, async_client: AsyncWriter) -> None:
+        async with async_client.files.with_streaming_response.retry(
+            file_ids=[
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file = await response.parse()
+            assert_matches_type(object, file, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="requests with binary data not yet supported in test environment")
     @parametrize
