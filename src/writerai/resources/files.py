@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import file_list_params, file_upload_params
+from ..types import file_list_params, file_retry_params, file_upload_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from .._utils import (
     maybe_transform,
@@ -223,6 +224,40 @@ class FilesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BinaryAPIResponse,
+        )
+
+    def retry(
+        self,
+        *,
+        file_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Retry failed files
+
+        Args:
+          file_ids: The unique identifier of the files to be retried.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/files/retry",
+            body=maybe_transform({"file_ids": file_ids}, file_retry_params.FileRetryParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
         )
 
     def upload(
@@ -449,6 +484,40 @@ class AsyncFilesResource(AsyncAPIResource):
             cast_to=AsyncBinaryAPIResponse,
         )
 
+    async def retry(
+        self,
+        *,
+        file_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Retry failed files
+
+        Args:
+          file_ids: The unique identifier of the files to be retried.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/files/retry",
+            body=await async_maybe_transform({"file_ids": file_ids}, file_retry_params.FileRetryParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     async def upload(
         self,
         *,
@@ -501,6 +570,9 @@ class FilesResourceWithRawResponse:
             files.download,
             BinaryAPIResponse,
         )
+        self.retry = to_raw_response_wrapper(
+            files.retry,
+        )
         self.upload = to_raw_response_wrapper(
             files.upload,
         )
@@ -522,6 +594,9 @@ class AsyncFilesResourceWithRawResponse:
         self.download = async_to_custom_raw_response_wrapper(
             files.download,
             AsyncBinaryAPIResponse,
+        )
+        self.retry = async_to_raw_response_wrapper(
+            files.retry,
         )
         self.upload = async_to_raw_response_wrapper(
             files.upload,
@@ -545,6 +620,9 @@ class FilesResourceWithStreamingResponse:
             files.download,
             StreamedBinaryAPIResponse,
         )
+        self.retry = to_streamed_response_wrapper(
+            files.retry,
+        )
         self.upload = to_streamed_response_wrapper(
             files.upload,
         )
@@ -566,6 +644,9 @@ class AsyncFilesResourceWithStreamingResponse:
         self.download = async_to_custom_streamed_response_wrapper(
             files.download,
             AsyncStreamedBinaryAPIResponse,
+        )
+        self.retry = async_to_streamed_response_wrapper(
+            files.retry,
         )
         self.upload = async_to_streamed_response_wrapper(
             files.upload,
