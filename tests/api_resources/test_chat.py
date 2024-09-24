@@ -46,33 +46,6 @@ class TestChat:
             stop=["string", "string", "string"],
             stream=False,
             temperature=0,
-            tool_choice={"value": {}},
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-            ],
             top_p=0,
         )
         assert_matches_type(Chat, chat, path=["response"])
@@ -143,33 +116,6 @@ class TestChat:
             n=0,
             stop=["string", "string", "string"],
             temperature=0,
-            tool_choice={"value": {}},
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-            ],
             top_p=0,
         )
         chat_stream.response.close()
@@ -244,33 +190,6 @@ class TestAsyncChat:
             stop=["string", "string", "string"],
             stream=False,
             temperature=0,
-            tool_choice={"value": {}},
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-            ],
             top_p=0,
         )
         assert_matches_type(Chat, chat, path=["response"])
@@ -341,33 +260,6 @@ class TestAsyncChat:
             n=0,
             stop=["string", "string", "string"],
             temperature=0,
-            tool_choice={"value": {}},
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {},
-                    },
-                    "type": "type",
-                },
-            ],
             top_p=0,
         )
         await chat_stream.response.aclose()
