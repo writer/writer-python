@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["GraphQuestionResponse", "Source", "Subquery", "SubquerySource"]
+__all__ = ["Question", "Source", "Subquery", "SubquerySource"]
 
 
 class Source(BaseModel):
@@ -33,7 +33,7 @@ class Subquery(BaseModel):
     sources: List[SubquerySource]
 
 
-class GraphQuestionResponse(BaseModel):
+class Question(BaseModel):
     answer: str
     """The answer to the question."""
 
