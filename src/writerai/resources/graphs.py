@@ -31,10 +31,10 @@ from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.file import File
 from ..types.graph import Graph
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.question import Question
 from ..types.graph_create_response import GraphCreateResponse
 from ..types.graph_delete_response import GraphDeleteResponse
 from ..types.graph_update_response import GraphUpdateResponse
-from ..types.graph_question_response import GraphQuestionResponse
 from ..types.graph_remove_file_from_graph_response import GraphRemoveFileFromGraphResponse
 
 __all__ = ["GraphsResource", "AsyncGraphsResource"]
@@ -327,7 +327,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GraphQuestionResponse:
+    ) -> Question:
         """
         Knowledge Graph question
 
@@ -364,7 +364,7 @@ class GraphsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GraphQuestionResponse,
+            cast_to=Question,
         )
 
     def remove_file_from_graph(
@@ -693,7 +693,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GraphQuestionResponse:
+    ) -> Question:
         """
         Knowledge Graph question
 
@@ -730,7 +730,7 @@ class AsyncGraphsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GraphQuestionResponse,
+            cast_to=Question,
         )
 
     async def remove_file_from_graph(

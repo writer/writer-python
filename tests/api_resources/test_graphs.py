@@ -12,10 +12,10 @@ from tests.utils import assert_matches_type
 from writerai.types import (
     File,
     Graph,
+    Question,
     GraphCreateResponse,
     GraphDeleteResponse,
     GraphUpdateResponse,
-    GraphQuestionResponse,
     GraphRemoveFileFromGraphResponse,
 )
 from writerai.pagination import SyncCursorPage, AsyncCursorPage
@@ -267,7 +267,7 @@ class TestGraphs:
             stream=True,
             subqueries=True,
         )
-        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+        assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
     def test_raw_response_question(self, client: Writer) -> None:
@@ -281,7 +281,7 @@ class TestGraphs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         graph = response.parse()
-        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+        assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
     def test_streaming_response_question(self, client: Writer) -> None:
@@ -295,7 +295,7 @@ class TestGraphs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             graph = response.parse()
-            assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+            assert_matches_type(Question, graph, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -592,7 +592,7 @@ class TestAsyncGraphs:
             stream=True,
             subqueries=True,
         )
-        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+        assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
     async def test_raw_response_question(self, async_client: AsyncWriter) -> None:
@@ -606,7 +606,7 @@ class TestAsyncGraphs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         graph = await response.parse()
-        assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+        assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
     async def test_streaming_response_question(self, async_client: AsyncWriter) -> None:
@@ -620,7 +620,7 @@ class TestAsyncGraphs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             graph = await response.parse()
-            assert_matches_type(GraphQuestionResponse, graph, path=["response"])
+            assert_matches_type(Question, graph, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
