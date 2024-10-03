@@ -13,7 +13,7 @@ from .file_list_params import FileListParams as FileListParams
 from .file_retry_params import FileRetryParams as FileRetryParams
 from .graph_list_params import GraphListParams as GraphListParams
 from .file_upload_params import FileUploadParams as FileUploadParams
-from .chat_streaming_data import ChatStreamingData as ChatStreamingData
+from .file_retry_response import FileRetryResponse as FileRetryResponse
 from .graph_create_params import GraphCreateParams as GraphCreateParams
 from .graph_update_params import GraphUpdateParams as GraphUpdateParams
 from .model_list_response import ModelListResponse as ModelListResponse
