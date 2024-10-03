@@ -18,6 +18,7 @@ from .graph_create_params import GraphCreateParams as GraphCreateParams
 from .graph_update_params import GraphUpdateParams as GraphUpdateParams
 from .model_list_response import ModelListResponse as ModelListResponse
 from .file_delete_response import FileDeleteResponse as FileDeleteResponse
+from .chat_completion_chunk import ChatCompletionChunk as ChatCompletionChunk
 from .graph_create_response import GraphCreateResponse as GraphCreateResponse
 from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams

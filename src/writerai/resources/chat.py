@@ -25,6 +25,7 @@ from .._response import (
 from .._streaming import Stream, AsyncStream
 from ..types.chat import Chat
 from .._base_client import make_request_options
+from ..types.chat_completion_chunk import ChatCompletionChunk
 
 __all__ = ["ChatResource", "AsyncChatResource"]
 
@@ -155,7 +156,7 @@ class ChatResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Stream[Chat]:
+    ) -> Stream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -239,7 +240,7 @@ class ChatResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat | Stream[Chat]:
+    ) -> Chat | Stream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -323,7 +324,7 @@ class ChatResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat | Stream[Chat]:
+    ) -> Chat | Stream[ChatCompletionChunk]:
         return self._post(
             "/v1/chat",
             body=maybe_transform(
@@ -348,7 +349,7 @@ class ChatResource(SyncAPIResource):
             ),
             cast_to=Chat,
             stream=stream or False,
-            stream_cls=Stream[Chat],
+            stream_cls=Stream[ChatCompletionChunk],
         )
 
 
@@ -478,7 +479,7 @@ class AsyncChatResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncStream[Chat]:
+    ) -> AsyncStream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -562,7 +563,7 @@ class AsyncChatResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat | AsyncStream[Chat]:
+    ) -> Chat | AsyncStream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -646,7 +647,7 @@ class AsyncChatResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat | AsyncStream[Chat]:
+    ) -> Chat | AsyncStream[ChatCompletionChunk]:
         return await self._post(
             "/v1/chat",
             body=await async_maybe_transform(
@@ -671,7 +672,7 @@ class AsyncChatResource(AsyncAPIResource):
             ),
             cast_to=Chat,
             stream=stream or False,
-            stream_cls=AsyncStream[Chat],
+            stream_cls=AsyncStream[ChatCompletionChunk],
         )
 
 
