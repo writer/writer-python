@@ -63,8 +63,8 @@ class GraphsResource(SyncAPIResource):
     def create(
         self,
         *,
+        name: str,
         description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,11 +75,11 @@ class GraphsResource(SyncAPIResource):
         """Create graph
 
         Args:
-          description: A description of the graph.
+          name: The name of the graph.
 
         This can be at most 255 characters.
 
-          name: The name of the graph. This can be at most 255 characters.
+          description: A description of the graph. This can be at most 255 characters.
 
           extra_headers: Send extra headers
 
@@ -93,8 +93,8 @@ class GraphsResource(SyncAPIResource):
             "/v1/graphs",
             body=maybe_transform(
                 {
-                    "description": description,
                     "name": name,
+                    "description": description,
                 },
                 graph_create_params.GraphCreateParams,
             ),
@@ -141,8 +141,8 @@ class GraphsResource(SyncAPIResource):
         self,
         graph_id: str,
         *,
+        name: str,
         description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -153,11 +153,11 @@ class GraphsResource(SyncAPIResource):
         """Update graph
 
         Args:
-          description: A description of the graph.
+          name: The name of the graph.
 
         This can be at most 255 characters.
 
-          name: The name of the graph. This can be at most 255 characters.
+          description: A description of the graph. This can be at most 255 characters.
 
           extra_headers: Send extra headers
 
@@ -173,8 +173,8 @@ class GraphsResource(SyncAPIResource):
             f"/v1/graphs/{graph_id}",
             body=maybe_transform(
                 {
-                    "description": description,
                     "name": name,
+                    "description": description,
                 },
                 graph_update_params.GraphUpdateParams,
             ),
@@ -329,7 +329,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Question:
         """
-        Knowledge Graph question
+        Ask a question to specified Knowledge Graphs.
 
         Args:
           graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
@@ -427,8 +427,8 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        name: str,
         description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,11 +439,11 @@ class AsyncGraphsResource(AsyncAPIResource):
         """Create graph
 
         Args:
-          description: A description of the graph.
+          name: The name of the graph.
 
         This can be at most 255 characters.
 
-          name: The name of the graph. This can be at most 255 characters.
+          description: A description of the graph. This can be at most 255 characters.
 
           extra_headers: Send extra headers
 
@@ -457,8 +457,8 @@ class AsyncGraphsResource(AsyncAPIResource):
             "/v1/graphs",
             body=await async_maybe_transform(
                 {
-                    "description": description,
                     "name": name,
+                    "description": description,
                 },
                 graph_create_params.GraphCreateParams,
             ),
@@ -505,8 +505,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         self,
         graph_id: str,
         *,
+        name: str,
         description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -517,11 +517,11 @@ class AsyncGraphsResource(AsyncAPIResource):
         """Update graph
 
         Args:
-          description: A description of the graph.
+          name: The name of the graph.
 
         This can be at most 255 characters.
 
-          name: The name of the graph. This can be at most 255 characters.
+          description: A description of the graph. This can be at most 255 characters.
 
           extra_headers: Send extra headers
 
@@ -537,8 +537,8 @@ class AsyncGraphsResource(AsyncAPIResource):
             f"/v1/graphs/{graph_id}",
             body=await async_maybe_transform(
                 {
-                    "description": description,
                     "name": name,
+                    "description": description,
                 },
                 graph_update_params.GraphUpdateParams,
             ),
@@ -695,7 +695,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Question:
         """
-        Knowledge Graph question
+        Ask a question to specified Knowledge Graphs.
 
         Args:
           graph_ids: The unique identifiers of the Knowledge Graphs to be queried.

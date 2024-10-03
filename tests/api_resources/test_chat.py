@@ -41,11 +41,37 @@ class TestChat:
                 }
             ],
             model="palmyra-x-004",
+            logprobs=True,
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
             stream=False,
+            stream_options={"include_usage": True},
             temperature=0,
+            tool_choice={"value": {}},
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+            ],
             top_p=0,
         )
         assert_matches_type(Chat, chat, path=["response"])
@@ -112,10 +138,36 @@ class TestChat:
             ],
             model="palmyra-x-004",
             stream=True,
+            logprobs=True,
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
+            stream_options={"include_usage": True},
             temperature=0,
+            tool_choice={"value": {}},
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+            ],
             top_p=0,
         )
         chat_stream.response.close()
@@ -185,11 +237,37 @@ class TestAsyncChat:
                 }
             ],
             model="palmyra-x-004",
+            logprobs=True,
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
             stream=False,
+            stream_options={"include_usage": True},
             temperature=0,
+            tool_choice={"value": {}},
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+            ],
             top_p=0,
         )
         assert_matches_type(Chat, chat, path=["response"])
@@ -256,10 +334,36 @@ class TestAsyncChat:
             ],
             model="palmyra-x-004",
             stream=True,
+            logprobs=True,
             max_tokens=0,
             n=0,
             stop=["string", "string", "string"],
+            stream_options={"include_usage": True},
             temperature=0,
+            tool_choice={"value": {}},
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {},
+                    }
+                },
+            ],
             top_p=0,
         )
         await chat_stream.response.aclose()

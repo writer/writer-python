@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import file_list_params, file_retry_params, file_upload_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
     async_maybe_transform,
@@ -32,6 +32,7 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.file import File
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.file_retry_response import FileRetryResponse
 from ..types.file_delete_response import FileDeleteResponse
 
 __all__ = ["FilesResource", "AsyncFilesResource"]
@@ -236,7 +237,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> FileRetryResponse:
         """
         Retry failed files
 
@@ -257,13 +258,13 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=FileRetryResponse,
         )
 
     def upload(
         self,
         *,
-        content: FileTypes,
+        content: object,
         content_disposition: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -494,7 +495,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> FileRetryResponse:
         """
         Retry failed files
 
@@ -515,13 +516,13 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=FileRetryResponse,
         )
 
     async def upload(
         self,
         *,
-        content: FileTypes,
+        content: object,
         content_disposition: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

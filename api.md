@@ -15,7 +15,7 @@ Methods:
 Types:
 
 ```python
-from writerai.types import Chat, ChatStreamingData
+from writerai.types import Chat
 ```
 
 Methods:
@@ -86,5 +86,5 @@ Methods:
 - <code title="get /v1/files">client.files.<a href="./src/writerai/resources/files.py">list</a>(\*\*<a href="src/writerai/types/file_list_params.py">params</a>) -> <a href="./src/writerai/types/file.py">SyncCursorPage[File]</a></code>
 - <code title="delete /v1/files/{file_id}">client.files.<a href="./src/writerai/resources/files.py">delete</a>(file_id) -> <a href="./src/writerai/types/file_delete_response.py">FileDeleteResponse</a></code>
 - <code title="get /v1/files/{file_id}/download">client.files.<a href="./src/writerai/resources/files.py">download</a>(file_id) -> BinaryAPIResponse</code>
-- <code title="post /v1/files/retry">client.files.<a href="./src/writerai/resources/files.py">retry</a>(\*\*<a href="src/writerai/types/file_retry_params.py">params</a>) -> <a href="./src/writerai/types/file_retry_response.py">object</a></code>
+- <code title="post /v1/files/retry">client.files.<a href="./src/writerai/resources/files.py">retry</a>(\*\*<a href="src/writerai/types/file_retry_params.py">params</a>) -> <a href="./src/writerai/types/file_retry_response.py">FileRetryResponse</a></code>
 - <code title="post /v1/files">client.files.<a href="./src/writerai/resources/files.py">upload</a>(\*\*<a href="src/writerai/types/file_upload_params.py">params</a>) -> <a href="./src/writerai/types/file.py">File</a></code>
