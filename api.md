@@ -15,7 +15,7 @@ Methods:
 Types:
 
 ```python
-from writerai.types import Chat
+from writerai.types import Chat, ChatCompletionChunk
 ```
 
 Methods:
