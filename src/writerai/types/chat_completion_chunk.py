@@ -9,6 +9,10 @@ __all__ = [
     "ChatCompletionChunk",
     "Choice",
     "ChoiceDelta",
+    "ChoiceDeltaGraphData",
+    "ChoiceDeltaGraphDataSource",
+    "ChoiceDeltaGraphDataSubquery",
+    "ChoiceDeltaGraphDataSubquerySource",
     "ChoiceDeltaToolCall",
     "ChoiceDeltaToolCallFunction",
     "ChoiceLogprobs",
@@ -17,46 +21,85 @@ __all__ = [
     "ChoiceLogprobsRefusal",
     "ChoiceLogprobsRefusalTopLogprob",
     "ChoiceMessage",
+    "ChoiceMessageGraphData",
+    "ChoiceMessageGraphDataSource",
+    "ChoiceMessageGraphDataSubquery",
+    "ChoiceMessageGraphDataSubquerySource",
     "ChoiceMessageToolCall",
     "ChoiceMessageToolCallFunction",
-    "ChoiceSource",
-    "ChoiceSubquery",
-    "ChoiceSubquerySource",
     "Usage",
     "UsageCompletionTokensDetails",
     "UsagePromptTokenDetails",
 ]
 
 
-class ChoiceDeltaToolCallFunction(BaseModel):
-    arguments: Optional[str] = None
+class ChoiceDeltaGraphDataSource(BaseModel):
+    file_id: str
+    """The unique identifier of the file."""
 
-    name: Optional[str] = None
+    snippet: str
+    """A snippet of text from the source file."""
+
+
+class ChoiceDeltaGraphDataSubquerySource(BaseModel):
+    file_id: str
+    """The unique identifier of the file."""
+
+    snippet: str
+    """A snippet of text from the source file."""
+
+
+class ChoiceDeltaGraphDataSubquery(BaseModel):
+    answer: str
+    """The answer to the subquery."""
+
+    query: str
+    """The subquery that was asked."""
+
+    sources: List[ChoiceDeltaGraphDataSubquerySource]
+
+
+class ChoiceDeltaGraphData(BaseModel):
+    sources: Optional[List[ChoiceDeltaGraphDataSource]] = None
+
+    status: Optional[Literal["processing", "finished"]] = None
+
+    subqueries: Optional[List[ChoiceDeltaGraphDataSubquery]] = None
+
+
+class ChoiceDeltaToolCallFunction(BaseModel):
+    arguments: str
+
+    name: str
 
 
 class ChoiceDeltaToolCall(BaseModel):
+    index: int
+
     id: Optional[str] = None
 
     function: Optional[ChoiceDeltaToolCallFunction] = None
-
-    index: Optional[int] = None
 
     type: Optional[str] = None
 
 
 class ChoiceDelta(BaseModel):
-    role: Literal["user", "assistant", "system"]
-    """
-    Specifies the role associated with the content, indicating whether the message
-    is from the 'assistant' or another defined role, helping to contextualize the
-    output within the interaction flow.
-    """
-
     content: Optional[str] = None
     """The text content produced by the model.
 
     This field contains the actual output generated, reflecting the model's response
     to the input query or command.
+    """
+
+    graph_data: Optional[ChoiceDeltaGraphData] = None
+
+    refusal: Optional[str] = None
+
+    role: Optional[Literal["user", "assistant", "system"]] = None
+    """
+    Specifies the role associated with the content, indicating whether the message
+    is from the 'assistant' or another defined role, helping to contextualize the
+    output within the interaction flow.
     """
 
     tool_calls: Optional[List[ChoiceDeltaToolCall]] = None
@@ -104,41 +147,7 @@ class ChoiceLogprobs(BaseModel):
     refusal: Optional[List[ChoiceLogprobsRefusal]] = None
 
 
-class ChoiceMessageToolCallFunction(BaseModel):
-    arguments: Optional[str] = None
-
-    name: Optional[str] = None
-
-
-class ChoiceMessageToolCall(BaseModel):
-    id: Optional[str] = None
-
-    function: Optional[ChoiceMessageToolCallFunction] = None
-
-    index: Optional[int] = None
-
-    type: Optional[str] = None
-
-
-class ChoiceMessage(BaseModel):
-    role: Literal["user", "assistant", "system"]
-    """
-    Specifies the role associated with the content, indicating whether the message
-    is from the 'assistant' or another defined role, helping to contextualize the
-    output within the interaction flow.
-    """
-
-    content: Optional[str] = None
-    """The text content produced by the model.
-
-    This field contains the actual output generated, reflecting the model's response
-    to the input query or command.
-    """
-
-    tool_calls: Optional[List[ChoiceMessageToolCall]] = None
-
-
-class ChoiceSource(BaseModel):
+class ChoiceMessageGraphDataSource(BaseModel):
     file_id: str
     """The unique identifier of the file."""
 
@@ -146,7 +155,7 @@ class ChoiceSource(BaseModel):
     """A snippet of text from the source file."""
 
 
-class ChoiceSubquerySource(BaseModel):
+class ChoiceMessageGraphDataSubquerySource(BaseModel):
     file_id: str
     """The unique identifier of the file."""
 
@@ -154,30 +163,72 @@ class ChoiceSubquerySource(BaseModel):
     """A snippet of text from the source file."""
 
 
-class ChoiceSubquery(BaseModel):
+class ChoiceMessageGraphDataSubquery(BaseModel):
     answer: str
     """The answer to the subquery."""
 
     query: str
     """The subquery that was asked."""
 
-    sources: List[ChoiceSubquerySource]
+    sources: List[ChoiceMessageGraphDataSubquerySource]
+
+
+class ChoiceMessageGraphData(BaseModel):
+    sources: Optional[List[ChoiceMessageGraphDataSource]] = None
+
+    status: Optional[Literal["processing", "finished"]] = None
+
+    subqueries: Optional[List[ChoiceMessageGraphDataSubquery]] = None
+
+
+class ChoiceMessageToolCallFunction(BaseModel):
+    arguments: str
+
+    name: str
+
+
+class ChoiceMessageToolCall(BaseModel):
+    id: str
+
+    function: ChoiceMessageToolCallFunction
+
+    type: str
+
+    index: Optional[int] = None
+
+
+class ChoiceMessage(BaseModel):
+    content: str
+    """The text content produced by the model.
+
+    This field contains the actual output generated, reflecting the model's response
+    to the input query or command.
+    """
+
+    refusal: str
+
+    role: Literal["assistant"]
+    """Specifies the role associated with the content."""
+
+    graph_data: Optional[ChoiceMessageGraphData] = None
+
+    tool_calls: Optional[List[ChoiceMessageToolCall]] = None
 
 
 class Choice(BaseModel):
     delta: ChoiceDelta
     """A chat completion delta generated by streamed model responses."""
 
-    index: int
-    """The index of the choice in the list of completions generated by the model."""
-
-    finish_reason: Optional[Literal["stop", "length", "content_filter", "tool_calls"]] = None
+    finish_reason: Literal["stop", "length", "content_filter", "tool_calls"]
     """Describes the condition under which the model ceased generating content.
 
     Common reasons include 'length' (reached the maximum output size), 'stop'
     (encountered a stop sequence), 'content_filter' (harmful content filtered out),
     or 'tool_calls' (encountered tool calls).
     """
+
+    index: int
+    """The index of the choice in the list of completions generated by the model."""
 
     logprobs: Optional[ChoiceLogprobs] = None
     """Log probability information for the choice."""
@@ -186,18 +237,6 @@ class Choice(BaseModel):
     """The chat completion message from the model.
 
     Note: this field is deprecated for streaming. Use `delta` instead.
-    """
-
-    sources: Optional[List[ChoiceSource]] = None
-    """An array of source objects that provide context for the model's response.
-
-    Only returned when using the Knowledge Graph chat tool.
-    """
-
-    subqueries: Optional[List[ChoiceSubquery]] = None
-    """An array of sub-query objects that provide context for the model's response.
-
-    Only returned when using the Knowledge Graph chat tool.
     """
 
 
@@ -244,6 +283,12 @@ class ChatCompletionChunk(BaseModel):
 
     model: str
     """Identifies the specific model used to generate the response."""
+
+    object: str
+    """
+    The type of object returned, which is always `chat.completion.chunk` for
+    streaming chat responses.
+    """
 
     service_tier: Optional[str] = None
 
