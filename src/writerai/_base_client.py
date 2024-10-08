@@ -41,7 +41,7 @@ from pydantic import PrivateAttr
 
 from . import _exceptions
 from ._qs import Querystring
-from ._files import to_httpx_files, async_to_httpx_files
+from ._files import to_httpx_files, _transform_file, get_file_content, async_to_httpx_files, _async_transform_file
 from ._types import (
     NOT_GIVEN,
     Body,
@@ -50,6 +50,7 @@ from ._types import (
     Headers,
     Timeout,
     NotGiven,
+    FileTypes,
     ResponseT,
     Transport,
     AnyMapping,
@@ -465,6 +466,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         params = _merge_mappings(self.default_query, options.params)
         content_type = headers.get("Content-Type")
         files = options.files
+        content = options.content
 
         # If the given Content-Type header is multipart/form-data then it
         # has to be removed so that httpx can generate the header with
@@ -511,6 +513,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             # so that passing a `TypedDict` doesn't cause an error.
             # https://github.com/microsoft/pyright/issues/3526#event-6715453066
             params=self.qs.stringify(cast(Mapping[str, Any], params)) if params else None,
+            content=content,
             json=json_data,
             files=files,
             **kwargs,
@@ -1215,6 +1218,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         body: Body | None = None,
         options: RequestOptions = {},
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         stream: Literal[False] = False,
     ) -> ResponseT: ...
 
@@ -1227,6 +1231,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         body: Body | None = None,
         options: RequestOptions = {},
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         stream: Literal[True],
         stream_cls: type[_StreamT],
     ) -> _StreamT: ...
@@ -1240,6 +1245,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         body: Body | None = None,
         options: RequestOptions = {},
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         stream: bool,
         stream_cls: type[_StreamT] | None = None,
     ) -> ResponseT | _StreamT: ...
@@ -1252,11 +1258,17 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         body: Body | None = None,
         options: RequestOptions = {},
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         stream: bool = False,
         stream_cls: type[_StreamT] | None = None,
     ) -> ResponseT | _StreamT:
         opts = FinalRequestOptions.construct(
-            method="post", url=path, json_data=body, files=to_httpx_files(files), **options
+            method="post",
+            url=path,
+            json_data=body,
+            files=to_httpx_files(files),
+            content=get_file_content(_transform_file(binary_request)) if binary_request else None,
+            **options,
         )
         return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
 
@@ -1761,6 +1773,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         cast_to: Type[ResponseT],
         body: Body | None = None,
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         options: RequestOptions = {},
         stream: Literal[False] = False,
     ) -> ResponseT: ...
@@ -1773,6 +1786,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         cast_to: Type[ResponseT],
         body: Body | None = None,
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         options: RequestOptions = {},
         stream: Literal[True],
         stream_cls: type[_AsyncStreamT],
@@ -1786,6 +1800,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         cast_to: Type[ResponseT],
         body: Body | None = None,
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         options: RequestOptions = {},
         stream: bool,
         stream_cls: type[_AsyncStreamT] | None = None,
@@ -1798,12 +1813,18 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         cast_to: Type[ResponseT],
         body: Body | None = None,
         files: RequestFiles | None = None,
+        binary_request: FileTypes | None = None,
         options: RequestOptions = {},
         stream: bool = False,
         stream_cls: type[_AsyncStreamT] | None = None,
     ) -> ResponseT | _AsyncStreamT:
         opts = FinalRequestOptions.construct(
-            method="post", url=path, json_data=body, files=await async_to_httpx_files(files), **options
+            method="post",
+            url=path,
+            json_data=body,
+            files=await async_to_httpx_files(files),
+            content=get_file_content(await _async_transform_file(binary_request)) if binary_request else None,
+            **options,
         )
         return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
 
