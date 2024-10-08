@@ -33,8 +33,13 @@ client = Writer(
 )
 
 chat = client.chat.chat(
-    messages=[{"role": "user"}],
-    model="palmyra-x-002-32k",
+    messages=[
+        {
+            "content": "Write a memo summarizing this earnings report.",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
 )
 print(chat.id)
 ```
@@ -61,8 +66,13 @@ client = AsyncWriter(
 
 async def main() -> None:
     chat = await client.chat.chat(
-        messages=[{"role": "user"}],
-        model="palmyra-x-002-32k",
+        messages=[
+            {
+                "content": "Write a memo summarizing this earnings report.",
+                "role": "user",
+            }
+        ],
+        model="palmyra-x-004",
     )
     print(chat.id)
 
@@ -82,7 +92,7 @@ from writerai import Writer
 client = Writer()
 
 stream = client.completions.create(
-    model="palmyra-x-002-instruct",
+    model="palmyra-x-003-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
@@ -98,7 +108,7 @@ from writerai import AsyncWriter
 client = AsyncWriter()
 
 stream = await client.completions.create(
-    model="palmyra-x-002-instruct",
+    model="palmyra-x-003-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
@@ -195,8 +205,13 @@ client = Writer()
 
 try:
     client.chat.chat(
-        messages=[{"role": "user"}],
-        model="palmyra-x-002-32k",
+        messages=[
+            {
+                "content": "Write a memo summarizing this earnings report.",
+                "role": "user",
+            }
+        ],
+        model="palmyra-x-004",
     )
 except writerai.APIConnectionError as e:
     print("The server could not be reached")
@@ -241,8 +256,13 @@ client = Writer(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).chat.chat(
-    messages=[{"role": "user"}],
-    model="palmyra-x-002-32k",
+    messages=[
+        {
+            "content": "Write a memo summarizing this earnings report.",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
 )
 ```
 
@@ -267,8 +287,13 @@ client = Writer(
 
 # Override per-request:
 client.with_options(timeout=5.0).chat.chat(
-    messages=[{"role": "user"}],
-    model="palmyra-x-002-32k",
+    messages=[
+        {
+            "content": "Write a memo summarizing this earnings report.",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
 )
 ```
 
@@ -310,9 +335,10 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "role": "user"
+        "content": "Write a memo summarizing this earnings report.",
+        "role": "user",
     }],
-    model="palmyra-x-002-32k",
+    model="palmyra-x-004",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -332,8 +358,13 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.chat.with_streaming_response.chat(
-    messages=[{"role": "user"}],
-    model="palmyra-x-002-32k",
+    messages=[
+        {
+            "content": "Write a memo summarizing this earnings report.",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

@@ -94,13 +94,11 @@ class ChatChatParamsBase(TypedDict, total=False):
 
 
 class Message(TypedDict, total=False):
-    role: Required[Literal["user", "assistant", "system", "tool"]]
+    content: Required[str]
 
-    content: str
+    role: Required[Literal["user", "assistant", "system"]]
 
     name: str
-
-    tool_id: str
 
 
 class StreamOptions(TypedDict, total=False):
