@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.0.0 (2024-10-09)
+
+Full Changelog: [v0.7.0...v1.0.0](https://github.com/writer/writer-python/compare/v0.7.0...v1.0.0)
+
+### Features
+
+* **api:** add model graphs.Question ([#74](https://github.com/writer/writer-python/issues/74)) ([c058228](https://github.com/writer/writer-python/commit/c058228af4d5b76fd65072476480bbd2969e1e6d))
+* **api:** rename to chat_completion_chunk ([#81](https://github.com/writer/writer-python/issues/81)) ([e1fa0a5](https://github.com/writer/writer-python/commit/e1fa0a598c1b7eaf1ae2ffaee1787de3a5a87bad))
+* **api:** update models in readme ([#89](https://github.com/writer/writer-python/issues/89)) ([2da514d](https://github.com/writer/writer-python/commit/2da514d83d63d0dde8b6cc4c4cf3b1b5e3ca601a))
+
+
+### Bug Fixes
+
+* change body to binary request ([9a9b656](https://github.com/writer/writer-python/commit/9a9b656757f900ea296051e9b2f637ab94bab0c2))
+* **client:** avoid OverflowError with very large retry counts ([#87](https://github.com/writer/writer-python/issues/87)) ([4363005](https://github.com/writer/writer-python/commit/4363005bd134fa1e51720b22bc778eac3a6246da))
+* files upload use binary request ([#85](https://github.com/writer/writer-python/issues/85)) ([105e45f](https://github.com/writer/writer-python/commit/105e45f8bbc605ee0b62e6cc0d2c8b7ab97a64bd))
+
+
+### Chores
+
+* add repr to PageInfo class ([#88](https://github.com/writer/writer-python/issues/88)) ([6110292](https://github.com/writer/writer-python/commit/611029271b81a275946781e5451733f2d811977e))
+* **internal:** add support for parsing bool response content ([#84](https://github.com/writer/writer-python/issues/84)) ([1e8bc07](https://github.com/writer/writer-python/commit/1e8bc0718beee4e15f9b652a7aa2803eba16daf7))
+* **internal:** codegen related update ([#76](https://github.com/writer/writer-python/issues/76)) ([d62d030](https://github.com/writer/writer-python/commit/d62d030a34cad7e7e239e936a78cb50a9dd1f57e))
+* **internal:** codegen related update ([#79](https://github.com/writer/writer-python/issues/79)) ([6223c47](https://github.com/writer/writer-python/commit/6223c4776db371aa121bd0da7c773ebdb0a61f95))
+* **internal:** codegen related update ([#80](https://github.com/writer/writer-python/issues/80)) ([f34c186](https://github.com/writer/writer-python/commit/f34c18645c670b36257bffd9a96077ee2d6604ea))
+
+
+### Documentation
+
+* add pagination example ([#82](https://github.com/writer/writer-python/issues/82)) ([c0c53bf](https://github.com/writer/writer-python/commit/c0c53bfd036ccf7b8dbbe0d64a2463cb73392ac2))
+* **api:** updates to API spec ([#77](https://github.com/writer/writer-python/issues/77)) ([e3bd1e1](https://github.com/writer/writer-python/commit/e3bd1e13b8b10ef299c3ae24a8bda211d28bc1b2))
+* **api:** updates to API spec ([#83](https://github.com/writer/writer-python/issues/83)) ([50f4e45](https://github.com/writer/writer-python/commit/50f4e4538b0ef999d8f47ca4defff50c184cb74d))
+* **api:** updates to API spec ([#86](https://github.com/writer/writer-python/issues/86)) ([708f32e](https://github.com/writer/writer-python/commit/708f32e99cdeb3a9c7e5661463e1d39588e62ea6))
+
 ## 0.7.0 (2024-09-24)
 
 Full Changelog: [v0.6.1...v0.7.0](https://github.com/writer/writer-python/compare/v0.6.1...v0.7.0)
