@@ -293,7 +293,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            body=content,
+            binary_request=content,
             cast_to=File,
         )
 
