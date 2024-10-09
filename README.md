@@ -40,7 +40,7 @@ chat = client.chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-002-32k",
+    model="palmyra-x-004",
 )
 print(chat.id)
 ```
@@ -73,7 +73,7 @@ async def main() -> None:
                 "role": "user",
             }
         ],
-        model="palmyra-x-002-32k",
+        model="palmyra-x-004",
     )
     print(chat.id)
 
@@ -93,7 +93,7 @@ from writerai import Writer
 client = Writer()
 
 stream = client.completions.create(
-    model="palmyra-x-002-instruct",
+    model="palmyra-x-003-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
@@ -110,7 +110,7 @@ from writerai import AsyncWriter
 client = AsyncWriter()
 
 stream = await client.completions.create(
-    model="palmyra-x-002-instruct",
+    model="palmyra-x-003-instruct",
     prompt="Hi, my name is",
     stream=True,
 )
@@ -126,6 +126,69 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Pagination
+
+List methods in the Writer API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from writerai import Writer
+
+client = Writer()
+
+all_graphs = []
+# Automatically fetches more pages as needed.
+for graph in client.graphs.list():
+    # Do something with graph here
+    all_graphs.append(graph)
+print(all_graphs)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from writerai import AsyncWriter
+
+client = AsyncWriter()
+
+
+async def main() -> None:
+    all_graphs = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for graph in client.graphs.list():
+        all_graphs.append(graph)
+    print(all_graphs)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.graphs.list()
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.data)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.graphs.list()
+
+print(f"next page cursor: {first_page.after}")  # => "next page cursor: ..."
+for graph in first_page.data:
+    print(graph.id)
+
+# Remove `await` for non-async usage.
+```
 
 ## Handling errors
 
@@ -150,7 +213,7 @@ try:
                 "role": "user",
             }
         ],
-        model="palmyra-x-002-32k",
+        model="palmyra-x-004",
     )
 except writerai.APIConnectionError as e:
     print("The server could not be reached")
@@ -201,7 +264,7 @@ client.with_options(max_retries=5).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-002-32k",
+    model="palmyra-x-004",
 )
 ```
 
@@ -232,7 +295,7 @@ client.with_options(timeout=5.0).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-002-32k",
+    model="palmyra-x-004",
 )
 ```
 
@@ -277,7 +340,7 @@ response = client.chat.with_raw_response.chat(
         "content": "Write a memo summarizing this earnings report.",
         "role": "user",
     }],
-    model="palmyra-x-002-32k",
+    model="palmyra-x-004",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -303,7 +366,7 @@ with client.chat.with_streaming_response.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-002-32k",
+    model="palmyra-x-004",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -405,3 +468,7 @@ print(writerai.__version__)
 ## Requirements
 
 Python 3.7 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).

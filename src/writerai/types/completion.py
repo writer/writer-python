@@ -4,35 +4,57 @@ from typing import List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["Completion", "Choice", "ChoiceLogProbs", "ChoiceLogProbsTopLogProb"]
+__all__ = [
+    "Completion",
+    "Choice",
+    "ChoiceLogProbs",
+    "ChoiceLogProbsContent",
+    "ChoiceLogProbsContentTopLogprob",
+    "ChoiceLogProbsRefusal",
+    "ChoiceLogProbsRefusalTopLogprob",
+]
 
 
-class ChoiceLogProbsTopLogProb(BaseModel):
-    additional_properties: Optional[float] = None
-    """For any additional_properties properties in the top_log_probs object"""
+class ChoiceLogProbsContentTopLogprob(BaseModel):
+    token: str
+
+    logprob: float
+
+    bytes: Optional[List[int]] = None
+
+
+class ChoiceLogProbsContent(BaseModel):
+    token: str
+
+    logprob: float
+
+    top_logprobs: List[ChoiceLogProbsContentTopLogprob]
+
+    bytes: Optional[List[int]] = None
+
+
+class ChoiceLogProbsRefusalTopLogprob(BaseModel):
+    token: str
+
+    logprob: float
+
+    bytes: Optional[List[int]] = None
+
+
+class ChoiceLogProbsRefusal(BaseModel):
+    token: str
+
+    logprob: float
+
+    top_logprobs: List[ChoiceLogProbsRefusalTopLogprob]
+
+    bytes: Optional[List[int]] = None
 
 
 class ChoiceLogProbs(BaseModel):
-    text_offset: Optional[List[int]] = None
-    """
-    Positional indices of each token within the original input text, useful for
-    analysis and mapping.
-    """
+    content: Optional[List[ChoiceLogProbsContent]] = None
 
-    token_log_probs: Optional[List[float]] = None
-    """
-    Log probabilities for each token, indicating the likelihood of each token's
-    occurrence.
-    """
-
-    tokens: Optional[List[str]] = None
-    """An array of tokens that comprise the generated text."""
-
-    top_log_probs: Optional[List[ChoiceLogProbsTopLogProb]] = None
-    """
-    An array of mappings for each token to its top log probabilities, showing
-    detailed prediction probabilities.
-    """
+    refusal: Optional[List[ChoiceLogProbsRefusal]] = None
 
 
 class Choice(BaseModel):
