@@ -20,12 +20,7 @@ class TestChat:
     @parametrize
     def test_method_chat_overload_1(self, client: Writer) -> None:
         chat = client.chat.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
         )
         assert_matches_type(Chat, chat, path=["response"])
@@ -35,9 +30,10 @@ class TestChat:
         chat = client.chat.chat(
             messages=[
                 {
-                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
+                    "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
+                    "tool_id": "tool_id",
                 }
             ],
             model="palmyra-x-004",
@@ -79,12 +75,7 @@ class TestChat:
     @parametrize
     def test_raw_response_chat_overload_1(self, client: Writer) -> None:
         response = client.chat.with_raw_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
         )
 
@@ -96,12 +87,7 @@ class TestChat:
     @parametrize
     def test_streaming_response_chat_overload_1(self, client: Writer) -> None:
         with client.chat.with_streaming_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
         ) as response:
             assert not response.is_closed
@@ -115,12 +101,7 @@ class TestChat:
     @parametrize
     def test_method_chat_overload_2(self, client: Writer) -> None:
         chat_stream = client.chat.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
             stream=True,
         )
@@ -131,9 +112,10 @@ class TestChat:
         chat_stream = client.chat.chat(
             messages=[
                 {
-                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
+                    "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
+                    "tool_id": "tool_id",
                 }
             ],
             model="palmyra-x-004",
@@ -175,12 +157,7 @@ class TestChat:
     @parametrize
     def test_raw_response_chat_overload_2(self, client: Writer) -> None:
         response = client.chat.with_raw_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
             stream=True,
         )
@@ -192,12 +169,7 @@ class TestChat:
     @parametrize
     def test_streaming_response_chat_overload_2(self, client: Writer) -> None:
         with client.chat.with_streaming_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
             stream=True,
         ) as response:
@@ -216,12 +188,7 @@ class TestAsyncChat:
     @parametrize
     async def test_method_chat_overload_1(self, async_client: AsyncWriter) -> None:
         chat = await async_client.chat.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
         )
         assert_matches_type(Chat, chat, path=["response"])
@@ -231,9 +198,10 @@ class TestAsyncChat:
         chat = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
+                    "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
+                    "tool_id": "tool_id",
                 }
             ],
             model="palmyra-x-004",
@@ -275,12 +243,7 @@ class TestAsyncChat:
     @parametrize
     async def test_raw_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
         response = await async_client.chat.with_raw_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
         )
 
@@ -292,12 +255,7 @@ class TestAsyncChat:
     @parametrize
     async def test_streaming_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
         async with async_client.chat.with_streaming_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
         ) as response:
             assert not response.is_closed
@@ -311,12 +269,7 @@ class TestAsyncChat:
     @parametrize
     async def test_method_chat_overload_2(self, async_client: AsyncWriter) -> None:
         chat_stream = await async_client.chat.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
             stream=True,
         )
@@ -327,9 +280,10 @@ class TestAsyncChat:
         chat_stream = await async_client.chat.chat(
             messages=[
                 {
-                    "content": "Write a memo summarizing this earnings report.",
                     "role": "user",
+                    "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
+                    "tool_id": "tool_id",
                 }
             ],
             model="palmyra-x-004",
@@ -371,12 +325,7 @@ class TestAsyncChat:
     @parametrize
     async def test_raw_response_chat_overload_2(self, async_client: AsyncWriter) -> None:
         response = await async_client.chat.with_raw_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
             stream=True,
         )
@@ -388,12 +337,7 @@ class TestAsyncChat:
     @parametrize
     async def test_streaming_response_chat_overload_2(self, async_client: AsyncWriter) -> None:
         async with async_client.chat.with_streaming_response.chat(
-            messages=[
-                {
-                    "content": "Write a memo summarizing this earnings report.",
-                    "role": "user",
-                }
-            ],
+            messages=[{"role": "user"}],
             model="palmyra-x-004",
             stream=True,
         ) as response:
