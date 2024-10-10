@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 (2024-10-10)
+
+Full Changelog: [v1.1.0...v1.2.0](https://github.com/writer/writer-python/compare/v1.1.0...v1.2.0)
+
+### Features
+
+* **api:** api update ([#94](https://github.com/writer/writer-python/issues/94)) ([52fa213](https://github.com/writer/writer-python/commit/52fa213f501c771839af7753195b3ff7edea713b))
+
 ## 1.1.0 (2024-10-09)
 
 Full Changelog: [v1.0.0...v1.1.0](https://github.com/writer/writer-python/compare/v1.0.0...v1.1.0)
