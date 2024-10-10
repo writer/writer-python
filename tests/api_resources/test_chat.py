@@ -33,7 +33,7 @@ class TestChat:
                     "role": "user",
                     "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
-                    "tool_id": "tool_id",
+                    "tool_call_id": "tool_call_id",
                 }
             ],
             model="palmyra-x-004",
@@ -115,7 +115,7 @@ class TestChat:
                     "role": "user",
                     "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
-                    "tool_id": "tool_id",
+                    "tool_call_id": "tool_call_id",
                 }
             ],
             model="palmyra-x-004",
@@ -201,7 +201,7 @@ class TestAsyncChat:
                     "role": "user",
                     "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
-                    "tool_id": "tool_id",
+                    "tool_call_id": "tool_call_id",
                 }
             ],
             model="palmyra-x-004",
@@ -283,7 +283,7 @@ class TestAsyncChat:
                     "role": "user",
                     "content": "Write a memo summarizing this earnings report.",
                     "name": "name",
-                    "tool_id": "tool_id",
+                    "tool_call_id": "tool_call_id",
                 }
             ],
             model="palmyra-x-004",

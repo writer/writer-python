@@ -100,7 +100,7 @@ class Message(TypedDict, total=False):
 
     name: str
 
-    tool_id: str
+    tool_call_id: str
 
 
 class StreamOptions(TypedDict, total=False):
