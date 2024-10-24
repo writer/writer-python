@@ -112,12 +112,11 @@ class ChatResource(SyncAPIResource):
 
           tool_choice: Configure how the model will call functions: `auto` will allow the model to
               automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
+              pass a specific previously defined function.
 
-          tools: [Beta] An array of tools described to the model using JSON schema that the model
-              can use to generate responses. Please note that tool calling is in beta and
-              subject to change. Passing graph IDs will automatically use the Knowledge Graph
-              tool.
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses. Passing graph IDs will automatically use the
+              Knowledge Graph tool.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -196,12 +195,11 @@ class ChatResource(SyncAPIResource):
 
           tool_choice: Configure how the model will call functions: `auto` will allow the model to
               automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
+              pass a specific previously defined function.
 
-          tools: [Beta] An array of tools described to the model using JSON schema that the model
-              can use to generate responses. Please note that tool calling is in beta and
-              subject to change. Passing graph IDs will automatically use the Knowledge Graph
-              tool.
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses. Passing graph IDs will automatically use the
+              Knowledge Graph tool.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -280,12 +278,11 @@ class ChatResource(SyncAPIResource):
 
           tool_choice: Configure how the model will call functions: `auto` will allow the model to
               automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
+              pass a specific previously defined function.
 
-          tools: [Beta] An array of tools described to the model using JSON schema that the model
-              can use to generate responses. Please note that tool calling is in beta and
-              subject to change. Passing graph IDs will automatically use the Knowledge Graph
-              tool.
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses. Passing graph IDs will automatically use the
+              Knowledge Graph tool.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -435,12 +432,11 @@ class AsyncChatResource(AsyncAPIResource):
 
           tool_choice: Configure how the model will call functions: `auto` will allow the model to
               automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
+              pass a specific previously defined function.
 
-          tools: [Beta] An array of tools described to the model using JSON schema that the model
-              can use to generate responses. Please note that tool calling is in beta and
-              subject to change. Passing graph IDs will automatically use the Knowledge Graph
-              tool.
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses. Passing graph IDs will automatically use the
+              Knowledge Graph tool.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -519,12 +515,11 @@ class AsyncChatResource(AsyncAPIResource):
 
           tool_choice: Configure how the model will call functions: `auto` will allow the model to
               automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
+              pass a specific previously defined function.
 
-          tools: [Beta] An array of tools described to the model using JSON schema that the model
-              can use to generate responses. Please note that tool calling is in beta and
-              subject to change. Passing graph IDs will automatically use the Knowledge Graph
-              tool.
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses. Passing graph IDs will automatically use the
+              Knowledge Graph tool.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -603,12 +598,11 @@ class AsyncChatResource(AsyncAPIResource):
 
           tool_choice: Configure how the model will call functions: `auto` will allow the model to
               automatically choose the best tool, `none` disables tool calling. You can also
-              pass a specific previously defined function as a string.
+              pass a specific previously defined function.
 
-          tools: [Beta] An array of tools described to the model using JSON schema that the model
-              can use to generate responses. Please note that tool calling is in beta and
-              subject to change. Passing graph IDs will automatically use the Knowledge Graph
-              tool.
+          tools: An array of tools described to the model using JSON schema that the model can
+              use to generate responses. Passing graph IDs will automatically use the
+              Knowledge Graph tool.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
