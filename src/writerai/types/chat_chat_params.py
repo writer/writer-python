@@ -10,8 +10,8 @@ __all__ = [
     "Message",
     "StreamOptions",
     "ToolChoice",
-    "ToolChoiceJsonObjectToolChoice",
     "ToolChoiceStringToolChoice",
+    "ToolChoiceJsonObjectToolChoice",
     "Tool",
     "ToolFunctionTool",
     "ToolFunctionToolFunction",
@@ -73,15 +73,14 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
     Configure how the model will call functions: `auto` will allow the model to
     automatically choose the best tool, `none` disables tool calling. You can also
-    pass a specific previously defined function as a string.
+    pass a specific previously defined function.
     """
 
     tools: Iterable[Tool]
     """
-    [Beta] An array of tools described to the model using JSON schema that the model
-    can use to generate responses. Please note that tool calling is in beta and
-    subject to change. Passing graph IDs will automatically use the Knowledge Graph
-    tool.
+    An array of tools described to the model using JSON schema that the model can
+    use to generate responses. Passing graph IDs will automatically use the
+    Knowledge Graph tool.
     """
 
     top_p: float
@@ -108,27 +107,32 @@ class StreamOptions(TypedDict, total=False):
     """Indicate whether to include usage information."""
 
 
-class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
-    value: Required[object]
-
-
 class ToolChoiceStringToolChoice(TypedDict, total=False):
     value: Required[Literal["none", "auto", "required"]]
 
 
-ToolChoice: TypeAlias = Union[ToolChoiceJsonObjectToolChoice, ToolChoiceStringToolChoice]
+class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
+    value: Required[object]
+
+
+ToolChoice: TypeAlias = Union[ToolChoiceStringToolChoice, ToolChoiceJsonObjectToolChoice]
 
 
 class ToolFunctionToolFunction(TypedDict, total=False):
     name: Required[str]
+    """Name of the function"""
 
     description: str
+    """Description of the function"""
 
     parameters: object
 
 
 class ToolFunctionTool(TypedDict, total=False):
     function: Required[ToolFunctionToolFunction]
+
+    type: Required[Literal["function"]]
+    """The type of tool."""
 
 
 class ToolGraphToolFunction(TypedDict, total=False):
@@ -144,6 +148,9 @@ class ToolGraphToolFunction(TypedDict, total=False):
 
 class ToolGraphTool(TypedDict, total=False):
     function: Required[ToolGraphToolFunction]
+
+    type: Required[Literal["graph"]]
+    """The type of tool."""
 
 
 Tool: TypeAlias = Union[ToolFunctionTool, ToolGraphTool]
