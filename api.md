@@ -88,3 +88,39 @@ Methods:
 - <code title="get /v1/files/{file_id}/download">client.files.<a href="./src/writerai/resources/files.py">download</a>(file_id) -> BinaryAPIResponse</code>
 - <code title="post /v1/files/retry">client.files.<a href="./src/writerai/resources/files.py">retry</a>(\*\*<a href="src/writerai/types/file_retry_params.py">params</a>) -> <a href="./src/writerai/types/file_retry_response.py">FileRetryResponse</a></code>
 - <code title="post /v1/files">client.files.<a href="./src/writerai/resources/files.py">upload</a>(\*\*<a href="src/writerai/types/file_upload_params.py">params</a>) -> <a href="./src/writerai/types/file.py">File</a></code>
+
+# Tools
+
+Types:
+
+```python
+from writerai.types import ToolContextAwareSplittingResponse
+```
+
+Methods:
+
+- <code title="post /v1/tools/context-aware-splitting">client.tools.<a href="./src/writerai/resources/tools/tools.py">context_aware_splitting</a>(\*\*<a href="src/writerai/types/tool_context_aware_splitting_params.py">params</a>) -> <a href="./src/writerai/types/tool_context_aware_splitting_response.py">ToolContextAwareSplittingResponse</a></code>
+
+## Medical
+
+Types:
+
+```python
+from writerai.types.tools import MedicalCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/tools/comprehend/medical">client.tools.medical.<a href="./src/writerai/resources/tools/medical.py">create</a>(\*\*<a href="src/writerai/types/tools/medical_create_params.py">params</a>) -> <a href="./src/writerai/types/tools/medical_create_response.py">MedicalCreateResponse</a></code>
+
+## PdfParser
+
+Types:
+
+```python
+from writerai.types.tools import PdfParserParseResponse
+```
+
+Methods:
+
+- <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.pdf_parser.<a href="./src/writerai/resources/tools/pdf_parser.py">parse</a>(file_id, \*\*<a href="src/writerai/types/tools/pdf_parser_parse_params.py">params</a>) -> <a href="./src/writerai/types/tools/pdf_parser_parse_response.py">PdfParserParseResponse</a></code>
