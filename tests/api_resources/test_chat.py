@@ -135,7 +135,7 @@ class TestChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -143,7 +143,7 @@ class TestChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -151,7 +151,7 @@ class TestChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -305,7 +305,7 @@ class TestChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -313,7 +313,7 @@ class TestChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -321,7 +321,7 @@ class TestChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -479,7 +479,7 @@ class TestAsyncChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -487,7 +487,7 @@ class TestAsyncChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -495,7 +495,7 @@ class TestAsyncChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -649,7 +649,7 @@ class TestAsyncChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -657,7 +657,7 @@ class TestAsyncChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
@@ -665,7 +665,7 @@ class TestAsyncChat:
                     "function": {
                         "name": "name",
                         "description": "description",
-                        "parameters": {},
+                        "parameters": {"foo": "bar"},
                     },
                     "type": "function",
                 },
