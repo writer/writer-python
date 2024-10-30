@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -174,7 +174,7 @@ class ToolChoiceStringToolChoice(TypedDict, total=False):
 
 
 class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
-    value: Required[object]
+    value: Required[Dict[str, object]]
 
 
 ToolChoice: TypeAlias = Union[ToolChoiceStringToolChoice, ToolChoiceJsonObjectToolChoice]
@@ -187,7 +187,7 @@ class ToolFunctionToolFunction(TypedDict, total=False):
     description: str
     """Description of the function"""
 
-    parameters: object
+    parameters: Dict[str, object]
 
 
 class ToolFunctionTool(TypedDict, total=False):
