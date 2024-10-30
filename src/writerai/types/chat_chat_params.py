@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "ChatChatParamsBase",
     "Message",
+    "MessageGraphData",
+    "MessageGraphDataSource",
+    "MessageGraphDataSubquery",
+    "MessageGraphDataSubquerySource",
+    "MessageToolCall",
+    "MessageToolCallFunction",
     "StreamOptions",
     "ToolChoice",
     "ToolChoiceStringToolChoice",
@@ -92,14 +98,70 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
 
+class MessageGraphDataSource(TypedDict, total=False):
+    file_id: Required[str]
+    """The unique identifier of the file."""
+
+    snippet: Required[str]
+    """A snippet of text from the source file."""
+
+
+class MessageGraphDataSubquerySource(TypedDict, total=False):
+    file_id: Required[str]
+    """The unique identifier of the file."""
+
+    snippet: Required[str]
+    """A snippet of text from the source file."""
+
+
+class MessageGraphDataSubquery(TypedDict, total=False):
+    answer: Required[str]
+    """The answer to the subquery."""
+
+    query: Required[str]
+    """The subquery that was asked."""
+
+    sources: Required[Iterable[MessageGraphDataSubquerySource]]
+
+
+class MessageGraphData(TypedDict, total=False):
+    sources: Iterable[MessageGraphDataSource]
+
+    status: Literal["processing", "finished"]
+
+    subqueries: Iterable[MessageGraphDataSubquery]
+
+
+class MessageToolCallFunction(TypedDict, total=False):
+    arguments: Required[str]
+
+    name: Required[str]
+
+
+class MessageToolCall(TypedDict, total=False):
+    id: Required[str]
+
+    function: Required[MessageToolCallFunction]
+
+    type: Required[str]
+
+    index: int
+
+
 class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system", "tool"]]
 
-    content: str
+    content: Optional[str]
 
-    name: str
+    graph_data: Optional[MessageGraphData]
 
-    tool_call_id: str
+    name: Optional[str]
+
+    refusal: Optional[str]
+
+    tool_call_id: Optional[str]
+
+    tool_calls: Optional[Iterable[MessageToolCall]]
 
 
 class StreamOptions(TypedDict, total=False):
