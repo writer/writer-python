@@ -26,7 +26,11 @@ from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
 from .graph_add_file_to_graph_params import GraphAddFileToGraphParams as GraphAddFileToGraphParams
 from .application_generate_content_params import ApplicationGenerateContentParams as ApplicationGenerateContentParams
+from .tool_context_aware_splitting_params import ToolContextAwareSplittingParams as ToolContextAwareSplittingParams
 from .application_generate_content_response import (
     ApplicationGenerateContentResponse as ApplicationGenerateContentResponse,
 )
 from .graph_remove_file_from_graph_response import GraphRemoveFileFromGraphResponse as GraphRemoveFileFromGraphResponse
+from .tool_context_aware_splitting_response import (
+    ToolContextAwareSplittingResponse as ToolContextAwareSplittingResponse,
+)

@@ -52,6 +52,7 @@ class Writer(SyncAPIClient):
     models: resources.ModelsResource
     graphs: resources.GraphsResource
     files: resources.FilesResource
+    tools: resources.ToolsResource
     with_raw_response: WriterWithRawResponse
     with_streaming_response: WriterWithStreamedResponse
 
@@ -117,6 +118,7 @@ class Writer(SyncAPIClient):
         self.models = resources.ModelsResource(self)
         self.graphs = resources.GraphsResource(self)
         self.files = resources.FilesResource(self)
+        self.tools = resources.ToolsResource(self)
         self.with_raw_response = WriterWithRawResponse(self)
         self.with_streaming_response = WriterWithStreamedResponse(self)
 
@@ -232,6 +234,7 @@ class AsyncWriter(AsyncAPIClient):
     models: resources.AsyncModelsResource
     graphs: resources.AsyncGraphsResource
     files: resources.AsyncFilesResource
+    tools: resources.AsyncToolsResource
     with_raw_response: AsyncWriterWithRawResponse
     with_streaming_response: AsyncWriterWithStreamedResponse
 
@@ -297,6 +300,7 @@ class AsyncWriter(AsyncAPIClient):
         self.models = resources.AsyncModelsResource(self)
         self.graphs = resources.AsyncGraphsResource(self)
         self.files = resources.AsyncFilesResource(self)
+        self.tools = resources.AsyncToolsResource(self)
         self.with_raw_response = AsyncWriterWithRawResponse(self)
         self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
 
@@ -413,6 +417,7 @@ class WriterWithRawResponse:
         self.models = resources.ModelsResourceWithRawResponse(client.models)
         self.graphs = resources.GraphsResourceWithRawResponse(client.graphs)
         self.files = resources.FilesResourceWithRawResponse(client.files)
+        self.tools = resources.ToolsResourceWithRawResponse(client.tools)
 
 
 class AsyncWriterWithRawResponse:
@@ -423,6 +428,7 @@ class AsyncWriterWithRawResponse:
         self.models = resources.AsyncModelsResourceWithRawResponse(client.models)
         self.graphs = resources.AsyncGraphsResourceWithRawResponse(client.graphs)
         self.files = resources.AsyncFilesResourceWithRawResponse(client.files)
+        self.tools = resources.AsyncToolsResourceWithRawResponse(client.tools)
 
 
 class WriterWithStreamedResponse:
@@ -433,6 +439,7 @@ class WriterWithStreamedResponse:
         self.models = resources.ModelsResourceWithStreamingResponse(client.models)
         self.graphs = resources.GraphsResourceWithStreamingResponse(client.graphs)
         self.files = resources.FilesResourceWithStreamingResponse(client.files)
+        self.tools = resources.ToolsResourceWithStreamingResponse(client.tools)
 
 
 class AsyncWriterWithStreamedResponse:
@@ -443,6 +450,7 @@ class AsyncWriterWithStreamedResponse:
         self.models = resources.AsyncModelsResourceWithStreamingResponse(client.models)
         self.graphs = resources.AsyncGraphsResourceWithStreamingResponse(client.graphs)
         self.files = resources.AsyncFilesResourceWithStreamingResponse(client.files)
+        self.tools = resources.AsyncToolsResourceWithStreamingResponse(client.tools)
 
 
 Client = Writer
