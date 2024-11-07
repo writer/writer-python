@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["MedicalCreateParams"]
+__all__ = ["ComprehendMedicalParams"]
 
 
-class MedicalCreateParams(TypedDict, total=False):
+class ComprehendMedicalParams(TypedDict, total=False):
     content: Required[str]
     """The text to be analyzed."""
 

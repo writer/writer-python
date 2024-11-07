@@ -5,7 +5,7 @@ from typing import List, Optional
 from ..._models import BaseModel
 
 __all__ = [
-    "MedicalCreateResponse",
+    "ComprehendMedicalResponse",
     "Entity",
     "EntityAttribute",
     "EntityAttributeConcept",
@@ -85,6 +85,6 @@ class Entity(BaseModel):
     type: str
 
 
-class MedicalCreateResponse(BaseModel):
+class ComprehendMedicalResponse(BaseModel):
     entities: List[Entity]
     """An array of medical entities extracted from the input text."""

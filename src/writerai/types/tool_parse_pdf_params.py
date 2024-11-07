@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PdfParserParseParams"]
+__all__ = ["ToolParsePdfParams"]
 
 
-class PdfParserParseParams(TypedDict, total=False):
+class ToolParsePdfParams(TypedDict, total=False):
     format: Required[Literal["text", "markdown"]]
     """The format into which the PDF content should be converted."""

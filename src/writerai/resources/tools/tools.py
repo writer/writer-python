@@ -6,28 +6,20 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import tool_context_aware_splitting_params
-from .medical import (
-    MedicalResource,
-    AsyncMedicalResource,
-    MedicalResourceWithRawResponse,
-    AsyncMedicalResourceWithRawResponse,
-    MedicalResourceWithStreamingResponse,
-    AsyncMedicalResourceWithStreamingResponse,
-)
+from ...types import tool_parse_pdf_params, tool_context_aware_splitting_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from .pdf_parser import (
-    PdfParserResource,
-    AsyncPdfParserResource,
-    PdfParserResourceWithRawResponse,
-    AsyncPdfParserResourceWithRawResponse,
-    PdfParserResourceWithStreamingResponse,
-    AsyncPdfParserResourceWithStreamingResponse,
+from .comprehend import (
+    ComprehendResource,
+    AsyncComprehendResource,
+    ComprehendResourceWithRawResponse,
+    AsyncComprehendResourceWithRawResponse,
+    ComprehendResourceWithStreamingResponse,
+    AsyncComprehendResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -37,6 +29,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.tool_parse_pdf_response import ToolParsePdfResponse
 from ...types.tool_context_aware_splitting_response import ToolContextAwareSplittingResponse
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
@@ -44,12 +37,8 @@ __all__ = ["ToolsResource", "AsyncToolsResource"]
 
 class ToolsResource(SyncAPIResource):
     @cached_property
-    def medical(self) -> MedicalResource:
-        return MedicalResource(self._client)
-
-    @cached_property
-    def pdf_parser(self) -> PdfParserResource:
-        return PdfParserResource(self._client)
+    def comprehend(self) -> ComprehendResource:
+        return ComprehendResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ToolsResourceWithRawResponse:
@@ -116,15 +105,48 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolContextAwareSplittingResponse,
         )
 
+    def parse_pdf(
+        self,
+        file_id: str,
+        *,
+        format: Literal["text", "markdown"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ToolParsePdfResponse:
+        """
+        Parse PDF to other formats.
+
+        Args:
+          format: The format into which the PDF content should be converted.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not file_id:
+            raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
+        return self._post(
+            f"/v1/tools/pdf-parser/{file_id}",
+            body=maybe_transform({"format": format}, tool_parse_pdf_params.ToolParsePdfParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ToolParsePdfResponse,
+        )
+
 
 class AsyncToolsResource(AsyncAPIResource):
     @cached_property
-    def medical(self) -> AsyncMedicalResource:
-        return AsyncMedicalResource(self._client)
-
-    @cached_property
-    def pdf_parser(self) -> AsyncPdfParserResource:
-        return AsyncPdfParserResource(self._client)
+    def comprehend(self) -> AsyncComprehendResource:
+        return AsyncComprehendResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncToolsResourceWithRawResponse:
@@ -191,6 +213,43 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolContextAwareSplittingResponse,
         )
 
+    async def parse_pdf(
+        self,
+        file_id: str,
+        *,
+        format: Literal["text", "markdown"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ToolParsePdfResponse:
+        """
+        Parse PDF to other formats.
+
+        Args:
+          format: The format into which the PDF content should be converted.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not file_id:
+            raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
+        return await self._post(
+            f"/v1/tools/pdf-parser/{file_id}",
+            body=await async_maybe_transform({"format": format}, tool_parse_pdf_params.ToolParsePdfParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ToolParsePdfResponse,
+        )
+
 
 class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
@@ -199,14 +258,13 @@ class ToolsResourceWithRawResponse:
         self.context_aware_splitting = to_raw_response_wrapper(
             tools.context_aware_splitting,
         )
+        self.parse_pdf = to_raw_response_wrapper(
+            tools.parse_pdf,
+        )
 
     @cached_property
-    def medical(self) -> MedicalResourceWithRawResponse:
-        return MedicalResourceWithRawResponse(self._tools.medical)
-
-    @cached_property
-    def pdf_parser(self) -> PdfParserResourceWithRawResponse:
-        return PdfParserResourceWithRawResponse(self._tools.pdf_parser)
+    def comprehend(self) -> ComprehendResourceWithRawResponse:
+        return ComprehendResourceWithRawResponse(self._tools.comprehend)
 
 
 class AsyncToolsResourceWithRawResponse:
@@ -216,14 +274,13 @@ class AsyncToolsResourceWithRawResponse:
         self.context_aware_splitting = async_to_raw_response_wrapper(
             tools.context_aware_splitting,
         )
+        self.parse_pdf = async_to_raw_response_wrapper(
+            tools.parse_pdf,
+        )
 
     @cached_property
-    def medical(self) -> AsyncMedicalResourceWithRawResponse:
-        return AsyncMedicalResourceWithRawResponse(self._tools.medical)
-
-    @cached_property
-    def pdf_parser(self) -> AsyncPdfParserResourceWithRawResponse:
-        return AsyncPdfParserResourceWithRawResponse(self._tools.pdf_parser)
+    def comprehend(self) -> AsyncComprehendResourceWithRawResponse:
+        return AsyncComprehendResourceWithRawResponse(self._tools.comprehend)
 
 
 class ToolsResourceWithStreamingResponse:
@@ -233,14 +290,13 @@ class ToolsResourceWithStreamingResponse:
         self.context_aware_splitting = to_streamed_response_wrapper(
             tools.context_aware_splitting,
         )
+        self.parse_pdf = to_streamed_response_wrapper(
+            tools.parse_pdf,
+        )
 
     @cached_property
-    def medical(self) -> MedicalResourceWithStreamingResponse:
-        return MedicalResourceWithStreamingResponse(self._tools.medical)
-
-    @cached_property
-    def pdf_parser(self) -> PdfParserResourceWithStreamingResponse:
-        return PdfParserResourceWithStreamingResponse(self._tools.pdf_parser)
+    def comprehend(self) -> ComprehendResourceWithStreamingResponse:
+        return ComprehendResourceWithStreamingResponse(self._tools.comprehend)
 
 
 class AsyncToolsResourceWithStreamingResponse:
@@ -250,11 +306,10 @@ class AsyncToolsResourceWithStreamingResponse:
         self.context_aware_splitting = async_to_streamed_response_wrapper(
             tools.context_aware_splitting,
         )
+        self.parse_pdf = async_to_streamed_response_wrapper(
+            tools.parse_pdf,
+        )
 
     @cached_property
-    def medical(self) -> AsyncMedicalResourceWithStreamingResponse:
-        return AsyncMedicalResourceWithStreamingResponse(self._tools.medical)
-
-    @cached_property
-    def pdf_parser(self) -> AsyncPdfParserResourceWithStreamingResponse:
-        return AsyncPdfParserResourceWithStreamingResponse(self._tools.pdf_parser)
+    def comprehend(self) -> AsyncComprehendResourceWithStreamingResponse:
+        return AsyncComprehendResourceWithStreamingResponse(self._tools.comprehend)

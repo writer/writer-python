@@ -94,33 +94,22 @@ Methods:
 Types:
 
 ```python
-from writerai.types import ToolContextAwareSplittingResponse
+from writerai.types import ToolContextAwareSplittingResponse, ToolParsePdfResponse
 ```
 
 Methods:
 
 - <code title="post /v1/tools/context-aware-splitting">client.tools.<a href="./src/writerai/resources/tools/tools.py">context_aware_splitting</a>(\*\*<a href="src/writerai/types/tool_context_aware_splitting_params.py">params</a>) -> <a href="./src/writerai/types/tool_context_aware_splitting_response.py">ToolContextAwareSplittingResponse</a></code>
+- <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.<a href="./src/writerai/resources/tools/tools.py">parse_pdf</a>(file_id, \*\*<a href="src/writerai/types/tool_parse_pdf_params.py">params</a>) -> <a href="./src/writerai/types/tool_parse_pdf_response.py">ToolParsePdfResponse</a></code>
 
-## Medical
-
-Types:
-
-```python
-from writerai.types.tools import MedicalCreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/tools/comprehend/medical">client.tools.medical.<a href="./src/writerai/resources/tools/medical.py">create</a>(\*\*<a href="src/writerai/types/tools/medical_create_params.py">params</a>) -> <a href="./src/writerai/types/tools/medical_create_response.py">MedicalCreateResponse</a></code>
-
-## PdfParser
+## Comprehend
 
 Types:
 
 ```python
-from writerai.types.tools import PdfParserParseResponse
+from writerai.types.tools import ComprehendMedicalResponse
 ```
 
 Methods:
 
-- <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.pdf_parser.<a href="./src/writerai/resources/tools/pdf_parser.py">parse</a>(file_id, \*\*<a href="src/writerai/types/tools/pdf_parser_parse_params.py">params</a>) -> <a href="./src/writerai/types/tools/pdf_parser_parse_response.py">PdfParserParseResponse</a></code>
+- <code title="post /v1/tools/comprehend/medical">client.tools.comprehend.<a href="./src/writerai/resources/tools/comprehend.py">medical</a>(\*\*<a href="src/writerai/types/tools/comprehend_medical_params.py">params</a>) -> <a href="./src/writerai/types/tools/comprehend_medical_response.py">ComprehendMedicalResponse</a></code>
