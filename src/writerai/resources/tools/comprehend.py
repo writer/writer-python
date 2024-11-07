@@ -19,50 +19,54 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.tools import pdf_parser_parse_params
+from ...types.tools import comprehend_medical_params
 from ..._base_client import make_request_options
-from ...types.tools.pdf_parser_parse_response import PdfParserParseResponse
+from ...types.tools.comprehend_medical_response import ComprehendMedicalResponse
 
-__all__ = ["PdfParserResource", "AsyncPdfParserResource"]
+__all__ = ["ComprehendResource", "AsyncComprehendResource"]
 
 
-class PdfParserResource(SyncAPIResource):
+class ComprehendResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PdfParserResourceWithRawResponse:
+    def with_raw_response(self) -> ComprehendResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
         """
-        return PdfParserResourceWithRawResponse(self)
+        return ComprehendResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PdfParserResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ComprehendResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/writer/writer-python#with_streaming_response
         """
-        return PdfParserResourceWithStreamingResponse(self)
+        return ComprehendResourceWithStreamingResponse(self)
 
-    def parse(
+    def medical(
         self,
-        file_id: str,
         *,
-        format: Literal["text", "markdown"],
+        content: str,
+        response_type: Literal["Entities", "RxNorm", "ICD-10-CM", "SNOMED CT"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PdfParserParseResponse:
+    ) -> ComprehendMedicalResponse:
         """
-        Parse PDF to other formats.
+        Create a completion using Palmyra medical model.
 
         Args:
-          format: The format into which the PDF content should be converted.
+          content: The text to be analyzed.
+
+          response_type: The structure of the response to be returned. `Entities` returns medical
+              entities, `RxNorm` returns medication information, `ICD-10-CM` returns diagnosis
+              codes, and `SNOMED CT` returns medical concepts.
 
           extra_headers: Send extra headers
 
@@ -72,55 +76,63 @@ class PdfParserResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not file_id:
-            raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return self._post(
-            f"/v1/tools/pdf-parser/{file_id}",
-            body=maybe_transform({"format": format}, pdf_parser_parse_params.PdfParserParseParams),
+            "/v1/tools/comprehend/medical",
+            body=maybe_transform(
+                {
+                    "content": content,
+                    "response_type": response_type,
+                },
+                comprehend_medical_params.ComprehendMedicalParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PdfParserParseResponse,
+            cast_to=ComprehendMedicalResponse,
         )
 
 
-class AsyncPdfParserResource(AsyncAPIResource):
+class AsyncComprehendResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPdfParserResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncComprehendResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/writer/writer-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncPdfParserResourceWithRawResponse(self)
+        return AsyncComprehendResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPdfParserResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncComprehendResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/writer/writer-python#with_streaming_response
         """
-        return AsyncPdfParserResourceWithStreamingResponse(self)
+        return AsyncComprehendResourceWithStreamingResponse(self)
 
-    async def parse(
+    async def medical(
         self,
-        file_id: str,
         *,
-        format: Literal["text", "markdown"],
+        content: str,
+        response_type: Literal["Entities", "RxNorm", "ICD-10-CM", "SNOMED CT"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PdfParserParseResponse:
+    ) -> ComprehendMedicalResponse:
         """
-        Parse PDF to other formats.
+        Create a completion using Palmyra medical model.
 
         Args:
-          format: The format into which the PDF content should be converted.
+          content: The text to be analyzed.
+
+          response_type: The structure of the response to be returned. `Entities` returns medical
+              entities, `RxNorm` returns medication information, `ICD-10-CM` returns diagnosis
+              codes, and `SNOMED CT` returns medical concepts.
 
           extra_headers: Send extra headers
 
@@ -130,49 +142,53 @@ class AsyncPdfParserResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not file_id:
-            raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return await self._post(
-            f"/v1/tools/pdf-parser/{file_id}",
-            body=await async_maybe_transform({"format": format}, pdf_parser_parse_params.PdfParserParseParams),
+            "/v1/tools/comprehend/medical",
+            body=await async_maybe_transform(
+                {
+                    "content": content,
+                    "response_type": response_type,
+                },
+                comprehend_medical_params.ComprehendMedicalParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PdfParserParseResponse,
+            cast_to=ComprehendMedicalResponse,
         )
 
 
-class PdfParserResourceWithRawResponse:
-    def __init__(self, pdf_parser: PdfParserResource) -> None:
-        self._pdf_parser = pdf_parser
+class ComprehendResourceWithRawResponse:
+    def __init__(self, comprehend: ComprehendResource) -> None:
+        self._comprehend = comprehend
 
-        self.parse = to_raw_response_wrapper(
-            pdf_parser.parse,
+        self.medical = to_raw_response_wrapper(
+            comprehend.medical,
         )
 
 
-class AsyncPdfParserResourceWithRawResponse:
-    def __init__(self, pdf_parser: AsyncPdfParserResource) -> None:
-        self._pdf_parser = pdf_parser
+class AsyncComprehendResourceWithRawResponse:
+    def __init__(self, comprehend: AsyncComprehendResource) -> None:
+        self._comprehend = comprehend
 
-        self.parse = async_to_raw_response_wrapper(
-            pdf_parser.parse,
+        self.medical = async_to_raw_response_wrapper(
+            comprehend.medical,
         )
 
 
-class PdfParserResourceWithStreamingResponse:
-    def __init__(self, pdf_parser: PdfParserResource) -> None:
-        self._pdf_parser = pdf_parser
+class ComprehendResourceWithStreamingResponse:
+    def __init__(self, comprehend: ComprehendResource) -> None:
+        self._comprehend = comprehend
 
-        self.parse = to_streamed_response_wrapper(
-            pdf_parser.parse,
+        self.medical = to_streamed_response_wrapper(
+            comprehend.medical,
         )
 
 
-class AsyncPdfParserResourceWithStreamingResponse:
-    def __init__(self, pdf_parser: AsyncPdfParserResource) -> None:
-        self._pdf_parser = pdf_parser
+class AsyncComprehendResourceWithStreamingResponse:
+    def __init__(self, comprehend: AsyncComprehendResource) -> None:
+        self._comprehend = comprehend
 
-        self.parse = async_to_streamed_response_wrapper(
-            pdf_parser.parse,
+        self.medical = async_to_streamed_response_wrapper(
+            comprehend.medical,
         )
