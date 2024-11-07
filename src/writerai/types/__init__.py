@@ -23,6 +23,8 @@ from .graph_create_response import GraphCreateResponse as GraphCreateResponse
 from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
+from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
+from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
 from .graph_add_file_to_graph_params import GraphAddFileToGraphParams as GraphAddFileToGraphParams
 from .application_generate_content_params import ApplicationGenerateContentParams as ApplicationGenerateContentParams
