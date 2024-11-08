@@ -59,7 +59,8 @@ class ComprehendResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ComprehendMedicalResponse:
         """
-        Create a completion using Palmyra medical model.
+        Analyze unstructured medical text to extract entities labeled with standardized
+        medical codes and confidence scores.
 
         Args:
           content: The text to be analyzed.
@@ -125,7 +126,8 @@ class AsyncComprehendResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ComprehendMedicalResponse:
         """
-        Create a completion using Palmyra medical model.
+        Analyze unstructured medical text to extract entities labeled with standardized
+        medical codes and confidence scores.
 
         Args:
           content: The text to be analyzed.
