@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -16,6 +16,7 @@ from ..types import (
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -27,6 +28,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .._streaming import Stream, AsyncStream
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.file import File
 from ..types.graph import Graph
@@ -314,12 +316,13 @@ class GraphsResource(SyncAPIResource):
             cast_to=File,
         )
 
+    @overload
     def question(
         self,
         *,
         graph_ids: List[str],
         question: str,
-        stream: bool,
+        stream: Literal[False],
         subqueries: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -350,6 +353,101 @@ class GraphsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: Literal[True],
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Stream[Question]:
+        """
+        Ask a question to specified Knowledge Graphs.
+
+        Args:
+          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+
+          question: The question to be answered using the Knowledge Graph.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          subqueries: Specify whether to include subqueries.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: bool,
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Question | Stream[Question]:
+        """
+        Ask a question to specified Knowledge Graphs.
+
+        Args:
+          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+
+          question: The question to be answered using the Knowledge Graph.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          subqueries: Specify whether to include subqueries.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["graph_ids", "question", "stream", "subqueries"])
+    def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: Literal[False] | Literal[True],
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Question | Stream[Question]:
         return self._post(
             "/v1/graphs/question",
             body=maybe_transform(
@@ -365,6 +463,8 @@ class GraphsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Question,
+            stream=stream or False,
+            stream_cls=Stream[Question],
         )
 
     def remove_file_from_graph(
@@ -680,12 +780,13 @@ class AsyncGraphsResource(AsyncAPIResource):
             cast_to=File,
         )
 
+    @overload
     async def question(
         self,
         *,
         graph_ids: List[str],
         question: str,
-        stream: bool,
+        stream: Literal[False],
         subqueries: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -716,6 +817,101 @@ class AsyncGraphsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: Literal[True],
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncStream[Question]:
+        """
+        Ask a question to specified Knowledge Graphs.
+
+        Args:
+          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+
+          question: The question to be answered using the Knowledge Graph.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          subqueries: Specify whether to include subqueries.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: bool,
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Question | AsyncStream[Question]:
+        """
+        Ask a question to specified Knowledge Graphs.
+
+        Args:
+          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+
+          question: The question to be answered using the Knowledge Graph.
+
+          stream: Determines whether the model's output should be streamed. If true, the output is
+              generated and sent incrementally, which can be useful for real-time
+              applications.
+
+          subqueries: Specify whether to include subqueries.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["graph_ids", "question", "stream", "subqueries"])
+    async def question(
+        self,
+        *,
+        graph_ids: List[str],
+        question: str,
+        stream: Literal[False] | Literal[True],
+        subqueries: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Question | AsyncStream[Question]:
         return await self._post(
             "/v1/graphs/question",
             body=await async_maybe_transform(
@@ -731,6 +927,8 @@ class AsyncGraphsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Question,
+            stream=stream or False,
+            stream_cls=AsyncStream[Question],
         )
 
     async def remove_file_from_graph(
