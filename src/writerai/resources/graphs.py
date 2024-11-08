@@ -34,6 +34,7 @@ from ..types.file import File
 from ..types.graph import Graph
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.question import Question
+from ..types.question_streaming import QuestionStreaming
 from ..types.graph_create_response import GraphCreateResponse
 from ..types.graph_delete_response import GraphDeleteResponse
 from ..types.graph_update_response import GraphUpdateResponse
@@ -369,7 +370,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Stream[Question]:
+    ) -> Stream[QuestionStreaming]:
         """
         Ask a question to specified Knowledge Graphs.
 
@@ -408,7 +409,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Question | Stream[Question]:
+    ) -> Question | Stream[QuestionStreaming]:
         """
         Ask a question to specified Knowledge Graphs.
 
@@ -447,7 +448,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Question | Stream[Question]:
+    ) -> Question | Stream[QuestionStreaming]:
         return self._post(
             "/v1/graphs/question",
             body=maybe_transform(
@@ -464,7 +465,7 @@ class GraphsResource(SyncAPIResource):
             ),
             cast_to=Question,
             stream=stream or False,
-            stream_cls=Stream[Question],
+            stream_cls=Stream[QuestionStreaming],
         )
 
     def remove_file_from_graph(
@@ -833,7 +834,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncStream[Question]:
+    ) -> AsyncStream[QuestionStreaming]:
         """
         Ask a question to specified Knowledge Graphs.
 
@@ -872,7 +873,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Question | AsyncStream[Question]:
+    ) -> Question | AsyncStream[QuestionStreaming]:
         """
         Ask a question to specified Knowledge Graphs.
 
@@ -911,7 +912,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Question | AsyncStream[Question]:
+    ) -> Question | AsyncStream[QuestionStreaming]:
         return await self._post(
             "/v1/graphs/question",
             body=await async_maybe_transform(
@@ -928,7 +929,7 @@ class AsyncGraphsResource(AsyncAPIResource):
             ),
             cast_to=Question,
             stream=stream or False,
-            stream_cls=AsyncStream[Question],
+            stream_cls=AsyncStream[QuestionStreaming],
         )
 
     async def remove_file_from_graph(
