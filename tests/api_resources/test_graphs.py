@@ -270,21 +270,21 @@ class TestGraphs:
             )
 
     @parametrize
-    def test_method_question(self, client: Writer) -> None:
+    def test_method_question_overload_1(self, client: Writer) -> None:
         graph = client.graphs.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
-            stream=True,
+            stream=False,
             subqueries=True,
         )
         assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
-    def test_raw_response_question(self, client: Writer) -> None:
+    def test_raw_response_question_overload_1(self, client: Writer) -> None:
         response = client.graphs.with_raw_response.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
-            stream=True,
+            stream=False,
             subqueries=True,
         )
 
@@ -294,7 +294,46 @@ class TestGraphs:
         assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
-    def test_streaming_response_question(self, client: Writer) -> None:
+    def test_streaming_response_question_overload_1(self, client: Writer) -> None:
+        with client.graphs.with_streaming_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=False,
+            subqueries=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            graph = response.parse()
+            assert_matches_type(Question, graph, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_question_overload_2(self, client: Writer) -> None:
+        graph_stream = client.graphs.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+        graph_stream.response.close()
+
+    @parametrize
+    def test_raw_response_question_overload_2(self, client: Writer) -> None:
+        response = client.graphs.with_raw_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = response.parse()
+        stream.close()
+
+    @parametrize
+    def test_streaming_response_question_overload_2(self, client: Writer) -> None:
         with client.graphs.with_streaming_response.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
@@ -304,8 +343,8 @@ class TestGraphs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            graph = response.parse()
-            assert_matches_type(Question, graph, path=["response"])
+            stream = response.parse()
+            stream.close()
 
         assert cast(Any, response.is_closed) is True
 
@@ -605,21 +644,21 @@ class TestAsyncGraphs:
             )
 
     @parametrize
-    async def test_method_question(self, async_client: AsyncWriter) -> None:
+    async def test_method_question_overload_1(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
-            stream=True,
+            stream=False,
             subqueries=True,
         )
         assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
-    async def test_raw_response_question(self, async_client: AsyncWriter) -> None:
+    async def test_raw_response_question_overload_1(self, async_client: AsyncWriter) -> None:
         response = await async_client.graphs.with_raw_response.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
-            stream=True,
+            stream=False,
             subqueries=True,
         )
 
@@ -629,7 +668,46 @@ class TestAsyncGraphs:
         assert_matches_type(Question, graph, path=["response"])
 
     @parametrize
-    async def test_streaming_response_question(self, async_client: AsyncWriter) -> None:
+    async def test_streaming_response_question_overload_1(self, async_client: AsyncWriter) -> None:
+        async with async_client.graphs.with_streaming_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=False,
+            subqueries=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            graph = await response.parse()
+            assert_matches_type(Question, graph, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_question_overload_2(self, async_client: AsyncWriter) -> None:
+        graph_stream = await async_client.graphs.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+        await graph_stream.response.aclose()
+
+    @parametrize
+    async def test_raw_response_question_overload_2(self, async_client: AsyncWriter) -> None:
+        response = await async_client.graphs.with_raw_response.question(
+            graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            question="question",
+            stream=True,
+            subqueries=True,
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = await response.parse()
+        await stream.close()
+
+    @parametrize
+    async def test_streaming_response_question_overload_2(self, async_client: AsyncWriter) -> None:
         async with async_client.graphs.with_streaming_response.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
@@ -639,8 +717,8 @@ class TestAsyncGraphs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            graph = await response.parse()
-            assert_matches_type(Question, graph, path=["response"])
+            stream = await response.parse()
+            await stream.close()
 
         assert cast(Any, response.is_closed) is True
 
