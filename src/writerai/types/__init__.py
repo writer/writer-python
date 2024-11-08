@@ -13,7 +13,6 @@ from .file_list_params import FileListParams as FileListParams
 from .file_retry_params import FileRetryParams as FileRetryParams
 from .graph_list_params import GraphListParams as GraphListParams
 from .file_upload_params import FileUploadParams as FileUploadParams
-from .question_streaming import QuestionStreaming as QuestionStreaming
 from .file_retry_response import FileRetryResponse as FileRetryResponse
 from .graph_create_params import GraphCreateParams as GraphCreateParams
 from .graph_update_params import GraphUpdateParams as GraphUpdateParams
@@ -25,8 +24,11 @@ from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
 from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
+from .question_response_chunk import QuestionResponseChunk as QuestionResponseChunk
 from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
+from .tool_text_to_graph_params import ToolTextToGraphParams as ToolTextToGraphParams
+from .tool_text_to_graph_response import ToolTextToGraphResponse as ToolTextToGraphResponse
 from .graph_add_file_to_graph_params import GraphAddFileToGraphParams as GraphAddFileToGraphParams
 from .application_generate_content_params import ApplicationGenerateContentParams as ApplicationGenerateContentParams
 from .tool_context_aware_splitting_params import ToolContextAwareSplittingParams as ToolContextAwareSplittingParams

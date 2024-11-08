@@ -54,7 +54,7 @@ Types:
 from writerai.types import (
     Graph,
     Question,
-    QuestionStreaming,
+    QuestionResponseChunk,
     GraphCreateResponse,
     GraphUpdateResponse,
     GraphDeleteResponse,
@@ -95,13 +95,18 @@ Methods:
 Types:
 
 ```python
-from writerai.types import ToolContextAwareSplittingResponse, ToolParsePdfResponse
+from writerai.types import (
+    ToolContextAwareSplittingResponse,
+    ToolParsePdfResponse,
+    ToolTextToGraphResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /v1/tools/context-aware-splitting">client.tools.<a href="./src/writerai/resources/tools/tools.py">context_aware_splitting</a>(\*\*<a href="src/writerai/types/tool_context_aware_splitting_params.py">params</a>) -> <a href="./src/writerai/types/tool_context_aware_splitting_response.py">ToolContextAwareSplittingResponse</a></code>
 - <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.<a href="./src/writerai/resources/tools/tools.py">parse_pdf</a>(file_id, \*\*<a href="src/writerai/types/tool_parse_pdf_params.py">params</a>) -> <a href="./src/writerai/types/tool_parse_pdf_response.py">ToolParsePdfResponse</a></code>
+- <code title="post /v1/tools/text-to-graph">client.tools.<a href="./src/writerai/resources/tools/tools.py">text_to_graph</a>(\*\*<a href="src/writerai/types/tool_text_to_graph_params.py">params</a>) -> <a href="./src/writerai/types/tool_text_to_graph_response.py">ToolTextToGraphResponse</a></code>
 
 ## Comprehend
 
