@@ -4,8 +4,8 @@
 from .._models import BaseModel
 from .question import Question
 
-__all__ = ["QuestionStreaming"]
+__all__ = ["QuestionResponseChunk"]
 
 
-class QuestionStreaming(BaseModel):
+class QuestionResponseChunk(BaseModel):
     data: Question
