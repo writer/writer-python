@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.3.0 (2024-11-12)
+
+Full Changelog: [v1.2.0...v1.3.0](https://github.com/writer/writer-python/compare/v1.2.0...v1.3.0)
+
+### Features
+
+* **api:** add streaming to kg question ([#109](https://github.com/writer/writer-python/issues/109)) ([cf85c8a](https://github.com/writer/writer-python/commit/cf85c8a2f569481605d16302a7ff785ae0225b9b))
+* **api:** api update ([#108](https://github.com/writer/writer-python/issues/108)) ([785dd02](https://github.com/writer/writer-python/commit/785dd02659bd11b983bf98fc4c10923ce5dcc2a4))
+* **api:** api update ([#97](https://github.com/writer/writer-python/issues/97)) ([75f6211](https://github.com/writer/writer-python/commit/75f6211064189a457b520c9dd7c7d7f9edd7d58f))
+* **api:** manual updates ([#102](https://github.com/writer/writer-python/issues/102)) ([25d0319](https://github.com/writer/writer-python/commit/25d031937bab3307b96cee0682967ddbe38f78b9))
+* **api:** manual updates ([#111](https://github.com/writer/writer-python/issues/111)) ([9f80bb4](https://github.com/writer/writer-python/commit/9f80bb43bf56789f53cec048102cc45611a734eb))
+* **api:** manual updates ([#114](https://github.com/writer/writer-python/issues/114)) ([b9fc454](https://github.com/writer/writer-python/commit/b9fc45415b8bda5d2e0c1f8bbf2e3e064904a0b3))
+* **api:** rename kg question and add text-to-graph ([#112](https://github.com/writer/writer-python/issues/112)) ([c4ac9fd](https://github.com/writer/writer-python/commit/c4ac9fd60b3d71162b179812278f6801500778c3))
+* **api:** update tools api methods ([#107](https://github.com/writer/writer-python/issues/107)) ([c45ab5b](https://github.com/writer/writer-python/commit/c45ab5b4e9012cfb7118d32507b836a61fb192d6))
+
+
+### Bug Fixes
+
+* fix tool_choice schema ([403c875](https://github.com/writer/writer-python/commit/403c8755937a9c2744d0f0f214ab48fd2253180b))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#100](https://github.com/writer/writer-python/issues/100)) ([fbb3664](https://github.com/writer/writer-python/commit/fbb3664b0988352f139a30fe2d10f184f4f552a6))
+* rebuild project due to codegen change ([#101](https://github.com/writer/writer-python/issues/101)) ([1e0cbc1](https://github.com/writer/writer-python/commit/1e0cbc156a7f51a498f73acf006701d962ba8260))
+* rebuild project due to codegen change ([#103](https://github.com/writer/writer-python/issues/103)) ([dcd2402](https://github.com/writer/writer-python/commit/dcd24028b99180a638efee77a69ed2edf43d0d1c))
+* rebuild project due to codegen change ([#104](https://github.com/writer/writer-python/issues/104)) ([e9f2e66](https://github.com/writer/writer-python/commit/e9f2e66fbf9701c2c60f71f416cc2fd91182a3df))
+* rebuild project due to codegen change ([#105](https://github.com/writer/writer-python/issues/105)) ([4d1c32c](https://github.com/writer/writer-python/commit/4d1c32cbe04e030d1756be2927da0a036ffe6af7))
+* rebuild project due to codegen change ([#106](https://github.com/writer/writer-python/issues/106)) ([5c27b9e](https://github.com/writer/writer-python/commit/5c27b9e56736feb09c6c03790bdb0678494cff3f))
+* rebuild project due to codegen change ([#113](https://github.com/writer/writer-python/issues/113)) ([477b79c](https://github.com/writer/writer-python/commit/477b79c4e0ab5edd3b4593557a01313b19148f04))
+* rebuild project due to codegen change ([#99](https://github.com/writer/writer-python/issues/99)) ([490c02f](https://github.com/writer/writer-python/commit/490c02f05254023c7636cef86b6d234a81ee3d94))
+
 ## 1.2.0 (2024-10-10)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/writer/writer-python/compare/v1.1.0...v1.2.0)
