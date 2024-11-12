@@ -29,8 +29,7 @@ import os
 from writerai import Writer
 
 client = Writer(
-    # This is the default and can be omitted
-    api_key=os.environ.get("WRITER_API_KEY"),
+    api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
 )
 
 chat = client.chat.chat(
@@ -55,8 +54,7 @@ import asyncio
 from writerai import AsyncWriter
 
 client = AsyncWriter(
-    # This is the default and can be omitted
-    api_key=os.environ.get("WRITER_API_KEY"),
+    api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
 )
 
 
