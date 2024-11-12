@@ -6,11 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    tool_parse_pdf_params,
-    tool_text_to_graph_params,
-    tool_context_aware_splitting_params,
-)
+from ...types import tool_parse_pdf_params, tool_context_aware_splitting_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -34,7 +30,6 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.tool_parse_pdf_response import ToolParsePdfResponse
-from ...types.tool_text_to_graph_response import ToolTextToGraphResponse
 from ...types.tool_context_aware_splitting_response import ToolContextAwareSplittingResponse
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
@@ -147,41 +142,6 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolParsePdfResponse,
         )
 
-    def text_to_graph(
-        self,
-        *,
-        text: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ToolTextToGraphResponse:
-        """
-        Performs name entity recognition on the supplied text accepting a maximum of
-        35000 words.
-
-        Args:
-          text: The text to be converted into a graph structure. Maximum of 35000 words.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/v1/tools/text-to-graph",
-            body=maybe_transform({"text": text}, tool_text_to_graph_params.ToolTextToGraphParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ToolTextToGraphResponse,
-        )
-
 
 class AsyncToolsResource(AsyncAPIResource):
     @cached_property
@@ -290,41 +250,6 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolParsePdfResponse,
         )
 
-    async def text_to_graph(
-        self,
-        *,
-        text: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ToolTextToGraphResponse:
-        """
-        Performs name entity recognition on the supplied text accepting a maximum of
-        35000 words.
-
-        Args:
-          text: The text to be converted into a graph structure. Maximum of 35000 words.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/v1/tools/text-to-graph",
-            body=await async_maybe_transform({"text": text}, tool_text_to_graph_params.ToolTextToGraphParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ToolTextToGraphResponse,
-        )
-
 
 class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
@@ -335,9 +260,6 @@ class ToolsResourceWithRawResponse:
         )
         self.parse_pdf = to_raw_response_wrapper(
             tools.parse_pdf,
-        )
-        self.text_to_graph = to_raw_response_wrapper(
-            tools.text_to_graph,
         )
 
     @cached_property
@@ -355,9 +277,6 @@ class AsyncToolsResourceWithRawResponse:
         self.parse_pdf = async_to_raw_response_wrapper(
             tools.parse_pdf,
         )
-        self.text_to_graph = async_to_raw_response_wrapper(
-            tools.text_to_graph,
-        )
 
     @cached_property
     def comprehend(self) -> AsyncComprehendResourceWithRawResponse:
@@ -374,9 +293,6 @@ class ToolsResourceWithStreamingResponse:
         self.parse_pdf = to_streamed_response_wrapper(
             tools.parse_pdf,
         )
-        self.text_to_graph = to_streamed_response_wrapper(
-            tools.text_to_graph,
-        )
 
     @cached_property
     def comprehend(self) -> ComprehendResourceWithStreamingResponse:
@@ -392,9 +308,6 @@ class AsyncToolsResourceWithStreamingResponse:
         )
         self.parse_pdf = async_to_streamed_response_wrapper(
             tools.parse_pdf,
-        )
-        self.text_to_graph = async_to_streamed_response_wrapper(
-            tools.text_to_graph,
         )
 
     @cached_property

@@ -11,7 +11,6 @@ from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
 from writerai.types import (
     ToolParsePdfResponse,
-    ToolTextToGraphResponse,
     ToolContextAwareSplittingResponse,
 )
 
@@ -97,37 +96,6 @@ class TestTools:
                 format="text",
             )
 
-    @parametrize
-    def test_method_text_to_graph(self, client: Writer) -> None:
-        tool = client.tools.text_to_graph(
-            text="text",
-        )
-        assert_matches_type(ToolTextToGraphResponse, tool, path=["response"])
-
-    @parametrize
-    def test_raw_response_text_to_graph(self, client: Writer) -> None:
-        response = client.tools.with_raw_response.text_to_graph(
-            text="text",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        tool = response.parse()
-        assert_matches_type(ToolTextToGraphResponse, tool, path=["response"])
-
-    @parametrize
-    def test_streaming_response_text_to_graph(self, client: Writer) -> None:
-        with client.tools.with_streaming_response.text_to_graph(
-            text="text",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            tool = response.parse()
-            assert_matches_type(ToolTextToGraphResponse, tool, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncTools:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -207,34 +175,3 @@ class TestAsyncTools:
                 file_id="",
                 format="text",
             )
-
-    @parametrize
-    async def test_method_text_to_graph(self, async_client: AsyncWriter) -> None:
-        tool = await async_client.tools.text_to_graph(
-            text="text",
-        )
-        assert_matches_type(ToolTextToGraphResponse, tool, path=["response"])
-
-    @parametrize
-    async def test_raw_response_text_to_graph(self, async_client: AsyncWriter) -> None:
-        response = await async_client.tools.with_raw_response.text_to_graph(
-            text="text",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        tool = await response.parse()
-        assert_matches_type(ToolTextToGraphResponse, tool, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_text_to_graph(self, async_client: AsyncWriter) -> None:
-        async with async_client.tools.with_streaming_response.text_to_graph(
-            text="text",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            tool = await response.parse()
-            assert_matches_type(ToolTextToGraphResponse, tool, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
