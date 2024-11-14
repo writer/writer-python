@@ -2,16 +2,22 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "ChatChatParamsBase",
     "Message",
+    "MessageGraphData",
+    "MessageGraphDataSource",
+    "MessageGraphDataSubquery",
+    "MessageGraphDataSubquerySource",
+    "MessageToolCall",
+    "MessageToolCallFunction",
     "StreamOptions",
     "ToolChoice",
-    "ToolChoiceJsonObjectToolChoice",
     "ToolChoiceStringToolChoice",
+    "ToolChoiceJsonObjectToolChoice",
     "Tool",
     "ToolFunctionTool",
     "ToolFunctionToolFunction",
@@ -73,15 +79,14 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
     Configure how the model will call functions: `auto` will allow the model to
     automatically choose the best tool, `none` disables tool calling. You can also
-    pass a specific previously defined function as a string.
+    pass a specific previously defined function.
     """
 
     tools: Iterable[Tool]
     """
-    [Beta] An array of tools described to the model using JSON schema that the model
-    can use to generate responses. Please note that tool calling is in beta and
-    subject to change. Passing graph IDs will automatically use the Knowledge Graph
-    tool.
+    An array of tools described to the model using JSON schema that the model can
+    use to generate responses. Passing graph IDs will automatically use the
+    Knowledge Graph tool.
     """
 
     top_p: float
@@ -93,14 +98,70 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
 
+class MessageGraphDataSource(TypedDict, total=False):
+    file_id: Required[str]
+    """The unique identifier of the file."""
+
+    snippet: Required[str]
+    """A snippet of text from the source file."""
+
+
+class MessageGraphDataSubquerySource(TypedDict, total=False):
+    file_id: Required[str]
+    """The unique identifier of the file."""
+
+    snippet: Required[str]
+    """A snippet of text from the source file."""
+
+
+class MessageGraphDataSubquery(TypedDict, total=False):
+    answer: Required[str]
+    """The answer to the subquery."""
+
+    query: Required[str]
+    """The subquery that was asked."""
+
+    sources: Required[Iterable[MessageGraphDataSubquerySource]]
+
+
+class MessageGraphData(TypedDict, total=False):
+    sources: Iterable[MessageGraphDataSource]
+
+    status: Literal["processing", "finished"]
+
+    subqueries: Iterable[MessageGraphDataSubquery]
+
+
+class MessageToolCallFunction(TypedDict, total=False):
+    arguments: Required[str]
+
+    name: Required[str]
+
+
+class MessageToolCall(TypedDict, total=False):
+    id: Required[str]
+
+    function: Required[MessageToolCallFunction]
+
+    type: Required[str]
+
+    index: int
+
+
 class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system", "tool"]]
 
-    content: str
+    content: Optional[str]
 
-    name: str
+    graph_data: Optional[MessageGraphData]
 
-    tool_call_id: str
+    name: Optional[str]
+
+    refusal: Optional[str]
+
+    tool_call_id: Optional[str]
+
+    tool_calls: Optional[Iterable[MessageToolCall]]
 
 
 class StreamOptions(TypedDict, total=False):
@@ -108,27 +169,32 @@ class StreamOptions(TypedDict, total=False):
     """Indicate whether to include usage information."""
 
 
-class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
-    value: Required[object]
-
-
 class ToolChoiceStringToolChoice(TypedDict, total=False):
     value: Required[Literal["none", "auto", "required"]]
 
 
-ToolChoice: TypeAlias = Union[ToolChoiceJsonObjectToolChoice, ToolChoiceStringToolChoice]
+class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
+    value: Required[Dict[str, object]]
+
+
+ToolChoice: TypeAlias = Union[ToolChoiceStringToolChoice, ToolChoiceJsonObjectToolChoice]
 
 
 class ToolFunctionToolFunction(TypedDict, total=False):
     name: Required[str]
+    """Name of the function"""
 
     description: str
+    """Description of the function"""
 
-    parameters: object
+    parameters: Dict[str, object]
 
 
 class ToolFunctionTool(TypedDict, total=False):
     function: Required[ToolFunctionToolFunction]
+
+    type: Required[Literal["function"]]
+    """The type of tool."""
 
 
 class ToolGraphToolFunction(TypedDict, total=False):
@@ -144,6 +210,9 @@ class ToolGraphToolFunction(TypedDict, total=False):
 
 class ToolGraphTool(TypedDict, total=False):
     function: Required[ToolGraphToolFunction]
+
+    type: Required[Literal["graph"]]
+    """The type of tool."""
 
 
 Tool: TypeAlias = Union[ToolFunctionTool, ToolGraphTool]

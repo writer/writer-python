@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/writer-sdk.svg)](https://pypi.org/project/writer-sdk/)
 
-The Writer Python library provides convenient access to the Writer REST API from any Python 3.7+
+The Writer Python library provides convenient access to the Writer REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -29,8 +29,7 @@ import os
 from writerai import Writer
 
 client = Writer(
-    # This is the default and can be omitted
-    api_key=os.environ.get("WRITER_API_KEY"),
+    api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
 )
 
 chat = client.chat.chat(
@@ -55,8 +54,7 @@ import asyncio
 from writerai import AsyncWriter
 
 client = AsyncWriter(
-    # This is the default and can be omitted
-    api_key=os.environ.get("WRITER_API_KEY"),
+    api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
 )
 
 
@@ -436,7 +434,7 @@ print(writerai.__version__)
 
 ## Requirements
 
-Python 3.7 or higher.
+Python 3.8 or higher.
 
 ## Contributing
 
