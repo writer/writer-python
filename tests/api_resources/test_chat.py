@@ -37,15 +37,7 @@ class TestChat:
                             {
                                 "file_id": "file_id",
                                 "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
+                            }
                         ],
                         "status": "processing",
                         "subqueries": [
@@ -56,53 +48,9 @@ class TestChat:
                                     {
                                         "file_id": "file_id",
                                         "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
+                                    }
                                 ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
+                            }
                         ],
                     },
                     "name": "name",
@@ -125,7 +73,7 @@ class TestChat:
             logprobs=True,
             max_tokens=0,
             n=0,
-            stop=["string", "string", "string"],
+            stop=["string"],
             stream=False,
             stream_options={"include_usage": True},
             temperature=0,
@@ -138,23 +86,7 @@ class TestChat:
                         "parameters": {"foo": "bar"},
                     },
                     "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
+                }
             ],
             top_p=0,
         )
@@ -207,15 +139,7 @@ class TestChat:
                             {
                                 "file_id": "file_id",
                                 "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
+                            }
                         ],
                         "status": "processing",
                         "subqueries": [
@@ -226,53 +150,9 @@ class TestChat:
                                     {
                                         "file_id": "file_id",
                                         "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
+                                    }
                                 ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
+                            }
                         ],
                     },
                     "name": "name",
@@ -296,7 +176,7 @@ class TestChat:
             logprobs=True,
             max_tokens=0,
             n=0,
-            stop=["string", "string", "string"],
+            stop=["string"],
             stream_options={"include_usage": True},
             temperature=0,
             tool_choice={"value": "none"},
@@ -308,23 +188,7 @@ class TestChat:
                         "parameters": {"foo": "bar"},
                     },
                     "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
+                }
             ],
             top_p=0,
         )
@@ -381,15 +245,7 @@ class TestAsyncChat:
                             {
                                 "file_id": "file_id",
                                 "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
+                            }
                         ],
                         "status": "processing",
                         "subqueries": [
@@ -400,53 +256,9 @@ class TestAsyncChat:
                                     {
                                         "file_id": "file_id",
                                         "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
+                                    }
                                 ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
+                            }
                         ],
                     },
                     "name": "name",
@@ -469,7 +281,7 @@ class TestAsyncChat:
             logprobs=True,
             max_tokens=0,
             n=0,
-            stop=["string", "string", "string"],
+            stop=["string"],
             stream=False,
             stream_options={"include_usage": True},
             temperature=0,
@@ -482,23 +294,7 @@ class TestAsyncChat:
                         "parameters": {"foo": "bar"},
                     },
                     "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
+                }
             ],
             top_p=0,
         )
@@ -551,15 +347,7 @@ class TestAsyncChat:
                             {
                                 "file_id": "file_id",
                                 "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
-                            {
-                                "file_id": "file_id",
-                                "snippet": "snippet",
-                            },
+                            }
                         ],
                         "status": "processing",
                         "subqueries": [
@@ -570,53 +358,9 @@ class TestAsyncChat:
                                     {
                                         "file_id": "file_id",
                                         "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
+                                    }
                                 ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
-                            {
-                                "answer": "answer",
-                                "query": "query",
-                                "sources": [
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                    {
-                                        "file_id": "file_id",
-                                        "snippet": "snippet",
-                                    },
-                                ],
-                            },
+                            }
                         ],
                     },
                     "name": "name",
@@ -640,7 +384,7 @@ class TestAsyncChat:
             logprobs=True,
             max_tokens=0,
             n=0,
-            stop=["string", "string", "string"],
+            stop=["string"],
             stream_options={"include_usage": True},
             temperature=0,
             tool_choice={"value": "none"},
@@ -652,23 +396,7 @@ class TestAsyncChat:
                         "parameters": {"foo": "bar"},
                     },
                     "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                },
+                }
             ],
             top_p=0,
         )

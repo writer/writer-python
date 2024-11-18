@@ -24,16 +24,8 @@ class TestApplications:
             inputs=[
                 {
                     "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
         )
         assert_matches_type(ApplicationGenerateContentResponse, application, path=["response"])
@@ -45,16 +37,8 @@ class TestApplications:
             inputs=[
                 {
                     "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
         )
 
@@ -70,16 +54,8 @@ class TestApplications:
             inputs=[
                 {
                     "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -98,16 +74,8 @@ class TestApplications:
                 inputs=[
                     {
                         "id": "id",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "id": "id",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "id": "id",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
             )
 
@@ -122,16 +90,8 @@ class TestAsyncApplications:
             inputs=[
                 {
                     "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
         )
         assert_matches_type(ApplicationGenerateContentResponse, application, path=["response"])
@@ -143,16 +103,8 @@ class TestAsyncApplications:
             inputs=[
                 {
                     "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
         )
 
@@ -168,16 +120,8 @@ class TestAsyncApplications:
             inputs=[
                 {
                     "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "id": "id",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -196,15 +140,7 @@ class TestAsyncApplications:
                 inputs=[
                     {
                         "id": "id",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "id": "id",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "id": "id",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
             )
