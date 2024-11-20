@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.0 (2024-11-20)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/writer/writer-python/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **api:** default timeout increase to 3 min ([#119](https://github.com/writer/writer-python/issues/119)) ([f263e59](https://github.com/writer/writer-python/commit/f263e598c17328185c43247c34fa87aca3d9a1ce))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#116](https://github.com/writer/writer-python/issues/116)) ([66d114e](https://github.com/writer/writer-python/commit/66d114e2307f1e1bbcd70052a037e1ba1c5fd7d2))
+* rebuild project due to codegen change ([#118](https://github.com/writer/writer-python/issues/118)) ([c527530](https://github.com/writer/writer-python/commit/c5275300b56cc724795748bfbd9811904fa2e170))
+
 ## 1.3.0 (2024-11-12)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/writer/writer-python/compare/v1.2.0...v1.3.0)
