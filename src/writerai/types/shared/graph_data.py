@@ -1,11 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
-from .._models import BaseModel
-from .shared.source import Source
+from .source import Source
+from ..._models import BaseModel
 
-__all__ = ["Question", "Subquery"]
+__all__ = ["GraphData", "Subquery"]
 
 
 class Subquery(BaseModel):
@@ -18,13 +19,9 @@ class Subquery(BaseModel):
     sources: List[Source]
 
 
-class Question(BaseModel):
-    answer: str
-    """The answer to the question."""
+class GraphData(BaseModel):
+    sources: Optional[List[Source]] = None
 
-    question: str
-    """The question that was asked."""
-
-    sources: List[Source]
+    status: Optional[Literal["processing", "finished"]] = None
 
     subqueries: Optional[List[Subquery]] = None
