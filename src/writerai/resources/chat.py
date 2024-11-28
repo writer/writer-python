@@ -23,10 +23,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._streaming import Stream, AsyncStream
+from ..types.chat import Chat
 from .._base_client import make_request_options
-from ..types.chat_completion import ChatCompletion
 from ..types.chat_completion_chunk import ChatCompletionChunk
-from ..types.shared_params.tool_param import ToolParam
 
 __all__ = ["ChatResource", "AsyncChatResource"]
 
@@ -65,7 +64,7 @@ class ChatResource(SyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -73,7 +72,7 @@ class ChatResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatCompletion:
+    ) -> Chat:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -148,7 +147,7 @@ class ChatResource(SyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -231,7 +230,7 @@ class ChatResource(SyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -239,7 +238,7 @@ class ChatResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatCompletion | Stream[ChatCompletionChunk]:
+    ) -> Chat | Stream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -314,7 +313,7 @@ class ChatResource(SyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -322,7 +321,7 @@ class ChatResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatCompletion | Stream[ChatCompletionChunk]:
+    ) -> Chat | Stream[ChatCompletionChunk]:
         return self._post(
             "/v1/chat",
             body=maybe_transform(
@@ -345,7 +344,7 @@ class ChatResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatCompletion,
+            cast_to=Chat,
             stream=stream or False,
             stream_cls=Stream[ChatCompletionChunk],
         )
@@ -385,7 +384,7 @@ class AsyncChatResource(AsyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -393,7 +392,7 @@ class AsyncChatResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatCompletion:
+    ) -> Chat:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -468,7 +467,7 @@ class AsyncChatResource(AsyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -551,7 +550,7 @@ class AsyncChatResource(AsyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -559,7 +558,7 @@ class AsyncChatResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatCompletion | AsyncStream[ChatCompletionChunk]:
+    ) -> Chat | AsyncStream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
         The response shown
@@ -634,7 +633,7 @@ class AsyncChatResource(AsyncAPIResource):
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        tools: Iterable[chat_chat_params.Tool] | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -642,7 +641,7 @@ class AsyncChatResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatCompletion | AsyncStream[ChatCompletionChunk]:
+    ) -> Chat | AsyncStream[ChatCompletionChunk]:
         return await self._post(
             "/v1/chat",
             body=await async_maybe_transform(
@@ -665,7 +664,7 @@ class AsyncChatResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatCompletion,
+            cast_to=Chat,
             stream=stream or False,
             stream_cls=AsyncStream[ChatCompletionChunk],
         )

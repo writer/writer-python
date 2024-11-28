@@ -9,7 +9,7 @@ import pytest
 
 from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
-from writerai.types import ChatCompletion
+from writerai.types import Chat
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestChat:
             messages=[{"role": "user"}],
             model="palmyra-x-004",
         )
-        assert_matches_type(ChatCompletion, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     def test_method_chat_with_all_params_overload_1(self, client: Writer) -> None:
@@ -90,7 +90,7 @@ class TestChat:
             ],
             top_p=0,
         )
-        assert_matches_type(ChatCompletion, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     def test_raw_response_chat_overload_1(self, client: Writer) -> None:
@@ -102,7 +102,7 @@ class TestChat:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = response.parse()
-        assert_matches_type(ChatCompletion, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     def test_streaming_response_chat_overload_1(self, client: Writer) -> None:
@@ -114,7 +114,7 @@ class TestChat:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = response.parse()
-            assert_matches_type(ChatCompletion, chat, path=["response"])
+            assert_matches_type(Chat, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,7 +231,7 @@ class TestAsyncChat:
             messages=[{"role": "user"}],
             model="palmyra-x-004",
         )
-        assert_matches_type(ChatCompletion, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     async def test_method_chat_with_all_params_overload_1(self, async_client: AsyncWriter) -> None:
@@ -298,7 +298,7 @@ class TestAsyncChat:
             ],
             top_p=0,
         )
-        assert_matches_type(ChatCompletion, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     async def test_raw_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
@@ -310,7 +310,7 @@ class TestAsyncChat:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = await response.parse()
-        assert_matches_type(ChatCompletion, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     async def test_streaming_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
@@ -322,7 +322,7 @@ class TestAsyncChat:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = await response.parse()
-            assert_matches_type(ChatCompletion, chat, path=["response"])
+            assert_matches_type(Chat, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

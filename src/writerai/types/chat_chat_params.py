@@ -2,20 +2,27 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
-
-from .shared_params.tool_call import ToolCall
-from .shared_params.graph_data import GraphData
-from .shared_params.tool_param import ToolParam
-from .shared_params.tool_choice_string import ToolChoiceString
-from .shared_params.tool_choice_json_object import ToolChoiceJsonObject
 
 __all__ = [
     "ChatChatParamsBase",
     "Message",
+    "MessageGraphData",
+    "MessageGraphDataSource",
+    "MessageGraphDataSubquery",
+    "MessageGraphDataSubquerySource",
+    "MessageToolCall",
+    "MessageToolCallFunction",
     "StreamOptions",
     "ToolChoice",
+    "ToolChoiceStringToolChoice",
+    "ToolChoiceJsonObjectToolChoice",
+    "Tool",
+    "ToolFunctionTool",
+    "ToolFunctionToolFunction",
+    "ToolGraphTool",
+    "ToolGraphToolFunction",
     "ChatChatParamsNonStreaming",
     "ChatChatParamsStreaming",
 ]
@@ -75,7 +82,7 @@ class ChatChatParamsBase(TypedDict, total=False):
     pass a specific previously defined function.
     """
 
-    tools: Iterable[ToolParam]
+    tools: Iterable[Tool]
     """
     An array of tools described to the model using JSON schema that the model can
     use to generate responses. Passing graph IDs will automatically use the
@@ -91,12 +98,62 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
 
+class MessageGraphDataSource(TypedDict, total=False):
+    file_id: Required[str]
+    """The unique identifier of the file."""
+
+    snippet: Required[str]
+    """A snippet of text from the source file."""
+
+
+class MessageGraphDataSubquerySource(TypedDict, total=False):
+    file_id: Required[str]
+    """The unique identifier of the file."""
+
+    snippet: Required[str]
+    """A snippet of text from the source file."""
+
+
+class MessageGraphDataSubquery(TypedDict, total=False):
+    answer: Required[str]
+    """The answer to the subquery."""
+
+    query: Required[str]
+    """The subquery that was asked."""
+
+    sources: Required[Iterable[MessageGraphDataSubquerySource]]
+
+
+class MessageGraphData(TypedDict, total=False):
+    sources: Iterable[MessageGraphDataSource]
+
+    status: Literal["processing", "finished"]
+
+    subqueries: Iterable[MessageGraphDataSubquery]
+
+
+class MessageToolCallFunction(TypedDict, total=False):
+    arguments: Required[str]
+
+    name: Required[str]
+
+
+class MessageToolCall(TypedDict, total=False):
+    id: Required[str]
+
+    function: Required[MessageToolCallFunction]
+
+    type: Required[str]
+
+    index: int
+
+
 class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system", "tool"]]
 
     content: Optional[str]
 
-    graph_data: Optional[GraphData]
+    graph_data: Optional[MessageGraphData]
 
     name: Optional[str]
 
@@ -104,7 +161,7 @@ class Message(TypedDict, total=False):
 
     tool_call_id: Optional[str]
 
-    tool_calls: Optional[Iterable[ToolCall]]
+    tool_calls: Optional[Iterable[MessageToolCall]]
 
 
 class StreamOptions(TypedDict, total=False):
@@ -112,7 +169,53 @@ class StreamOptions(TypedDict, total=False):
     """Indicate whether to include usage information."""
 
 
-ToolChoice: TypeAlias = Union[ToolChoiceString, ToolChoiceJsonObject]
+class ToolChoiceStringToolChoice(TypedDict, total=False):
+    value: Required[Literal["none", "auto", "required"]]
+
+
+class ToolChoiceJsonObjectToolChoice(TypedDict, total=False):
+    value: Required[Dict[str, object]]
+
+
+ToolChoice: TypeAlias = Union[ToolChoiceStringToolChoice, ToolChoiceJsonObjectToolChoice]
+
+
+class ToolFunctionToolFunction(TypedDict, total=False):
+    name: Required[str]
+    """Name of the function"""
+
+    description: str
+    """Description of the function"""
+
+    parameters: Dict[str, object]
+
+
+class ToolFunctionTool(TypedDict, total=False):
+    function: Required[ToolFunctionToolFunction]
+
+    type: Required[Literal["function"]]
+    """The type of tool."""
+
+
+class ToolGraphToolFunction(TypedDict, total=False):
+    graph_ids: Required[List[str]]
+    """An array of graph IDs to be used in the tool."""
+
+    subqueries: Required[bool]
+    """Boolean to indicate whether to include subqueries in the response."""
+
+    description: str
+    """A description of the graph content."""
+
+
+class ToolGraphTool(TypedDict, total=False):
+    function: Required[ToolGraphToolFunction]
+
+    type: Required[Literal["graph"]]
+    """The type of tool."""
+
+
+Tool: TypeAlias = Union[ToolFunctionTool, ToolGraphTool]
 
 
 class ChatChatParamsNonStreaming(ChatChatParamsBase, total=False):
