@@ -31,11 +31,11 @@ client = Writer(
     api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
 )
 
-chat_completion = client.chat.chat(
+chat = client.chat.chat(
     messages=[{"role": "user"}],
     model="palmyra-x-004",
 )
-print(chat_completion.id)
+print(chat.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -58,11 +58,11 @@ client = AsyncWriter(
 
 
 async def main() -> None:
-    chat_completion = await client.chat.chat(
+    chat = await client.chat.chat(
         messages=[{"role": "user"}],
         model="palmyra-x-004",
     )
-    print(chat_completion.id)
+    print(chat.id)
 
 
 asyncio.run(main())

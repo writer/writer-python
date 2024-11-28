@@ -2,28 +2,13 @@
 
 from __future__ import annotations
 
+from .chat import Chat as Chat
 from .file import File as File
 from .graph import Graph as Graph
-from .shared import (
-    Source as Source,
-    Logprobs as Logprobs,
-    ToolCall as ToolCall,
-    GraphData as GraphData,
-    ToolParam as ToolParam,
-    ErrorObject as ErrorObject,
-    ErrorMessage as ErrorMessage,
-    LogprobsToken as LogprobsToken,
-    FunctionParams as FunctionParams,
-    ToolChoiceString as ToolChoiceString,
-    ToolCallStreaming as ToolCallStreaming,
-    FunctionDefinition as FunctionDefinition,
-    ToolChoiceJsonObject as ToolChoiceJsonObject,
-)
 from .question import Question as Question
 from .completion import Completion as Completion
-from .chat_completion import ChatCompletion as ChatCompletion
+from .streaming_data import StreamingData as StreamingData
 from .chat_chat_params import ChatChatParams as ChatChatParams
-from .completion_chunk import CompletionChunk as CompletionChunk
 from .file_list_params import FileListParams as FileListParams
 from .file_retry_params import FileRetryParams as FileRetryParams
 from .graph_list_params import GraphListParams as GraphListParams
@@ -34,14 +19,11 @@ from .graph_update_params import GraphUpdateParams as GraphUpdateParams
 from .model_list_response import ModelListResponse as ModelListResponse
 from .file_delete_response import FileDeleteResponse as FileDeleteResponse
 from .chat_completion_chunk import ChatCompletionChunk as ChatCompletionChunk
-from .chat_completion_usage import ChatCompletionUsage as ChatCompletionUsage
 from .graph_create_response import GraphCreateResponse as GraphCreateResponse
 from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
 from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
-from .chat_completion_choice import ChatCompletionChoice as ChatCompletionChoice
-from .chat_completion_message import ChatCompletionMessage as ChatCompletionMessage
 from .question_response_chunk import QuestionResponseChunk as QuestionResponseChunk
 from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams

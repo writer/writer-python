@@ -1,23 +1,3 @@
-# Shared Types
-
-```python
-from writerai.types import (
-    ErrorMessage,
-    ErrorObject,
-    FunctionDefinition,
-    FunctionParams,
-    GraphData,
-    Logprobs,
-    LogprobsToken,
-    Source,
-    ToolCall,
-    ToolCallStreaming,
-    ToolChoiceJsonObject,
-    ToolChoiceString,
-    ToolParam,
-)
-```
-
 # Applications
 
 Types:
@@ -35,26 +15,19 @@ Methods:
 Types:
 
 ```python
-from writerai.types import (
-    ChatCompletion,
-    ChatCompletionChoice,
-    ChatCompletionChunk,
-    ChatCompletionMessage,
-    ChatCompletionParams,
-    ChatCompletionUsage,
-)
+from writerai.types import Chat, ChatCompletionChunk
 ```
 
 Methods:
 
-- <code title="post /v1/chat">client.chat.<a href="./src/writerai/resources/chat.py">chat</a>(\*\*<a href="src/writerai/types/chat_chat_params.py">params</a>) -> <a href="./src/writerai/types/chat_completion.py">ChatCompletion</a></code>
+- <code title="post /v1/chat">client.chat.<a href="./src/writerai/resources/chat.py">chat</a>(\*\*<a href="src/writerai/types/chat_chat_params.py">params</a>) -> <a href="./src/writerai/types/chat.py">Chat</a></code>
 
 # Completions
 
 Types:
 
 ```python
-from writerai.types import Completion, CompletionChunk, CompletionParams
+from writerai.types import Completion, StreamingData
 ```
 
 Methods:
