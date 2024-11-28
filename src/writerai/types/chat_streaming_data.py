@@ -2,10 +2,10 @@
 
 
 from .._models import BaseModel
-from .chat_completion import ChatCompletion
+from .chat import Chat
 
 __all__ = ["ChatStreamingData"]
 
 
 class ChatStreamingData(BaseModel):
-    data: ChatCompletion
+    data: Chat
