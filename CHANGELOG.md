@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.5.0 (2024-11-28)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/writer/writer-python/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **api:** manual updates ([#127](https://github.com/writer/writer-python/issues/127)) ([ae6716d](https://github.com/writer/writer-python/commit/ae6716d8b2345d493ff342cb31adb02e85d7c2a8))
+
+
+### Bug Fixes
+
+* **client:** compat with new httpx 0.28.0 release ([#126](https://github.com/writer/writer-python/issues/126)) ([4c04e11](https://github.com/writer/writer-python/commit/4c04e11248fac6aa0cabb94ea4abcc78252077d5))
+
+
+### Chores
+
+* fix formatting ([c33a293](https://github.com/writer/writer-python/commit/c33a2932a49d4d51ad81045ba312162f02821cbc))
+* **internal:** codegen related update ([#125](https://github.com/writer/writer-python/issues/125)) ([a72d9d9](https://github.com/writer/writer-python/commit/a72d9d997ef4e0f14cfd707e143f8ca0c53c6b97))
+* **internal:** fix compat model_dump method when warnings are passed ([#121](https://github.com/writer/writer-python/issues/121)) ([51a4ae5](https://github.com/writer/writer-python/commit/51a4ae539ba4cdb9b15d3a60d2ba5998a0521671))
+* remove now unused `cached-property` dep ([#124](https://github.com/writer/writer-python/issues/124)) ([96715e2](https://github.com/writer/writer-python/commit/96715e244454c9b5133cae97187f61f0e6ed9b02))
+
+
+### Documentation
+
+* add info log level to readme ([#123](https://github.com/writer/writer-python/issues/123)) ([126bf74](https://github.com/writer/writer-python/commit/126bf74e40f7a69d08bef5e8d881af7efc56ae1b))
+
 ## 1.4.0 (2024-11-20)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/writer/writer-python/compare/v1.3.0...v1.4.0)
