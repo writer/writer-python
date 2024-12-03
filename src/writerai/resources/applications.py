@@ -51,6 +51,7 @@ class ApplicationsResource(SyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[application_generate_content_params.Input],
+        stream: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,9 +60,12 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGenerateContentResponse:
         """
-        Generate content from an existing application with inputs.
+        Generate content from an existing no-code application with inputs.
 
         Args:
+          stream: Indicates whether the response should be streamed. Currently only supported for
+              research assistant applications.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -75,7 +79,11 @@ class ApplicationsResource(SyncAPIResource):
         return self._post(
             f"/v1/applications/{application_id}",
             body=maybe_transform(
-                {"inputs": inputs}, application_generate_content_params.ApplicationGenerateContentParams
+                {
+                    "inputs": inputs,
+                    "stream": stream,
+                },
+                application_generate_content_params.ApplicationGenerateContentParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -109,6 +117,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[application_generate_content_params.Input],
+        stream: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,9 +126,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGenerateContentResponse:
         """
-        Generate content from an existing application with inputs.
+        Generate content from an existing no-code application with inputs.
 
         Args:
+          stream: Indicates whether the response should be streamed. Currently only supported for
+              research assistant applications.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -133,7 +145,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return await self._post(
             f"/v1/applications/{application_id}",
             body=await async_maybe_transform(
-                {"inputs": inputs}, application_generate_content_params.ApplicationGenerateContentParams
+                {
+                    "inputs": inputs,
+                    "stream": stream,
+                },
+                application_generate_content_params.ApplicationGenerateContentParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -31,6 +31,20 @@ class TestApplications:
         assert_matches_type(ApplicationGenerateContentResponse, application, path=["response"])
 
     @parametrize
+    def test_method_generate_content_with_all_params(self, client: Writer) -> None:
+        application = client.applications.generate_content(
+            application_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inputs=[
+                {
+                    "id": "id",
+                    "value": ["string"],
+                }
+            ],
+            stream=True,
+        )
+        assert_matches_type(ApplicationGenerateContentResponse, application, path=["response"])
+
+    @parametrize
     def test_raw_response_generate_content(self, client: Writer) -> None:
         response = client.applications.with_raw_response.generate_content(
             application_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -93,6 +107,20 @@ class TestAsyncApplications:
                     "value": ["string"],
                 }
             ],
+        )
+        assert_matches_type(ApplicationGenerateContentResponse, application, path=["response"])
+
+    @parametrize
+    async def test_method_generate_content_with_all_params(self, async_client: AsyncWriter) -> None:
+        application = await async_client.applications.generate_content(
+            application_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inputs=[
+                {
+                    "id": "id",
+                    "value": ["string"],
+                }
+            ],
+            stream=True,
         )
         assert_matches_type(ApplicationGenerateContentResponse, application, path=["response"])
 
