@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from writerai.types import ApplicationGenerateContentResponse
+from writerai.types import ApplicationGenerateContentChunk, ApplicationGenerateContentResponse
 ```
 
 Methods:
