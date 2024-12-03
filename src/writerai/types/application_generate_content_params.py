@@ -11,6 +11,12 @@ __all__ = ["ApplicationGenerateContentParams", "Input"]
 class ApplicationGenerateContentParams(TypedDict, total=False):
     inputs: Required[Iterable[Input]]
 
+    stream: bool
+    """Indicates whether the response should be streamed.
+
+    Currently only supported for research assistant applications.
+    """
+
 
 class Input(TypedDict, total=False):
     id: Required[str]
