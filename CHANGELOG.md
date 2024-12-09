@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.6.0 (2024-12-09)
+
+Full Changelog: [v1.5.0...v1.6.0](https://github.com/writer/writer-python/compare/v1.5.0...v1.6.0)
+
+### Features
+
+* **api:** add streaming to application generation ([#132](https://github.com/writer/writer-python/issues/132)) ([c142caa](https://github.com/writer/writer-python/commit/c142caa6b2d646b270ec50c800c37effd9b90c49))
+* **api:** api update ([#131](https://github.com/writer/writer-python/issues/131)) ([efadeb6](https://github.com/writer/writer-python/commit/efadeb67a868c57775a1205a5765ccc9f45997e2))
+
+
+### Chores
+
+* **internal:** bump pydantic dependency ([#134](https://github.com/writer/writer-python/issues/134)) ([eb1ebfe](https://github.com/writer/writer-python/commit/eb1ebfe452164409a68fc7c6d83d5fdd9ce3b089))
+* **internal:** bump pyright ([#129](https://github.com/writer/writer-python/issues/129)) ([f1b2b64](https://github.com/writer/writer-python/commit/f1b2b6458b47f1861bb7d297b007b6ee09123a85))
+* make the `Omit` type public ([#133](https://github.com/writer/writer-python/issues/133)) ([94b63bb](https://github.com/writer/writer-python/commit/94b63bbc992974c0f794dcfe4ced4d7fb2284c50))
+
+
+### Documentation
+
+* **readme:** fix http client proxies example ([#135](https://github.com/writer/writer-python/issues/135)) ([4e39cfe](https://github.com/writer/writer-python/commit/4e39cfec407d89fcbe03e8283e7c7bc499bc7b40))
+
 ## 1.5.0 (2024-11-28)
 
 Full Changelog: [v1.4.0...v1.5.0](https://github.com/writer/writer-python/compare/v1.4.0...v1.5.0)
