@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import resources, _exceptions
+from . import _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,6 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
+from .resources import chat, files, graphs, models, completions, applications
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import WriterError, APIStatusError
 from ._base_client import (
@@ -31,28 +32,19 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.tools import tools
 
-__all__ = [
-    "Timeout",
-    "Transport",
-    "ProxiesTypes",
-    "RequestOptions",
-    "resources",
-    "Writer",
-    "AsyncWriter",
-    "Client",
-    "AsyncClient",
-]
+__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Writer", "AsyncWriter", "Client", "AsyncClient"]
 
 
 class Writer(SyncAPIClient):
-    applications: resources.ApplicationsResource
-    chat: resources.ChatResource
-    completions: resources.CompletionsResource
-    models: resources.ModelsResource
-    graphs: resources.GraphsResource
-    files: resources.FilesResource
-    tools: resources.ToolsResource
+    applications: applications.ApplicationsResource
+    chat: chat.ChatResource
+    completions: completions.CompletionsResource
+    models: models.ModelsResource
+    graphs: graphs.GraphsResource
+    files: files.FilesResource
+    tools: tools.ToolsResource
     with_raw_response: WriterWithRawResponse
     with_streaming_response: WriterWithStreamedResponse
 
@@ -112,13 +104,13 @@ class Writer(SyncAPIClient):
 
         self._default_stream_cls = Stream
 
-        self.applications = resources.ApplicationsResource(self)
-        self.chat = resources.ChatResource(self)
-        self.completions = resources.CompletionsResource(self)
-        self.models = resources.ModelsResource(self)
-        self.graphs = resources.GraphsResource(self)
-        self.files = resources.FilesResource(self)
-        self.tools = resources.ToolsResource(self)
+        self.applications = applications.ApplicationsResource(self)
+        self.chat = chat.ChatResource(self)
+        self.completions = completions.CompletionsResource(self)
+        self.models = models.ModelsResource(self)
+        self.graphs = graphs.GraphsResource(self)
+        self.files = files.FilesResource(self)
+        self.tools = tools.ToolsResource(self)
         self.with_raw_response = WriterWithRawResponse(self)
         self.with_streaming_response = WriterWithStreamedResponse(self)
 
@@ -228,13 +220,13 @@ class Writer(SyncAPIClient):
 
 
 class AsyncWriter(AsyncAPIClient):
-    applications: resources.AsyncApplicationsResource
-    chat: resources.AsyncChatResource
-    completions: resources.AsyncCompletionsResource
-    models: resources.AsyncModelsResource
-    graphs: resources.AsyncGraphsResource
-    files: resources.AsyncFilesResource
-    tools: resources.AsyncToolsResource
+    applications: applications.AsyncApplicationsResource
+    chat: chat.AsyncChatResource
+    completions: completions.AsyncCompletionsResource
+    models: models.AsyncModelsResource
+    graphs: graphs.AsyncGraphsResource
+    files: files.AsyncFilesResource
+    tools: tools.AsyncToolsResource
     with_raw_response: AsyncWriterWithRawResponse
     with_streaming_response: AsyncWriterWithStreamedResponse
 
@@ -294,13 +286,13 @@ class AsyncWriter(AsyncAPIClient):
 
         self._default_stream_cls = AsyncStream
 
-        self.applications = resources.AsyncApplicationsResource(self)
-        self.chat = resources.AsyncChatResource(self)
-        self.completions = resources.AsyncCompletionsResource(self)
-        self.models = resources.AsyncModelsResource(self)
-        self.graphs = resources.AsyncGraphsResource(self)
-        self.files = resources.AsyncFilesResource(self)
-        self.tools = resources.AsyncToolsResource(self)
+        self.applications = applications.AsyncApplicationsResource(self)
+        self.chat = chat.AsyncChatResource(self)
+        self.completions = completions.AsyncCompletionsResource(self)
+        self.models = models.AsyncModelsResource(self)
+        self.graphs = graphs.AsyncGraphsResource(self)
+        self.files = files.AsyncFilesResource(self)
+        self.tools = tools.AsyncToolsResource(self)
         self.with_raw_response = AsyncWriterWithRawResponse(self)
         self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
 
@@ -411,46 +403,46 @@ class AsyncWriter(AsyncAPIClient):
 
 class WriterWithRawResponse:
     def __init__(self, client: Writer) -> None:
-        self.applications = resources.ApplicationsResourceWithRawResponse(client.applications)
-        self.chat = resources.ChatResourceWithRawResponse(client.chat)
-        self.completions = resources.CompletionsResourceWithRawResponse(client.completions)
-        self.models = resources.ModelsResourceWithRawResponse(client.models)
-        self.graphs = resources.GraphsResourceWithRawResponse(client.graphs)
-        self.files = resources.FilesResourceWithRawResponse(client.files)
-        self.tools = resources.ToolsResourceWithRawResponse(client.tools)
+        self.applications = applications.ApplicationsResourceWithRawResponse(client.applications)
+        self.chat = chat.ChatResourceWithRawResponse(client.chat)
+        self.completions = completions.CompletionsResourceWithRawResponse(client.completions)
+        self.models = models.ModelsResourceWithRawResponse(client.models)
+        self.graphs = graphs.GraphsResourceWithRawResponse(client.graphs)
+        self.files = files.FilesResourceWithRawResponse(client.files)
+        self.tools = tools.ToolsResourceWithRawResponse(client.tools)
 
 
 class AsyncWriterWithRawResponse:
     def __init__(self, client: AsyncWriter) -> None:
-        self.applications = resources.AsyncApplicationsResourceWithRawResponse(client.applications)
-        self.chat = resources.AsyncChatResourceWithRawResponse(client.chat)
-        self.completions = resources.AsyncCompletionsResourceWithRawResponse(client.completions)
-        self.models = resources.AsyncModelsResourceWithRawResponse(client.models)
-        self.graphs = resources.AsyncGraphsResourceWithRawResponse(client.graphs)
-        self.files = resources.AsyncFilesResourceWithRawResponse(client.files)
-        self.tools = resources.AsyncToolsResourceWithRawResponse(client.tools)
+        self.applications = applications.AsyncApplicationsResourceWithRawResponse(client.applications)
+        self.chat = chat.AsyncChatResourceWithRawResponse(client.chat)
+        self.completions = completions.AsyncCompletionsResourceWithRawResponse(client.completions)
+        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
+        self.graphs = graphs.AsyncGraphsResourceWithRawResponse(client.graphs)
+        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
+        self.tools = tools.AsyncToolsResourceWithRawResponse(client.tools)
 
 
 class WriterWithStreamedResponse:
     def __init__(self, client: Writer) -> None:
-        self.applications = resources.ApplicationsResourceWithStreamingResponse(client.applications)
-        self.chat = resources.ChatResourceWithStreamingResponse(client.chat)
-        self.completions = resources.CompletionsResourceWithStreamingResponse(client.completions)
-        self.models = resources.ModelsResourceWithStreamingResponse(client.models)
-        self.graphs = resources.GraphsResourceWithStreamingResponse(client.graphs)
-        self.files = resources.FilesResourceWithStreamingResponse(client.files)
-        self.tools = resources.ToolsResourceWithStreamingResponse(client.tools)
+        self.applications = applications.ApplicationsResourceWithStreamingResponse(client.applications)
+        self.chat = chat.ChatResourceWithStreamingResponse(client.chat)
+        self.completions = completions.CompletionsResourceWithStreamingResponse(client.completions)
+        self.models = models.ModelsResourceWithStreamingResponse(client.models)
+        self.graphs = graphs.GraphsResourceWithStreamingResponse(client.graphs)
+        self.files = files.FilesResourceWithStreamingResponse(client.files)
+        self.tools = tools.ToolsResourceWithStreamingResponse(client.tools)
 
 
 class AsyncWriterWithStreamedResponse:
     def __init__(self, client: AsyncWriter) -> None:
-        self.applications = resources.AsyncApplicationsResourceWithStreamingResponse(client.applications)
-        self.chat = resources.AsyncChatResourceWithStreamingResponse(client.chat)
-        self.completions = resources.AsyncCompletionsResourceWithStreamingResponse(client.completions)
-        self.models = resources.AsyncModelsResourceWithStreamingResponse(client.models)
-        self.graphs = resources.AsyncGraphsResourceWithStreamingResponse(client.graphs)
-        self.files = resources.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.tools = resources.AsyncToolsResourceWithStreamingResponse(client.tools)
+        self.applications = applications.AsyncApplicationsResourceWithStreamingResponse(client.applications)
+        self.chat = chat.AsyncChatResourceWithStreamingResponse(client.chat)
+        self.completions = completions.AsyncCompletionsResourceWithStreamingResponse(client.completions)
+        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
+        self.graphs = graphs.AsyncGraphsResourceWithStreamingResponse(client.graphs)
+        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
+        self.tools = tools.AsyncToolsResourceWithStreamingResponse(client.tools)
 
 
 Client = Writer
