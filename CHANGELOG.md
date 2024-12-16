@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.6.0 (2024-12-16)
+
+Full Changelog: [v1.5.0...v1.6.0](https://github.com/writer/writer-python/compare/v1.5.0...v1.6.0)
+
+### Features
+
+* **api:** add streaming to application generation ([#132](https://github.com/writer/writer-python/issues/132)) ([c142caa](https://github.com/writer/writer-python/commit/c142caa6b2d646b270ec50c800c37effd9b90c49))
+* **api:** api update ([#131](https://github.com/writer/writer-python/issues/131)) ([efadeb6](https://github.com/writer/writer-python/commit/efadeb67a868c57775a1205a5765ccc9f45997e2))
+
+
+### Chores
+
+* **internal:** add support for TypeAliasType ([#137](https://github.com/writer/writer-python/issues/137)) ([4523c9d](https://github.com/writer/writer-python/commit/4523c9dc88771fce1b330fcf57a4499af7606c44))
+* **internal:** bump pydantic dependency ([#134](https://github.com/writer/writer-python/issues/134)) ([eb1ebfe](https://github.com/writer/writer-python/commit/eb1ebfe452164409a68fc7c6d83d5fdd9ce3b089))
+* **internal:** bump pyright ([#129](https://github.com/writer/writer-python/issues/129)) ([f1b2b64](https://github.com/writer/writer-python/commit/f1b2b6458b47f1861bb7d297b007b6ee09123a85))
+* **internal:** bump pyright ([#136](https://github.com/writer/writer-python/issues/136)) ([66af392](https://github.com/writer/writer-python/commit/66af39233901307387129f1eb95859434ad18760))
+* **internal:** updated imports ([#138](https://github.com/writer/writer-python/issues/138)) ([fc58a7d](https://github.com/writer/writer-python/commit/fc58a7de32363b013cc390ebc7c237cf74fa4137))
+* make the `Omit` type public ([#133](https://github.com/writer/writer-python/issues/133)) ([94b63bb](https://github.com/writer/writer-python/commit/94b63bbc992974c0f794dcfe4ced4d7fb2284c50))
+
+
+### Documentation
+
+* **readme:** example snippet for client context manager ([#139](https://github.com/writer/writer-python/issues/139)) ([30ae872](https://github.com/writer/writer-python/commit/30ae8729b37d27572eafbd521e52eb114b635f8e))
+* **readme:** fix http client proxies example ([#135](https://github.com/writer/writer-python/issues/135)) ([4e39cfe](https://github.com/writer/writer-python/commit/4e39cfec407d89fcbe03e8283e7c7bc499bc7b40))
+
 ## 1.5.0 (2024-11-28)
 
 Full Changelog: [v1.4.0...v1.5.0](https://github.com/writer/writer-python/compare/v1.4.0...v1.5.0)

@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Required, TypedDict
+from typing import List, Union, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ApplicationGenerateContentParams", "Input"]
+__all__ = [
+    "ApplicationGenerateContentParamsBase",
+    "Input",
+    "ApplicationGenerateContentParamsNonStreaming",
+    "ApplicationGenerateContentParamsStreaming",
+]
 
 
-class ApplicationGenerateContentParams(TypedDict, total=False):
+class ApplicationGenerateContentParamsBase(TypedDict, total=False):
     inputs: Required[Iterable[Input]]
 
 
@@ -28,3 +33,24 @@ class Input(TypedDict, total=False):
     [here](https://dev.writer.com/api-guides/api-reference/file-api/upload-files)
     for the Files API.
     """
+
+
+class ApplicationGenerateContentParamsNonStreaming(ApplicationGenerateContentParamsBase, total=False):
+    stream: Literal[False]
+    """Indicates whether the response should be streamed.
+
+    Currently only supported for research assistant applications.
+    """
+
+
+class ApplicationGenerateContentParamsStreaming(ApplicationGenerateContentParamsBase):
+    stream: Required[Literal[True]]
+    """Indicates whether the response should be streamed.
+
+    Currently only supported for research assistant applications.
+    """
+
+
+ApplicationGenerateContentParams = Union[
+    ApplicationGenerateContentParamsNonStreaming, ApplicationGenerateContentParamsStreaming
+]
