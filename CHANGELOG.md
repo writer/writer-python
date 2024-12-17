@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.6.1 (2024-12-17)
+
+Full Changelog: [v1.6.0...v1.6.1](https://github.com/writer/writer-python/compare/v1.6.0...v1.6.1)
+
+### Chores
+
+* **internal:** codegen related update ([#140](https://github.com/writer/writer-python/issues/140)) ([ac0d81e](https://github.com/writer/writer-python/commit/ac0d81ec72fbdf2a9bd087645cb87cf2df2c222f))
+* **internal:** fix some typos ([#145](https://github.com/writer/writer-python/issues/145)) ([cb1be53](https://github.com/writer/writer-python/commit/cb1be5358ae7ca53c9c73af6d3e2934ebdfcf1c0))
+
 ## 1.6.0 (2024-12-16)
 
 Full Changelog: [v1.5.0...v1.6.0](https://github.com/writer/writer-python/compare/v1.5.0...v1.6.0)
