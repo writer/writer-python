@@ -3,58 +3,9 @@
 from typing import List, Optional
 
 from .._models import BaseModel
+from .shared.logprobs import Logprobs
 
-__all__ = [
-    "Completion",
-    "Choice",
-    "ChoiceLogProbs",
-    "ChoiceLogProbsContent",
-    "ChoiceLogProbsContentTopLogprob",
-    "ChoiceLogProbsRefusal",
-    "ChoiceLogProbsRefusalTopLogprob",
-]
-
-
-class ChoiceLogProbsContentTopLogprob(BaseModel):
-    token: str
-
-    logprob: float
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogProbsContent(BaseModel):
-    token: str
-
-    logprob: float
-
-    top_logprobs: List[ChoiceLogProbsContentTopLogprob]
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogProbsRefusalTopLogprob(BaseModel):
-    token: str
-
-    logprob: float
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogProbsRefusal(BaseModel):
-    token: str
-
-    logprob: float
-
-    top_logprobs: List[ChoiceLogProbsRefusalTopLogprob]
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogProbs(BaseModel):
-    content: Optional[List[ChoiceLogProbsContent]] = None
-
-    refusal: Optional[List[ChoiceLogProbsRefusal]] = None
+__all__ = ["Completion", "Choice"]
 
 
 class Choice(BaseModel):
@@ -64,7 +15,7 @@ class Choice(BaseModel):
     response.
     """
 
-    log_probs: Optional[ChoiceLogProbs] = None
+    log_probs: Optional[Logprobs] = None
 
 
 class Completion(BaseModel):

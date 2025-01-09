@@ -25,7 +25,7 @@ from .._response import (
 from .._streaming import Stream, AsyncStream
 from .._base_client import make_request_options
 from ..types.completion import Completion
-from ..types.streaming_data import StreamingData
+from ..types.completion_chunk import CompletionChunk
 
 __all__ = ["CompletionsResource", "AsyncCompletionsResource"]
 
@@ -130,7 +130,7 @@ class CompletionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Stream[StreamingData]:
+    ) -> Stream[CompletionChunk]:
         """
         Text generation
 
@@ -191,7 +191,7 @@ class CompletionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Completion | Stream[StreamingData]:
+    ) -> Completion | Stream[CompletionChunk]:
         """
         Text generation
 
@@ -252,7 +252,7 @@ class CompletionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Completion | Stream[StreamingData]:
+    ) -> Completion | Stream[CompletionChunk]:
         return self._post(
             "/v1/completions",
             body=maybe_transform(
@@ -274,7 +274,7 @@ class CompletionsResource(SyncAPIResource):
             ),
             cast_to=Completion,
             stream=stream or False,
-            stream_cls=Stream[StreamingData],
+            stream_cls=Stream[CompletionChunk],
         )
 
 
@@ -378,7 +378,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncStream[StreamingData]:
+    ) -> AsyncStream[CompletionChunk]:
         """
         Text generation
 
@@ -439,7 +439,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Completion | AsyncStream[StreamingData]:
+    ) -> Completion | AsyncStream[CompletionChunk]:
         """
         Text generation
 
@@ -500,7 +500,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Completion | AsyncStream[StreamingData]:
+    ) -> Completion | AsyncStream[CompletionChunk]:
         return await self._post(
             "/v1/completions",
             body=await async_maybe_transform(
@@ -522,7 +522,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
             ),
             cast_to=Completion,
             stream=stream or False,
-            stream_cls=AsyncStream[StreamingData],
+            stream_cls=AsyncStream[CompletionChunk],
         )
 
 

@@ -4,83 +4,13 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.logprobs import Logprobs
+from .shared.graph_data import GraphData
+from .chat_completion_usage import ChatCompletionUsage
+from .chat_completion_message import ChatCompletionMessage
+from .shared.tool_call_streaming import ToolCallStreaming
 
-__all__ = [
-    "ChatCompletionChunk",
-    "Choice",
-    "ChoiceDelta",
-    "ChoiceDeltaGraphData",
-    "ChoiceDeltaGraphDataSource",
-    "ChoiceDeltaGraphDataSubquery",
-    "ChoiceDeltaGraphDataSubquerySource",
-    "ChoiceDeltaToolCall",
-    "ChoiceDeltaToolCallFunction",
-    "ChoiceLogprobs",
-    "ChoiceLogprobsContent",
-    "ChoiceLogprobsContentTopLogprob",
-    "ChoiceLogprobsRefusal",
-    "ChoiceLogprobsRefusalTopLogprob",
-    "ChoiceMessage",
-    "ChoiceMessageGraphData",
-    "ChoiceMessageGraphDataSource",
-    "ChoiceMessageGraphDataSubquery",
-    "ChoiceMessageGraphDataSubquerySource",
-    "ChoiceMessageToolCall",
-    "ChoiceMessageToolCallFunction",
-    "Usage",
-    "UsageCompletionTokensDetails",
-    "UsagePromptTokenDetails",
-]
-
-
-class ChoiceDeltaGraphDataSource(BaseModel):
-    file_id: str
-    """The unique identifier of the file."""
-
-    snippet: str
-    """A snippet of text from the source file."""
-
-
-class ChoiceDeltaGraphDataSubquerySource(BaseModel):
-    file_id: str
-    """The unique identifier of the file."""
-
-    snippet: str
-    """A snippet of text from the source file."""
-
-
-class ChoiceDeltaGraphDataSubquery(BaseModel):
-    answer: str
-    """The answer to the subquery."""
-
-    query: str
-    """The subquery that was asked."""
-
-    sources: List[ChoiceDeltaGraphDataSubquerySource]
-
-
-class ChoiceDeltaGraphData(BaseModel):
-    sources: Optional[List[ChoiceDeltaGraphDataSource]] = None
-
-    status: Optional[Literal["processing", "finished"]] = None
-
-    subqueries: Optional[List[ChoiceDeltaGraphDataSubquery]] = None
-
-
-class ChoiceDeltaToolCallFunction(BaseModel):
-    arguments: str
-
-    name: str
-
-
-class ChoiceDeltaToolCall(BaseModel):
-    index: int
-
-    id: Optional[str] = None
-
-    function: Optional[ChoiceDeltaToolCallFunction] = None
-
-    type: Optional[str] = None
+__all__ = ["ChatCompletionChunk", "Choice", "ChoiceDelta"]
 
 
 class ChoiceDelta(BaseModel):
@@ -91,7 +21,7 @@ class ChoiceDelta(BaseModel):
     to the input query or command.
     """
 
-    graph_data: Optional[ChoiceDeltaGraphData] = None
+    graph_data: Optional[GraphData] = None
 
     refusal: Optional[str] = None
 
@@ -102,117 +32,7 @@ class ChoiceDelta(BaseModel):
     output within the interaction flow.
     """
 
-    tool_calls: Optional[List[ChoiceDeltaToolCall]] = None
-
-
-class ChoiceLogprobsContentTopLogprob(BaseModel):
-    token: str
-
-    logprob: float
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogprobsContent(BaseModel):
-    token: str
-
-    logprob: float
-
-    top_logprobs: List[ChoiceLogprobsContentTopLogprob]
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogprobsRefusalTopLogprob(BaseModel):
-    token: str
-
-    logprob: float
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogprobsRefusal(BaseModel):
-    token: str
-
-    logprob: float
-
-    top_logprobs: List[ChoiceLogprobsRefusalTopLogprob]
-
-    bytes: Optional[List[int]] = None
-
-
-class ChoiceLogprobs(BaseModel):
-    content: Optional[List[ChoiceLogprobsContent]] = None
-
-    refusal: Optional[List[ChoiceLogprobsRefusal]] = None
-
-
-class ChoiceMessageGraphDataSource(BaseModel):
-    file_id: str
-    """The unique identifier of the file."""
-
-    snippet: str
-    """A snippet of text from the source file."""
-
-
-class ChoiceMessageGraphDataSubquerySource(BaseModel):
-    file_id: str
-    """The unique identifier of the file."""
-
-    snippet: str
-    """A snippet of text from the source file."""
-
-
-class ChoiceMessageGraphDataSubquery(BaseModel):
-    answer: str
-    """The answer to the subquery."""
-
-    query: str
-    """The subquery that was asked."""
-
-    sources: List[ChoiceMessageGraphDataSubquerySource]
-
-
-class ChoiceMessageGraphData(BaseModel):
-    sources: Optional[List[ChoiceMessageGraphDataSource]] = None
-
-    status: Optional[Literal["processing", "finished"]] = None
-
-    subqueries: Optional[List[ChoiceMessageGraphDataSubquery]] = None
-
-
-class ChoiceMessageToolCallFunction(BaseModel):
-    arguments: str
-
-    name: str
-
-
-class ChoiceMessageToolCall(BaseModel):
-    id: str
-
-    function: ChoiceMessageToolCallFunction
-
-    type: str
-
-    index: Optional[int] = None
-
-
-class ChoiceMessage(BaseModel):
-    content: str
-    """The text content produced by the model.
-
-    This field contains the actual output generated, reflecting the model's response
-    to the input query or command.
-    """
-
-    refusal: Optional[str] = None
-
-    role: Literal["assistant"]
-    """Specifies the role associated with the content."""
-
-    graph_data: Optional[ChoiceMessageGraphData] = None
-
-    tool_calls: Optional[List[ChoiceMessageToolCall]] = None
+    tool_calls: Optional[List[ToolCallStreaming]] = None
 
 
 class Choice(BaseModel):
@@ -230,34 +50,14 @@ class Choice(BaseModel):
     index: int
     """The index of the choice in the list of completions generated by the model."""
 
-    logprobs: Optional[ChoiceLogprobs] = None
+    logprobs: Optional[Logprobs] = None
     """Log probability information for the choice."""
 
-    message: Optional[ChoiceMessage] = None
+    message: Optional[ChatCompletionMessage] = None
     """The chat completion message from the model.
 
     Note: this field is deprecated for streaming. Use `delta` instead.
     """
-
-
-class UsageCompletionTokensDetails(BaseModel):
-    reasoning_tokens: int
-
-
-class UsagePromptTokenDetails(BaseModel):
-    cached_tokens: int
-
-
-class Usage(BaseModel):
-    completion_tokens: int
-
-    prompt_tokens: int
-
-    total_tokens: int
-
-    completion_tokens_details: Optional[UsageCompletionTokensDetails] = None
-
-    prompt_token_details: Optional[UsagePromptTokenDetails] = None
 
 
 class ChatCompletionChunk(BaseModel):
@@ -294,7 +94,7 @@ class ChatCompletionChunk(BaseModel):
 
     system_fingerprint: Optional[str] = None
 
-    usage: Optional[Usage] = None
+    usage: Optional[ChatCompletionUsage] = None
     """Usage information for the chat completion response.
 
     Please note that at this time Knowledge Graph tool usage is not included in this
