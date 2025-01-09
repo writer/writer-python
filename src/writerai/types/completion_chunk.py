@@ -3,8 +3,8 @@
 
 from .._models import BaseModel
 
-__all__ = ["StreamingData"]
+__all__ = ["CompletionChunk"]
 
 
-class StreamingData(BaseModel):
+class CompletionChunk(BaseModel):
     value: str
