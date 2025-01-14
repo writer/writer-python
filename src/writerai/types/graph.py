@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -33,6 +34,12 @@ class Graph(BaseModel):
 
     name: str
     """The name of the graph."""
+
+    type: Literal["manual", "connector"]
+    """
+    The type of graph, either `manual` (files are uploaded via UI or API) or
+    `connector` (files are uploaded via a connector).
+    """
 
     description: Optional[str] = None
     """A description of the graph."""
