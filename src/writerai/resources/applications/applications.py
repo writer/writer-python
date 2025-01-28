@@ -7,30 +7,54 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..types import application_generate_content_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from .jobs import (
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
+)
+from .graphs import (
+    GraphsResource,
+    AsyncGraphsResource,
+    GraphsResourceWithRawResponse,
+    AsyncGraphsResourceWithRawResponse,
+    GraphsResourceWithStreamingResponse,
+    AsyncGraphsResourceWithStreamingResponse,
+)
+from ...types import application_generate_content_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     required_args,
     maybe_transform,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._streaming import Stream, AsyncStream
-from .._base_client import make_request_options
-from ..types.application_generate_content_chunk import ApplicationGenerateContentChunk
-from ..types.application_generate_content_response import ApplicationGenerateContentResponse
+from ..._streaming import Stream, AsyncStream
+from ..._base_client import make_request_options
+from ...types.application_generate_content_chunk import ApplicationGenerateContentChunk
+from ...types.application_generate_content_response import ApplicationGenerateContentResponse
 
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
 
 class ApplicationsResource(SyncAPIResource):
+    @cached_property
+    def jobs(self) -> JobsResource:
+        return JobsResource(self._client)
+
+    @cached_property
+    def graphs(self) -> GraphsResource:
+        return GraphsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
         """
@@ -178,6 +202,14 @@ class ApplicationsResource(SyncAPIResource):
 
 
 class AsyncApplicationsResource(AsyncAPIResource):
+    @cached_property
+    def jobs(self) -> AsyncJobsResource:
+        return AsyncJobsResource(self._client)
+
+    @cached_property
+    def graphs(self) -> AsyncGraphsResource:
+        return AsyncGraphsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
         """
@@ -332,6 +364,14 @@ class ApplicationsResourceWithRawResponse:
             applications.generate_content,
         )
 
+    @cached_property
+    def jobs(self) -> JobsResourceWithRawResponse:
+        return JobsResourceWithRawResponse(self._applications.jobs)
+
+    @cached_property
+    def graphs(self) -> GraphsResourceWithRawResponse:
+        return GraphsResourceWithRawResponse(self._applications.graphs)
+
 
 class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -340,6 +380,14 @@ class AsyncApplicationsResourceWithRawResponse:
         self.generate_content = async_to_raw_response_wrapper(
             applications.generate_content,
         )
+
+    @cached_property
+    def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        return AsyncJobsResourceWithRawResponse(self._applications.jobs)
+
+    @cached_property
+    def graphs(self) -> AsyncGraphsResourceWithRawResponse:
+        return AsyncGraphsResourceWithRawResponse(self._applications.graphs)
 
 
 class ApplicationsResourceWithStreamingResponse:
@@ -350,6 +398,14 @@ class ApplicationsResourceWithStreamingResponse:
             applications.generate_content,
         )
 
+    @cached_property
+    def jobs(self) -> JobsResourceWithStreamingResponse:
+        return JobsResourceWithStreamingResponse(self._applications.jobs)
+
+    @cached_property
+    def graphs(self) -> GraphsResourceWithStreamingResponse:
+        return GraphsResourceWithStreamingResponse(self._applications.graphs)
+
 
 class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -358,3 +414,11 @@ class AsyncApplicationsResourceWithStreamingResponse:
         self.generate_content = async_to_streamed_response_wrapper(
             applications.generate_content,
         )
+
+    @cached_property
+    def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        return AsyncJobsResourceWithStreamingResponse(self._applications.jobs)
+
+    @cached_property
+    def graphs(self) -> AsyncGraphsResourceWithStreamingResponse:
+        return AsyncGraphsResourceWithStreamingResponse(self._applications.graphs)
