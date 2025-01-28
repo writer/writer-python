@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import chat, files, graphs, models, completions, applications
+from .resources import chat, files, graphs, models, completions
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import WriterError, APIStatusError
 from ._base_client import (
@@ -33,6 +33,7 @@ from ._base_client import (
     AsyncAPIClient,
 )
 from .resources.tools import tools
+from .resources.applications import applications
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Writer", "AsyncWriter", "Client", "AsyncClient"]
 
