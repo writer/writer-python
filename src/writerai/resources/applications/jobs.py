@@ -23,10 +23,9 @@ from ..._response import (
 from ...pagination import SyncApplicationJobsOffset, AsyncApplicationJobsOffset
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.applications import job_list_params, job_create_params
-from ...types.applications.job_list_response import JobListResponse
 from ...types.applications.job_retry_response import JobRetryResponse
 from ...types.applications.job_create_response import JobCreateResponse
-from ...types.applications.job_retrieve_response import JobRetrieveResponse
+from ...types.applications.application_generate_async_response import ApplicationGenerateAsyncResponse
 
 __all__ = ["JobsResource", "AsyncJobsResource"]
 
@@ -98,7 +97,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobRetrieveResponse:
+    ) -> ApplicationGenerateAsyncResponse:
         """
         Retrieves a single job created via the Async API.
 
@@ -118,7 +117,7 @@ class JobsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=JobRetrieveResponse,
+            cast_to=ApplicationGenerateAsyncResponse,
         )
 
     def list(
@@ -134,7 +133,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncApplicationJobsOffset[JobListResponse]:
+    ) -> SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse]:
         """
         Retrieve all jobs created via the async API, linked to the provided application
         ID (or alias).
@@ -158,7 +157,7 @@ class JobsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
         return self._get_api_list(
             f"/v1/applications/{application_id}/jobs",
-            page=SyncApplicationJobsOffset[JobListResponse],
+            page=SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,7 +172,7 @@ class JobsResource(SyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            model=JobListResponse,
+            model=ApplicationGenerateAsyncResponse,
         )
 
     def retry(
@@ -278,7 +277,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobRetrieveResponse:
+    ) -> ApplicationGenerateAsyncResponse:
         """
         Retrieves a single job created via the Async API.
 
@@ -298,7 +297,7 @@ class AsyncJobsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=JobRetrieveResponse,
+            cast_to=ApplicationGenerateAsyncResponse,
         )
 
     def list(
@@ -314,7 +313,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[JobListResponse, AsyncApplicationJobsOffset[JobListResponse]]:
+    ) -> AsyncPaginator[ApplicationGenerateAsyncResponse, AsyncApplicationJobsOffset[ApplicationGenerateAsyncResponse]]:
         """
         Retrieve all jobs created via the async API, linked to the provided application
         ID (or alias).
@@ -338,7 +337,7 @@ class AsyncJobsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
         return self._get_api_list(
             f"/v1/applications/{application_id}/jobs",
-            page=AsyncApplicationJobsOffset[JobListResponse],
+            page=AsyncApplicationJobsOffset[ApplicationGenerateAsyncResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -353,7 +352,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            model=JobListResponse,
+            model=ApplicationGenerateAsyncResponse,
         )
 
     async def retry(
