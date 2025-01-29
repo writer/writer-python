@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -9,11 +9,14 @@ __all__ = ["JobRetryResponse"]
 
 
 class JobRetryResponse(BaseModel):
-    id: str
+    job_id: str
     """The unique identifier for the async job created."""
 
-    created_at: datetime
+    application_id: Optional[str] = None
+    """The ID of the application associated with this job."""
+
+    created_at: Optional[datetime] = None
     """The timestamp when the job was created."""
 
-    status: Literal["in_progress", "failed", "completed"]
-    """The status of the job."""
+    status: Optional[str] = None
+    """The initial status of the job (e.g., 'queued')."""

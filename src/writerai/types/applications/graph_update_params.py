@@ -10,8 +10,4 @@ __all__ = ["GraphUpdateParams"]
 
 class GraphUpdateParams(TypedDict, total=False):
     graph_ids: Required[List[str]]
-    """A list of graph IDs to associate with the application.
-
-    Note that this will replace the existing list of graphs associated with the
-    application, not add to it.
-    """
+    """A list of graph IDs to associate with the application."""
