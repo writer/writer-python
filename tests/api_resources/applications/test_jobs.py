@@ -11,10 +11,9 @@ from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
 from writerai.pagination import SyncApplicationJobsOffset, AsyncApplicationJobsOffset
 from writerai.types.applications import (
-    JobListResponse,
     JobRetryResponse,
     JobCreateResponse,
-    JobRetrieveResponse,
+    ApplicationGenerateAsyncResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -90,7 +89,7 @@ class TestJobs:
         job = client.applications.jobs.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(JobRetrieveResponse, job, path=["response"])
+        assert_matches_type(ApplicationGenerateAsyncResponse, job, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Writer) -> None:
@@ -101,7 +100,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(JobRetrieveResponse, job, path=["response"])
+        assert_matches_type(ApplicationGenerateAsyncResponse, job, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Writer) -> None:
@@ -112,7 +111,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(JobRetrieveResponse, job, path=["response"])
+            assert_matches_type(ApplicationGenerateAsyncResponse, job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -128,7 +127,7 @@ class TestJobs:
         job = client.applications.jobs.list(
             application_id="application_id",
         )
-        assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Writer) -> None:
@@ -138,7 +137,7 @@ class TestJobs:
             offset=0,
             status="in_progress",
         )
-        assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Writer) -> None:
@@ -149,7 +148,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Writer) -> None:
@@ -160,7 +159,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+            assert_matches_type(SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -280,7 +279,7 @@ class TestAsyncJobs:
         job = await async_client.applications.jobs.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(JobRetrieveResponse, job, path=["response"])
+        assert_matches_type(ApplicationGenerateAsyncResponse, job, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncWriter) -> None:
@@ -291,7 +290,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(JobRetrieveResponse, job, path=["response"])
+        assert_matches_type(ApplicationGenerateAsyncResponse, job, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncWriter) -> None:
@@ -302,7 +301,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(JobRetrieveResponse, job, path=["response"])
+            assert_matches_type(ApplicationGenerateAsyncResponse, job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +317,7 @@ class TestAsyncJobs:
         job = await async_client.applications.jobs.list(
             application_id="application_id",
         )
-        assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(AsyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncWriter) -> None:
@@ -328,7 +327,7 @@ class TestAsyncJobs:
             offset=0,
             status="in_progress",
         )
-        assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(AsyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncWriter) -> None:
@@ -339,7 +338,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(AsyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncWriter) -> None:
@@ -350,7 +349,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+            assert_matches_type(AsyncApplicationJobsOffset[ApplicationGenerateAsyncResponse], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
