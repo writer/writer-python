@@ -9,8 +9,6 @@ import pytest
 
 from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
-from writerai._utils import parse_datetime
-from writerai.pagination import SyncApplicationJobsOffset, AsyncApplicationJobsOffset
 from writerai.types.applications import (
     JobListResponse,
     JobRetryResponse,
@@ -28,21 +26,12 @@ class TestJobs:
     def test_method_create(self, client: Writer) -> None:
         job = client.applications.jobs.create(
             application_id="application_id",
-            inputs=[{}],
-        )
-        assert_matches_type(JobCreateResponse, job, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Writer) -> None:
-        job = client.applications.jobs.create(
-            application_id="application_id",
             inputs=[
                 {
-                    "content": "content",
-                    "input_id": "input_id",
+                    "id": "id",
+                    "value": ["string"],
                 }
             ],
-            metadata={"foo": "string"},
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
@@ -50,7 +39,12 @@ class TestJobs:
     def test_raw_response_create(self, client: Writer) -> None:
         response = client.applications.jobs.with_raw_response.create(
             application_id="application_id",
-            inputs=[{}],
+            inputs=[
+                {
+                    "id": "id",
+                    "value": ["string"],
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -62,7 +56,12 @@ class TestJobs:
     def test_streaming_response_create(self, client: Writer) -> None:
         with client.applications.jobs.with_streaming_response.create(
             application_id="application_id",
-            inputs=[{}],
+            inputs=[
+                {
+                    "id": "id",
+                    "value": ["string"],
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -77,7 +76,12 @@ class TestJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `application_id` but received ''"):
             client.applications.jobs.with_raw_response.create(
                 application_id="",
-                inputs=[{}],
+                inputs=[
+                    {
+                        "id": "id",
+                        "value": ["string"],
+                    }
+                ],
             )
 
     @parametrize
@@ -123,7 +127,7 @@ class TestJobs:
         job = client.applications.jobs.list(
             application_id="application_id",
         )
-        assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(JobListResponse, job, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Writer) -> None:
@@ -131,19 +135,9 @@ class TestJobs:
             application_id="application_id",
             limit=0,
             offset=0,
-            status={
-                "jobs": [
-                    {
-                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        "job_id": "job_id",
-                        "result": "result",
-                        "status": "status",
-                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    }
-                ]
-            },
+            status="in_progress",
         )
-        assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(JobListResponse, job, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Writer) -> None:
@@ -154,7 +148,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(JobListResponse, job, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Writer) -> None:
@@ -165,7 +159,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(SyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+            assert_matches_type(JobListResponse, job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -222,21 +216,12 @@ class TestAsyncJobs:
     async def test_method_create(self, async_client: AsyncWriter) -> None:
         job = await async_client.applications.jobs.create(
             application_id="application_id",
-            inputs=[{}],
-        )
-        assert_matches_type(JobCreateResponse, job, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncWriter) -> None:
-        job = await async_client.applications.jobs.create(
-            application_id="application_id",
             inputs=[
                 {
-                    "content": "content",
-                    "input_id": "input_id",
+                    "id": "id",
+                    "value": ["string"],
                 }
             ],
-            metadata={"foo": "string"},
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
@@ -244,7 +229,12 @@ class TestAsyncJobs:
     async def test_raw_response_create(self, async_client: AsyncWriter) -> None:
         response = await async_client.applications.jobs.with_raw_response.create(
             application_id="application_id",
-            inputs=[{}],
+            inputs=[
+                {
+                    "id": "id",
+                    "value": ["string"],
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -256,7 +246,12 @@ class TestAsyncJobs:
     async def test_streaming_response_create(self, async_client: AsyncWriter) -> None:
         async with async_client.applications.jobs.with_streaming_response.create(
             application_id="application_id",
-            inputs=[{}],
+            inputs=[
+                {
+                    "id": "id",
+                    "value": ["string"],
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -271,7 +266,12 @@ class TestAsyncJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `application_id` but received ''"):
             await async_client.applications.jobs.with_raw_response.create(
                 application_id="",
-                inputs=[{}],
+                inputs=[
+                    {
+                        "id": "id",
+                        "value": ["string"],
+                    }
+                ],
             )
 
     @parametrize
@@ -317,7 +317,7 @@ class TestAsyncJobs:
         job = await async_client.applications.jobs.list(
             application_id="application_id",
         )
-        assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(JobListResponse, job, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncWriter) -> None:
@@ -325,19 +325,9 @@ class TestAsyncJobs:
             application_id="application_id",
             limit=0,
             offset=0,
-            status={
-                "jobs": [
-                    {
-                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        "job_id": "job_id",
-                        "result": "result",
-                        "status": "status",
-                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    }
-                ]
-            },
+            status="in_progress",
         )
-        assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(JobListResponse, job, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncWriter) -> None:
@@ -348,7 +338,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+        assert_matches_type(JobListResponse, job, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncWriter) -> None:
@@ -359,7 +349,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(AsyncApplicationJobsOffset[JobListResponse], job, path=["response"])
+            assert_matches_type(JobListResponse, job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
