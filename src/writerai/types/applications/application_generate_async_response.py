@@ -7,10 +7,10 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from ..application_generate_content_response import ApplicationGenerateContentResponse
 
-__all__ = ["JobListResponse"]
+__all__ = ["ApplicationGenerateAsyncResponse"]
 
 
-class JobListResponse(BaseModel):
+class ApplicationGenerateAsyncResponse(BaseModel):
     id: str
     """The unique identifier for the job."""
 
