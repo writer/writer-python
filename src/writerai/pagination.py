@@ -86,14 +86,14 @@ class AsyncCursorPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
 
 class SyncApplicationJobsOffset(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    jobs: List[_T]
+    result: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        jobs = self.jobs
-        if not jobs:
+        result = self.result
+        if not result:
             return []
-        return jobs
+        return result
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
@@ -108,14 +108,14 @@ class SyncApplicationJobsOffset(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
 
 class AsyncApplicationJobsOffset(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    jobs: List[_T]
+    result: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        jobs = self.jobs
-        if not jobs:
+        result = self.result
+        if not result:
             return []
-        return jobs
+        return result
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:

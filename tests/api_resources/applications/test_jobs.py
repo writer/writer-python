@@ -9,6 +9,7 @@ import pytest
 
 from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
+from writerai._utils import parse_datetime
 from writerai.types.applications import (
     JobListResponse,
     JobRetryResponse,
@@ -26,12 +27,21 @@ class TestJobs:
     def test_method_create(self, client: Writer) -> None:
         job = client.applications.jobs.create(
             application_id="application_id",
+            inputs=[{}],
+        )
+        assert_matches_type(JobCreateResponse, job, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Writer) -> None:
+        job = client.applications.jobs.create(
+            application_id="application_id",
             inputs=[
                 {
-                    "id": "id",
-                    "value": ["string"],
+                    "content": "content",
+                    "input_id": "input_id",
                 }
             ],
+            metadata={"foo": "string"},
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
@@ -39,12 +49,7 @@ class TestJobs:
     def test_raw_response_create(self, client: Writer) -> None:
         response = client.applications.jobs.with_raw_response.create(
             application_id="application_id",
-            inputs=[
-                {
-                    "id": "id",
-                    "value": ["string"],
-                }
-            ],
+            inputs=[{}],
         )
 
         assert response.is_closed is True
@@ -56,12 +61,7 @@ class TestJobs:
     def test_streaming_response_create(self, client: Writer) -> None:
         with client.applications.jobs.with_streaming_response.create(
             application_id="application_id",
-            inputs=[
-                {
-                    "id": "id",
-                    "value": ["string"],
-                }
-            ],
+            inputs=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,12 +76,7 @@ class TestJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `application_id` but received ''"):
             client.applications.jobs.with_raw_response.create(
                 application_id="",
-                inputs=[
-                    {
-                        "id": "id",
-                        "value": ["string"],
-                    }
-                ],
+                inputs=[{}],
             )
 
     @parametrize
@@ -135,7 +130,17 @@ class TestJobs:
             application_id="application_id",
             limit=0,
             offset=0,
-            status="in_progress",
+            status={
+                "jobs": [
+                    {
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "job_id": "job_id",
+                        "result": "result",
+                        "status": "status",
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    }
+                ]
+            },
         )
         assert_matches_type(JobListResponse, job, path=["response"])
 
@@ -216,12 +221,21 @@ class TestAsyncJobs:
     async def test_method_create(self, async_client: AsyncWriter) -> None:
         job = await async_client.applications.jobs.create(
             application_id="application_id",
+            inputs=[{}],
+        )
+        assert_matches_type(JobCreateResponse, job, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncWriter) -> None:
+        job = await async_client.applications.jobs.create(
+            application_id="application_id",
             inputs=[
                 {
-                    "id": "id",
-                    "value": ["string"],
+                    "content": "content",
+                    "input_id": "input_id",
                 }
             ],
+            metadata={"foo": "string"},
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
@@ -229,12 +243,7 @@ class TestAsyncJobs:
     async def test_raw_response_create(self, async_client: AsyncWriter) -> None:
         response = await async_client.applications.jobs.with_raw_response.create(
             application_id="application_id",
-            inputs=[
-                {
-                    "id": "id",
-                    "value": ["string"],
-                }
-            ],
+            inputs=[{}],
         )
 
         assert response.is_closed is True
@@ -246,12 +255,7 @@ class TestAsyncJobs:
     async def test_streaming_response_create(self, async_client: AsyncWriter) -> None:
         async with async_client.applications.jobs.with_streaming_response.create(
             application_id="application_id",
-            inputs=[
-                {
-                    "id": "id",
-                    "value": ["string"],
-                }
-            ],
+            inputs=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -266,12 +270,7 @@ class TestAsyncJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `application_id` but received ''"):
             await async_client.applications.jobs.with_raw_response.create(
                 application_id="",
-                inputs=[
-                    {
-                        "id": "id",
-                        "value": ["string"],
-                    }
-                ],
+                inputs=[{}],
             )
 
     @parametrize
@@ -325,7 +324,17 @@ class TestAsyncJobs:
             application_id="application_id",
             limit=0,
             offset=0,
-            status="in_progress",
+            status={
+                "jobs": [
+                    {
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "job_id": "job_id",
+                        "result": "result",
+                        "status": "status",
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    }
+                ]
+            },
         )
         assert_matches_type(JobListResponse, job, path=["response"])
 

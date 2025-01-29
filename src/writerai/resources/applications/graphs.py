@@ -59,13 +59,10 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Updates the graphs listed and associates them with the no-code chat app to be
-        used.
+        Associate graphs with a no-code chat application via API.
 
         Args:
-          graph_ids: A list of graph IDs to associate with the application. Note that this will
-              replace the existing list of graphs associated with the application, not add to
-              it.
+          graph_ids: A list of graph IDs to associate with the application.
 
           extra_headers: Send extra headers
 
@@ -153,13 +150,10 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Updates the graphs listed and associates them with the no-code chat app to be
-        used.
+        Associate graphs with a no-code chat application via API.
 
         Args:
-          graph_ids: A list of graph IDs to associate with the application. Note that this will
-              replace the existing list of graphs associated with the application, not add to
-              it.
+          graph_ids: A list of graph IDs to associate with the application.
 
           extra_headers: Send extra headers
 
