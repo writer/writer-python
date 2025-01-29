@@ -2,17 +2,40 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing import Union, Iterable
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
-__all__ = ["JobListParams"]
+from ..._utils import PropertyInfo
+
+__all__ = ["JobListParams", "Status", "StatusJob"]
 
 
 class JobListParams(TypedDict, total=False):
     limit: int
-    """The pagination limit for retrieving the jobs."""
 
     offset: int
-    """The pagination offset for retrieving the jobs."""
 
-    status: Literal["in_progress", "failed", "completed"]
-    """The status of the job."""
+    status: Status
+
+
+class StatusJob(TypedDict, total=False):
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The timestamp when the job was created."""
+
+    job_id: str
+    """The unique identifier for the job."""
+
+    result: str
+    """The result of the completed job, if applicable."""
+
+    status: str
+    """The current status of the job."""
+
+    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The timestamp when the job was last updated."""
+
+
+class Status(TypedDict, total=False):
+    jobs: Required[Iterable[StatusJob]]
+    """A list of jobs associated with the application."""
