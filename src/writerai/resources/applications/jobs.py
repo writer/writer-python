@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -19,7 +20,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncApplicationJobsOffset, AsyncApplicationJobsOffset
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.applications import job_list_params, job_create_params
 from ...types.applications.job_list_response import JobListResponse
 from ...types.applications.job_retry_response import JobRetryResponse
@@ -54,7 +56,6 @@ class JobsResource(SyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[job_create_params.Input],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,8 +69,6 @@ class JobsResource(SyncAPIResource):
         Args:
           inputs: A list of input objects to generate content for.
 
-          metadata: Optional metadata for the generation request.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -82,13 +81,7 @@ class JobsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
         return self._post(
             f"/v1/applications/{application_id}/jobs",
-            body=maybe_transform(
-                {
-                    "inputs": inputs,
-                    "metadata": metadata,
-                },
-                job_create_params.JobCreateParams,
-            ),
+            body=maybe_transform({"inputs": inputs}, job_create_params.JobCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -134,19 +127,25 @@ class JobsResource(SyncAPIResource):
         *,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        status: job_list_params.Status | NotGiven = NOT_GIVEN,
+        status: Literal["in_progress", "failed", "completed"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobListResponse:
+    ) -> SyncApplicationJobsOffset[JobListResponse]:
         """
         Retrieve all jobs created via the async API, linked to the provided application
         ID (or alias).
 
         Args:
+          limit: The pagination limit for retrieving the jobs.
+
+          offset: The pagination offset for retrieving the jobs.
+
+          status: The status of the job.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -157,8 +156,9 @@ class JobsResource(SyncAPIResource):
         """
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/v1/applications/{application_id}/jobs",
+            page=SyncApplicationJobsOffset[JobListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,7 +173,7 @@ class JobsResource(SyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            cast_to=JobListResponse,
+            model=JobListResponse,
         )
 
     def retry(
@@ -236,7 +236,6 @@ class AsyncJobsResource(AsyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[job_create_params.Input],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,8 +249,6 @@ class AsyncJobsResource(AsyncAPIResource):
         Args:
           inputs: A list of input objects to generate content for.
 
-          metadata: Optional metadata for the generation request.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -264,13 +261,7 @@ class AsyncJobsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
         return await self._post(
             f"/v1/applications/{application_id}/jobs",
-            body=await async_maybe_transform(
-                {
-                    "inputs": inputs,
-                    "metadata": metadata,
-                },
-                job_create_params.JobCreateParams,
-            ),
+            body=await async_maybe_transform({"inputs": inputs}, job_create_params.JobCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -310,25 +301,31 @@ class AsyncJobsResource(AsyncAPIResource):
             cast_to=JobRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         application_id: str,
         *,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        status: job_list_params.Status | NotGiven = NOT_GIVEN,
+        status: Literal["in_progress", "failed", "completed"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobListResponse:
+    ) -> AsyncPaginator[JobListResponse, AsyncApplicationJobsOffset[JobListResponse]]:
         """
         Retrieve all jobs created via the async API, linked to the provided application
         ID (or alias).
 
         Args:
+          limit: The pagination limit for retrieving the jobs.
+
+          offset: The pagination offset for retrieving the jobs.
+
+          status: The status of the job.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -339,14 +336,15 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/v1/applications/{application_id}/jobs",
+            page=AsyncApplicationJobsOffset[JobListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -355,7 +353,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            cast_to=JobListResponse,
+            model=JobListResponse,
         )
 
     async def retry(
