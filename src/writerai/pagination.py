@@ -3,9 +3,18 @@
 from typing import Any, List, Generic, TypeVar, Optional, cast
 from typing_extensions import Protocol, override, runtime_checkable
 
+from pydantic import Field as FieldInfo
+
+from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
-__all__ = ["SyncCursorPage", "AsyncCursorPage", "SyncApplicationJobsOffset", "AsyncApplicationJobsOffset"]
+__all__ = [
+    "SyncCursorPage",
+    "AsyncCursorPage",
+    "ApplicationJobsOffsetPagination",
+    "SyncApplicationJobsOffset",
+    "AsyncApplicationJobsOffset",
+]
 
 _T = TypeVar("_T")
 
@@ -85,8 +94,16 @@ class AsyncCursorPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return PageInfo(params={"before": item.id})
 
 
+class ApplicationJobsOffsetPagination(BaseModel):
+    limit: Optional[int] = None
+
+    offset: Optional[int] = None
+
+
 class SyncApplicationJobsOffset(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
+    total_count: Optional[int] = FieldInfo(alias="totalCount", default=None)
+    pagination: Optional[ApplicationJobsOffsetPagination] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -104,11 +121,20 @@ class SyncApplicationJobsOffset(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         length = len(self._get_page_items())
         current_count = offset + length
 
-        return PageInfo(params={"offset": current_count})
+        total_count = self.total_count
+        if total_count is None:
+            return None
+
+        if current_count < total_count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
 
 
 class AsyncApplicationJobsOffset(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
+    total_count: Optional[int] = FieldInfo(alias="totalCount", default=None)
+    pagination: Optional[ApplicationJobsOffsetPagination] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -126,4 +152,11 @@ class AsyncApplicationJobsOffset(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         length = len(self._get_page_items())
         current_count = offset + length
 
-        return PageInfo(params={"offset": current_count})
+        total_count = self.total_count
+        if total_count is None:
+            return None
+
+        if current_count < total_count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
