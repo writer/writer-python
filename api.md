@@ -23,11 +23,18 @@ from writerai.types import (
 Types:
 
 ```python
-from writerai.types import ApplicationGenerateContentChunk, ApplicationGenerateContentResponse
+from writerai.types import (
+    ApplicationGenerateContentChunk,
+    ApplicationGenerateContentResponse,
+    ApplicationRetrieveResponse,
+    ApplicationListResponse,
+)
 ```
 
 Methods:
 
+- <code title="get /v1/applications/{application_id}">client.applications.<a href="./src/writerai/resources/applications/applications.py">retrieve</a>(application_id) -> <a href="./src/writerai/types/application_retrieve_response.py">ApplicationRetrieveResponse</a></code>
+- <code title="get /v1/applications">client.applications.<a href="./src/writerai/resources/applications/applications.py">list</a>(\*\*<a href="src/writerai/types/application_list_params.py">params</a>) -> <a href="./src/writerai/types/application_list_response.py">SyncCursorPage[ApplicationListResponse]</a></code>
 - <code title="post /v1/applications/{application_id}">client.applications.<a href="./src/writerai/resources/applications/applications.py">generate_content</a>(application_id, \*\*<a href="src/writerai/types/application_generate_content_params.py">params</a>) -> <a href="./src/writerai/types/application_generate_content_response.py">ApplicationGenerateContentResponse</a></code>
 
 ## Jobs

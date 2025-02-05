@@ -23,7 +23,7 @@ from .graphs import (
     GraphsResourceWithStreamingResponse,
     AsyncGraphsResourceWithStreamingResponse,
 )
-from ...types import application_generate_content_params
+from ...types import application_list_params, application_generate_content_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -39,7 +39,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._streaming import Stream, AsyncStream
-from ..._base_client import make_request_options
+from ...pagination import SyncCursorPage, AsyncCursorPage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.application_list_response import ApplicationListResponse
+from ...types.application_retrieve_response import ApplicationRetrieveResponse
 from ...types.application_generate_content_chunk import ApplicationGenerateContentChunk
 from ...types.application_generate_content_response import ApplicationGenerateContentResponse
 
@@ -73,6 +76,100 @@ class ApplicationsResource(SyncAPIResource):
         For more information, see https://www.github.com/writer/writer-python#with_streaming_response
         """
         return ApplicationsResourceWithStreamingResponse(self)
+
+    def retrieve(
+        self,
+        application_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ApplicationRetrieveResponse:
+        """
+        Retrieves detailed information for a specific no-code application, including its
+        configuration and current status.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not application_id:
+            raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
+        return self._get(
+            f"/v1/applications/{application_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ApplicationRetrieveResponse,
+        )
+
+    def list(
+        self,
+        *,
+        after: str | NotGiven = NOT_GIVEN,
+        before: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        type: Literal["generation"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncCursorPage[ApplicationListResponse]:
+        """
+        Retrieves a paginated list of no-code applications with optional filtering and
+        sorting capabilities.
+
+        Args:
+          after: Return results after this application ID for pagination.
+
+          before: Return results before this application ID for pagination.
+
+          limit: Maximum number of applications to return in the response.
+
+          order: Sort order for the results based on creation time.
+
+          type: Filter applications by their type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/v1/applications",
+            page=SyncCursorPage[ApplicationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                        "order": order,
+                        "type": type,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
+            ),
+            model=ApplicationListResponse,
+        )
 
     @overload
     def generate_content(
@@ -229,6 +326,100 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         return AsyncApplicationsResourceWithStreamingResponse(self)
 
+    async def retrieve(
+        self,
+        application_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ApplicationRetrieveResponse:
+        """
+        Retrieves detailed information for a specific no-code application, including its
+        configuration and current status.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not application_id:
+            raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
+        return await self._get(
+            f"/v1/applications/{application_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ApplicationRetrieveResponse,
+        )
+
+    def list(
+        self,
+        *,
+        after: str | NotGiven = NOT_GIVEN,
+        before: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        type: Literal["generation"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncCursorPage[ApplicationListResponse]]:
+        """
+        Retrieves a paginated list of no-code applications with optional filtering and
+        sorting capabilities.
+
+        Args:
+          after: Return results after this application ID for pagination.
+
+          before: Return results before this application ID for pagination.
+
+          limit: Maximum number of applications to return in the response.
+
+          order: Sort order for the results based on creation time.
+
+          type: Filter applications by their type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/v1/applications",
+            page=AsyncCursorPage[ApplicationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                        "order": order,
+                        "type": type,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
+            ),
+            model=ApplicationListResponse,
+        )
+
     @overload
     async def generate_content(
         self,
@@ -360,6 +551,12 @@ class ApplicationsResourceWithRawResponse:
     def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
 
+        self.retrieve = to_raw_response_wrapper(
+            applications.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            applications.list,
+        )
         self.generate_content = to_raw_response_wrapper(
             applications.generate_content,
         )
@@ -377,6 +574,12 @@ class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
 
+        self.retrieve = async_to_raw_response_wrapper(
+            applications.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            applications.list,
+        )
         self.generate_content = async_to_raw_response_wrapper(
             applications.generate_content,
         )
@@ -394,6 +597,12 @@ class ApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
 
+        self.retrieve = to_streamed_response_wrapper(
+            applications.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            applications.list,
+        )
         self.generate_content = to_streamed_response_wrapper(
             applications.generate_content,
         )
@@ -411,6 +620,12 @@ class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
 
+        self.retrieve = async_to_streamed_response_wrapper(
+            applications.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            applications.list,
+        )
         self.generate_content = async_to_streamed_response_wrapper(
             applications.generate_content,
         )
