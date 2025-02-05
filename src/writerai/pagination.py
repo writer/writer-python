@@ -114,9 +114,12 @@ class SyncApplicationJobsOffset(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        offset = self._options.params.get("offset") or 0
-        if not isinstance(offset, int):
-            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+        offset = None
+        if self.pagination is not None:
+            if self.pagination.offset is not None:
+                offset = self.pagination.offset
+        if offset is None:
+            return None
 
         length = len(self._get_page_items())
         current_count = offset + length
@@ -145,9 +148,12 @@ class AsyncApplicationJobsOffset(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        offset = self._options.params.get("offset") or 0
-        if not isinstance(offset, int):
-            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+        offset = None
+        if self.pagination is not None:
+            if self.pagination.offset is not None:
+                offset = self.pagination.offset
+        if offset is None:
+            return None
 
         length = len(self._get_page_items())
         current_count = offset + length
