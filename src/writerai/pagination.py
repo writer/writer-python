@@ -36,6 +36,11 @@ class SyncCursorPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         return data
 
     @override
+    def has_next_page(self) -> bool:
+        has_more = self.has_more
+        return has_more and super().has_next_page()
+
+    @override
     def next_page_info(self) -> Optional[PageInfo]:
         is_forwards = not self._options.params.get("before", False)
 
@@ -69,6 +74,11 @@ class AsyncCursorPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         if not data:
             return []
         return data
+
+    @override
+    def has_next_page(self) -> bool:
+        has_more = self.has_more
+        return has_more and super().has_next_page()
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
