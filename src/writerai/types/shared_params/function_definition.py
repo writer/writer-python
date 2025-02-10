@@ -11,9 +11,10 @@ __all__ = ["FunctionDefinition"]
 
 class FunctionDefinition(TypedDict, total=False):
     name: Required[str]
-    """Name of the function"""
+    """Name of the function."""
 
     description: str
-    """Description of the function"""
+    """Description of the function."""
 
     parameters: FunctionParams
+    """The parameters of the function."""
