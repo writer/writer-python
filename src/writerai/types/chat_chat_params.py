@@ -78,8 +78,8 @@ class ChatChatParamsBase(TypedDict, total=False):
     tools: Iterable[ToolParam]
     """
     An array of tools described to the model using JSON schema that the model can
-    use to generate responses. Passing graph IDs will automatically use the
-    Knowledge Graph tool.
+    use to generate responses. You can define your own functions or use the built-in
+    `graph` or `llm` tools.
     """
 
     top_p: float

@@ -10,9 +10,10 @@ __all__ = ["FunctionDefinition"]
 
 class FunctionDefinition(BaseModel):
     name: str
-    """Name of the function"""
+    """Name of the function."""
 
     description: Optional[str] = None
-    """Description of the function"""
+    """Description of the function."""
 
     parameters: Optional[FunctionParams] = None
+    """The parameters of the function."""

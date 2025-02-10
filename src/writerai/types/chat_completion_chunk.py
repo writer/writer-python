@@ -10,7 +10,15 @@ from .chat_completion_usage import ChatCompletionUsage
 from .chat_completion_message import ChatCompletionMessage
 from .shared.tool_call_streaming import ToolCallStreaming
 
-__all__ = ["ChatCompletionChunk", "Choice", "ChoiceDelta"]
+__all__ = ["ChatCompletionChunk", "Choice", "ChoiceDelta", "ChoiceDeltaLlmData"]
+
+
+class ChoiceDeltaLlmData(BaseModel):
+    model: str
+    """The model used by the tool."""
+
+    prompt: str
+    """The prompt processed by the model."""
 
 
 class ChoiceDelta(BaseModel):
@@ -22,6 +30,8 @@ class ChoiceDelta(BaseModel):
     """
 
     graph_data: Optional[GraphData] = None
+
+    llm_data: Optional[ChoiceDeltaLlmData] = None
 
     refusal: Optional[str] = None
 

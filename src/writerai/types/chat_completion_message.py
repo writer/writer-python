@@ -7,7 +7,15 @@ from .._models import BaseModel
 from .shared.tool_call import ToolCall
 from .shared.graph_data import GraphData
 
-__all__ = ["ChatCompletionMessage"]
+__all__ = ["ChatCompletionMessage", "LlmData"]
+
+
+class LlmData(BaseModel):
+    model: str
+    """The model used by the tool."""
+
+    prompt: str
+    """The prompt processed by the model."""
 
 
 class ChatCompletionMessage(BaseModel):
@@ -24,5 +32,7 @@ class ChatCompletionMessage(BaseModel):
     """Specifies the role associated with the content."""
 
     graph_data: Optional[GraphData] = None
+
+    llm_data: Optional[LlmData] = None
 
     tool_calls: Optional[List[ToolCall]] = None

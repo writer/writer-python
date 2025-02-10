@@ -91,7 +91,10 @@ class ApplicationListResponse(BaseModel):
     """Display name of the application."""
 
     status: Literal["deployed", "draft"]
-    """Current deployment status of the application."""
+    """Current deployment status of the application.
+
+    Note: currently only `deployed` applications are returned.
+    """
 
     type: Literal["generation"]
     """The type of no-code application."""
