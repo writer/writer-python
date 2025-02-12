@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from writerai import Writer, AsyncWriter, APIResponseValidationError
 from writerai._types import Omit
+from writerai._utils import maybe_transform
 from writerai._models import BaseModel, FinalRequestOptions
 from writerai._constants import RAW_RESPONSE_HEADER
 from writerai._streaming import Stream, AsyncStream
@@ -33,6 +34,7 @@ from writerai._base_client import (
     BaseClient,
     make_request_options,
 )
+from writerai.types.chat_chat_params import ChatChatParamsNonStreaming
 
 from .utils import update_env
 
@@ -727,7 +729,12 @@ class TestWriter:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/v1/chat",
-                body=cast(object, dict(messages=[{"role": "user"}], model="palmyra-x-004")),
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -742,7 +749,12 @@ class TestWriter:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/v1/chat",
-                body=cast(object, dict(messages=[{"role": "user"}], model="palmyra-x-004")),
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1519,7 +1531,12 @@ class TestAsyncWriter:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/v1/chat",
-                body=cast(object, dict(messages=[{"role": "user"}], model="palmyra-x-004")),
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1534,7 +1551,12 @@ class TestAsyncWriter:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/v1/chat",
-                body=cast(object, dict(messages=[{"role": "user"}], model="palmyra-x-004")),
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
