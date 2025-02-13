@@ -21,7 +21,7 @@ class TestChat:
     def test_method_chat_overload_1(self, client: Writer) -> None:
         chat = client.chat.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
         )
         assert_matches_type(ChatCompletion, chat, path=["response"])
 
@@ -31,7 +31,7 @@ class TestChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "Write a memo summarizing this earnings report.",
+                    "content": "content",
                     "graph_data": {
                         "sources": [
                             {
@@ -69,7 +69,7 @@ class TestChat:
                     ],
                 }
             ],
-            model="palmyra-x-004",
+            model="model",
             logprobs=True,
             max_tokens=0,
             n=0,
@@ -96,7 +96,7 @@ class TestChat:
     def test_raw_response_chat_overload_1(self, client: Writer) -> None:
         response = client.chat.with_raw_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestChat:
     def test_streaming_response_chat_overload_1(self, client: Writer) -> None:
         with client.chat.with_streaming_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +122,7 @@ class TestChat:
     def test_method_chat_overload_2(self, client: Writer) -> None:
         chat_stream = client.chat.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
         )
         chat_stream.response.close()
@@ -133,7 +133,7 @@ class TestChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "Write a memo summarizing this earnings report.",
+                    "content": "content",
                     "graph_data": {
                         "sources": [
                             {
@@ -171,7 +171,7 @@ class TestChat:
                     ],
                 }
             ],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
             logprobs=True,
             max_tokens=0,
@@ -198,7 +198,7 @@ class TestChat:
     def test_raw_response_chat_overload_2(self, client: Writer) -> None:
         response = client.chat.with_raw_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
         )
 
@@ -210,7 +210,7 @@ class TestChat:
     def test_streaming_response_chat_overload_2(self, client: Writer) -> None:
         with client.chat.with_streaming_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
         ) as response:
             assert not response.is_closed
@@ -229,7 +229,7 @@ class TestAsyncChat:
     async def test_method_chat_overload_1(self, async_client: AsyncWriter) -> None:
         chat = await async_client.chat.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
         )
         assert_matches_type(ChatCompletion, chat, path=["response"])
 
@@ -239,7 +239,7 @@ class TestAsyncChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "Write a memo summarizing this earnings report.",
+                    "content": "content",
                     "graph_data": {
                         "sources": [
                             {
@@ -277,7 +277,7 @@ class TestAsyncChat:
                     ],
                 }
             ],
-            model="palmyra-x-004",
+            model="model",
             logprobs=True,
             max_tokens=0,
             n=0,
@@ -304,7 +304,7 @@ class TestAsyncChat:
     async def test_raw_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
         response = await async_client.chat.with_raw_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
         )
 
         assert response.is_closed is True
@@ -316,7 +316,7 @@ class TestAsyncChat:
     async def test_streaming_response_chat_overload_1(self, async_client: AsyncWriter) -> None:
         async with async_client.chat.with_streaming_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -330,7 +330,7 @@ class TestAsyncChat:
     async def test_method_chat_overload_2(self, async_client: AsyncWriter) -> None:
         chat_stream = await async_client.chat.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
         )
         await chat_stream.response.aclose()
@@ -341,7 +341,7 @@ class TestAsyncChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "Write a memo summarizing this earnings report.",
+                    "content": "content",
                     "graph_data": {
                         "sources": [
                             {
@@ -379,7 +379,7 @@ class TestAsyncChat:
                     ],
                 }
             ],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
             logprobs=True,
             max_tokens=0,
@@ -406,7 +406,7 @@ class TestAsyncChat:
     async def test_raw_response_chat_overload_2(self, async_client: AsyncWriter) -> None:
         response = await async_client.chat.with_raw_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
         )
 
@@ -418,7 +418,7 @@ class TestAsyncChat:
     async def test_streaming_response_chat_overload_2(self, async_client: AsyncWriter) -> None:
         async with async_client.chat.with_streaming_response.chat(
             messages=[{"role": "user"}],
-            model="palmyra-x-004",
+            model="model",
             stream=True,
         ) as response:
             assert not response.is_closed
