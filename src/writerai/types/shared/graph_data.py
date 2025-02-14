@@ -16,12 +16,12 @@ class Subquery(BaseModel):
     query: str
     """The subquery that was asked."""
 
-    sources: List[Source]
+    sources: List[Optional[Source]]
 
 
 class GraphData(BaseModel):
-    sources: Optional[List[Source]] = None
+    sources: Optional[List[Optional[Source]]] = None
 
     status: Optional[Literal["processing", "finished"]] = None
 
-    subqueries: Optional[List[Subquery]] = None
+    subqueries: Optional[List[Optional[Subquery]]] = None

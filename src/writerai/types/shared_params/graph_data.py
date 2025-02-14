@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .source import Source
@@ -17,12 +17,12 @@ class Subquery(TypedDict, total=False):
     query: Required[str]
     """The subquery that was asked."""
 
-    sources: Required[Iterable[Source]]
+    sources: Required[Iterable[Optional[Source]]]
 
 
 class GraphData(TypedDict, total=False):
-    sources: Iterable[Source]
+    sources: Iterable[Optional[Source]]
 
-    status: Literal["processing", "finished"]
+    status: Optional[Literal["processing", "finished"]]
 
-    subqueries: Iterable[Subquery]
+    subqueries: Iterable[Optional[Subquery]]

@@ -66,8 +66,8 @@ class GraphsResource(SyncAPIResource):
     def create(
         self,
         *,
-        name: str,
         description: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,14 +75,15 @@ class GraphsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphCreateResponse:
-        """Create graph
+        """
+        Create graph
 
         Args:
-          name: The name of the graph.
+          description: A description of the graph (max 255 characters). Omitting this field leaves the
+              description unchanged.
 
-        This can be at most 255 characters.
-
-          description: A description of the graph. This can be at most 255 characters.
+          name: The name of the graph (max 255 characters). Omitting this field leaves the name
+              unchanged.
 
           extra_headers: Send extra headers
 
@@ -96,8 +97,8 @@ class GraphsResource(SyncAPIResource):
             "/v1/graphs",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
+                    "name": name,
                 },
                 graph_create_params.GraphCreateParams,
             ),
@@ -144,8 +145,8 @@ class GraphsResource(SyncAPIResource):
         self,
         graph_id: str,
         *,
-        name: str,
         description: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -153,14 +154,15 @@ class GraphsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphUpdateResponse:
-        """Update graph
+        """
+        Update the name and description of a Knowledge Graph.
 
         Args:
-          name: The name of the graph.
+          description: A description of the graph (max 255 characters). Omitting this field leaves the
+              description unchanged.
 
-        This can be at most 255 characters.
-
-          description: A description of the graph. This can be at most 255 characters.
+          name: The name of the graph (max 255 characters). Omitting this field leaves the name
+              unchanged.
 
           extra_headers: Send extra headers
 
@@ -176,8 +178,8 @@ class GraphsResource(SyncAPIResource):
             f"/v1/graphs/{graph_id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
+                    "name": name,
                 },
                 graph_update_params.GraphUpdateParams,
             ),
@@ -562,8 +564,8 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str,
         description: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -571,14 +573,15 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphCreateResponse:
-        """Create graph
+        """
+        Create graph
 
         Args:
-          name: The name of the graph.
+          description: A description of the graph (max 255 characters). Omitting this field leaves the
+              description unchanged.
 
-        This can be at most 255 characters.
-
-          description: A description of the graph. This can be at most 255 characters.
+          name: The name of the graph (max 255 characters). Omitting this field leaves the name
+              unchanged.
 
           extra_headers: Send extra headers
 
@@ -592,8 +595,8 @@ class AsyncGraphsResource(AsyncAPIResource):
             "/v1/graphs",
             body=await async_maybe_transform(
                 {
-                    "name": name,
                     "description": description,
+                    "name": name,
                 },
                 graph_create_params.GraphCreateParams,
             ),
@@ -640,8 +643,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         self,
         graph_id: str,
         *,
-        name: str,
         description: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -649,14 +652,15 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphUpdateResponse:
-        """Update graph
+        """
+        Update the name and description of a Knowledge Graph.
 
         Args:
-          name: The name of the graph.
+          description: A description of the graph (max 255 characters). Omitting this field leaves the
+              description unchanged.
 
-        This can be at most 255 characters.
-
-          description: A description of the graph. This can be at most 255 characters.
+          name: The name of the graph (max 255 characters). Omitting this field leaves the name
+              unchanged.
 
           extra_headers: Send extra headers
 
@@ -672,8 +676,8 @@ class AsyncGraphsResource(AsyncAPIResource):
             f"/v1/graphs/{graph_id}",
             body=await async_maybe_transform(
                 {
-                    "name": name,
                     "description": description,
+                    "name": name,
                 },
                 graph_update_params.GraphUpdateParams,
             ),
