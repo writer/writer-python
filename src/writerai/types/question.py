@@ -15,7 +15,7 @@ class Subquery(BaseModel):
     query: str
     """The subquery that was asked."""
 
-    sources: List[Source]
+    sources: List[Optional[Source]]
 
 
 class Question(BaseModel):
@@ -25,6 +25,6 @@ class Question(BaseModel):
     question: str
     """The question that was asked."""
 
-    sources: List[Source]
+    sources: List[Optional[Source]]
 
-    subqueries: Optional[List[Subquery]] = None
+    subqueries: Optional[List[Optional[Subquery]]] = None

@@ -28,24 +28,20 @@ class TestGraphs:
 
     @parametrize
     def test_method_create(self, client: Writer) -> None:
-        graph = client.graphs.create(
-            name="name",
-        )
+        graph = client.graphs.create()
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Writer) -> None:
         graph = client.graphs.create(
-            name="name",
             description="description",
+            name="name",
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Writer) -> None:
-        response = client.graphs.with_raw_response.create(
-            name="name",
-        )
+        response = client.graphs.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -54,9 +50,7 @@ class TestGraphs:
 
     @parametrize
     def test_streaming_response_create(self, client: Writer) -> None:
-        with client.graphs.with_streaming_response.create(
-            name="name",
-        ) as response:
+        with client.graphs.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -107,7 +101,6 @@ class TestGraphs:
     def test_method_update(self, client: Writer) -> None:
         graph = client.graphs.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
@@ -115,8 +108,8 @@ class TestGraphs:
     def test_method_update_with_all_params(self, client: Writer) -> None:
         graph = client.graphs.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
             description="description",
+            name="name",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
@@ -124,7 +117,6 @@ class TestGraphs:
     def test_raw_response_update(self, client: Writer) -> None:
         response = client.graphs.with_raw_response.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -136,7 +128,6 @@ class TestGraphs:
     def test_streaming_response_update(self, client: Writer) -> None:
         with client.graphs.with_streaming_response.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,7 +142,6 @@ class TestGraphs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             client.graphs.with_raw_response.update(
                 graph_id="",
-                name="name",
             )
 
     @parametrize
@@ -402,24 +392,20 @@ class TestAsyncGraphs:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncWriter) -> None:
-        graph = await async_client.graphs.create(
-            name="name",
-        )
+        graph = await async_client.graphs.create()
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.create(
-            name="name",
             description="description",
+            name="name",
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncWriter) -> None:
-        response = await async_client.graphs.with_raw_response.create(
-            name="name",
-        )
+        response = await async_client.graphs.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -428,9 +414,7 @@ class TestAsyncGraphs:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncWriter) -> None:
-        async with async_client.graphs.with_streaming_response.create(
-            name="name",
-        ) as response:
+        async with async_client.graphs.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -481,7 +465,6 @@ class TestAsyncGraphs:
     async def test_method_update(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
@@ -489,8 +472,8 @@ class TestAsyncGraphs:
     async def test_method_update_with_all_params(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
             description="description",
+            name="name",
         )
         assert_matches_type(GraphUpdateResponse, graph, path=["response"])
 
@@ -498,7 +481,6 @@ class TestAsyncGraphs:
     async def test_raw_response_update(self, async_client: AsyncWriter) -> None:
         response = await async_client.graphs.with_raw_response.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -510,7 +492,6 @@ class TestAsyncGraphs:
     async def test_streaming_response_update(self, async_client: AsyncWriter) -> None:
         async with async_client.graphs.with_streaming_response.update(
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -525,7 +506,6 @@ class TestAsyncGraphs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `graph_id` but received ''"):
             await async_client.graphs.with_raw_response.update(
                 graph_id="",
-                name="name",
             )
 
     @parametrize
