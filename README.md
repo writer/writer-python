@@ -32,7 +32,12 @@ client = Writer(
 )
 
 chat_completion = client.chat.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 )
 print(chat_completion.id)
@@ -59,7 +64,12 @@ client = AsyncWriter(
 
 async def main() -> None:
     chat_completion = await client.chat.chat(
-        messages=[{"role": "user"}],
+        messages=[
+            {
+                "content": "Write a poem about Python",
+                "role": "user",
+            }
+        ],
         model="palmyra-x-004",
     )
     print(chat_completion.id)
@@ -79,13 +89,18 @@ from writerai import Writer
 
 client = Writer()
 
-stream = client.completions.create(
-    model="palmyra-x-003-instruct",
-    prompt="Hi, my name is",
+stream = client.chat.chat(
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
     stream=True,
 )
-for completion in stream:
-    print(completion.choices)
+for chat_completion in stream:
+    print(chat_completion.id)
 ```
 
 The async client uses the exact same interface.
@@ -95,13 +110,18 @@ from writerai import AsyncWriter
 
 client = AsyncWriter()
 
-stream = await client.completions.create(
-    model="palmyra-x-003-instruct",
-    prompt="Hi, my name is",
+stream = await client.chat.chat(
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
     stream=True,
 )
-async for completion in stream:
-    print(completion.choices)
+async for chat_completion in stream:
+    print(chat_completion.id)
 ```
 
 ## Using types
@@ -211,7 +231,12 @@ client = Writer()
 
 try:
     client.chat.chat(
-        messages=[{"role": "user"}],
+        messages=[
+            {
+                "content": "Write a poem about Python",
+                "role": "user",
+            }
+        ],
         model="palmyra-x-004",
     )
 except writerai.APIConnectionError as e:
@@ -257,7 +282,12 @@ client = Writer(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).chat.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 )
 ```
@@ -283,7 +313,12 @@ client = Writer(
 
 # Override per-request:
 client.with_options(timeout=5.0).chat.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 )
 ```
@@ -328,7 +363,8 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "role": "user"
+        "content": "Write a poem about Python",
+        "role": "user",
     }],
     model="palmyra-x-004",
 )
@@ -350,7 +386,12 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.chat.with_streaming_response.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 ) as response:
     print(response.headers.get("X-My-Header"))
