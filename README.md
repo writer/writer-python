@@ -25,17 +25,17 @@ pip install writer-sdk
 Before you begin, ensure you have:
 
 - Python 3.8 or higher
-- A [Writer API key](https://dev.writer.com/api-guides/introduction#authentication)
+- A [Writer API key](https://dev.writer.com/api-guides/quickstart#generate-a-new-api-key)
 
 ## Authentication
 
 To authenticate with the Writer API, set the `WRITER_API_KEY` environment variable.
 
-The `Writer` class automatically infers your API key from the `WRITER_API_KEY` environment variable.
-
 ```shell
 $ export WRITER_API_KEY="my-api-key"
 ```
+
+The `Writer` class automatically infers your API key from the `WRITER_API_KEY` environment variable.
 
 ```python
 from writerai import Writer
@@ -127,12 +127,14 @@ stream = client.chat.chat(
     model="palmyra-x-004",
     stream=True,
 )
+
 output_text = ""
-for chunk in chat_response:
+for chunk in stream:
     if chunk.choices[0].delta.content:
-        output_text += chunk.choices[0].delta.content:
+        output_text += chunk.choices[0].delta.content
     else:
         continue
+print(output_text)
 ```
 
 The async client uses the same interface.
@@ -153,12 +155,14 @@ stream = await client.chat.chat(
     model="palmyra-x-004",
     stream=True,
 )
+
 output_text = ""
 async for chunk in stream:
     if chunk.choices[0].delta.content:
         output_text += chunk.choices[0].delta.content
     else:
         continue
+print(output_text)
 ```
 
 For non-streaming responses, the library returns a single response object.
@@ -307,6 +311,7 @@ By default, requests time out after three minutes. You can configure this with a
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
+import httpx
 from writerai import Writer
 
 # Configure the default for all requests:
