@@ -1,5 +1,70 @@
 # Changelog
 
+## 2.0.0-rc1 (2025-02-21)
+
+Full Changelog: [v1.6.1...v2.0.0-rc1](https://github.com/writer/writer-python/compare/v1.6.1...v2.0.0-rc1)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** define chat completion models ([#157](https://github.com/writer/writer-python/issues/157))
+
+### Features
+
+* **api:** add async jobs and graph association ([#167](https://github.com/writer/writer-python/issues/167)) ([5ffd871](https://github.com/writer/writer-python/commit/5ffd8713d73630b38a7f2f3bdecce8c6ade4a29e))
+* **api:** add list and retrieve applications ([#176](https://github.com/writer/writer-python/issues/176)) ([79e2193](https://github.com/writer/writer-python/commit/79e21937c92103b5d24b685d52cc04ecd63da172))
+* **api:** add types for application jobs ([#171](https://github.com/writer/writer-python/issues/171)) ([e73ec53](https://github.com/writer/writer-python/commit/e73ec532074669f95ad79f02e33b3d56612a5c46))
+* **api:** define chat completion models ([#157](https://github.com/writer/writer-python/issues/157)) ([2a1d32a](https://github.com/writer/writer-python/commit/2a1d32a64b8fb155fad130b4dd1d4966a5451bd9))
+* **api:** update application jobs pagination response ([#169](https://github.com/writer/writer-python/issues/169)) ([cb30cef](https://github.com/writer/writer-python/commit/cb30cef03042508722c6ab2f07aca3f9b5d3369f))
+* **client:** allow passing `NotGiven` for body ([#187](https://github.com/writer/writer-python/issues/187)) ([b179ebb](https://github.com/writer/writer-python/commit/b179ebbee68645ca29e21971536444b7f7f45e7f))
+* **client:** send `X-Stainless-Read-Timeout` header ([#175](https://github.com/writer/writer-python/issues/175)) ([2f6ceb9](https://github.com/writer/writer-python/commit/2f6ceb9f27103cfc5df7a8976c8bf2aa0161aa7b))
+
+
+### Bug Fixes
+
+* **api:** fix offset pagination schema ([#177](https://github.com/writer/writer-python/issues/177)) ([fca1562](https://github.com/writer/writer-python/commit/fca156251459a169658a487b0f88bcdefae363d0))
+* asyncify on non-asyncio runtimes ([#183](https://github.com/writer/writer-python/issues/183)) ([b8d96bb](https://github.com/writer/writer-python/commit/b8d96bbb53442e6dc553ff7b0fa819ae8eaf4059))
+* **client:** mark some request bodies as optional ([b179ebb](https://github.com/writer/writer-python/commit/b179ebbee68645ca29e21971536444b7f7f45e7f))
+* **client:** only call .close() when needed ([#152](https://github.com/writer/writer-python/issues/152)) ([c999f9a](https://github.com/writer/writer-python/commit/c999f9aa55319d330102c7cf5d4d1d55843e3d6d))
+* correctly handle deserialising `cls` fields ([#158](https://github.com/writer/writer-python/issues/158)) ([b05ec58](https://github.com/writer/writer-python/commit/b05ec5819968dc8874c8afbe6aeac028f334485c))
+* **tests:** make test_get_platform less flaky ([#163](https://github.com/writer/writer-python/issues/163)) ([04a7500](https://github.com/writer/writer-python/commit/04a7500a29db6c430bfa4a608e894a6d7826ad00))
+
+
+### Chores
+
+* add missing isclass check ([#149](https://github.com/writer/writer-python/issues/149)) ([ceb0f57](https://github.com/writer/writer-python/commit/ceb0f57ab0ea6ea66cb193d2838f2f398ae48fe0))
+* **api:** fixes to ApplicationJobs pagination ([#172](https://github.com/writer/writer-python/issues/172)) ([65f35f9](https://github.com/writer/writer-python/commit/65f35f97efe06e37e23894c78b6a016c0d1a9e07))
+* **internal:** avoid pytest-asyncio deprecation warning ([#164](https://github.com/writer/writer-python/issues/164)) ([b31f771](https://github.com/writer/writer-python/commit/b31f7714fed8e35b7682801d51c76fe276ca9c16))
+* **internal:** bummp ruff dependency ([#174](https://github.com/writer/writer-python/issues/174)) ([6f21ba2](https://github.com/writer/writer-python/commit/6f21ba20ab89fdcbb75a0c6b118de3534252722b))
+* **internal:** bump httpx dependency ([#151](https://github.com/writer/writer-python/issues/151)) ([2bb3be6](https://github.com/writer/writer-python/commit/2bb3be6971dd94ebcc49728627c478c382db9b2f))
+* **internal:** bump pyright dependency ([#161](https://github.com/writer/writer-python/issues/161)) ([062f2b0](https://github.com/writer/writer-python/commit/062f2b0389c0ae74ecd5f08f7f2927a86fb87039))
+* **internal:** change default timeout to an int ([#173](https://github.com/writer/writer-python/issues/173)) ([74ed0c0](https://github.com/writer/writer-python/commit/74ed0c04b4ffa015d0ad274cde97f34d21c4595b))
+* **internal:** codegen related update ([#147](https://github.com/writer/writer-python/issues/147)) ([9f6686e](https://github.com/writer/writer-python/commit/9f6686e600fdf2caad76249ed5010a7d7ecdf0e7))
+* **internal:** codegen related update ([#154](https://github.com/writer/writer-python/issues/154)) ([3bb05ac](https://github.com/writer/writer-python/commit/3bb05accf88cd2bc793c418f630318d899224a07))
+* **internal:** codegen related update ([#179](https://github.com/writer/writer-python/issues/179)) ([938a558](https://github.com/writer/writer-python/commit/938a558296b584de574cec7556fa419f1a15f0c3))
+* **internal:** codegen related update ([#186](https://github.com/writer/writer-python/issues/186)) ([6c0e449](https://github.com/writer/writer-python/commit/6c0e4490535162c8c1fc60a96724640c51f20ba4))
+* **internal:** fix devcontainers setup ([#188](https://github.com/writer/writer-python/issues/188)) ([41c98aa](https://github.com/writer/writer-python/commit/41c98aa043a31d9e64bf63726cbdfec76ee28150))
+* **internal:** fix type traversing dictionary params ([#178](https://github.com/writer/writer-python/issues/178)) ([2349440](https://github.com/writer/writer-python/commit/23494409cb66956930dc6085397c6e42d8fe3321))
+* **internal:** minor formatting changes ([#166](https://github.com/writer/writer-python/issues/166)) ([b4dd853](https://github.com/writer/writer-python/commit/b4dd853c159e34a85d8c79d81ab8843fa1c42893))
+* **internal:** minor style changes ([#165](https://github.com/writer/writer-python/issues/165)) ([617eb51](https://github.com/writer/writer-python/commit/617eb51b94838d78068036cc37501894cbdfa938))
+* **internal:** minor type handling changes ([#180](https://github.com/writer/writer-python/issues/180)) ([f625d90](https://github.com/writer/writer-python/commit/f625d90c77f97a9b926687bd6233d32ea26837c0))
+* **internal:** update client tests ([#182](https://github.com/writer/writer-python/issues/182)) ([16197d5](https://github.com/writer/writer-python/commit/16197d5099440bbcc6b4d74c279c46e9a3622499))
+* **internal:** update deps ([#159](https://github.com/writer/writer-python/issues/159)) ([56aa67e](https://github.com/writer/writer-python/commit/56aa67e7c3381d3dd04ece05570fbfcc026eecf7))
+* **test:** update some test values ([#184](https://github.com/writer/writer-python/issues/184)) ([aafd471](https://github.com/writer/writer-python/commit/aafd47190a1029b0bdf9af0910c6e882dd6459f9))
+
+
+### Documentation
+
+* **api:** updates to API spec ([#160](https://github.com/writer/writer-python/issues/160)) ([04aa2d8](https://github.com/writer/writer-python/commit/04aa2d88053ab133038e53295b991af5098f0988))
+* **api:** updates to API spec ([#168](https://github.com/writer/writer-python/issues/168)) ([66b6319](https://github.com/writer/writer-python/commit/66b63195e5d687b75be9646fec0b90dd5691a243))
+* **api:** updates to API spec ([#170](https://github.com/writer/writer-python/issues/170)) ([49e58c8](https://github.com/writer/writer-python/commit/49e58c8f543a43d405a38c8346fddac4802b059f))
+* **api:** updates to API spec ([#181](https://github.com/writer/writer-python/issues/181)) ([0274de8](https://github.com/writer/writer-python/commit/0274de80e13b214d17a3f241c335f0870813a36e))
+* **api:** updates to API spec ([#185](https://github.com/writer/writer-python/issues/185)) ([dddde9f](https://github.com/writer/writer-python/commit/dddde9f87ce72ceb625d0579357522a476533dca))
+* Fix README code samples. ([#193](https://github.com/writer/writer-python/issues/193)) ([ec22477](https://github.com/writer/writer-python/commit/ec22477ae0196da9bbb655eed38daae9986e9bfc))
+* fix typos ([#153](https://github.com/writer/writer-python/issues/153)) ([5b80591](https://github.com/writer/writer-python/commit/5b805911936a8c7f0ba496d7cc092a607847ff73))
+* **raw responses:** fix duplicate `the` ([#162](https://github.com/writer/writer-python/issues/162)) ([8de8d84](https://github.com/writer/writer-python/commit/8de8d8478aa54f4414a28197b4256fdb4c4d3d70))
+* README code sample updates ([#189](https://github.com/writer/writer-python/issues/189)) ([1a3af86](https://github.com/writer/writer-python/commit/1a3af862cc88901ad3de8f671ad373ae0fddf52d))
+* Update README. ([#192](https://github.com/writer/writer-python/issues/192)) ([6fc78a9](https://github.com/writer/writer-python/commit/6fc78a91dc079be525c3804cbece5dee5889f3dd))
+
 ## 1.6.1 (2024-12-17)
 
 Full Changelog: [v1.6.0...v1.6.1](https://github.com/writer/writer-python/compare/v1.6.0...v1.6.1)

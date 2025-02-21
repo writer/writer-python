@@ -1,33 +1,100 @@
+# Shared Types
+
+```python
+from writerai.types import (
+    ErrorMessage,
+    ErrorObject,
+    FunctionDefinition,
+    FunctionParams,
+    GraphData,
+    Logprobs,
+    LogprobsToken,
+    Source,
+    ToolCall,
+    ToolCallStreaming,
+    ToolChoiceJsonObject,
+    ToolChoiceString,
+    ToolParam,
+)
+```
+
 # Applications
 
 Types:
 
 ```python
-from writerai.types import ApplicationGenerateContentChunk, ApplicationGenerateContentResponse
+from writerai.types import (
+    ApplicationGenerateContentChunk,
+    ApplicationGenerateContentResponse,
+    ApplicationRetrieveResponse,
+    ApplicationListResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /v1/applications/{application_id}">client.applications.<a href="./src/writerai/resources/applications.py">generate_content</a>(application_id, \*\*<a href="src/writerai/types/application_generate_content_params.py">params</a>) -> <a href="./src/writerai/types/application_generate_content_response.py">ApplicationGenerateContentResponse</a></code>
+- <code title="get /v1/applications/{application_id}">client.applications.<a href="./src/writerai/resources/applications/applications.py">retrieve</a>(application_id) -> <a href="./src/writerai/types/application_retrieve_response.py">ApplicationRetrieveResponse</a></code>
+- <code title="get /v1/applications">client.applications.<a href="./src/writerai/resources/applications/applications.py">list</a>(\*\*<a href="src/writerai/types/application_list_params.py">params</a>) -> <a href="./src/writerai/types/application_list_response.py">SyncCursorPage[ApplicationListResponse]</a></code>
+- <code title="post /v1/applications/{application_id}">client.applications.<a href="./src/writerai/resources/applications/applications.py">generate_content</a>(application_id, \*\*<a href="src/writerai/types/application_generate_content_params.py">params</a>) -> <a href="./src/writerai/types/application_generate_content_response.py">ApplicationGenerateContentResponse</a></code>
+
+## Jobs
+
+Types:
+
+```python
+from writerai.types.applications import (
+    ApplicationGenerateAsyncResponse,
+    ApplicationJobsListResponse,
+    JobCreateResponse,
+    JobRetryResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/applications/{application_id}/jobs">client.applications.jobs.<a href="./src/writerai/resources/applications/jobs.py">create</a>(application_id, \*\*<a href="src/writerai/types/applications/job_create_params.py">params</a>) -> <a href="./src/writerai/types/applications/job_create_response.py">JobCreateResponse</a></code>
+- <code title="get /v1/applications/jobs/{job_id}">client.applications.jobs.<a href="./src/writerai/resources/applications/jobs.py">retrieve</a>(job_id) -> <a href="./src/writerai/types/applications/application_generate_async_response.py">ApplicationGenerateAsyncResponse</a></code>
+- <code title="get /v1/applications/{application_id}/jobs">client.applications.jobs.<a href="./src/writerai/resources/applications/jobs.py">list</a>(application_id, \*\*<a href="src/writerai/types/applications/job_list_params.py">params</a>) -> <a href="./src/writerai/types/applications/application_generate_async_response.py">SyncApplicationJobsOffset[ApplicationGenerateAsyncResponse]</a></code>
+- <code title="post /v1/applications/jobs/{job_id}/retry">client.applications.jobs.<a href="./src/writerai/resources/applications/jobs.py">retry</a>(job_id) -> <a href="./src/writerai/types/applications/job_retry_response.py">JobRetryResponse</a></code>
+
+## Graphs
+
+Types:
+
+```python
+from writerai.types.applications import ApplicationGraphsResponse
+```
+
+Methods:
+
+- <code title="put /v1/applications/{application_id}/graphs">client.applications.graphs.<a href="./src/writerai/resources/applications/graphs.py">update</a>(application_id, \*\*<a href="src/writerai/types/applications/graph_update_params.py">params</a>) -> <a href="./src/writerai/types/applications/application_graphs_response.py">ApplicationGraphsResponse</a></code>
+- <code title="get /v1/applications/{application_id}/graphs">client.applications.graphs.<a href="./src/writerai/resources/applications/graphs.py">list</a>(application_id) -> <a href="./src/writerai/types/applications/application_graphs_response.py">ApplicationGraphsResponse</a></code>
 
 # Chat
 
 Types:
 
 ```python
-from writerai.types import Chat, ChatCompletionChunk
+from writerai.types import (
+    ChatCompletion,
+    ChatCompletionChoice,
+    ChatCompletionChunk,
+    ChatCompletionMessage,
+    ChatCompletionParams,
+    ChatCompletionUsage,
+)
 ```
 
 Methods:
 
-- <code title="post /v1/chat">client.chat.<a href="./src/writerai/resources/chat.py">chat</a>(\*\*<a href="src/writerai/types/chat_chat_params.py">params</a>) -> <a href="./src/writerai/types/chat.py">Chat</a></code>
+- <code title="post /v1/chat">client.chat.<a href="./src/writerai/resources/chat.py">chat</a>(\*\*<a href="src/writerai/types/chat_chat_params.py">params</a>) -> <a href="./src/writerai/types/chat_completion.py">ChatCompletion</a></code>
 
 # Completions
 
 Types:
 
 ```python
-from writerai.types import Completion, StreamingData
+from writerai.types import Completion, CompletionChunk, CompletionParams
 ```
 
 Methods:

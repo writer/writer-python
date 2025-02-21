@@ -3,24 +3,9 @@
 from typing import List, Optional
 
 from .._models import BaseModel
+from .shared.source import Source
 
-__all__ = ["Question", "Source", "Subquery", "SubquerySource"]
-
-
-class Source(BaseModel):
-    file_id: str
-    """The unique identifier of the file."""
-
-    snippet: str
-    """A snippet of text from the source file."""
-
-
-class SubquerySource(BaseModel):
-    file_id: str
-    """The unique identifier of the file."""
-
-    snippet: str
-    """A snippet of text from the source file."""
+__all__ = ["Question", "Subquery"]
 
 
 class Subquery(BaseModel):
@@ -30,7 +15,7 @@ class Subquery(BaseModel):
     query: str
     """The subquery that was asked."""
 
-    sources: List[SubquerySource]
+    sources: List[Optional[Source]]
 
 
 class Question(BaseModel):
@@ -40,6 +25,6 @@ class Question(BaseModel):
     question: str
     """The question that was asked."""
 
-    sources: List[Source]
+    sources: List[Optional[Source]]
 
-    subqueries: Optional[List[Subquery]] = None
+    subqueries: Optional[List[Optional[Subquery]]] = None

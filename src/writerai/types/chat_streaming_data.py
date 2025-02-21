@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 
-from .chat import Chat
 from .._models import BaseModel
+from .chat_completion import ChatCompletion
 
 __all__ = ["ChatStreamingData"]
 
 
 class ChatStreamingData(BaseModel):
-    data: Chat
+    data: ChatCompletion

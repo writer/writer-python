@@ -2,9 +2,9 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/writer-sdk.svg)](https://pypi.org/project/writer-sdk/)
 
-The Writer Python library provides convenient access to the Writer REST API from any Python 3.8+
-application. The library includes type definitions for all request params and response fields,
-and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
+The Writer Python library provides access to the Writer REST API from any Python 3.8+
+application. It includes a set of tools and utilities that make it easy to integrate the capabilities
+of Writer into your projects.
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -14,82 +14,72 @@ The REST API documentation can be found on [dev.writer.com](https://dev.writer.c
 
 ## Installation
 
-To install the package from PyPI, use the following command:
+To install the package from PyPI, use `pip`:
 
 ```sh
 pip install writer-sdk
 ```
 
-## Usage
+## Prequisites
 
-The full API of this library can be found in [api.md](api.md).
+Before you begin, ensure you have:
+
+- Python 3.8 or higher
+- A [Writer API key](https://dev.writer.com/api-guides/quickstart#generate-a-new-api-key)
+
+## Authentication
+
+To authenticate with the Writer API, set the `WRITER_API_KEY` environment variable.
+
+```shell
+$ export WRITER_API_KEY="my-api-key"
+```
+
+The `Writer` class automatically infers your API key from the `WRITER_API_KEY` environment variable.
 
 ```python
-import os
 from writerai import Writer
 
-client = Writer(
-    api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
-)
-
-chat = client.chat.chat(
-    messages=[{"role": "user"}],
-    model="palmyra-x-004",
-)
-print(chat.id)
+client = Writer()  # The API key will be inferred from the `WRITER_API_KEY` environment variable
 ```
 
-While you can provide an `api_key` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `WRITER_API_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
-
-## Async usage
-
-Simply import `AsyncWriter` instead of `Writer` and use `await` with each API call:
+You can also explicitly set the API key with the `api_key` parameter:
 
 ```python
-import os
-import asyncio
-from writerai import AsyncWriter
+from writerai import Writer
 
-client = AsyncWriter(
-    api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
-)
-
-
-async def main() -> None:
-    chat = await client.chat.chat(
-        messages=[{"role": "user"}],
-        model="palmyra-x-004",
-    )
-    print(chat.id)
-
-
-asyncio.run(main())
+client = Writer(api_key="my-api-key")
 ```
 
-Functionality between the synchronous and asynchronous clients is otherwise identical.
+> Never hard-code your API keys in source code or commit them to version control systems like GitHub.
+> We recommend adding `WRITER_API_KEY="My API Key"` to your `.env` file so that your API Key is not stored in source control.
 
-## Streaming responses
+## Usage
 
-We provide support for streaming responses using Server Side Events (SSE).
+You can find the full API for this library in [api.md](api.md).
+
+### Synchronous versus asynchronous usage
+
+The Writer Python library supports both synchronous and asynchronous usage. With synchronous usage, you call the API methods directly:
 
 ```python
 from writerai import Writer
 
 client = Writer()
 
-stream = client.completions.create(
-    model="palmyra-x-003-instruct",
-    prompt="Hi, my name is",
-    stream=True,
+chat_completion = client.chat.chat(
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
 )
-for completion in stream:
-    print(completion.value)
+print(chat.choices[0].message.content)
 ```
 
-The async client uses the exact same interface.
+With asynchronous usage, you import `AsyncWriter` instead of `Writer` and use `await` with each API call:
 
 ```python
 import asyncio
@@ -97,23 +87,85 @@ from writerai import AsyncWriter
 
 client = AsyncWriter()
 
-stream = await client.completions.create(
-    model="palmyra-x-003-instruct",
-    prompt="Hi, my name is",
-    stream=True,
-)
-async for completion in stream:
-    print(completion.choices)
+
+async def main() -> None:
+    chat_completion = await client.chat.chat(
+        messages=[
+            {
+                "content": "Write a poem about Python",
+                "role": "user",
+            }
+        ],
+        model="palmyra-x-004",
+    )
+    print(chat.choices[0].message.content)
+
+
+asyncio.run(main())
 ```
 
-## Using types
+Functionality between the synchronous and asynchronous clients is otherwise identical.
 
-Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
+## Streaming versus non-streaming responses
 
-- Serializing back into JSON, `model.to_json()`
-- Converting to a dictionary, `model.to_dict()`
+The Writer Python library provides support for streaming responses using Server Side Events (SSE).
 
-Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+To use streaming, set the `stream` parameter to `True` when calling an API method. You can then iterate over the stream to get the response data:
+
+```python
+from writerai import Writer
+
+client = Writer()
+
+stream = client.chat.chat(
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
+    stream=True,
+)
+
+output_text = ""
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        output_text += chunk.choices[0].delta.content
+    else:
+        continue
+print(output_text)
+```
+
+The async client uses the same interface.
+
+```python
+import asyncio
+from writerai import AsyncWriter
+
+client = AsyncWriter()
+
+stream = await client.chat.chat(
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
+    model="palmyra-x-004",
+    stream=True,
+)
+
+output_text = ""
+async for chunk in stream:
+    if chunk.choices[0].delta.content:
+        output_text += chunk.choices[0].delta.content
+    else:
+        continue
+print(output_text)
+```
+
+For non-streaming responses, the library returns a single response object.
 
 ## Pagination
 
@@ -157,33 +209,30 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.graphs.list()
+first_page = await client.graphs.list()  # Remove `await` for non-async usage.
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
     print(f"number of items we just fetched: {len(next_page.data)}")
-
-# Remove `await` for non-async usage.
 ```
 
-Or just work directly with the returned data:
+You can also work directly with the returned data:
 
 ```python
-first_page = await client.graphs.list()
+first_page = await client.graphs.list()  # Remove `await` for non-async usage.
 
 print(f"next page cursor: {first_page.after}")  # => "next page cursor: ..."
 for graph in first_page.data:
     print(graph.id)
-
-# Remove `await` for non-async usage.
 ```
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `writerai.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems, a timeout, or a firewall that doesn't allow the connection), a subclass of `writerai.APIConnectionError` is raised.
 
-When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `writerai.APIStatusError` is raised, containing `status_code` and `response` properties.
+> If you are behind a firewall, you may need to configure it to allow connections to the Writer API at `https://api.writer.com/v1`.
+
+When the API returns a non-success status code - 4xx or 5xx - a subclass of `writerai.APIStatusError` is raised, containing `status_code` and `response` properties.
 
 All errors inherit from `writerai.APIError`.
 
@@ -195,7 +244,12 @@ client = Writer()
 
 try:
     client.chat.chat(
-        messages=[{"role": "user"}],
+        messages=[
+            {
+                "content": "Write a poem about Python",
+                "role": "user",
+            }
+        ],
         model="palmyra-x-004",
     )
 except writerai.APIConnectionError as e:
@@ -209,7 +263,7 @@ except writerai.APIStatusError as e:
     print(e.response)
 ```
 
-Error codes are as followed:
+Error codes are as follows:
 
 | Status Code | Error Type                 |
 | ----------- | -------------------------- |
@@ -224,9 +278,9 @@ Error codes are as followed:
 
 ### Retries
 
-Certain errors are automatically retried 2 times by default, with a short exponential backoff.
-Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
-429 Rate Limit, and >=500 Internal errors are all retried by default.
+The library automatically retries certain errors two times by default, with a short exponential backoff.
+Connection errors (for example, due to a network connectivity problem), `408 Request Timeout`, `409 Conflict`,
+`429 Rate Limit`, and `>=500 Internal errors` are all retried by default.
 
 You can use the `max_retries` option to configure or disable retry settings:
 
@@ -239,19 +293,25 @@ client = Writer(
     max_retries=0,
 )
 
-# Or, configure per-request:
+# Or, configure per request:
 client.with_options(max_retries=5).chat.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 )
 ```
 
 ### Timeouts
 
-By default requests time out after 3 minutes. You can configure this with a `timeout` option,
+By default, requests time out after three minutes. You can configure this with a `timeout` option,
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
+import httpx
 from writerai import Writer
 
 # Configure the default for all requests:
@@ -265,9 +325,14 @@ client = Writer(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
-# Override per-request:
+# Override per request:
 client.with_options(timeout=5.0).chat.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 )
 ```
@@ -276,11 +341,9 @@ On timeout, an `APITimeoutError` is thrown.
 
 Note that requests that time out are [retried twice by default](#retries).
 
-## Advanced
+## Logging
 
-### Logging
-
-We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
+We use the standard [`logging`](https://docs.python.org/3/library/logging.html) module.
 
 You can enable logging by setting the environment variable `WRITER_LOG` to `info`.
 
@@ -290,6 +353,8 @@ $ export WRITER_LOG=info
 
 Or to `debug` for more verbose logging.
 
+## Advanced
+
 ### How to tell whether `None` means `null` or missing
 
 In an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:
@@ -297,14 +362,16 @@ In an API response, a field may be explicitly `null`, or missing entirely; in ei
 ```py
 if response.my_field is None:
   if 'my_field' not in response.model_fields_set:
-    print('Got json like {}, without a "my_field" key present at all.')
+    print('Result was {}.')
   else:
-    print('Got json like {"my_field": null}.')
+    print('Result was{"my_field": null}.')
 ```
 
 ### Accessing raw response data (e.g. headers)
 
-The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
+You can access the raw Response object by prefixing `.with_raw_response.` to any HTTP method call.
+
+#### Non-streaming responses
 
 ```py
 from writerai import Writer
@@ -312,7 +379,8 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "role": "user"
+        "content": "Write a poem about Python",
+        "role": "user",
     }],
     model="palmyra-x-004",
 )
@@ -322,19 +390,22 @@ chat = response.parse()  # get the object that `chat.chat()` would have returned
 print(chat.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/writer/writer-python/tree/main/src/writerai/_response.py) object.
+Calling a method with `.with_raw_response` returns an [`APIResponse`](https://github.com/writer/writer-python/tree/main/src/writerai/_response.py) object.
 
 The async client returns an [`AsyncAPIResponse`](https://github.com/writer/writer-python/tree/main/src/writerai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
-#### `.with_streaming_response`
+#### Streaming responses
 
-The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
-
-To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
+To stream the raw response body, use `.with_streaming_response`, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
 with client.chat.with_streaming_response.chat(
-    messages=[{"role": "user"}],
+    messages=[
+        {
+            "content": "Write a poem about Python",
+            "role": "user",
+        }
+    ],
     model="palmyra-x-004",
 ) as response:
     print(response.headers.get("X-My-Header"))
@@ -349,13 +420,12 @@ The context manager is required so that the response will reliably be closed.
 
 This library is typed for convenient access to the documented API.
 
-If you need to access undocumented endpoints, params, or response properties, the library can still be used.
+If you need to access undocumented endpoints, parameters, or response properties, you can still use the library.
 
 #### Undocumented endpoints
 
-To make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other
-http verbs. Options on the client will be respected (such as retries) will be respected when making this
-request.
+To make requests to undocumented endpoints, use `client.get`, `client.post`, and other
+http verbs. Options on the client (such as retries) are respected when making these requests.
 
 ```py
 import httpx
@@ -369,9 +439,9 @@ response = client.post(
 print(response.headers.get("x-foo"))
 ```
 
-#### Undocumented request params
+#### Undocumented request parameters
 
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
+If you want to explicitly send an extra parameter, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
 options.
 
 #### Undocumented response properties
@@ -410,7 +480,7 @@ client.with_options(http_client=DefaultHttpxClient(...))
 
 ### Managing HTTP resources
 
-By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
+By default, the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
 from writerai import Writer
@@ -427,10 +497,10 @@ with Writer() as client:
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
 1. Changes that only affect static types, without breaking runtime behavior.
-2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.
+2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
 3. Changes that we do not expect to impact the vast majority of users in practice.
 
-We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
+We take backwards compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
 We are keen for your feedback; please open an [issue](https://www.github.com/writer/writer-python/issues) with questions, bugs, or suggestions.
 
@@ -445,10 +515,6 @@ import writerai
 print(writerai.__version__)
 ```
 
-## Requirements
+## Feedback
 
-Python 3.8 or higher.
-
-## Contributing
-
-See [the contributing documentation](./CONTRIBUTING.md).
+We welcome feedback! Please open an [issue](https://www.github.com/writer/writer-python/issues) with questions, bugs, or suggestions.
