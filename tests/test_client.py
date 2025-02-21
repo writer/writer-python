@@ -732,7 +732,16 @@ class TestWriter:
                 body=cast(
                     object,
                     maybe_transform(
-                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                        dict(
+                            messages=[
+                                {
+                                    "content": "Write a poem about Python",
+                                    "role": "user",
+                                }
+                            ],
+                            model="palmyra-x-004",
+                        ),
+                        ChatChatParamsNonStreaming,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -752,7 +761,16 @@ class TestWriter:
                 body=cast(
                     object,
                     maybe_transform(
-                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                        dict(
+                            messages=[
+                                {
+                                    "content": "Write a poem about Python",
+                                    "role": "user",
+                                }
+                            ],
+                            model="palmyra-x-004",
+                        ),
+                        ChatChatParamsNonStreaming,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1534,7 +1552,16 @@ class TestAsyncWriter:
                 body=cast(
                     object,
                     maybe_transform(
-                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                        dict(
+                            messages=[
+                                {
+                                    "content": "Write a poem about Python",
+                                    "role": "user",
+                                }
+                            ],
+                            model="palmyra-x-004",
+                        ),
+                        ChatChatParamsNonStreaming,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1554,7 +1581,16 @@ class TestAsyncWriter:
                 body=cast(
                     object,
                     maybe_transform(
-                        dict(messages=[{"role": "user"}], model="palmyra-x-004"), ChatChatParamsNonStreaming
+                        dict(
+                            messages=[
+                                {
+                                    "content": "Write a poem about Python",
+                                    "role": "user",
+                                }
+                            ],
+                            model="palmyra-x-004",
+                        ),
+                        ChatChatParamsNonStreaming,
                     ),
                 ),
                 cast_to=httpx.Response,
