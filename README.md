@@ -14,8 +14,9 @@ The REST API documentation can be found on [dev.writer.com](https://dev.writer.c
 
 ## Installation
 
+To install the package from PyPI, use the following command:
+
 ```sh
-# install from PyPI
 pip install writer-sdk
 ```
 
@@ -85,12 +86,13 @@ stream = client.completions.create(
     stream=True,
 )
 for completion in stream:
-    print(completion.choices)
+    print(completion.value)
 ```
 
 The async client uses the exact same interface.
 
 ```python
+import asyncio
 from writerai import AsyncWriter
 
 client = AsyncWriter()

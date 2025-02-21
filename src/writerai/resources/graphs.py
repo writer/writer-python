@@ -14,7 +14,7 @@ from ..types import (
     graph_question_params,
     graph_add_file_to_graph_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from .._utils import (
     required_args,
     maybe_transform,
@@ -317,6 +317,40 @@ class GraphsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=File,
+        )
+
+    def upload_and_add_file_to_graph(
+        self,
+        graph_id: str,
+        *,
+        content: FileTypes,
+        content_disposition: str,
+        content_type: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> File:
+        if not graph_id:
+            raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
+        uploaded_file = self._client.files.upload(
+            content=content,
+            content_disposition=content_disposition,
+            content_type=content_type,
+            extra_body=extra_body,
+            extra_query=extra_query,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+        return self.add_file_to_graph(
+            graph_id=graph_id,
+            file_id=uploaded_file.id,
+            extra_body=extra_body,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            timeout=timeout,
         )
 
     @overload
@@ -785,6 +819,40 @@ class AsyncGraphsResource(AsyncAPIResource):
             cast_to=File,
         )
 
+    async def upload_and_add_file_to_graph(
+        self,
+        graph_id: str,
+        *,
+        content: FileTypes,
+        content_disposition: str,
+        content_type: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> File:
+        if not graph_id:
+            raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
+        uploaded_file = await self._client.files.upload(
+            content=content,
+            content_disposition=content_disposition,
+            content_type=content_type,
+            extra_body=extra_body,
+            extra_query=extra_query,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+        return await self.add_file_to_graph(
+            graph_id=graph_id,
+            file_id=uploaded_file.id,
+            extra_body=extra_body,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            timeout=timeout,
+        )
+
     @overload
     async def question(
         self,
@@ -995,6 +1063,9 @@ class GraphsResourceWithRawResponse:
         self.add_file_to_graph = to_raw_response_wrapper(
             graphs.add_file_to_graph,
         )
+        self.upload_and_add_file_to_graph = to_raw_response_wrapper(
+            graphs.upload_and_add_file_to_graph,
+        )
         self.question = to_raw_response_wrapper(
             graphs.question,
         )
@@ -1024,6 +1095,9 @@ class AsyncGraphsResourceWithRawResponse:
         )
         self.add_file_to_graph = async_to_raw_response_wrapper(
             graphs.add_file_to_graph,
+        )
+        self.upload_and_add_file_to_graph = async_to_raw_response_wrapper(
+            graphs.upload_and_add_file_to_graph,
         )
         self.question = async_to_raw_response_wrapper(
             graphs.question,
@@ -1055,6 +1129,9 @@ class GraphsResourceWithStreamingResponse:
         self.add_file_to_graph = to_streamed_response_wrapper(
             graphs.add_file_to_graph,
         )
+        self.upload_and_add_file_to_graph = to_streamed_response_wrapper(
+            graphs.upload_and_add_file_to_graph,
+        )
         self.question = to_streamed_response_wrapper(
             graphs.question,
         )
@@ -1084,6 +1161,9 @@ class AsyncGraphsResourceWithStreamingResponse:
         )
         self.add_file_to_graph = async_to_streamed_response_wrapper(
             graphs.add_file_to_graph,
+        )
+        self.upload_and_add_file_to_graph = async_to_streamed_response_wrapper(
+            graphs.upload_and_add_file_to_graph,
         )
         self.question = async_to_streamed_response_wrapper(
             graphs.question,
