@@ -16,7 +16,7 @@ class File(BaseModel):
     """The timestamp when the file was uploaded."""
 
     graph_ids: List[str]
-    """A list of graph IDs that the file is associated with."""
+    """A list of Knowledge Graph IDs that the file is associated with."""
 
     name: str
     """The name of the file."""

@@ -10,13 +10,13 @@ __all__ = ["GraphUpdateResponse"]
 
 class GraphUpdateResponse(BaseModel):
     id: str
-    """A unique identifier of the graph."""
+    """A unique identifier of the Knowledge Graph."""
 
     created_at: datetime
-    """The timestamp when the graph was created."""
+    """The timestamp when the Knowledge Graph was created."""
 
     name: str
-    """The name of the graph. This can be at most 255 characters."""
+    """The name of the Knowledge Graph (max 255 characters)."""
 
     description: Optional[str] = None
-    """A description of the graph. This can be at most 255 characters."""
+    """A description of the Knowledge Graph (max 255 characters)."""

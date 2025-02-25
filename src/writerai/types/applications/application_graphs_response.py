@@ -9,4 +9,4 @@ __all__ = ["ApplicationGraphsResponse"]
 
 class ApplicationGraphsResponse(BaseModel):
     graph_ids: List[str]
-    """A list of graphs associated with the application."""
+    """A list of Knowledge Graphs associated with the application."""
