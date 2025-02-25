@@ -226,6 +226,27 @@ for graph in first_page.data:
     print(graph.id)
 ```
 
+## File uploads
+
+You can pass file upload parameters as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+
+The `content_type` parameter is the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types) of the file being uploaded. The file upload supports `txt`, `doc`, `docx`, `ppt`, `pptx`, `jpg`, `png`, `eml`, `html`, `pdf`, `srt`, `csv`, `xls`, and `xlsx` file extensions.
+
+```python
+from pathlib import Path
+from writerai import Writer
+
+client = Writer()
+
+client.files.upload(
+    content=Path("/path/to/file/example.pdf"),
+    content_disposition="attachment; filename='example.pdf'",
+    content_type="application/pdf",
+)
+```
+
+The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems, a timeout, or a firewall that doesn't allow the connection), a subclass of `writerai.APIConnectionError` is raised.
