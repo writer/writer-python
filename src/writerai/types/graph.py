@@ -20,26 +20,26 @@ class FileStatus(BaseModel):
     """The number of files currently being processed."""
 
     total: int
-    """The total number of files associated with the graph."""
+    """The total number of files associated with the Knowledge Graph."""
 
 
 class Graph(BaseModel):
     id: str
-    """A unique identifier of the graph."""
+    """The unique identifier of the Knowledge Graph."""
 
     created_at: datetime
-    """The timestamp when the graph was created."""
+    """The timestamp when the Knowledge Graph was created."""
 
     file_status: FileStatus
 
     name: str
-    """The name of the graph."""
+    """The name of the Knowledge Graph."""
 
     type: Literal["manual", "connector"]
     """
-    The type of graph, either `manual` (files are uploaded via UI or API) or
-    `connector` (files are uploaded via a connector).
+    The type of Knowledge Graph, either `manual` (files are uploaded via UI or API)
+    or `connector` (files are uploaded via a connector).
     """
 
     description: Optional[str] = None
-    """A description of the graph."""
+    """A description of the Knowledge Graph."""

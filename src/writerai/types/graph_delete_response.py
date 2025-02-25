@@ -8,7 +8,7 @@ __all__ = ["GraphDeleteResponse"]
 
 class GraphDeleteResponse(BaseModel):
     id: str
-    """A unique identifier of the deleted graph."""
+    """A unique identifier of the deleted Knowledge Graph."""
 
     deleted: bool
-    """Indicates whether the graph was successfully deleted."""
+    """Indicates whether the Knowledge Graph was successfully deleted."""
