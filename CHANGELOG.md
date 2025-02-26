@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.0.0 (2025-02-26)
+
+Full Changelog: [v2.0.0-rc1...v2.0.0](https://github.com/writer/writer-python/compare/v2.0.0-rc1...v2.0.0)
+
+### Chores
+
+* **internal:** properly set __pydantic_private__ ([#197](https://github.com/writer/writer-python/issues/197)) ([533c0f8](https://github.com/writer/writer-python/commit/533c0f8c14ba78fb827fa494d25a4367612ad0fa))
+* **internal:** version bump ([#194](https://github.com/writer/writer-python/issues/194)) ([f75756f](https://github.com/writer/writer-python/commit/f75756f03a1e2083fc9cc6be66596a19606d1312))
+
+
+### Documentation
+
+* Add file upload examples to README. ([#199](https://github.com/writer/writer-python/issues/199)) ([628cf7f](https://github.com/writer/writer-python/commit/628cf7f3a0047af764d31b156709443175806d59))
+* **api:** updates to API spec ([#196](https://github.com/writer/writer-python/issues/196)) ([2867dbb](https://github.com/writer/writer-python/commit/2867dbbefe5b5795f043fc2641a5320e24bf0788))
+
 ## 2.0.0-rc1 (2025-02-21)
 
 Full Changelog: [v1.6.1...v2.0.0-rc1](https://github.com/writer/writer-python/compare/v1.6.1...v2.0.0-rc1)
