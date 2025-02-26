@@ -76,14 +76,14 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphCreateResponse:
         """
-        Create graph
+        Create a new Knowledge Graph.
 
         Args:
-          description: A description of the graph (max 255 characters). Omitting this field leaves the
-              description unchanged.
+          description: A description of the Knowledge Graph (max 255 characters). Omitting this field
+              leaves the description unchanged.
 
-          name: The name of the graph (max 255 characters). Omitting this field leaves the name
-              unchanged.
+          name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
+              the name unchanged.
 
           extra_headers: Send extra headers
 
@@ -120,7 +120,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Graph:
         """
-        Retrieve graph
+        Retrieve a Knowledge Graph.
 
         Args:
           extra_headers: Send extra headers
@@ -158,11 +158,11 @@ class GraphsResource(SyncAPIResource):
         Update the name and description of a Knowledge Graph.
 
         Args:
-          description: A description of the graph (max 255 characters). Omitting this field leaves the
-              description unchanged.
+          description: A description of the Knowledge Graph (max 255 characters). Omitting this field
+              leaves the description unchanged.
 
-          name: The name of the graph (max 255 characters). Omitting this field leaves the name
-              unchanged.
+          name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
+              the name unchanged.
 
           extra_headers: Send extra headers
 
@@ -203,12 +203,11 @@ class GraphsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncCursorPage[Graph]:
-        """List graphs
+        """
+        Retrieve a list of Knowledge Graphs.
 
         Args:
-          after: The ID of the last object in the previous page.
-
-        This parameter instructs the API
+          after: The ID of the last object in the previous page. This parameter instructs the API
               to return the next page of results.
 
           before: The ID of the first object in the previous page. This parameter instructs the
@@ -261,7 +260,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphDeleteResponse:
         """
-        Delete graph
+        Delete a Knowledge Graph.
 
         Args:
           extra_headers: Send extra headers
@@ -295,7 +294,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
         """
-        Add file to graph
+        Add a file to a Knowledge Graph.
 
         Args:
           file_id: The unique identifier of the file.
@@ -517,7 +516,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphRemoveFileFromGraphResponse:
         """
-        Remove file from graph
+        Remove a file from a Knowledge Graph.
 
         Args:
           extra_headers: Send extra headers
@@ -574,14 +573,14 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphCreateResponse:
         """
-        Create graph
+        Create a new Knowledge Graph.
 
         Args:
-          description: A description of the graph (max 255 characters). Omitting this field leaves the
-              description unchanged.
+          description: A description of the Knowledge Graph (max 255 characters). Omitting this field
+              leaves the description unchanged.
 
-          name: The name of the graph (max 255 characters). Omitting this field leaves the name
-              unchanged.
+          name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
+              the name unchanged.
 
           extra_headers: Send extra headers
 
@@ -618,7 +617,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Graph:
         """
-        Retrieve graph
+        Retrieve a Knowledge Graph.
 
         Args:
           extra_headers: Send extra headers
@@ -656,11 +655,11 @@ class AsyncGraphsResource(AsyncAPIResource):
         Update the name and description of a Knowledge Graph.
 
         Args:
-          description: A description of the graph (max 255 characters). Omitting this field leaves the
-              description unchanged.
+          description: A description of the Knowledge Graph (max 255 characters). Omitting this field
+              leaves the description unchanged.
 
-          name: The name of the graph (max 255 characters). Omitting this field leaves the name
-              unchanged.
+          name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
+              the name unchanged.
 
           extra_headers: Send extra headers
 
@@ -701,12 +700,11 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Graph, AsyncCursorPage[Graph]]:
-        """List graphs
+        """
+        Retrieve a list of Knowledge Graphs.
 
         Args:
-          after: The ID of the last object in the previous page.
-
-        This parameter instructs the API
+          after: The ID of the last object in the previous page. This parameter instructs the API
               to return the next page of results.
 
           before: The ID of the first object in the previous page. This parameter instructs the
@@ -759,7 +757,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphDeleteResponse:
         """
-        Delete graph
+        Delete a Knowledge Graph.
 
         Args:
           extra_headers: Send extra headers
@@ -793,7 +791,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
         """
-        Add file to graph
+        Add a file to a Knowledge Graph.
 
         Args:
           file_id: The unique identifier of the file.
@@ -1017,7 +1015,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GraphRemoveFileFromGraphResponse:
         """
-        Remove file from graph
+        Remove a file from a Knowledge Graph.
 
         Args:
           extra_headers: Send extra headers
