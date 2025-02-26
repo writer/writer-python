@@ -80,6 +80,13 @@ def _read_file_content(file: FileContent) -> HttpxFileContent:
     return file
 
 
+def get_file_content(file: HttpxFileTypes) -> HttpxFileContent:
+    if isinstance(file, tuple):
+        return file[1]
+    else:
+        return file
+
+
 @overload
 async def async_to_httpx_files(files: None) -> None: ...
 
