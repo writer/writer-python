@@ -6,7 +6,7 @@ The Writer Python library provides access to the Writer REST API from any Python
 application. It includes a set of tools and utilities that make it easy to integrate the capabilities
 of Writer into your projects.
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
