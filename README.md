@@ -226,6 +226,23 @@ for graph in first_page.data:
     print(graph.id)
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from writerai import Writer
+
+client = Writer()
+
+chat_completion = client.chat.chat(
+    messages=[{"role": "user"}],
+    model="model",
+    stream_options={"include_usage": True},
+)
+print(chat_completion.stream_options)
+```
+
 ## File uploads
 
 You can pass file upload parameters as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
