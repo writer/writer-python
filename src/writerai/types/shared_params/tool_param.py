@@ -49,7 +49,7 @@ class LlmTool(TypedDict, total=False):
     function: Required[LlmToolFunction]
     """A tool that uses another Writer model to generate a response."""
 
-    type: Literal["llm"]
+    type: Required[Literal["llm"]]
     """The type of tool."""
 
 
