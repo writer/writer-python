@@ -63,7 +63,7 @@ class TestChat:
                                 "arguments": "arguments",
                                 "name": "name",
                             },
-                            "type": "type",
+                            "type": "function",
                             "index": 0,
                         }
                     ],
@@ -165,7 +165,7 @@ class TestChat:
                                 "arguments": "arguments",
                                 "name": "name",
                             },
-                            "type": "type",
+                            "type": "function",
                             "index": 0,
                         }
                     ],
@@ -271,7 +271,7 @@ class TestAsyncChat:
                                 "arguments": "arguments",
                                 "name": "name",
                             },
-                            "type": "type",
+                            "type": "function",
                             "index": 0,
                         }
                     ],
@@ -373,7 +373,7 @@ class TestAsyncChat:
                                 "arguments": "arguments",
                                 "name": "name",
                             },
-                            "type": "type",
+                            "type": "function",
                             "index": 0,
                         }
                     ],
