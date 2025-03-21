@@ -49,7 +49,7 @@ class LlmTool(BaseModel):
     function: LlmToolFunction
     """A tool that uses another Writer model to generate a response."""
 
-    type: Optional[Literal["llm"]] = None
+    type: Literal["llm"]
     """The type of tool."""
 
 

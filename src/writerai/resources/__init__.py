@@ -40,6 +40,14 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
+from .vision import (
+    VisionResource,
+    AsyncVisionResource,
+    VisionResourceWithRawResponse,
+    AsyncVisionResourceWithRawResponse,
+    VisionResourceWithStreamingResponse,
+    AsyncVisionResourceWithStreamingResponse,
+)
 from .completions import (
     CompletionsResource,
     AsyncCompletionsResource,
@@ -100,4 +108,10 @@ __all__ = [
     "AsyncToolsResourceWithRawResponse",
     "ToolsResourceWithStreamingResponse",
     "AsyncToolsResourceWithStreamingResponse",
+    "VisionResource",
+    "AsyncVisionResource",
+    "VisionResourceWithRawResponse",
+    "AsyncVisionResourceWithRawResponse",
+    "VisionResourceWithStreamingResponse",
+    "AsyncVisionResourceWithStreamingResponse",
 ]

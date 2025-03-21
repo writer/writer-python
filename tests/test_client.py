@@ -735,7 +735,7 @@ class TestWriter:
                         dict(
                             messages=[
                                 {
-                                    "content": "Write a poem about Python",
+                                    "content": "Write a haiku about programming",
                                     "role": "user",
                                 }
                             ],
@@ -764,7 +764,7 @@ class TestWriter:
                         dict(
                             messages=[
                                 {
-                                    "content": "Write a poem about Python",
+                                    "content": "Write a haiku about programming",
                                     "role": "user",
                                 }
                             ],
@@ -1555,7 +1555,7 @@ class TestAsyncWriter:
                         dict(
                             messages=[
                                 {
-                                    "content": "Write a poem about Python",
+                                    "content": "Write a haiku about programming",
                                     "role": "user",
                                 }
                             ],
@@ -1584,7 +1584,7 @@ class TestAsyncWriter:
                         dict(
                             messages=[
                                 {
-                                    "content": "Write a poem about Python",
+                                    "content": "Write a haiku about programming",
                                     "role": "user",
                                 }
                             ],
