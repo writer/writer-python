@@ -41,6 +41,7 @@ from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
 from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
+from .vision_analyze_params import VisionAnalyzeParams as VisionAnalyzeParams
 from .chat_completion_choice import ChatCompletionChoice as ChatCompletionChoice
 from .application_list_params import ApplicationListParams as ApplicationListParams
 from .chat_completion_message import ChatCompletionMessage as ChatCompletionMessage
@@ -48,7 +49,6 @@ from .question_response_chunk import QuestionResponseChunk as QuestionResponseCh
 from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
-from .vision_analyze_images_params import VisionAnalyzeImagesParams as VisionAnalyzeImagesParams
 from .application_retrieve_response import ApplicationRetrieveResponse as ApplicationRetrieveResponse
 from .graph_add_file_to_graph_params import GraphAddFileToGraphParams as GraphAddFileToGraphParams
 from .application_generate_content_chunk import ApplicationGenerateContentChunk as ApplicationGenerateContentChunk

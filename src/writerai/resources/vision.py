@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..types import vision_analyze_images_params
+from ..types import vision_analyze_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -46,12 +46,12 @@ class VisionResource(SyncAPIResource):
         """
         return VisionResourceWithStreamingResponse(self)
 
-    def analyze_images(
+    def analyze(
         self,
         *,
         model: str,
         prompt: str,
-        variables: Iterable[vision_analyze_images_params.Variable],
+        variables: Iterable[vision_analyze_params.Variable],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,7 +86,7 @@ class VisionResource(SyncAPIResource):
                     "prompt": prompt,
                     "variables": variables,
                 },
-                vision_analyze_images_params.VisionAnalyzeImagesParams,
+                vision_analyze_params.VisionAnalyzeParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -115,12 +115,12 @@ class AsyncVisionResource(AsyncAPIResource):
         """
         return AsyncVisionResourceWithStreamingResponse(self)
 
-    async def analyze_images(
+    async def analyze(
         self,
         *,
         model: str,
         prompt: str,
-        variables: Iterable[vision_analyze_images_params.Variable],
+        variables: Iterable[vision_analyze_params.Variable],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,7 +155,7 @@ class AsyncVisionResource(AsyncAPIResource):
                     "prompt": prompt,
                     "variables": variables,
                 },
-                vision_analyze_images_params.VisionAnalyzeImagesParams,
+                vision_analyze_params.VisionAnalyzeParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -168,8 +168,8 @@ class VisionResourceWithRawResponse:
     def __init__(self, vision: VisionResource) -> None:
         self._vision = vision
 
-        self.analyze_images = to_raw_response_wrapper(
-            vision.analyze_images,
+        self.analyze = to_raw_response_wrapper(
+            vision.analyze,
         )
 
 
@@ -177,8 +177,8 @@ class AsyncVisionResourceWithRawResponse:
     def __init__(self, vision: AsyncVisionResource) -> None:
         self._vision = vision
 
-        self.analyze_images = async_to_raw_response_wrapper(
-            vision.analyze_images,
+        self.analyze = async_to_raw_response_wrapper(
+            vision.analyze,
         )
 
 
@@ -186,8 +186,8 @@ class VisionResourceWithStreamingResponse:
     def __init__(self, vision: VisionResource) -> None:
         self._vision = vision
 
-        self.analyze_images = to_streamed_response_wrapper(
-            vision.analyze_images,
+        self.analyze = to_streamed_response_wrapper(
+            vision.analyze,
         )
 
 
@@ -195,6 +195,6 @@ class AsyncVisionResourceWithStreamingResponse:
     def __init__(self, vision: AsyncVisionResource) -> None:
         self._vision = vision
 
-        self.analyze_images = async_to_streamed_response_wrapper(
-            vision.analyze_images,
+        self.analyze = async_to_streamed_response_wrapper(
+            vision.analyze,
         )
