@@ -18,8 +18,8 @@ class TestVision:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_analyze_images(self, client: Writer) -> None:
-        vision = client.vision.analyze_images(
+    def test_method_analyze(self, client: Writer) -> None:
+        vision = client.vision.analyze(
             model="palmyra-vision",
             prompt="Describe the difference between the image {{image_1}} and the image {{image_2}}.",
             variables=[
@@ -36,8 +36,8 @@ class TestVision:
         assert_matches_type(VisionResponse, vision, path=["response"])
 
     @parametrize
-    def test_raw_response_analyze_images(self, client: Writer) -> None:
-        response = client.vision.with_raw_response.analyze_images(
+    def test_raw_response_analyze(self, client: Writer) -> None:
+        response = client.vision.with_raw_response.analyze(
             model="palmyra-vision",
             prompt="Describe the difference between the image {{image_1}} and the image {{image_2}}.",
             variables=[
@@ -58,8 +58,8 @@ class TestVision:
         assert_matches_type(VisionResponse, vision, path=["response"])
 
     @parametrize
-    def test_streaming_response_analyze_images(self, client: Writer) -> None:
-        with client.vision.with_streaming_response.analyze_images(
+    def test_streaming_response_analyze(self, client: Writer) -> None:
+        with client.vision.with_streaming_response.analyze(
             model="palmyra-vision",
             prompt="Describe the difference between the image {{image_1}} and the image {{image_2}}.",
             variables=[
@@ -86,8 +86,8 @@ class TestAsyncVision:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_analyze_images(self, async_client: AsyncWriter) -> None:
-        vision = await async_client.vision.analyze_images(
+    async def test_method_analyze(self, async_client: AsyncWriter) -> None:
+        vision = await async_client.vision.analyze(
             model="palmyra-vision",
             prompt="Describe the difference between the image {{image_1}} and the image {{image_2}}.",
             variables=[
@@ -104,8 +104,8 @@ class TestAsyncVision:
         assert_matches_type(VisionResponse, vision, path=["response"])
 
     @parametrize
-    async def test_raw_response_analyze_images(self, async_client: AsyncWriter) -> None:
-        response = await async_client.vision.with_raw_response.analyze_images(
+    async def test_raw_response_analyze(self, async_client: AsyncWriter) -> None:
+        response = await async_client.vision.with_raw_response.analyze(
             model="palmyra-vision",
             prompt="Describe the difference between the image {{image_1}} and the image {{image_2}}.",
             variables=[
@@ -126,8 +126,8 @@ class TestAsyncVision:
         assert_matches_type(VisionResponse, vision, path=["response"])
 
     @parametrize
-    async def test_streaming_response_analyze_images(self, async_client: AsyncWriter) -> None:
-        async with async_client.vision.with_streaming_response.analyze_images(
+    async def test_streaming_response_analyze(self, async_client: AsyncWriter) -> None:
+        async with async_client.vision.with_streaming_response.analyze(
             model="palmyra-vision",
             prompt="Describe the difference between the image {{image_1}} and the image {{image_2}}.",
             variables=[
