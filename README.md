@@ -70,7 +70,7 @@ client = Writer()
 chat_completion = client.chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -92,7 +92,7 @@ async def main() -> None:
     chat_completion = await client.chat.chat(
         messages=[
             {
-                "content": "Write a poem about Python",
+                "content": "Write a haiku about programming",
                 "role": "user",
             }
         ],
@@ -120,7 +120,7 @@ client = Writer()
 stream = client.chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -148,7 +148,7 @@ client = AsyncWriter()
 stream = await client.chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -284,7 +284,7 @@ try:
     client.chat.chat(
         messages=[
             {
-                "content": "Write a poem about Python",
+                "content": "Write a haiku about programming",
                 "role": "user",
             }
         ],
@@ -335,7 +335,7 @@ client = Writer(
 client.with_options(max_retries=5).chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -367,7 +367,7 @@ client = Writer(
 client.with_options(timeout=5.0).chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -417,7 +417,7 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "content": "Write a poem about Python",
+        "content": "Write a haiku about programming",
         "role": "user",
     }],
     model="palmyra-x-004",
@@ -440,7 +440,7 @@ To stream the raw response body, use `.with_streaming_response`, which requires 
 with client.chat.with_streaming_response.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
