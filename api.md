@@ -192,4 +192,4 @@ from writerai.types import VisionRequest, VisionResponse
 
 Methods:
 
-- <code title="post /v1/vision">client.vision.<a href="./src/writerai/resources/vision.py">analyze_images</a>(\*\*<a href="src/writerai/types/vision_analyze_images_params.py">params</a>) -> <a href="./src/writerai/types/vision_response.py">VisionResponse</a></code>
+- <code title="post /v1/vision">client.vision.<a href="./src/writerai/resources/vision.py">analyze</a>(\*\*<a href="src/writerai/types/vision_analyze_params.py">params</a>) -> <a href="./src/writerai/types/vision_response.py">VisionResponse</a></code>

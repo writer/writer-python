@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["VisionAnalyzeImagesParams", "Variable"]
+__all__ = ["VisionAnalyzeParams", "Variable"]
 
 
-class VisionAnalyzeImagesParams(TypedDict, total=False):
+class VisionAnalyzeParams(TypedDict, total=False):
     model: Required[str]
     """The model to be used for image analysis.
 
