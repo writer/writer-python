@@ -31,6 +31,8 @@ httpx==0.28.1
 idna==3.4
     # via anyio
     # via httpx
+jiter==0.8.2
+    # via writer-sdk
 pydantic==2.10.3
     # via writer-sdk
 pydantic-core==2.27.1

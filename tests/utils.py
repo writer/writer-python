@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import io
 import os
 import inspect
 import traceback
@@ -7,6 +8,8 @@ import contextlib
 from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
+
+import rich
 
 from writerai._types import Omit, NoneType
 from writerai._utils import (
@@ -140,6 +143,16 @@ def _assert_list_type(type_: type[object], value: object) -> None:
     inner_type = get_args(type_)[0]
     for entry in value:
         assert_type(inner_type, entry)  # type: ignore
+
+
+def rich_print_str(obj: object) -> str:
+    """Like `rich.print()` but returns the string instead"""
+    buf = io.StringIO()
+
+    console = rich.console.Console(file=buf, width=120)
+    console.print(obj)
+
+    return buf.getvalue()
 
 
 @contextlib.contextmanager

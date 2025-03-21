@@ -8,7 +8,8 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import _exceptions
+from writerai import _exceptions
+
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
