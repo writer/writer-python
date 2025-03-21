@@ -76,7 +76,7 @@ chat_completion = client.chat.chat(
     ],
     model="palmyra-x-004",
 )
-print(chat.choices[0].message.content)
+print(chat_completion.choices[0].message.content)
 ```
 
 With asynchronous usage, you import `AsyncWriter` instead of `Writer` and use `await` with each API call:
@@ -98,7 +98,7 @@ async def main() -> None:
         ],
         model="palmyra-x-004",
     )
-    print(chat.choices[0].message.content)
+    print(chat_completion.choices[0].message.content)
 
 
 asyncio.run(main())
