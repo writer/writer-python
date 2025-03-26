@@ -95,6 +95,12 @@ class ChatChatParamsBase(TypedDict, total=False):
 
 class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system", "tool"]]
+    """The role of the chat message.
+
+    You can provide a system prompt by setting the role to `system`, or specify that
+    a message is the result of a [tool call](/api-guides/tool-calling) by setting
+    the role to `tool`.
+    """
 
     content: Optional[str]
 
