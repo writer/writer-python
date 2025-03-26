@@ -115,9 +115,11 @@ class ChatResource(SyncAPIResource):
               automatically choose the best tool, `none` disables tool calling. You can also
               pass a specific previously defined function.
 
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses. You can define your own functions or use the built-in
-              `graph` or `llm` tools.
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`).
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -198,9 +200,11 @@ class ChatResource(SyncAPIResource):
               automatically choose the best tool, `none` disables tool calling. You can also
               pass a specific previously defined function.
 
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses. You can define your own functions or use the built-in
-              `graph` or `llm` tools.
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`).
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -281,9 +285,11 @@ class ChatResource(SyncAPIResource):
               automatically choose the best tool, `none` disables tool calling. You can also
               pass a specific previously defined function.
 
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses. You can define your own functions or use the built-in
-              `graph` or `llm` tools.
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`).
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -435,9 +441,11 @@ class AsyncChatResource(AsyncAPIResource):
               automatically choose the best tool, `none` disables tool calling. You can also
               pass a specific previously defined function.
 
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses. You can define your own functions or use the built-in
-              `graph` or `llm` tools.
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`).
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -518,9 +526,11 @@ class AsyncChatResource(AsyncAPIResource):
               automatically choose the best tool, `none` disables tool calling. You can also
               pass a specific previously defined function.
 
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses. You can define your own functions or use the built-in
-              `graph` or `llm` tools.
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`).
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -601,9 +611,11 @@ class AsyncChatResource(AsyncAPIResource):
               automatically choose the best tool, `none` disables tool calling. You can also
               pass a specific previously defined function.
 
-          tools: An array of tools described to the model using JSON schema that the model can
-              use to generate responses. You can define your own functions or use the built-in
-              `graph` or `llm` tools.
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`).
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
