@@ -7,7 +7,17 @@ from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .function_definition import FunctionDefinition
 
-__all__ = ["ToolParam", "FunctionTool", "GraphTool", "GraphToolFunction", "LlmTool", "LlmToolFunction"]
+__all__ = [
+    "ToolParam",
+    "FunctionTool",
+    "GraphTool",
+    "GraphToolFunction",
+    "LlmTool",
+    "LlmToolFunction",
+    "VisionTool",
+    "VisionToolFunction",
+    "VisionToolFunctionVariable",
+]
 
 
 class FunctionTool(BaseModel):
@@ -53,4 +63,39 @@ class LlmTool(BaseModel):
     """The type of tool."""
 
 
-ToolParam: TypeAlias = Annotated[Union[FunctionTool, GraphTool, LlmTool], PropertyInfo(discriminator="type")]
+class VisionToolFunctionVariable(BaseModel):
+    file_id: str
+    """The File ID of the image to be analyzed.
+
+    The file must be uploaded to the Writer platform before you use it with the
+    Vision tool.
+    """
+
+    name: str
+    """The name of the file variable.
+
+    You must reference this name in the `message.content` field of the request to
+    the chat completions endpoint. Use double curly braces (`{{}}`) to reference the
+    file. For example,
+    `Describe the difference between the image {{image_1}} and the image {{image_2}}`.
+    """
+
+
+class VisionToolFunction(BaseModel):
+    model: str
+    """The model to be used for image analysis. Must be `palmyra-vision`."""
+
+    variables: List[VisionToolFunctionVariable]
+
+
+class VisionTool(BaseModel):
+    function: VisionToolFunction
+    """A tool that uses Palmyra Vision to analyze images."""
+
+    type: Literal["vision"]
+    """The type of tool."""
+
+
+ToolParam: TypeAlias = Annotated[
+    Union[FunctionTool, GraphTool, LlmTool, VisionTool], PropertyInfo(discriminator="type")
+]
