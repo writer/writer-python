@@ -58,22 +58,6 @@ client = Writer(api_key="my-api-key")
 
 You can find the full API for this library in [api.md](api.md).
 
-### Streaming Helpers
-
-The SDK also includes helpers to process streams and handle incoming events.
-
-```python
-with client.chat.stream(
-    model="palmyra-x-004",
-    messages=[{"role": "user", "content": prompt}],
-) as stream:
-    for event in stream:
-        if event.type == "content.delta":
-            print(event.delta, flush=True, end="")
-```
-
-More information on streaming helpers can be found in the dedicated documentation: [helpers.md](helpers.md)
-
 ### Synchronous versus asynchronous usage
 
 The Writer Python library supports both synchronous and asynchronous usage. With synchronous usage, you call the API methods directly:
@@ -182,6 +166,22 @@ print(output_text)
 ```
 
 For non-streaming responses, the library returns a single response object.
+
+### Streaming Helpers
+
+The SDK also includes helpers to process streams and handle incoming events.
+
+```python
+with client.chat.stream(
+    model="palmyra-x-004",
+    messages=[{"role": "user", "content": prompt}],
+) as stream:
+    for event in stream:
+        if event.type == "content.delta":
+            print(event.delta, flush=True, end="")
+```
+
+More information on streaming helpers can be found in the dedicated documentation: [helpers.md](helpers.md)
 
 ## Pagination
 

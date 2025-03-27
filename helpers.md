@@ -4,9 +4,9 @@ Writer supports streaming responses when interacting with the [Chat Completion A
 
 ## Chat Completion API
 
-The SDK provides a `client.chat.stream()` method that wraps the `chat.create(stream=True)` stream providing a more granular event API and automatic accumulation of each delta.
+The SDK provides a `client.chat.stream()` method that wraps the `client.chat.chat(stream=True)` stream providing a more granular event API and automatic accumulation of each delta.
 
-Unlike `client.create(stream=True)`, the `stream()` method requires usage within a context manager to prevent accidental leak of the response:
+Unlike `client.chat.chat(stream=True)`, the `stream()` method requires usage within a context manager to prevent accidental leak of the response:
 
 ```py
 from writerai import AsyncWriter
@@ -14,7 +14,7 @@ from writerai import AsyncWriter
 client = AsyncWriter()
 
 async with client.chat.stream(
-    model='palmyra-x-003-instruct',
+    model='palmyra-x-004',
     messages=[...],
 ) as stream:
     async for event in stream:
