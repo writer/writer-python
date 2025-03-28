@@ -20,7 +20,7 @@ def accumulate_delta(acc: dict[object, object], delta: dict[object, object]) -> 
         #
         # the same applies to `type` properties as they're used for
         # discriminated unions
-        if key == "index" or key == "type":
+        if key == "index" or key == "type" or key == "role":
             acc[key] = delta_value
             continue
 
