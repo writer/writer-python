@@ -932,6 +932,7 @@ FunctionToolCallArgumentsDoneEvent(
     index=0,
     name='get_weather',
     parsed_arguments=None,
+    tool_call_snapshot_id='call_4XzlGBLtUe9dy3GVNV4jhq7h',
     type='tool_calls.function.arguments.done'
 )
 """)
