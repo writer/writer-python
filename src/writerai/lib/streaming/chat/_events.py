@@ -74,6 +74,8 @@ class FunctionToolCallArgumentsDoneEvent(BaseModel):
 
     index: int
 
+    tool_call_snapshot_id: str
+
     arguments: str
     """Accumulated raw JSON string"""
 

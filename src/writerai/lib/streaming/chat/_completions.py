@@ -711,6 +711,7 @@ class ChoiceEventState:
                     name=tool_call_snapshot.function.name,
                     arguments=tool_call_snapshot.function.arguments,
                     parsed_arguments=parsed_arguments,
+                    tool_call_snapshot_id=tool_call_snapshot.id
                 )
             )
         elif TYPE_CHECKING:  # type: ignore[unreachable]
