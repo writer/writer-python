@@ -167,6 +167,22 @@ print(output_text)
 
 For non-streaming responses, the library returns a single response object.
 
+### Streaming Helpers
+
+The SDK also includes helpers to process streams and handle incoming events.
+
+```python
+with client.chat.stream(
+    model="palmyra-x-004",
+    messages=[{"role": "user", "content": prompt}],
+) as stream:
+    for event in stream:
+        if event.type == "content.delta":
+            print(event.delta, flush=True, end="")
+```
+
+More information on streaming helpers can be found in the dedicated documentation: [helpers.md](helpers.md)
+
 ## Pagination
 
 List methods in the Writer API are paginated.
