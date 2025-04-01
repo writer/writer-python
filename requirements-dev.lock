@@ -17,6 +17,8 @@ anyio==4.4.0
     # via writer-sdk
 argcomplete==3.1.2
     # via nox
+asttokens==3.0.0
+    # via inline-snapshot
 certifi==2023.7.22
     # via httpcore
     # via httpx
@@ -30,6 +32,8 @@ distro==1.8.0
 exceptiongroup==1.2.2
     # via anyio
     # via pytest
+executing==2.2.0
+    # via inline-snapshot
 filelock==3.12.4
     # via virtualenv
 h11==0.14.0
@@ -45,6 +49,9 @@ idna==3.4
 importlib-metadata==7.0.0
 iniconfig==2.0.0
     # via pytest
+inline-snapshot==0.20.5
+jiter==0.8.2
+    # via writer-sdk
 markdown-it-py==3.0.0
     # via rich
 mdurl==0.1.2
@@ -79,6 +86,7 @@ pytz==2023.3.post1
     # via dirty-equals
 respx==0.22.0
 rich==13.7.1
+    # via inline-snapshot
 ruff==0.9.4
 setuptools==68.2.2
     # via nodeenv
@@ -89,6 +97,7 @@ sniffio==1.3.0
     # via writer-sdk
 time-machine==2.9.0
 tomli==2.0.2
+    # via inline-snapshot
     # via mypy
     # via pytest
 typing-extensions==4.12.2

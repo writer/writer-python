@@ -8,6 +8,7 @@ from ._models import BaseModel
 from ._version import __title__, __version__
 from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIResponse
 from ._constants import DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_CONNECTION_LIMITS
+from .lib._tools import pydantic_function_tool
 from ._exceptions import (
     APIError,
     WriterError,
@@ -21,8 +22,10 @@ from ._exceptions import (
     AuthenticationError,
     InternalServerError,
     PermissionDeniedError,
+    LengthFinishReasonError,
     UnprocessableEntityError,
     APIResponseValidationError,
+    ContentFilterFinishReasonError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
@@ -51,6 +54,8 @@ __all__ = [
     "UnprocessableEntityError",
     "RateLimitError",
     "InternalServerError",
+    "LengthFinishReasonError",
+    "ContentFilterFinishReasonError",
     "Timeout",
     "RequestOptions",
     "Client",
@@ -66,6 +71,7 @@ __all__ = [
     "DEFAULT_CONNECTION_LIMITS",
     "DefaultHttpxClient",
     "DefaultAsyncHttpxClient",
+    "pydantic_function_tool",
 ]
 
 _setup_logging()
