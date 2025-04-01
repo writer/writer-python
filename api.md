@@ -181,3 +181,15 @@ from writerai.types.tools import ComprehendMedicalResponse
 Methods:
 
 - <code title="post /v1/tools/comprehend/medical">client.tools.comprehend.<a href="./src/writerai/resources/tools/comprehend.py">medical</a>(\*\*<a href="src/writerai/types/tools/comprehend_medical_params.py">params</a>) -> <a href="./src/writerai/types/tools/comprehend_medical_response.py">ComprehendMedicalResponse</a></code>
+
+# Vision
+
+Types:
+
+```python
+from writerai.types import VisionRequest, VisionResponse
+```
+
+Methods:
+
+- <code title="post /v1/vision">client.vision.<a href="./src/writerai/resources/vision.py">analyze</a>(\*\*<a href="src/writerai/types/vision_analyze_params.py">params</a>) -> <a href="./src/writerai/types/vision_response.py">VisionResponse</a></code>

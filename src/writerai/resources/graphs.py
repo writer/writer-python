@@ -358,8 +358,8 @@ class GraphsResource(SyncAPIResource):
         *,
         graph_ids: List[str],
         question: str,
-        stream: Literal[False],
-        subqueries: bool,
+        stream: Literal[False] | NotGiven = NOT_GIVEN,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -398,7 +398,7 @@ class GraphsResource(SyncAPIResource):
         graph_ids: List[str],
         question: str,
         stream: Literal[True],
-        subqueries: bool,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -437,7 +437,7 @@ class GraphsResource(SyncAPIResource):
         graph_ids: List[str],
         question: str,
         stream: bool,
-        subqueries: bool,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -469,14 +469,14 @@ class GraphsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["graph_ids", "question", "stream", "subqueries"])
+    @required_args(["graph_ids", "question"], ["graph_ids", "question", "stream"])
     def question(
         self,
         *,
         graph_ids: List[str],
         question: str,
-        stream: Literal[False] | Literal[True],
-        subqueries: bool,
+        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -857,8 +857,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         graph_ids: List[str],
         question: str,
-        stream: Literal[False],
-        subqueries: bool,
+        stream: Literal[False] | NotGiven = NOT_GIVEN,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -897,7 +897,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         graph_ids: List[str],
         question: str,
         stream: Literal[True],
-        subqueries: bool,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -936,7 +936,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         graph_ids: List[str],
         question: str,
         stream: bool,
-        subqueries: bool,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -968,14 +968,14 @@ class AsyncGraphsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["graph_ids", "question", "stream", "subqueries"])
+    @required_args(["graph_ids", "question"], ["graph_ids", "question", "stream"])
     async def question(
         self,
         *,
         graph_ids: List[str],
         question: str,
-        stream: Literal[False] | Literal[True],
-        subqueries: bool,
+        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
+        subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

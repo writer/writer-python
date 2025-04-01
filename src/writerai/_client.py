@@ -8,7 +8,8 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import _exceptions
+from writerai import _exceptions
+
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,7 +25,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import chat, files, graphs, models, completions
+from .resources import chat, files, graphs, models, vision, completions
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import WriterError, APIStatusError
 from ._base_client import (
@@ -46,6 +47,7 @@ class Writer(SyncAPIClient):
     graphs: graphs.GraphsResource
     files: files.FilesResource
     tools: tools.ToolsResource
+    vision: vision.VisionResource
     with_raw_response: WriterWithRawResponse
     with_streaming_response: WriterWithStreamedResponse
 
@@ -75,7 +77,7 @@ class Writer(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous writer client instance.
+        """Construct a new synchronous Writer client instance.
 
         This automatically infers the `api_key` argument from the `WRITER_API_KEY` environment variable if it is not provided.
         """
@@ -112,6 +114,7 @@ class Writer(SyncAPIClient):
         self.graphs = graphs.GraphsResource(self)
         self.files = files.FilesResource(self)
         self.tools = tools.ToolsResource(self)
+        self.vision = vision.VisionResource(self)
         self.with_raw_response = WriterWithRawResponse(self)
         self.with_streaming_response = WriterWithStreamedResponse(self)
 
@@ -228,6 +231,7 @@ class AsyncWriter(AsyncAPIClient):
     graphs: graphs.AsyncGraphsResource
     files: files.AsyncFilesResource
     tools: tools.AsyncToolsResource
+    vision: vision.AsyncVisionResource
     with_raw_response: AsyncWriterWithRawResponse
     with_streaming_response: AsyncWriterWithStreamedResponse
 
@@ -257,7 +261,7 @@ class AsyncWriter(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async writer client instance.
+        """Construct a new async AsyncWriter client instance.
 
         This automatically infers the `api_key` argument from the `WRITER_API_KEY` environment variable if it is not provided.
         """
@@ -294,6 +298,7 @@ class AsyncWriter(AsyncAPIClient):
         self.graphs = graphs.AsyncGraphsResource(self)
         self.files = files.AsyncFilesResource(self)
         self.tools = tools.AsyncToolsResource(self)
+        self.vision = vision.AsyncVisionResource(self)
         self.with_raw_response = AsyncWriterWithRawResponse(self)
         self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
 
@@ -411,6 +416,7 @@ class WriterWithRawResponse:
         self.graphs = graphs.GraphsResourceWithRawResponse(client.graphs)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.tools = tools.ToolsResourceWithRawResponse(client.tools)
+        self.vision = vision.VisionResourceWithRawResponse(client.vision)
 
 
 class AsyncWriterWithRawResponse:
@@ -422,6 +428,7 @@ class AsyncWriterWithRawResponse:
         self.graphs = graphs.AsyncGraphsResourceWithRawResponse(client.graphs)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.tools = tools.AsyncToolsResourceWithRawResponse(client.tools)
+        self.vision = vision.AsyncVisionResourceWithRawResponse(client.vision)
 
 
 class WriterWithStreamedResponse:
@@ -433,6 +440,7 @@ class WriterWithStreamedResponse:
         self.graphs = graphs.GraphsResourceWithStreamingResponse(client.graphs)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.tools = tools.ToolsResourceWithStreamingResponse(client.tools)
+        self.vision = vision.VisionResourceWithStreamingResponse(client.vision)
 
 
 class AsyncWriterWithStreamedResponse:
@@ -444,6 +452,7 @@ class AsyncWriterWithStreamedResponse:
         self.graphs = graphs.AsyncGraphsResourceWithStreamingResponse(client.graphs)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.tools = tools.AsyncToolsResourceWithStreamingResponse(client.tools)
+        self.vision = vision.AsyncVisionResourceWithStreamingResponse(client.vision)
 
 
 Client = Writer

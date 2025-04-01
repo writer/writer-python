@@ -77,9 +77,11 @@ class ChatChatParamsBase(TypedDict, total=False):
 
     tools: Iterable[ToolParam]
     """
-    An array of tools described to the model using JSON schema that the model can
-    use to generate responses. You can define your own functions or use the built-in
-    `graph` or `llm` tools.
+    An array containing tool definitions for tools that the model can use to
+    generate responses. The tool definitions use JSON schema. You can define your
+    own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+    that you can only use one built-in tool type in the array (only one of `graph`,
+    `llm`, or `vision`).
     """
 
     top_p: float
@@ -93,6 +95,12 @@ class ChatChatParamsBase(TypedDict, total=False):
 
 class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system", "tool"]]
+    """The role of the chat message.
+
+    You can provide a system prompt by setting the role to `system`, or specify that
+    a message is the result of a [tool call](/api-guides/tool-calling) by setting
+    the role to `tool`.
+    """
 
     content: Optional[str]
 

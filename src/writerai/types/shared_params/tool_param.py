@@ -2,12 +2,22 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .function_definition import FunctionDefinition
 
-__all__ = ["ToolParam", "FunctionTool", "GraphTool", "GraphToolFunction", "LlmTool", "LlmToolFunction"]
+__all__ = [
+    "ToolParam",
+    "FunctionTool",
+    "GraphTool",
+    "GraphToolFunction",
+    "LlmTool",
+    "LlmToolFunction",
+    "VisionTool",
+    "VisionToolFunction",
+    "VisionToolFunctionVariable",
+]
 
 
 class FunctionTool(TypedDict, total=False):
@@ -49,8 +59,41 @@ class LlmTool(TypedDict, total=False):
     function: Required[LlmToolFunction]
     """A tool that uses another Writer model to generate a response."""
 
-    type: Literal["llm"]
+    type: Required[Literal["llm"]]
     """The type of tool."""
 
 
-ToolParam: TypeAlias = Union[FunctionTool, GraphTool, LlmTool]
+class VisionToolFunctionVariable(TypedDict, total=False):
+    file_id: Required[str]
+    """The File ID of the image to be analyzed.
+
+    The file must be uploaded to the Writer platform before you use it with the
+    Vision tool.
+    """
+
+    name: Required[str]
+    """The name of the file variable.
+
+    You must reference this name in the `message.content` field of the request to
+    the chat completions endpoint. Use double curly braces (`{{}}`) to reference the
+    file. For example,
+    `Describe the difference between the image {{image_1}} and the image {{image_2}}`.
+    """
+
+
+class VisionToolFunction(TypedDict, total=False):
+    model: Required[str]
+    """The model to be used for image analysis. Must be `palmyra-vision`."""
+
+    variables: Required[Iterable[VisionToolFunctionVariable]]
+
+
+class VisionTool(TypedDict, total=False):
+    function: Required[VisionToolFunction]
+    """A tool that uses Palmyra Vision to analyze images."""
+
+    type: Required[Literal["vision"]]
+    """The type of tool."""
+
+
+ToolParam: TypeAlias = Union[FunctionTool, GraphTool, LlmTool, VisionTool]

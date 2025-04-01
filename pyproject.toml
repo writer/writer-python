@@ -1,6 +1,6 @@
 [project]
 name = "writer-sdk"
-version = "2.0.0"
+version = "2.1.0-rc1"
 description = "The official Python library for the writer API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -14,6 +14,8 @@ dependencies = [
     "anyio>=3.5.0, <5",
     "distro>=1.7.0, <2",
     "sniffio",
+    "cached-property; python_version < '3.8'",
+    "jiter>=0.4.0, <1",
 ]
 requires-python = ">= 3.8"
 classifiers = [
@@ -38,7 +40,6 @@ Homepage = "https://github.com/writer/writer-python"
 Repository = "https://github.com/writer/writer-python"
 
 
-
 [tool.rye]
 managed = true
 # version pins are in requirements-dev.lock
@@ -54,7 +55,8 @@ dev-dependencies = [
     "dirty-equals>=0.6.0",
     "importlib-metadata>=6.7.0",
     "rich>=13.7.1",
-    "nest_asyncio==1.6.0",
+    "inline-snapshot >=0.7.0",
+    "nest_asyncio==1.6.0"
 ]
 
 [tool.rye.scripts]
@@ -87,7 +89,7 @@ typecheck = { chain = [
 "typecheck:mypy" = "mypy ."
 
 [build-system]
-requires = ["hatchling", "hatch-fancy-pypi-readme"]
+requires = ["hatchling==1.26.3", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
@@ -151,7 +153,6 @@ reportImplicitOverride = true
 
 reportImportCycles = false
 reportPrivateUsage = false
-
 
 [tool.ruff]
 line-length = 120

@@ -6,7 +6,7 @@ The Writer Python library provides access to the Writer REST API from any Python
 application. It includes a set of tools and utilities that make it easy to integrate the capabilities
 of Writer into your projects.
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
@@ -70,7 +70,7 @@ client = Writer()
 chat_completion = client.chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -92,7 +92,7 @@ async def main() -> None:
     chat_completion = await client.chat.chat(
         messages=[
             {
-                "content": "Write a poem about Python",
+                "content": "Write a haiku about programming",
                 "role": "user",
             }
         ],
@@ -120,7 +120,7 @@ client = Writer()
 stream = client.chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -148,7 +148,7 @@ client = AsyncWriter()
 stream = await client.chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -166,6 +166,22 @@ print(output_text)
 ```
 
 For non-streaming responses, the library returns a single response object.
+
+### Streaming Helpers
+
+The SDK also includes helpers to process streams and handle incoming events.
+
+```python
+with client.chat.stream(
+    model="palmyra-x-004",
+    messages=[{"role": "user", "content": prompt}],
+) as stream:
+    for event in stream:
+        if event.type == "content.delta":
+            print(event.delta, flush=True, end="")
+```
+
+More information on streaming helpers can be found in the dedicated documentation: [helpers.md](helpers.md)
 
 ## Pagination
 
@@ -226,6 +242,23 @@ for graph in first_page.data:
     print(graph.id)
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from writerai import Writer
+
+client = Writer()
+
+chat_completion = client.chat.chat(
+    messages=[{"role": "user"}],
+    model="model",
+    stream_options={"include_usage": True},
+)
+print(chat_completion.stream_options)
+```
+
 ## File uploads
 
 You can pass file upload parameters as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
@@ -267,7 +300,7 @@ try:
     client.chat.chat(
         messages=[
             {
-                "content": "Write a poem about Python",
+                "content": "Write a haiku about programming",
                 "role": "user",
             }
         ],
@@ -318,7 +351,7 @@ client = Writer(
 client.with_options(max_retries=5).chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -350,7 +383,7 @@ client = Writer(
 client.with_options(timeout=5.0).chat.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],
@@ -400,7 +433,7 @@ from writerai import Writer
 client = Writer()
 response = client.chat.with_raw_response.chat(
     messages=[{
-        "content": "Write a poem about Python",
+        "content": "Write a haiku about programming",
         "role": "user",
     }],
     model="palmyra-x-004",
@@ -423,7 +456,7 @@ To stream the raw response body, use `.with_streaming_response`, which requires 
 with client.chat.with_streaming_response.chat(
     messages=[
         {
-            "content": "Write a poem about Python",
+            "content": "Write a haiku about programming",
             "role": "user",
         }
     ],

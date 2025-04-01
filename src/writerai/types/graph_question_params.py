@@ -15,12 +15,12 @@ class GraphQuestionParamsBase(TypedDict, total=False):
     question: Required[str]
     """The question to be answered using the Knowledge Graph."""
 
-    subqueries: Required[bool]
+    subqueries: bool
     """Specify whether to include subqueries."""
 
 
 class GraphQuestionParamsNonStreaming(GraphQuestionParamsBase, total=False):
-    stream: Required[Literal[False]]
+    stream: Literal[False]
     """Determines whether the model's output should be streamed.
 
     If true, the output is generated and sent incrementally, which can be useful for

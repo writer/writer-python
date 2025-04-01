@@ -22,6 +22,7 @@ from .shared import (
 from .question import Question as Question
 from .completion import Completion as Completion
 from .chat_completion import ChatCompletion as ChatCompletion
+from .vision_response import VisionResponse as VisionResponse
 from .chat_chat_params import ChatChatParams as ChatChatParams
 from .completion_chunk import CompletionChunk as CompletionChunk
 from .file_list_params import FileListParams as FileListParams
@@ -40,6 +41,7 @@ from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
 from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
+from .vision_analyze_params import VisionAnalyzeParams as VisionAnalyzeParams
 from .chat_completion_choice import ChatCompletionChoice as ChatCompletionChoice
 from .application_list_params import ApplicationListParams as ApplicationListParams
 from .chat_completion_message import ChatCompletionMessage as ChatCompletionMessage
