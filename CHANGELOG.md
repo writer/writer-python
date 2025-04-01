@@ -1,5 +1,44 @@
 # Changelog
 
+## 2.1.0-rc1 (2025-04-01)
+
+Full Changelog: [v2.0.0...v2.1.0-rc1](https://github.com/writer/writer-python/compare/v2.0.0...v2.1.0-rc1)
+
+### Features
+
+* add chat streaming helpers ([#209](https://github.com/writer/writer-python/issues/209)) ([7b65fc1](https://github.com/writer/writer-python/commit/7b65fc1d54432bba101f1f23a83d532644a298be))
+* **api:** Add Vision endpoint. ([#220](https://github.com/writer/writer-python/issues/220)) ([886b828](https://github.com/writer/writer-python/commit/886b82895a8dd336debafa588ac1e14da359677d))
+* **api:** Add Vision endpoint. ([#221](https://github.com/writer/writer-python/issues/221)) ([967073d](https://github.com/writer/writer-python/commit/967073dec1241af76c0d11b4805c64f5ee7b7844))
+
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#214](https://github.com/writer/writer-python/issues/214)) ([7285bc1](https://github.com/writer/writer-python/commit/7285bc105f39631ce52d7877bc335d49cbe9294c))
+* **ci:** remove publishing patch ([#215](https://github.com/writer/writer-python/issues/215)) ([26c3993](https://github.com/writer/writer-python/commit/26c39939db099741785c7f2cb013a8a5105c2273))
+* **types:** handle more discriminated union shapes ([#213](https://github.com/writer/writer-python/issues/213)) ([d1a067c](https://github.com/writer/writer-python/commit/d1a067ce68afa9fb59832c291b1d9fbd30aae763))
+
+
+### Chores
+
+* **docs:** update client docstring ([#203](https://github.com/writer/writer-python/issues/203)) ([3779210](https://github.com/writer/writer-python/commit/3779210ed12a9332f86682059b4aec4320cf7e7c))
+* fix typos ([#222](https://github.com/writer/writer-python/issues/222)) ([2ad9218](https://github.com/writer/writer-python/commit/2ad92187d04daa64d4dd0720d8cd941523c411c9))
+* **internal:** bump rye to 0.44.0 ([#211](https://github.com/writer/writer-python/issues/211)) ([7efe8a4](https://github.com/writer/writer-python/commit/7efe8a4b003ea1d4edeee785e9f9ac805b914289))
+* **internal:** codegen related update ([#204](https://github.com/writer/writer-python/issues/204)) ([f5e9ce7](https://github.com/writer/writer-python/commit/f5e9ce7c1a763fd59547b7eb1f5c0856dc80562b))
+* **internal:** Fix README code samples. ([#219](https://github.com/writer/writer-python/issues/219)) ([2efd5ea](https://github.com/writer/writer-python/commit/2efd5eafe21865ea6406e463cdac2231c0f810ea))
+* **internal:** Fix README samples. ([#217](https://github.com/writer/writer-python/issues/217)) ([a06f969](https://github.com/writer/writer-python/commit/a06f9697adf77ee2be877279179977270581d393))
+* **internal:** remove extra empty newlines ([#210](https://github.com/writer/writer-python/issues/210)) ([3b5fd4c](https://github.com/writer/writer-python/commit/3b5fd4c429c740ca2f460b6f974769336831e80e))
+* **internal:** version bump ([#200](https://github.com/writer/writer-python/issues/200)) ([a7b5f67](https://github.com/writer/writer-python/commit/a7b5f670838042af9a51c6e916ba0dff122635ce))
+
+
+### Documentation
+
+* **api:** updates to API spec ([#208](https://github.com/writer/writer-python/issues/208)) ([829e77a](https://github.com/writer/writer-python/commit/829e77ae9fb6e899fbdc6075586491404ef910da))
+* **api:** updates to API spec ([#216](https://github.com/writer/writer-python/issues/216)) ([3d29c55](https://github.com/writer/writer-python/commit/3d29c5598266b8da7fe9aae0614dc4b43c4986f3))
+* **api:** updates to API spec ([#223](https://github.com/writer/writer-python/issues/223)) ([c72a478](https://github.com/writer/writer-python/commit/c72a4781f221ecaba62519c1c08831ab78ee2169))
+* **api:** updates to API spec ([#224](https://github.com/writer/writer-python/issues/224)) ([7a990d7](https://github.com/writer/writer-python/commit/7a990d7af74adaac7b68b0d2319e8abc3704c757))
+* revise readme docs about nested params ([#206](https://github.com/writer/writer-python/issues/206)) ([ce4dfcc](https://github.com/writer/writer-python/commit/ce4dfcc857ae82c2d4cab789d32844d6643b2d56))
+* update URLs from stainlessapi.com to stainless.com ([#202](https://github.com/writer/writer-python/issues/202)) ([5895a7a](https://github.com/writer/writer-python/commit/5895a7a2c077f50c74ee56c2e985f3ac7fa63382))
+
 ## 2.0.0 (2025-02-26)
 
 Full Changelog: [v2.0.0-rc1...v2.0.0](https://github.com/writer/writer-python/compare/v2.0.0-rc1...v2.0.0)
