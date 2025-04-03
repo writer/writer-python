@@ -1695,7 +1695,7 @@ class TestAsyncWriter:
         import threading
 
         from writerai._utils import asyncify
-        from writerai._base_client import get_platform 
+        from writerai._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
