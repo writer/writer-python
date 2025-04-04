@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0 (2025-04-04)
+
+Full Changelog: [v2.1.0-rc1...v2.1.0](https://github.com/writer/writer-python/compare/v2.1.0-rc1...v2.1.0)
+
+### Chores
+
+* **internal:** remove trailing character ([#227](https://github.com/writer/writer-python/issues/227)) ([f8ad509](https://github.com/writer/writer-python/commit/f8ad509d1862bc7cb12f3890f0237510e8835168))
+* **internal:** version bump ([#225](https://github.com/writer/writer-python/issues/225)) ([7df4049](https://github.com/writer/writer-python/commit/7df404939f19da3966b5daceffa914838f967894))
+
 ## 2.1.0-rc1 (2025-04-01)
 
 Full Changelog: [v2.0.0...v2.1.0-rc1](https://github.com/writer/writer-python/compare/v2.0.0...v2.1.0-rc1)
