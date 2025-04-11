@@ -346,7 +346,7 @@ class ChatResource(SyncAPIResource):
                     "tools": tools,
                     "top_p": top_p,
                 },
-                chat_chat_params.ChatChatParams,
+                chat_chat_params.ChatChatParamsStreaming if stream else chat_chat_params.ChatChatParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -672,7 +672,7 @@ class AsyncChatResource(AsyncAPIResource):
                     "tools": tools,
                     "top_p": top_p,
                 },
-                chat_chat_params.ChatChatParams,
+                chat_chat_params.ChatChatParamsStreaming if stream else chat_chat_params.ChatChatParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
