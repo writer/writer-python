@@ -287,7 +287,9 @@ class ApplicationsResource(SyncAPIResource):
                     "inputs": inputs,
                     "stream": stream,
                 },
-                application_generate_content_params.ApplicationGenerateContentParams,
+                application_generate_content_params.ApplicationGenerateContentParamsStreaming
+                if stream
+                else application_generate_content_params.ApplicationGenerateContentParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -536,7 +538,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     "inputs": inputs,
                     "stream": stream,
                 },
-                application_generate_content_params.ApplicationGenerateContentParams,
+                application_generate_content_params.ApplicationGenerateContentParamsStreaming
+                if stream
+                else application_generate_content_params.ApplicationGenerateContentParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
