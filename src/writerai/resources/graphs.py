@@ -493,7 +493,9 @@ class GraphsResource(SyncAPIResource):
                     "stream": stream,
                     "subqueries": subqueries,
                 },
-                graph_question_params.GraphQuestionParams,
+                graph_question_params.GraphQuestionParamsStreaming
+                if stream
+                else graph_question_params.GraphQuestionParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -992,7 +994,9 @@ class AsyncGraphsResource(AsyncAPIResource):
                     "stream": stream,
                     "subqueries": subqueries,
                 },
-                graph_question_params.GraphQuestionParams,
+                graph_question_params.GraphQuestionParamsStreaming
+                if stream
+                else graph_question_params.GraphQuestionParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

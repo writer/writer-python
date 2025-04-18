@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.1.1 (2025-04-18)
+
+Full Changelog: [v2.1.0...v2.1.1](https://github.com/writer/writer-python/compare/v2.1.0...v2.1.1)
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([b1304d3](https://github.com/writer/writer-python/commit/b1304d306bb7e1e001de04d30be69adca53dbb63))
+* **perf:** skip traversing types for NotGiven values ([db0383a](https://github.com/writer/writer-python/commit/db0383a6c77cb059eab8d0c48d1ef27842128d14))
+
+
+### Chores
+
+* **client:** minor internal fixes ([8f42cd8](https://github.com/writer/writer-python/commit/8f42cd864779a07e2f9401e1690d1f241e2dcb1a))
+* **internal:** base client updates ([77cdb4a](https://github.com/writer/writer-python/commit/77cdb4aa35a6dc165bbf3e36b151377f25b77704))
+* **internal:** bump pyright version ([bcd957a](https://github.com/writer/writer-python/commit/bcd957a67bface1dc31c111928cf2bf604df0b56))
+* **internal:** expand CI branch coverage ([#235](https://github.com/writer/writer-python/issues/235)) ([672e10d](https://github.com/writer/writer-python/commit/672e10da46e802e25dce515311370c5faedf6721))
+* **internal:** reduce CI branch coverage ([725029b](https://github.com/writer/writer-python/commit/725029b1896669ea364ddc7795c0d4f3be56c890))
+* **internal:** slight transform perf improvement ([#233](https://github.com/writer/writer-python/issues/233)) ([92b7914](https://github.com/writer/writer-python/commit/92b7914f583d680b6f85bee45a7177ca2b3a61ee))
+* **internal:** update models test ([ba97e8f](https://github.com/writer/writer-python/commit/ba97e8f02e8e252cc11cacc46dfd30a73cb6ed43))
+* **internal:** update pyright settings ([8f7e894](https://github.com/writer/writer-python/commit/8f7e89421ed0a77f814fb7810212d19f1d795ba9))
+
+
+### Documentation
+
+* swap examples used in readme ([#231](https://github.com/writer/writer-python/issues/231)) ([e944c5b](https://github.com/writer/writer-python/commit/e944c5bf1cef967cb2de23ca844152d66f714b68))
+
 ## 2.1.0 (2025-04-04)
 
 Full Changelog: [v2.1.0-rc1...v2.1.0](https://github.com/writer/writer-python/compare/v2.1.0-rc1...v2.1.0)
