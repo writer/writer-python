@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import chat, files, graphs, models, vision, completions
+from .resources import chat, files, graphs, models, vision, completions, translation
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import WriterError, APIStatusError
 from ._base_client import (
@@ -46,6 +46,7 @@ class Writer(SyncAPIClient):
     graphs: graphs.GraphsResource
     files: files.FilesResource
     tools: tools.ToolsResource
+    translation: translation.TranslationResource
     vision: vision.VisionResource
     with_raw_response: WriterWithRawResponse
     with_streaming_response: WriterWithStreamedResponse
@@ -113,6 +114,7 @@ class Writer(SyncAPIClient):
         self.graphs = graphs.GraphsResource(self)
         self.files = files.FilesResource(self)
         self.tools = tools.ToolsResource(self)
+        self.translation = translation.TranslationResource(self)
         self.vision = vision.VisionResource(self)
         self.with_raw_response = WriterWithRawResponse(self)
         self.with_streaming_response = WriterWithStreamedResponse(self)
@@ -230,6 +232,7 @@ class AsyncWriter(AsyncAPIClient):
     graphs: graphs.AsyncGraphsResource
     files: files.AsyncFilesResource
     tools: tools.AsyncToolsResource
+    translation: translation.AsyncTranslationResource
     vision: vision.AsyncVisionResource
     with_raw_response: AsyncWriterWithRawResponse
     with_streaming_response: AsyncWriterWithStreamedResponse
@@ -297,6 +300,7 @@ class AsyncWriter(AsyncAPIClient):
         self.graphs = graphs.AsyncGraphsResource(self)
         self.files = files.AsyncFilesResource(self)
         self.tools = tools.AsyncToolsResource(self)
+        self.translation = translation.AsyncTranslationResource(self)
         self.vision = vision.AsyncVisionResource(self)
         self.with_raw_response = AsyncWriterWithRawResponse(self)
         self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
@@ -415,6 +419,7 @@ class WriterWithRawResponse:
         self.graphs = graphs.GraphsResourceWithRawResponse(client.graphs)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.tools = tools.ToolsResourceWithRawResponse(client.tools)
+        self.translation = translation.TranslationResourceWithRawResponse(client.translation)
         self.vision = vision.VisionResourceWithRawResponse(client.vision)
 
 
@@ -427,6 +432,7 @@ class AsyncWriterWithRawResponse:
         self.graphs = graphs.AsyncGraphsResourceWithRawResponse(client.graphs)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.tools = tools.AsyncToolsResourceWithRawResponse(client.tools)
+        self.translation = translation.AsyncTranslationResourceWithRawResponse(client.translation)
         self.vision = vision.AsyncVisionResourceWithRawResponse(client.vision)
 
 
@@ -439,6 +445,7 @@ class WriterWithStreamedResponse:
         self.graphs = graphs.GraphsResourceWithStreamingResponse(client.graphs)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.tools = tools.ToolsResourceWithStreamingResponse(client.tools)
+        self.translation = translation.TranslationResourceWithStreamingResponse(client.translation)
         self.vision = vision.VisionResourceWithStreamingResponse(client.vision)
 
 
@@ -451,6 +458,7 @@ class AsyncWriterWithStreamedResponse:
         self.graphs = graphs.AsyncGraphsResourceWithStreamingResponse(client.graphs)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.tools = tools.AsyncToolsResourceWithStreamingResponse(client.tools)
+        self.translation = translation.AsyncTranslationResourceWithStreamingResponse(client.translation)
         self.vision = vision.AsyncVisionResourceWithStreamingResponse(client.vision)
 
 
