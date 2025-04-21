@@ -63,7 +63,8 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> JobCreateResponse:
         """
-        Generate content asynchronously from an existing application with inputs.
+        Generate content asynchronously from an existing no-code agent (formerly called
+        no-code applications) with inputs.
 
         Args:
           inputs: A list of input objects to generate content for.
@@ -243,7 +244,8 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> JobCreateResponse:
         """
-        Generate content asynchronously from an existing application with inputs.
+        Generate content asynchronously from an existing no-code agent (formerly called
+        no-code applications) with inputs.
 
         Args:
           inputs: A list of input objects to generate content for.

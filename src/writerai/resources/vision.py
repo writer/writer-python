@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -49,7 +50,7 @@ class VisionResource(SyncAPIResource):
     def analyze(
         self,
         *,
-        model: str,
+        model: Literal["palmyra-vision"],
         prompt: str,
         variables: Iterable[vision_analyze_params.Variable],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -63,8 +64,7 @@ class VisionResource(SyncAPIResource):
         Submit images and a prompt to generate an analysis of the images.
 
         Args:
-          model: The model to be used for image analysis. Currently only supports
-              `palmyra-vision`.
+          model: The model to use for image analysis.
 
           prompt: The prompt to use for the image analysis. The prompt must include the name of
               each image variable, surrounded by double curly braces (`{{}}`). For example,
@@ -118,7 +118,7 @@ class AsyncVisionResource(AsyncAPIResource):
     async def analyze(
         self,
         *,
-        model: str,
+        model: Literal["palmyra-vision"],
         prompt: str,
         variables: Iterable[vision_analyze_params.Variable],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -132,8 +132,7 @@ class AsyncVisionResource(AsyncAPIResource):
         Submit images and a prompt to generate an analysis of the images.
 
         Args:
-          model: The model to be used for image analysis. Currently only supports
-              `palmyra-vision`.
+          model: The model to use for image analysis.
 
           prompt: The prompt to use for the image analysis. The prompt must include the name of
               each image variable, surrounded by double curly braces (`{{}}`). For example,

@@ -59,8 +59,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Updates the Knowledge Graphs listed and associates them with the no-code chat
-        app to be used.
+        Updates the Knowledge Graphs listed and associates them with the no-code agent.
 
         Args:
           graph_ids: A list of Knowledge Graph IDs to associate with the application. Note that this
@@ -98,7 +97,8 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Retrieve Knowledge Graphs associated with a no-code chat application.
+        Retrieve Knowledge Graphs associated with a no-code agent that has chat
+        capabilities.
 
         Args:
           extra_headers: Send extra headers
@@ -153,8 +153,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Updates the Knowledge Graphs listed and associates them with the no-code chat
-        app to be used.
+        Updates the Knowledge Graphs listed and associates them with the no-code agent.
 
         Args:
           graph_ids: A list of Knowledge Graph IDs to associate with the application. Note that this
@@ -192,7 +191,8 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Retrieve Knowledge Graphs associated with a no-code chat application.
+        Retrieve Knowledge Graphs associated with a no-code agent that has chat
+        capabilities.
 
         Args:
           extra_headers: Send extra headers

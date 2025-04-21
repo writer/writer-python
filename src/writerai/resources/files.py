@@ -242,7 +242,7 @@ class FilesResource(SyncAPIResource):
         Retry failed files
 
         Args:
-          file_ids: The unique identifier of the files to be retried.
+          file_ids: The unique identifier of the files to retry.
 
           extra_headers: Send extra headers
 
@@ -500,7 +500,7 @@ class AsyncFilesResource(AsyncAPIResource):
         Retry failed files
 
         Args:
-          file_ids: The unique identifier of the files to be retried.
+          file_ids: The unique identifier of the files to retry.
 
           extra_headers: Send extra headers
 

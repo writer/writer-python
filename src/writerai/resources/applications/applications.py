@@ -89,8 +89,8 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationRetrieveResponse:
         """
-        Retrieves detailed information for a specific no-code application, including its
-        configuration and current status.
+        Retrieves detailed information for a specific no-code agent (formerly called
+        no-code applications), including its configuration and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -127,8 +127,8 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncCursorPage[ApplicationListResponse]:
         """
-        Retrieves a paginated list of no-code applications with optional filtering and
-        sorting capabilities.
+        Retrieves a paginated list of no-code agents (formerly called no-code
+        applications) with optional filtering and sorting capabilities.
 
         Args:
           after: Return results after this application ID for pagination.
@@ -186,7 +186,8 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGenerateContentResponse:
         """
-        Generate content from an existing no-code application with inputs.
+        Generate content from an existing no-code agent (formerly called no-code
+        applications) with inputs.
 
         Args:
           stream: Indicates whether the response should be streamed. Currently only supported for
@@ -217,7 +218,8 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stream[ApplicationGenerateContentChunk]:
         """
-        Generate content from an existing no-code application with inputs.
+        Generate content from an existing no-code agent (formerly called no-code
+        applications) with inputs.
 
         Args:
           stream: Indicates whether the response should be streamed. Currently only supported for
@@ -248,7 +250,8 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGenerateContentResponse | Stream[ApplicationGenerateContentChunk]:
         """
-        Generate content from an existing no-code application with inputs.
+        Generate content from an existing no-code agent (formerly called no-code
+        applications) with inputs.
 
         Args:
           stream: Indicates whether the response should be streamed. Currently only supported for
@@ -340,8 +343,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationRetrieveResponse:
         """
-        Retrieves detailed information for a specific no-code application, including its
-        configuration and current status.
+        Retrieves detailed information for a specific no-code agent (formerly called
+        no-code applications), including its configuration and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -378,8 +381,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[ApplicationListResponse, AsyncCursorPage[ApplicationListResponse]]:
         """
-        Retrieves a paginated list of no-code applications with optional filtering and
-        sorting capabilities.
+        Retrieves a paginated list of no-code agents (formerly called no-code
+        applications) with optional filtering and sorting capabilities.
 
         Args:
           after: Return results after this application ID for pagination.
@@ -437,7 +440,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGenerateContentResponse:
         """
-        Generate content from an existing no-code application with inputs.
+        Generate content from an existing no-code agent (formerly called no-code
+        applications) with inputs.
 
         Args:
           stream: Indicates whether the response should be streamed. Currently only supported for
@@ -468,7 +472,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncStream[ApplicationGenerateContentChunk]:
         """
-        Generate content from an existing no-code application with inputs.
+        Generate content from an existing no-code agent (formerly called no-code
+        applications) with inputs.
 
         Args:
           stream: Indicates whether the response should be streamed. Currently only supported for
@@ -499,7 +504,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGenerateContentResponse | AsyncStream[ApplicationGenerateContentChunk]:
         """
-        Generate content from an existing no-code application with inputs.
+        Generate content from an existing no-code agent (formerly called no-code
+        applications) with inputs.
 
         Args:
           stream: Indicates whether the response should be streamed. Currently only supported for
