@@ -182,6 +182,18 @@ Methods:
 
 - <code title="post /v1/tools/comprehend/medical">client.tools.comprehend.<a href="./src/writerai/resources/tools/comprehend.py">medical</a>(\*\*<a href="src/writerai/types/tools/comprehend_medical_params.py">params</a>) -> <a href="./src/writerai/types/tools/comprehend_medical_response.py">ComprehendMedicalResponse</a></code>
 
+# Translation
+
+Types:
+
+```python
+from writerai.types import TranslationRequest, TranslationResponse
+```
+
+Methods:
+
+- <code title="post /v1/translation">client.translation.<a href="./src/writerai/resources/translation.py">translate</a>(\*\*<a href="src/writerai/types/translation_translate_params.py">params</a>) -> <a href="./src/writerai/types/translation_response.py">TranslationResponse</a></code>
+
 # Vision
 
 Types:

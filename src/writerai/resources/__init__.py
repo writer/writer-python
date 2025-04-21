@@ -56,6 +56,14 @@ from .completions import (
     CompletionsResourceWithStreamingResponse,
     AsyncCompletionsResourceWithStreamingResponse,
 )
+from .translation import (
+    TranslationResource,
+    AsyncTranslationResource,
+    TranslationResourceWithRawResponse,
+    AsyncTranslationResourceWithRawResponse,
+    TranslationResourceWithStreamingResponse,
+    AsyncTranslationResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncToolsResourceWithRawResponse",
     "ToolsResourceWithStreamingResponse",
     "AsyncToolsResourceWithStreamingResponse",
+    "TranslationResource",
+    "AsyncTranslationResource",
+    "TranslationResourceWithRawResponse",
+    "AsyncTranslationResourceWithRawResponse",
+    "TranslationResourceWithStreamingResponse",
+    "AsyncTranslationResourceWithStreamingResponse",
     "VisionResource",
     "AsyncVisionResource",
     "VisionResourceWithRawResponse",
