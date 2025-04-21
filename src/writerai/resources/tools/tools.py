@@ -76,11 +76,11 @@ class ToolsResource(SyncAPIResource):
         preserving the semantic meaning of the text and context between the chunks.
 
         Args:
-          strategy: The strategy to be used for splitting the text into chunks. `llm_split` uses the
+          strategy: The strategy to use for splitting the text into chunks. `llm_split` uses the
               language model to split the text, `fast_split` uses a fast heuristic-based
               approach, and `hybrid_split` combines both strategies.
 
-          text: The text to be split into chunks.
+          text: The text to split into chunks.
 
           extra_headers: Send extra headers
 
@@ -184,11 +184,11 @@ class AsyncToolsResource(AsyncAPIResource):
         preserving the semantic meaning of the text and context between the chunks.
 
         Args:
-          strategy: The strategy to be used for splitting the text into chunks. `llm_split` uses the
+          strategy: The strategy to use for splitting the text into chunks. `llm_split` uses the
               language model to split the text, `fast_split` uses a fast heuristic-based
               approach, and `hybrid_split` combines both strategies.
 
-          text: The text to be split into chunks.
+          text: The text to split into chunks.
 
           extra_headers: Send extra headers
 

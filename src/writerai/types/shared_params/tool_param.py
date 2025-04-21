@@ -30,7 +30,7 @@ class FunctionTool(TypedDict, total=False):
 
 class GraphToolFunction(TypedDict, total=False):
     graph_ids: Required[List[str]]
-    """An array of graph IDs to be used in the tool."""
+    """An array of graph IDs to use in the tool."""
 
     subqueries: Required[bool]
     """Boolean to indicate whether to include subqueries in the response."""
@@ -49,10 +49,10 @@ class GraphTool(TypedDict, total=False):
 
 class LlmToolFunction(TypedDict, total=False):
     description: Required[str]
-    """A description of the model to be used."""
+    """A description of the model to use."""
 
     model: Required[str]
-    """The model to be used."""
+    """The model to use."""
 
 
 class LlmTool(TypedDict, total=False):
@@ -65,7 +65,7 @@ class LlmTool(TypedDict, total=False):
 
 class VisionToolFunctionVariable(TypedDict, total=False):
     file_id: Required[str]
-    """The File ID of the image to be analyzed.
+    """The File ID of the image to analyze.
 
     The file must be uploaded to the Writer platform before you use it with the
     Vision tool.
@@ -82,8 +82,8 @@ class VisionToolFunctionVariable(TypedDict, total=False):
 
 
 class VisionToolFunction(TypedDict, total=False):
-    model: Required[str]
-    """The model to be used for image analysis. Must be `palmyra-vision`."""
+    model: Required[Literal["palmyra-vision"]]
+    """The model to use for image analysis."""
 
     variables: Required[Iterable[VisionToolFunctionVariable]]
 

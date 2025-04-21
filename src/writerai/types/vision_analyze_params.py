@@ -3,17 +3,14 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["VisionAnalyzeParams", "Variable"]
 
 
 class VisionAnalyzeParams(TypedDict, total=False):
-    model: Required[str]
-    """The model to be used for image analysis.
-
-    Currently only supports `palmyra-vision`.
-    """
+    model: Required[Literal["palmyra-vision"]]
+    """The model to use for image analysis."""
 
     prompt: Required[str]
     """The prompt to use for the image analysis.
@@ -28,7 +25,7 @@ class VisionAnalyzeParams(TypedDict, total=False):
 
 class Variable(TypedDict, total=False):
     file_id: Required[str]
-    """The File ID of the image to be analyzed.
+    """The File ID of the image to analyze.
 
     The file must be uploaded to the Writer platform before it can be used in a
     vision request.

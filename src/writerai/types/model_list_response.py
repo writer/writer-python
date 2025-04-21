@@ -17,4 +17,7 @@ class Model(BaseModel):
 
 class ModelListResponse(BaseModel):
     models: List[Model]
-    """The identifier of the model to be used for processing the request."""
+    """
+    The [ID of the model](https://dev.writer.com/home/models) to use for processing
+    the request.
+    """

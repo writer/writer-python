@@ -254,7 +254,7 @@ client = Writer()
 
 chat_completion = client.chat.chat(
     messages=[{"role": "user"}],
-    model="model",
+    model="palmyra-x-004",
     stream_options={"include_usage": True},
 )
 print(chat_completion.stream_options)
