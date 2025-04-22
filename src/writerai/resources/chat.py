@@ -55,10 +55,11 @@ class ChatResource(SyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
@@ -84,7 +85,8 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion.
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           logprobs: Specifies whether to return log probabilities of the output tokens.
 
@@ -95,6 +97,13 @@ class ChatResource(SyncAPIResource):
           n: Specifies the number of completions (responses) to generate from the model in a
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
+
+          response_format: The response format to use for the chat completion, available with
+              `palmyra-x-004`.
+
+              `text` is the default response format. [JSON Schema](https://json-schema.org/)
+              is supported for structured responses. If you specify `json_schema`, you must
+              also provide a `json_schema` object.
 
           stop: A token or sequence of tokens that, when generated, will cause the model to stop
               producing further content. This can be a single token or an array of tokens,
@@ -142,11 +151,12 @@ class ChatResource(SyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         stream: Literal[True],
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -171,7 +181,8 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion.
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -186,6 +197,13 @@ class ChatResource(SyncAPIResource):
           n: Specifies the number of completions (responses) to generate from the model in a
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
+
+          response_format: The response format to use for the chat completion, available with
+              `palmyra-x-004`.
+
+              `text` is the default response format. [JSON Schema](https://json-schema.org/)
+              is supported for structured responses. If you specify `json_schema`, you must
+              also provide a `json_schema` object.
 
           stop: A token or sequence of tokens that, when generated, will cause the model to stop
               producing further content. This can be a single token or an array of tokens,
@@ -229,11 +247,12 @@ class ChatResource(SyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         stream: bool,
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -258,7 +277,8 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion.
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -273,6 +293,13 @@ class ChatResource(SyncAPIResource):
           n: Specifies the number of completions (responses) to generate from the model in a
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
+
+          response_format: The response format to use for the chat completion, available with
+              `palmyra-x-004`.
+
+              `text` is the default response format. [JSON Schema](https://json-schema.org/)
+              is supported for structured responses. If you specify `json_schema`, you must
+              also provide a `json_schema` object.
 
           stop: A token or sequence of tokens that, when generated, will cause the model to stop
               producing further content. This can be a single token or an array of tokens,
@@ -316,10 +343,11 @@ class ChatResource(SyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
@@ -343,6 +371,7 @@ class ChatResource(SyncAPIResource):
                     "logprobs": logprobs,
                     "max_tokens": max_tokens,
                     "n": n,
+                    "response_format": response_format,
                     "stop": stop,
                     "stream": stream,
                     "stream_options": stream_options,
@@ -457,10 +486,11 @@ class AsyncChatResource(AsyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
@@ -486,7 +516,8 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion.
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           logprobs: Specifies whether to return log probabilities of the output tokens.
 
@@ -497,6 +528,13 @@ class AsyncChatResource(AsyncAPIResource):
           n: Specifies the number of completions (responses) to generate from the model in a
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
+
+          response_format: The response format to use for the chat completion, available with
+              `palmyra-x-004`.
+
+              `text` is the default response format. [JSON Schema](https://json-schema.org/)
+              is supported for structured responses. If you specify `json_schema`, you must
+              also provide a `json_schema` object.
 
           stop: A token or sequence of tokens that, when generated, will cause the model to stop
               producing further content. This can be a single token or an array of tokens,
@@ -544,11 +582,12 @@ class AsyncChatResource(AsyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         stream: Literal[True],
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -573,7 +612,8 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion.
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -588,6 +628,13 @@ class AsyncChatResource(AsyncAPIResource):
           n: Specifies the number of completions (responses) to generate from the model in a
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
+
+          response_format: The response format to use for the chat completion, available with
+              `palmyra-x-004`.
+
+              `text` is the default response format. [JSON Schema](https://json-schema.org/)
+              is supported for structured responses. If you specify `json_schema`, you must
+              also provide a `json_schema` object.
 
           stop: A token or sequence of tokens that, when generated, will cause the model to stop
               producing further content. This can be a single token or an array of tokens,
@@ -631,11 +678,12 @@ class AsyncChatResource(AsyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         stream: bool,
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -660,7 +708,8 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion.
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -675,6 +724,13 @@ class AsyncChatResource(AsyncAPIResource):
           n: Specifies the number of completions (responses) to generate from the model in a
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
+
+          response_format: The response format to use for the chat completion, available with
+              `palmyra-x-004`.
+
+              `text` is the default response format. [JSON Schema](https://json-schema.org/)
+              is supported for structured responses. If you specify `json_schema`, you must
+              also provide a `json_schema` object.
 
           stop: A token or sequence of tokens that, when generated, will cause the model to stop
               producing further content. This can be a single token or an array of tokens,
@@ -718,10 +774,11 @@ class AsyncChatResource(AsyncAPIResource):
         self,
         *,
         messages: Iterable[chat_chat_params.Message],
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         logprobs: bool | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
+        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
         stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
@@ -745,6 +802,7 @@ class AsyncChatResource(AsyncAPIResource):
                     "logprobs": logprobs,
                     "max_tokens": max_tokens,
                     "n": n,
+                    "response_format": response_format,
                     "stop": stop,
                     "stream": stream,
                     "stream_options": stream_options,

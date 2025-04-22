@@ -254,10 +254,13 @@ client = Writer()
 
 chat_completion = client.chat.chat(
     messages=[{"role": "user"}],
-    model="palmyra-x-004",
-    stream_options={"include_usage": True},
+    model="model",
+    response_format={
+        "type": "text",
+        "json_schema": {},
+    },
 )
-print(chat_completion.stream_options)
+print(chat_completion.response_format)
 ```
 
 ## File uploads

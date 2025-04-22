@@ -14,6 +14,7 @@ from .shared_params.tool_choice_json_object import ToolChoiceJsonObject
 __all__ = [
     "ChatChatParamsBase",
     "Message",
+    "ResponseFormat",
     "StreamOptions",
     "ToolChoice",
     "ChatChatParamsNonStreaming",
@@ -28,12 +29,11 @@ class ChatChatParamsBase(TypedDict, total=False):
     the model to respond to. The array must contain at least one message.
     """
 
-    model: Required[
-        Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"]
-    ]
+    model: Required[str]
     """
     The [ID of the model](https://dev.writer.com/home/models) to use for creating
-    the chat completion.
+    the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+    `palmyra-creative`, and `palmyra-x-003-instruct`.
     """
 
     logprobs: bool
@@ -51,6 +51,16 @@ class ChatChatParamsBase(TypedDict, total=False):
     Specifies the number of completions (responses) to generate from the model in a
     single request. This parameter allows for generating multiple responses,
     offering a variety of potential replies from which to choose.
+    """
+
+    response_format: ResponseFormat
+    """
+    The response format to use for the chat completion, available with
+    `palmyra-x-004`.
+
+    `text` is the default response format. [JSON Schema](https://json-schema.org/)
+    is supported for structured responses. If you specify `json_schema`, you must
+    also provide a `json_schema` object.
     """
 
     stop: Union[List[str], str]
@@ -118,6 +128,14 @@ class Message(TypedDict, total=False):
     tool_call_id: Optional[str]
 
     tool_calls: Optional[Iterable[ToolCall]]
+
+
+class ResponseFormat(TypedDict, total=False):
+    type: Required[Literal["text", "json_schema"]]
+    """The type of response format to use."""
+
+    json_schema: object
+    """The JSON schema to use for the response format."""
 
 
 class StreamOptions(TypedDict, total=False):
