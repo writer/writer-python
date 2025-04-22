@@ -50,7 +50,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
@@ -71,7 +71,8 @@ class CompletionsResource(SyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text.
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -112,7 +113,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         stream: Literal[True],
         best_of: int | NotGiven = NOT_GIVEN,
@@ -133,7 +134,8 @@ class CompletionsResource(SyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text.
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -174,7 +176,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         stream: bool,
         best_of: int | NotGiven = NOT_GIVEN,
@@ -195,7 +197,8 @@ class CompletionsResource(SyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text.
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -236,7 +239,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
@@ -303,7 +306,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
@@ -324,7 +327,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text.
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -365,7 +369,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         stream: Literal[True],
         best_of: int | NotGiven = NOT_GIVEN,
@@ -386,7 +390,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text.
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -427,7 +432,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         stream: bool,
         best_of: int | NotGiven = NOT_GIVEN,
@@ -448,7 +453,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text.
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -489,7 +495,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"],
+        model: str,
         prompt: str,
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,

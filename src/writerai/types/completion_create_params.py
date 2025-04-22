@@ -9,12 +9,11 @@ __all__ = ["CompletionCreateParamsBase", "CompletionCreateParamsNonStreaming", "
 
 
 class CompletionCreateParamsBase(TypedDict, total=False):
-    model: Required[
-        Literal["palmyra-x-004", "palmyra-fin", "palmyra-med", "palmyra-creative", "palmyra-x-003-instruct"]
-    ]
+    model: Required[str]
     """
     The [ID of the model](https://dev.writer.com/home/models) to use for generating
-    text.
+    text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+    `palmyra-creative`, and `palmyra-x-003-instruct`.
     """
 
     prompt: Required[str]
