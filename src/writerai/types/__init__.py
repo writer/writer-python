@@ -41,12 +41,14 @@ from .graph_create_response import GraphCreateResponse as GraphCreateResponse
 from .graph_delete_response import GraphDeleteResponse as GraphDeleteResponse
 from .graph_question_params import GraphQuestionParams as GraphQuestionParams
 from .graph_update_response import GraphUpdateResponse as GraphUpdateResponse
+from .tool_ai_detect_params import ToolAIDetectParams as ToolAIDetectParams
 from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
 from .vision_analyze_params import VisionAnalyzeParams as VisionAnalyzeParams
 from .chat_completion_choice import ChatCompletionChoice as ChatCompletionChoice
 from .application_list_params import ApplicationListParams as ApplicationListParams
 from .chat_completion_message import ChatCompletionMessage as ChatCompletionMessage
 from .question_response_chunk import QuestionResponseChunk as QuestionResponseChunk
+from .tool_ai_detect_response import ToolAIDetectResponse as ToolAIDetectResponse
 from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
