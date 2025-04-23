@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import tool_parse_pdf_params, tool_context_aware_splitting_params
+from ...types import tool_ai_detect_params, tool_parse_pdf_params, tool_context_aware_splitting_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -26,6 +26,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.tool_ai_detect_response import ToolAIDetectResponse
 from ...types.tool_parse_pdf_response import ToolParsePdfResponse
 from ...types.tool_context_aware_splitting_response import ToolContextAwareSplittingResponse
 
@@ -55,6 +56,43 @@ class ToolsResource(SyncAPIResource):
         For more information, see https://www.github.com/writer/writer-python#with_streaming_response
         """
         return ToolsResourceWithStreamingResponse(self)
+
+    def ai_detect(
+        self,
+        *,
+        input: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ToolAIDetectResponse:
+        """Detects if content is AI- or human-generated, with a confidence score.
+
+        Content
+        must have at least 350 characters
+
+        Args:
+          input: The content to determine if it is AI- or human-generated. Content must have at
+              least 350 characters.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/tools/ai-detect",
+            body=maybe_transform({"input": input}, tool_ai_detect_params.ToolAIDetectParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ToolAIDetectResponse,
+        )
 
     def context_aware_splitting(
         self,
@@ -164,6 +202,43 @@ class AsyncToolsResource(AsyncAPIResource):
         """
         return AsyncToolsResourceWithStreamingResponse(self)
 
+    async def ai_detect(
+        self,
+        *,
+        input: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ToolAIDetectResponse:
+        """Detects if content is AI- or human-generated, with a confidence score.
+
+        Content
+        must have at least 350 characters
+
+        Args:
+          input: The content to determine if it is AI- or human-generated. Content must have at
+              least 350 characters.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/tools/ai-detect",
+            body=await async_maybe_transform({"input": input}, tool_ai_detect_params.ToolAIDetectParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ToolAIDetectResponse,
+        )
+
     async def context_aware_splitting(
         self,
         *,
@@ -252,6 +327,9 @@ class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
+        self.ai_detect = to_raw_response_wrapper(
+            tools.ai_detect,
+        )
         self.context_aware_splitting = to_raw_response_wrapper(
             tools.context_aware_splitting,
         )
@@ -268,6 +346,9 @@ class AsyncToolsResourceWithRawResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
+        self.ai_detect = async_to_raw_response_wrapper(
+            tools.ai_detect,
+        )
         self.context_aware_splitting = async_to_raw_response_wrapper(
             tools.context_aware_splitting,
         )
@@ -284,6 +365,9 @@ class ToolsResourceWithStreamingResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
+        self.ai_detect = to_streamed_response_wrapper(
+            tools.ai_detect,
+        )
         self.context_aware_splitting = to_streamed_response_wrapper(
             tools.context_aware_splitting,
         )
@@ -300,6 +384,9 @@ class AsyncToolsResourceWithStreamingResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
+        self.ai_detect = async_to_streamed_response_wrapper(
+            tools.ai_detect,
+        )
         self.context_aware_splitting = async_to_streamed_response_wrapper(
             tools.context_aware_splitting,
         )
