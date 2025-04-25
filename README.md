@@ -18,7 +18,7 @@ To install the package from PyPI, use `pip`:
 
 ```sh
 # install from PyPI
-pip install writer-sdk
+pip install --pre writer-sdk
 ```
 
 ## Prequisites
