@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Type, Union, TypeVar, Iterable
 from functools import partial
 from typing_extensions import Literal, overload
 
@@ -21,13 +21,21 @@ from .._response import (
 )
 from .._streaming import Stream, AsyncStream
 from .._base_client import make_request_options
-from ..lib._parsing import ResponseFormatT
+from ..lib._parsing import (
+    ResponseFormatT,
+    validate_input_tools,
+    parse_chat_completion,
+    type_to_response_format_param,
+)
+from ..types.parsed_chat import ParsedChatCompletion
 from ..lib.streaming.chat import ChatCompletionStreamManager, AsyncChatCompletionStreamManager
 from ..types.chat_completion import ChatCompletion
 from ..types.chat_completion_chunk import ChatCompletionChunk
 from ..types.shared_params.tool_param import ToolParam
 
 __all__ = ["ChatResource", "AsyncChatResource"]
+
+T = TypeVar("T")
 
 
 class ChatResource(SyncAPIResource):
@@ -388,6 +396,116 @@ class ChatResource(SyncAPIResource):
             cast_to=ChatCompletion,
             stream=stream or False,
             stream_cls=Stream[ChatCompletionChunk],
+        )
+
+    def parse(
+        self,
+        *,
+        model: str,
+        messages: Iterable[chat_chat_params.Message],
+        response_format: Type[T],
+        logprobs: bool | NotGiven = NOT_GIVEN,
+        max_tokens: int | NotGiven = NOT_GIVEN,
+        n: int | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        top_p: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ParsedChatCompletion[T]:
+        """
+        Generate a chat completion with a structured response based on the provided messages.
+
+        This method provides automatic parsing of the response based on the provided Pydantic model
+        or dataclass type.
+
+        Args:
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
+
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          response_format: A Pydantic model or dataclass type to parse the response content into.
+              This automatically sets the JSON Schema response format parameter for the API request.
+
+          logprobs: Specifies whether to return log probabilities of the output tokens.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows for generating multiple responses,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function.
+
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`). You can pass multiple custom
+              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
+              same request.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        validate_input_tools(tools)
+
+        # Setting JSON Schema response format automatically
+        response_format_param = type_to_response_format_param(response_format)
+
+        chat_completion = self.chat(
+            messages=messages,
+            model=model,
+            logprobs=logprobs,
+            max_tokens=max_tokens,
+            n=n,
+            response_format=response_format_param,
+            stop=stop,
+            temperature=temperature,
+            tool_choice=tool_choice,
+            tools=tools,
+            top_p=top_p,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+        return parse_chat_completion(
+            response_format=response_format,
+            input_tools=tools if tools is not NOT_GIVEN else [],
+            chat_completion=chat_completion,
         )
 
     def stream(
@@ -821,6 +939,116 @@ class AsyncChatResource(AsyncAPIResource):
             stream_cls=AsyncStream[ChatCompletionChunk],
         )
 
+    async def parse(
+        self,
+        *,
+        model: str,
+        messages: Iterable[chat_chat_params.Message],
+        response_format: Type[T],
+        logprobs: bool | NotGiven = NOT_GIVEN,
+        max_tokens: int | NotGiven = NOT_GIVEN,
+        n: int | NotGiven = NOT_GIVEN,
+        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        temperature: float | NotGiven = NOT_GIVEN,
+        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
+        top_p: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ParsedChatCompletion[T]:
+        """
+        Generate a chat completion with a structured response based on the provided messages.
+
+        This method provides automatic parsing of the response based on the provided Pydantic model
+        or dataclass type.
+
+        Args:
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
+              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
+
+          messages: An array of message objects that form the conversation history or context for
+              the model to respond to. The array must contain at least one message.
+
+          response_format: A Pydantic model or dataclass type to parse the response content into.
+              This automatically sets the JSON Schema response format parameter for the API request.
+
+          logprobs: Specifies whether to return log probabilities of the output tokens.
+
+          max_tokens: Defines the maximum number of tokens (words and characters) that the model can
+              generate in the response. The default value is set to 16, but it can be adjusted
+              to allow for longer or shorter responses as needed.
+
+          n: Specifies the number of completions (responses) to generate from the model in a
+              single request. This parameter allows for generating multiple responses,
+              offering a variety of potential replies from which to choose.
+
+          stop: A token or sequence of tokens that, when generated, will cause the model to stop
+              producing further content. This can be a single token or an array of tokens,
+              acting as a signal to end the output.
+
+          temperature: Controls the randomness or creativity of the model's responses. A higher
+              temperature results in more varied and less predictable text, while a lower
+              temperature produces more deterministic and conservative outputs.
+
+          tool_choice: Configure how the model will call functions: `auto` will allow the model to
+              automatically choose the best tool, `none` disables tool calling. You can also
+              pass a specific previously defined function.
+
+          tools: An array containing tool definitions for tools that the model can use to
+              generate responses. The tool definitions use JSON schema. You can define your
+              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
+              that you can only use one built-in tool type in the array (only one of `graph`,
+              `llm`, or `vision`). You can pass multiple custom
+              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
+              same request.
+
+          top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
+              token generation on the most likely subset of tokens. Only tokens with
+              cumulative probability above this threshold are considered, controlling the
+              trade-off between creativity and coherence.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        validate_input_tools(tools)
+
+        # Setting JSON Schema response format automatically
+        response_format_param = type_to_response_format_param(response_format)
+
+        chat_completion = await self.chat(
+            messages=messages,
+            model=model,
+            logprobs=logprobs,
+            max_tokens=max_tokens,
+            n=n,
+            response_format=response_format_param,
+            stop=stop,
+            temperature=temperature,
+            tool_choice=tool_choice,
+            tools=tools,
+            top_p=top_p,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+        return parse_chat_completion(
+            response_format=response_format,
+            input_tools=tools if tools is not NOT_GIVEN else [],
+            chat_completion=chat_completion,
+        )
+
     def stream(
         self,
         *,
@@ -899,6 +1127,10 @@ class ChatResourceWithRawResponse:
             chat.chat,
         )
 
+        self.parse = to_raw_response_wrapper(
+            chat.parse,
+        )
+
 
 class AsyncChatResourceWithRawResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
@@ -906,6 +1138,10 @@ class AsyncChatResourceWithRawResponse:
 
         self.chat = async_to_raw_response_wrapper(
             chat.chat,
+        )
+
+        self.parse = async_to_raw_response_wrapper(
+            chat.parse,
         )
 
 
@@ -917,6 +1153,10 @@ class ChatResourceWithStreamingResponse:
             chat.chat,
         )
 
+        self.parse = to_streamed_response_wrapper(
+            chat.parse,
+        )
+
 
 class AsyncChatResourceWithStreamingResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
@@ -924,4 +1164,8 @@ class AsyncChatResourceWithStreamingResponse:
 
         self.chat = async_to_streamed_response_wrapper(
             chat.chat,
+        )
+
+        self.parse = async_to_streamed_response_wrapper(
+            chat.parse,
         )

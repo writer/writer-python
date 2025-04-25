@@ -70,7 +70,7 @@ recommend checking a reliable weather website or a weather app.",
             parsed=None,
             refusal=None,
             role='assistant',
-            tool_calls=[]
+            tool_calls=None
         )
     )
 ]
@@ -487,7 +487,7 @@ def test_content_logprobs_events(client: Writer, respx_mock: MockRouter, monkeyp
             parsed=None,
             refusal=None,
             role='assistant',
-            tool_calls=[]
+            tool_calls=None
         )
     )
 ]
@@ -579,7 +579,7 @@ def test_refusal_logprobs_events(client: Writer, respx_mock: MockRouter, monkeyp
             parsed=None,
             refusal="I'm very sorry, but I can't assist with that.",
             role='assistant',
-            tool_calls=[]
+            tool_calls=None
         )
     )
 ]
@@ -894,7 +894,7 @@ def test_non_pydantic_response_format(client: Writer, respx_mock: MockRouter, mo
             parsed=None,
             refusal=None,
             role='assistant',
-            tool_calls=[]
+            tool_calls=None
         )
     )
 ]
