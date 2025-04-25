@@ -162,11 +162,16 @@ Methods:
 Types:
 
 ```python
-from writerai.types import ToolContextAwareSplittingResponse, ToolParsePdfResponse
+from writerai.types import (
+    ToolAIDetectResponse,
+    ToolContextAwareSplittingResponse,
+    ToolParsePdfResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /v1/tools/ai-detect">client.tools.<a href="./src/writerai/resources/tools/tools.py">ai_detect</a>(\*\*<a href="src/writerai/types/tool_ai_detect_params.py">params</a>) -> <a href="./src/writerai/types/tool_ai_detect_response.py">ToolAIDetectResponse</a></code>
 - <code title="post /v1/tools/context-aware-splitting">client.tools.<a href="./src/writerai/resources/tools/tools.py">context_aware_splitting</a>(\*\*<a href="src/writerai/types/tool_context_aware_splitting_params.py">params</a>) -> <a href="./src/writerai/types/tool_context_aware_splitting_response.py">ToolContextAwareSplittingResponse</a></code>
 - <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.<a href="./src/writerai/resources/tools/tools.py">parse_pdf</a>(file_id, \*\*<a href="src/writerai/types/tool_parse_pdf_params.py">params</a>) -> <a href="./src/writerai/types/tool_parse_pdf_response.py">ToolParsePdfResponse</a></code>
 
@@ -181,6 +186,18 @@ from writerai.types.tools import ComprehendMedicalResponse
 Methods:
 
 - <code title="post /v1/tools/comprehend/medical">client.tools.comprehend.<a href="./src/writerai/resources/tools/comprehend.py">medical</a>(\*\*<a href="src/writerai/types/tools/comprehend_medical_params.py">params</a>) -> <a href="./src/writerai/types/tools/comprehend_medical_response.py">ComprehendMedicalResponse</a></code>
+
+# Translation
+
+Types:
+
+```python
+from writerai.types import TranslationRequest, TranslationResponse
+```
+
+Methods:
+
+- <code title="post /v1/translation">client.translation.<a href="./src/writerai/resources/translation.py">translate</a>(\*\*<a href="src/writerai/types/translation_translate_params.py">params</a>) -> <a href="./src/writerai/types/translation_response.py">TranslationResponse</a></code>
 
 # Vision
 

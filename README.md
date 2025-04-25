@@ -18,7 +18,7 @@ To install the package from PyPI, use `pip`:
 
 ```sh
 # install from PyPI
-pip install writer-sdk
+pip install --pre writer-sdk
 ```
 
 ## Prequisites
@@ -255,9 +255,12 @@ client = Writer()
 chat_completion = client.chat.chat(
     messages=[{"role": "user"}],
     model="model",
-    stream_options={"include_usage": True},
+    response_format={
+        "type": "text",
+        "json_schema": {},
+    },
 )
-print(chat_completion.stream_options)
+print(chat_completion.response_format)
 ```
 
 ## File uploads

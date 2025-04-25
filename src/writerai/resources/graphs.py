@@ -15,11 +15,7 @@ from ..types import (
     graph_add_file_to_graph_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from .._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -371,9 +367,9 @@ class GraphsResource(SyncAPIResource):
         Ask a question to specified Knowledge Graphs.
 
         Args:
-          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+          graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
-          question: The question to be answered using the Knowledge Graph.
+          question: The question to answer using the Knowledge Graph.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -410,9 +406,9 @@ class GraphsResource(SyncAPIResource):
         Ask a question to specified Knowledge Graphs.
 
         Args:
-          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+          graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
-          question: The question to be answered using the Knowledge Graph.
+          question: The question to answer using the Knowledge Graph.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -449,9 +445,9 @@ class GraphsResource(SyncAPIResource):
         Ask a question to specified Knowledge Graphs.
 
         Args:
-          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+          graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
-          question: The question to be answered using the Knowledge Graph.
+          question: The question to answer using the Knowledge Graph.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -493,7 +489,9 @@ class GraphsResource(SyncAPIResource):
                     "stream": stream,
                     "subqueries": subqueries,
                 },
-                graph_question_params.GraphQuestionParams,
+                graph_question_params.GraphQuestionParamsStreaming
+                if stream
+                else graph_question_params.GraphQuestionParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -870,9 +868,9 @@ class AsyncGraphsResource(AsyncAPIResource):
         Ask a question to specified Knowledge Graphs.
 
         Args:
-          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+          graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
-          question: The question to be answered using the Knowledge Graph.
+          question: The question to answer using the Knowledge Graph.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -909,9 +907,9 @@ class AsyncGraphsResource(AsyncAPIResource):
         Ask a question to specified Knowledge Graphs.
 
         Args:
-          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+          graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
-          question: The question to be answered using the Knowledge Graph.
+          question: The question to answer using the Knowledge Graph.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -948,9 +946,9 @@ class AsyncGraphsResource(AsyncAPIResource):
         Ask a question to specified Knowledge Graphs.
 
         Args:
-          graph_ids: The unique identifiers of the Knowledge Graphs to be queried.
+          graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
-          question: The question to be answered using the Knowledge Graph.
+          question: The question to answer using the Knowledge Graph.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -992,7 +990,9 @@ class AsyncGraphsResource(AsyncAPIResource):
                     "stream": stream,
                     "subqueries": subqueries,
                 },
-                graph_question_params.GraphQuestionParams,
+                graph_question_params.GraphQuestionParamsStreaming
+                if stream
+                else graph_question_params.GraphQuestionParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

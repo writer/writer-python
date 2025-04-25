@@ -10,7 +10,11 @@ __all__ = ["CompletionCreateParamsBase", "CompletionCreateParamsNonStreaming", "
 
 class CompletionCreateParamsBase(TypedDict, total=False):
     model: Required[str]
-    """The identifier of the model to be used for processing the request."""
+    """
+    The [ID of the model](https://dev.writer.com/home/models) to use for generating
+    text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+    `palmyra-creative`, and `palmyra-x-003-instruct`.
+    """
 
     prompt: Required[str]
     """The input text that the model will process to generate a response."""

@@ -73,6 +73,10 @@ class TestChat:
             logprobs=True,
             max_tokens=0,
             n=0,
+            response_format={
+                "type": "text",
+                "json_schema": {},
+            },
             stop=["string"],
             stream=False,
             stream_options={"include_usage": True},
@@ -176,6 +180,10 @@ class TestChat:
             logprobs=True,
             max_tokens=0,
             n=0,
+            response_format={
+                "type": "text",
+                "json_schema": {},
+            },
             stop=["string"],
             stream_options={"include_usage": True},
             temperature=0,
@@ -281,6 +289,10 @@ class TestAsyncChat:
             logprobs=True,
             max_tokens=0,
             n=0,
+            response_format={
+                "type": "text",
+                "json_schema": {},
+            },
             stop=["string"],
             stream=False,
             stream_options={"include_usage": True},
@@ -384,6 +396,10 @@ class TestAsyncChat:
             logprobs=True,
             max_tokens=0,
             n=0,
+            response_format={
+                "type": "text",
+                "json_schema": {},
+            },
             stop=["string"],
             stream_options={"include_usage": True},
             temperature=0,

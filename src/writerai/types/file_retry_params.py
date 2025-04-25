@@ -10,4 +10,4 @@ __all__ = ["FileRetryParams"]
 
 class FileRetryParams(TypedDict, total=False):
     file_ids: Required[List[str]]
-    """The unique identifier of the files to be retried."""
+    """The unique identifier of the files to retry."""

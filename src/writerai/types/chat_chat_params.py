@@ -14,6 +14,7 @@ from .shared_params.tool_choice_json_object import ToolChoiceJsonObject
 __all__ = [
     "ChatChatParamsBase",
     "Message",
+    "ResponseFormat",
     "StreamOptions",
     "ToolChoice",
     "ChatChatParamsNonStreaming",
@@ -29,9 +30,10 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
     model: Required[str]
-    """Specifies the model to be used for generating responses.
-
-    The chat model is always `palmyra-x-004` for conversational use.
+    """
+    The [ID of the model](https://dev.writer.com/home/models) to use for creating
+    the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+    `palmyra-creative`, and `palmyra-x-003-instruct`.
     """
 
     logprobs: bool
@@ -47,8 +49,18 @@ class ChatChatParamsBase(TypedDict, total=False):
     n: int
     """
     Specifies the number of completions (responses) to generate from the model in a
-    single request. This parameter allows multiple responses to be generated,
+    single request. This parameter allows for generating multiple responses,
     offering a variety of potential replies from which to choose.
+    """
+
+    response_format: ResponseFormat
+    """
+    The response format to use for the chat completion, available with
+    `palmyra-x-004`.
+
+    `text` is the default response format. [JSON Schema](https://json-schema.org/)
+    is supported for structured responses. If you specify `json_schema`, you must
+    also provide a `json_schema` object.
     """
 
     stop: Union[List[str], str]
@@ -81,7 +93,9 @@ class ChatChatParamsBase(TypedDict, total=False):
     generate responses. The tool definitions use JSON schema. You can define your
     own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
     that you can only use one built-in tool type in the array (only one of `graph`,
-    `llm`, or `vision`).
+    `llm`, or `vision`). You can pass multiple custom
+    tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
+    same request.
     """
 
     top_p: float
@@ -98,8 +112,9 @@ class Message(TypedDict, total=False):
     """The role of the chat message.
 
     You can provide a system prompt by setting the role to `system`, or specify that
-    a message is the result of a [tool call](/api-guides/tool-calling) by setting
-    the role to `tool`.
+    a message is the result of a
+    [tool call](https://dev.writer.com/api-guides/tool-calling) by setting the role
+    to `tool`.
     """
 
     content: Optional[str]
@@ -113,6 +128,14 @@ class Message(TypedDict, total=False):
     tool_call_id: Optional[str]
 
     tool_calls: Optional[Iterable[ToolCall]]
+
+
+class ResponseFormat(TypedDict, total=False):
+    type: Required[Literal["text", "json_schema"]]
+    """The type of response format to use."""
+
+    json_schema: object
+    """The JSON schema to use for the response format."""
 
 
 class StreamOptions(TypedDict, total=False):

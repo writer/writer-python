@@ -9,11 +9,7 @@ import httpx
 
 from ..types import completion_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -74,7 +70,9 @@ class CompletionsResource(SyncAPIResource):
         Text generation
 
         Args:
-          model: The identifier of the model to be used for processing the request.
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -135,7 +133,9 @@ class CompletionsResource(SyncAPIResource):
         Text generation
 
         Args:
-          model: The identifier of the model to be used for processing the request.
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -196,7 +196,9 @@ class CompletionsResource(SyncAPIResource):
         Text generation
 
         Args:
-          model: The identifier of the model to be used for processing the request.
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -267,7 +269,9 @@ class CompletionsResource(SyncAPIResource):
                     "temperature": temperature,
                     "top_p": top_p,
                 },
-                completion_create_params.CompletionCreateParams,
+                completion_create_params.CompletionCreateParamsStreaming
+                if stream
+                else completion_create_params.CompletionCreateParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -322,7 +326,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Text generation
 
         Args:
-          model: The identifier of the model to be used for processing the request.
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -383,7 +389,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Text generation
 
         Args:
-          model: The identifier of the model to be used for processing the request.
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -444,7 +452,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Text generation
 
         Args:
-          model: The identifier of the model to be used for processing the request.
+          model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
+              text. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
+              `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -515,7 +525,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
                     "temperature": temperature,
                     "top_p": top_p,
                 },
-                completion_create_params.CompletionCreateParams,
+                completion_create_params.CompletionCreateParamsStreaming
+                if stream
+                else completion_create_params.CompletionCreateParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

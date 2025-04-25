@@ -1,6 +1,6 @@
 [project]
 name = "writer-sdk"
-version = "2.1.0"
+version = "2.2.0-rc1"
 description = "The official Python library for the writer API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -44,7 +44,7 @@ Repository = "https://github.com/writer/writer-python"
 managed = true
 # version pins are in requirements-dev.lock
 dev-dependencies = [
-    "pyright>=1.1.359",
+    "pyright==1.1.399",
     "mypy",
     "respx",
     "pytest",
@@ -150,6 +150,7 @@ exclude = [
 ]
 
 reportImplicitOverride = true
+reportOverlappingOverload = false
 
 reportImportCycles = false
 reportPrivateUsage = false

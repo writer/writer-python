@@ -10,10 +10,10 @@ __all__ = ["GraphQuestionParamsBase", "GraphQuestionParamsNonStreaming", "GraphQ
 
 class GraphQuestionParamsBase(TypedDict, total=False):
     graph_ids: Required[List[str]]
-    """The unique identifiers of the Knowledge Graphs to be queried."""
+    """The unique identifiers of the Knowledge Graphs to query."""
 
     question: Required[str]
-    """The question to be answered using the Knowledge Graph."""
+    """The question to answer using the Knowledge Graph."""
 
     subqueries: bool
     """Specify whether to include subqueries."""

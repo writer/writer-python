@@ -30,7 +30,7 @@ class FunctionTool(BaseModel):
 
 class GraphToolFunction(BaseModel):
     graph_ids: List[str]
-    """An array of graph IDs to be used in the tool."""
+    """An array of graph IDs to use in the tool."""
 
     subqueries: bool
     """Boolean to indicate whether to include subqueries in the response."""
@@ -49,10 +49,10 @@ class GraphTool(BaseModel):
 
 class LlmToolFunction(BaseModel):
     description: str
-    """A description of the model to be used."""
+    """A description of the model to use."""
 
     model: str
-    """The model to be used."""
+    """The model to use."""
 
 
 class LlmTool(BaseModel):
@@ -65,7 +65,7 @@ class LlmTool(BaseModel):
 
 class VisionToolFunctionVariable(BaseModel):
     file_id: str
-    """The File ID of the image to be analyzed.
+    """The File ID of the image to analyze.
 
     The file must be uploaded to the Writer platform before you use it with the
     Vision tool.
@@ -82,8 +82,8 @@ class VisionToolFunctionVariable(BaseModel):
 
 
 class VisionToolFunction(BaseModel):
-    model: str
-    """The model to be used for image analysis. Must be `palmyra-vision`."""
+    model: Literal["palmyra-vision"]
+    """The model to use for image analysis."""
 
     variables: List[VisionToolFunctionVariable]
 

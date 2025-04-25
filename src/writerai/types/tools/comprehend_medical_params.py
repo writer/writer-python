@@ -9,10 +9,10 @@ __all__ = ["ComprehendMedicalParams"]
 
 class ComprehendMedicalParams(TypedDict, total=False):
     content: Required[str]
-    """The text to be analyzed."""
+    """The text to analyze."""
 
     response_type: Required[Literal["Entities", "RxNorm", "ICD-10-CM", "SNOMED CT"]]
-    """The structure of the response to be returned.
+    """The structure of the response to return.
 
     `Entities` returns medical entities, `RxNorm` returns medication information,
     `ICD-10-CM` returns diagnosis codes, and `SNOMED CT` returns medical concepts.

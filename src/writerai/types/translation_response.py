@@ -2,9 +2,9 @@
 
 from .._models import BaseModel
 
-__all__ = ["VisionResponse"]
+__all__ = ["TranslationResponse"]
 
 
-class VisionResponse(BaseModel):
+class TranslationResponse(BaseModel):
     data: str
-    """The result of the image analysis."""
+    """The result of the translation."""
