@@ -19,7 +19,7 @@ class LlmData(BaseModel):
 
 
 class ChatCompletionMessage(BaseModel):
-    content: object
+    content: str
     """The text content produced by the model.
 
     This field contains the actual output generated, reflecting the model's response
