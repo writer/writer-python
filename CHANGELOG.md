@@ -1,5 +1,51 @@
 # Changelog
 
+## 2.2.0-rc1 (2025-04-25)
+
+Full Changelog: [v2.1.0...v2.2.0-rc1](https://github.com/writer/writer-python/compare/v2.1.0...v2.2.0-rc1)
+
+### Features
+
+* **api:** add ai detect tool endpoint ([5155d78](https://github.com/writer/writer-python/commit/5155d7885097a4d62236c97d299db5b392c19c46))
+* **api:** add translation endpoint ([c475528](https://github.com/writer/writer-python/commit/c475528d5d31a8cc2919b9d9315e3dd4d5fac9aa))
+* **chat:** add parse method ([#237](https://github.com/writer/writer-python/issues/237)) ([81aae52](https://github.com/writer/writer-python/commit/81aae52c2dc0cc227dfa4b5e04d0b95140f40cbf))
+
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([b1304d3](https://github.com/writer/writer-python/commit/b1304d306bb7e1e001de04d30be69adca53dbb63))
+* **perf:** skip traversing types for NotGiven values ([db0383a](https://github.com/writer/writer-python/commit/db0383a6c77cb059eab8d0c48d1ef27842128d14))
+* **pydantic v1:** more robust ModelField.annotation check ([fe810b2](https://github.com/writer/writer-python/commit/fe810b23a492ad0266e4f6ccb765946f92b2cee6))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([128b22a](https://github.com/writer/writer-python/commit/128b22aced2c242dc36e50b638db667febd56b09))
+* **ci:** add timeout thresholds for CI jobs ([7e48fde](https://github.com/writer/writer-python/commit/7e48fde8c5e170e19a5ac3c6dcba6dccc2d592a2))
+* **ci:** only use depot for staging repos ([4e41929](https://github.com/writer/writer-python/commit/4e41929b07a15cdf4041a5a6ca2f41d5281cfbc5))
+* **ci:** run on more branches and use depot runners ([00cad5e](https://github.com/writer/writer-python/commit/00cad5e1a4b252d252a2c14f5631f65d9b3ce90c))
+* **client:** minor internal fixes ([8f42cd8](https://github.com/writer/writer-python/commit/8f42cd864779a07e2f9401e1690d1f241e2dcb1a))
+* **internal:** base client updates ([77cdb4a](https://github.com/writer/writer-python/commit/77cdb4aa35a6dc165bbf3e36b151377f25b77704))
+* **internal:** bump pyright version ([bcd957a](https://github.com/writer/writer-python/commit/bcd957a67bface1dc31c111928cf2bf604df0b56))
+* **internal:** expand CI branch coverage ([#235](https://github.com/writer/writer-python/issues/235)) ([672e10d](https://github.com/writer/writer-python/commit/672e10da46e802e25dce515311370c5faedf6721))
+* **internal:** fix list file params ([d8f9820](https://github.com/writer/writer-python/commit/d8f98203056e0ded99fa8a05f43d30c3e3762ab3))
+* **internal:** import reformatting ([3994040](https://github.com/writer/writer-python/commit/3994040da781e1c42eae00996609baffc8b04ee4))
+* **internal:** minor formatting changes ([2064f80](https://github.com/writer/writer-python/commit/2064f80ff07f1d731bcbf5f02105777f153b2981))
+* **internal:** reduce CI branch coverage ([725029b](https://github.com/writer/writer-python/commit/725029b1896669ea364ddc7795c0d4f3be56c890))
+* **internal:** refactor retries to not use recursion ([acf730e](https://github.com/writer/writer-python/commit/acf730e5cf9b2b579338a03a6f90692c662544c1))
+* **internal:** slight transform perf improvement ([#233](https://github.com/writer/writer-python/issues/233)) ([92b7914](https://github.com/writer/writer-python/commit/92b7914f583d680b6f85bee45a7177ca2b3a61ee))
+* **internal:** update models test ([ba97e8f](https://github.com/writer/writer-python/commit/ba97e8f02e8e252cc11cacc46dfd30a73cb6ed43))
+* **internal:** update pyright settings ([8f7e894](https://github.com/writer/writer-python/commit/8f7e89421ed0a77f814fb7810212d19f1d795ba9))
+
+
+### Documentation
+
+* **api:** updates to API spec ([fa87048](https://github.com/writer/writer-python/commit/fa870480b59f2b9bac562615c78c2c5d08932351))
+* **api:** updates to API spec ([7606fe4](https://github.com/writer/writer-python/commit/7606fe4c32d1e28d84d0b10a951d3cfe030b8f84))
+* **api:** updates to API spec ([a423a7e](https://github.com/writer/writer-python/commit/a423a7e58237a6202d9fafcd200e2f3cd79321bb))
+* **api:** updates to API spec ([91598ac](https://github.com/writer/writer-python/commit/91598ac7aabbb3b94bfd28a46249e46b893f1d69))
+* swap examples used in readme ([#231](https://github.com/writer/writer-python/issues/231)) ([e944c5b](https://github.com/writer/writer-python/commit/e944c5bf1cef967cb2de23ca844152d66f714b68))
+
 ## 2.1.0 (2025-04-04)
 
 Full Changelog: [v2.1.0-rc1...v2.1.0](https://github.com/writer/writer-python/compare/v2.1.0-rc1...v2.1.0)
