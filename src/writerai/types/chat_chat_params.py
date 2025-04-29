@@ -32,8 +32,8 @@ class ChatChatParamsBase(TypedDict, total=False):
     model: Required[str]
     """
     The [ID of the model](https://dev.writer.com/home/models) to use for creating
-    the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-    `palmyra-creative`, and `palmyra-x-003-instruct`.
+    the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+    `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
     """
 
     logprobs: bool
@@ -55,8 +55,8 @@ class ChatChatParamsBase(TypedDict, total=False):
 
     response_format: ResponseFormat
     """
-    The response format to use for the chat completion, available with
-    `palmyra-x-004`.
+    The response format to use for the chat completion, available with `palmyra-x4`
+    and `palmyra-x5`.
 
     `text` is the default response format. [JSON Schema](https://json-schema.org/)
     is supported for structured responses. If you specify `json_schema`, you must
@@ -91,11 +91,11 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
     An array containing tool definitions for tools that the model can use to
     generate responses. The tool definitions use JSON schema. You can define your
-    own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-    that you can only use one built-in tool type in the array (only one of `graph`,
-    `llm`, or `vision`). You can pass multiple custom
-    tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-    same request.
+    own functions or use one of the built-in `graph`, `llm`, `translation`, or
+    `vision` tools. Note that you can only use one built-in tool type in the array
+    (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+    [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+    `function` in the same request.
     """
 
     top_p: float

@@ -7,7 +7,7 @@ from .._models import BaseModel
 from .shared.tool_call import ToolCall
 from .shared.graph_data import GraphData
 
-__all__ = ["ChatCompletionMessage", "LlmData"]
+__all__ = ["ChatCompletionMessage", "LlmData", "TranslationData"]
 
 
 class LlmData(BaseModel):
@@ -16,6 +16,17 @@ class LlmData(BaseModel):
 
     prompt: str
     """The prompt processed by the model."""
+
+
+class TranslationData(BaseModel):
+    source_language_code: str
+    """The language code of the source text."""
+
+    source_text: str
+    """The text the tool translated."""
+
+    target_language_code: str
+    """The language code of the target text."""
 
 
 class ChatCompletionMessage(BaseModel):
@@ -36,3 +47,5 @@ class ChatCompletionMessage(BaseModel):
     llm_data: Optional[LlmData] = None
 
     tool_calls: Optional[List[ToolCall]] = None
+
+    translation_data: Optional[TranslationData] = None
