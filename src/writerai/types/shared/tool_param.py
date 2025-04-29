@@ -14,6 +14,8 @@ __all__ = [
     "GraphToolFunction",
     "LlmTool",
     "LlmToolFunction",
+    "TranslationTool",
+    "TranslationToolFunction",
     "VisionTool",
     "VisionToolFunction",
     "VisionToolFunctionVariable",
@@ -63,6 +65,66 @@ class LlmTool(BaseModel):
     """The type of tool."""
 
 
+class TranslationToolFunction(BaseModel):
+    formality: bool
+    """Whether to use formal or informal language in the translation.
+
+    See the
+    [list of languages that support formality](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#formality).
+    If the language does not support formality, this parameter is ignored.
+    """
+
+    length_control: bool
+    """Whether to control the length of the translated text.
+
+    See the
+    [list of languages that support length control](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#length-control).
+    If the language does not support length control, this parameter is ignored.
+    """
+
+    mask_profanity: bool
+    """Whether to mask profane words in the translated text.
+
+    See the
+    [list of languages that do not support profanity masking](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#profanity-masking).
+    If the language does not support profanity masking, this parameter is ignored.
+    """
+
+    model: Literal["palmyra-translate"]
+    """The model to use for translation."""
+
+    source_language_code: Optional[str] = None
+    """Optional.
+
+    The [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)
+    language code of the original text to translate. For example, `en` for English,
+    `zh` for Chinese, `fr` for French, `es` for Spanish. If the language has a
+    variant, the code appends the two-digit
+    [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    If you do not provide a language code, the LLM detects the language of the text.
+    """
+
+    target_language_code: Optional[str] = None
+    """Optional.
+
+    The [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)
+    language code of the target language for the translation. For example, `en` for
+    English, `zh` for Chinese, `fr` for French, `es` for Spanish. If the language
+    has a variant, the code appends the two-digit
+    [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    If you do not provide a language code, the LLM uses the content of the chat
+    message to determine the target language.
+    """
+
+
+class TranslationTool(BaseModel):
+    function: TranslationToolFunction
+    """A tool that uses Palmyra Translate to translate text."""
+
+    type: Literal["translation"]
+    """The type of tool."""
+
+
 class VisionToolFunctionVariable(BaseModel):
     file_id: str
     """The File ID of the image to analyze.
@@ -97,5 +159,5 @@ class VisionTool(BaseModel):
 
 
 ToolParam: TypeAlias = Annotated[
-    Union[FunctionTool, GraphTool, LlmTool, VisionTool], PropertyInfo(discriminator="type")
+    Union[FunctionTool, GraphTool, LlmTool, TranslationTool, VisionTool], PropertyInfo(discriminator="type")
 ]
