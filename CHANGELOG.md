@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.0 (2025-04-30)
+
+Full Changelog: [v2.2.0-rc1...v2.2.0](https://github.com/writer/writer-python/compare/v2.2.0-rc1...v2.2.0)
+
+### Documentation
+
+* **api:** updates to API spec ([0236e86](https://github.com/writer/writer-python/commit/0236e8698e48b393dbb711f91e76fef66007d724))
+* README updates ([c85f8b5](https://github.com/writer/writer-python/commit/c85f8b591d27e4f0b2ff1ff01532aa31c4b62f7b))
+* Update models in README. ([da7e11a](https://github.com/writer/writer-python/commit/da7e11a9c62d971253efc83550557be37864fabb))
+
 ## 2.2.0-rc1 (2025-04-25)
 
 Full Changelog: [v2.1.0...v2.2.0-rc1](https://github.com/writer/writer-python/compare/v2.1.0...v2.2.0-rc1)

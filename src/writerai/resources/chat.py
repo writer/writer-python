@@ -93,8 +93,8 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           logprobs: Specifies whether to return log probabilities of the output tokens.
 
@@ -106,8 +106,8 @@ class ChatResource(SyncAPIResource):
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
 
-          response_format: The response format to use for the chat completion, available with
-              `palmyra-x-004`.
+          response_format: The response format to use for the chat completion, available with `palmyra-x4`
+              and `palmyra-x5`.
 
               `text` is the default response format. [JSON Schema](https://json-schema.org/)
               is supported for structured responses. If you specify `json_schema`, you must
@@ -133,11 +133,11 @@ class ChatResource(SyncAPIResource):
 
           tools: An array containing tool definitions for tools that the model can use to
               generate responses. The tool definitions use JSON schema. You can define your
-              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-              that you can only use one built-in tool type in the array (only one of `graph`,
-              `llm`, or `vision`). You can pass multiple custom
-              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-              same request.
+              own functions or use one of the built-in `graph`, `llm`, `translation`, or
+              `vision` tools. Note that you can only use one built-in tool type in the array
+              (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+              [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+              `function` in the same request.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -189,8 +189,8 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -206,8 +206,8 @@ class ChatResource(SyncAPIResource):
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
 
-          response_format: The response format to use for the chat completion, available with
-              `palmyra-x-004`.
+          response_format: The response format to use for the chat completion, available with `palmyra-x4`
+              and `palmyra-x5`.
 
               `text` is the default response format. [JSON Schema](https://json-schema.org/)
               is supported for structured responses. If you specify `json_schema`, you must
@@ -229,11 +229,11 @@ class ChatResource(SyncAPIResource):
 
           tools: An array containing tool definitions for tools that the model can use to
               generate responses. The tool definitions use JSON schema. You can define your
-              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-              that you can only use one built-in tool type in the array (only one of `graph`,
-              `llm`, or `vision`). You can pass multiple custom
-              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-              same request.
+              own functions or use one of the built-in `graph`, `llm`, `translation`, or
+              `vision` tools. Note that you can only use one built-in tool type in the array
+              (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+              [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+              `function` in the same request.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -285,8 +285,8 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -302,8 +302,8 @@ class ChatResource(SyncAPIResource):
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
 
-          response_format: The response format to use for the chat completion, available with
-              `palmyra-x-004`.
+          response_format: The response format to use for the chat completion, available with `palmyra-x4`
+              and `palmyra-x5`.
 
               `text` is the default response format. [JSON Schema](https://json-schema.org/)
               is supported for structured responses. If you specify `json_schema`, you must
@@ -325,11 +325,11 @@ class ChatResource(SyncAPIResource):
 
           tools: An array containing tool definitions for tools that the model can use to
               generate responses. The tool definitions use JSON schema. You can define your
-              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-              that you can only use one built-in tool type in the array (only one of `graph`,
-              `llm`, or `vision`). You can pass multiple custom
-              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-              same request.
+              own functions or use one of the built-in `graph`, `llm`, `translation`, or
+              `vision` tools. Note that you can only use one built-in tool type in the array
+              (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+              [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+              `function` in the same request.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -634,8 +634,8 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           logprobs: Specifies whether to return log probabilities of the output tokens.
 
@@ -647,8 +647,8 @@ class AsyncChatResource(AsyncAPIResource):
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
 
-          response_format: The response format to use for the chat completion, available with
-              `palmyra-x-004`.
+          response_format: The response format to use for the chat completion, available with `palmyra-x4`
+              and `palmyra-x5`.
 
               `text` is the default response format. [JSON Schema](https://json-schema.org/)
               is supported for structured responses. If you specify `json_schema`, you must
@@ -674,11 +674,11 @@ class AsyncChatResource(AsyncAPIResource):
 
           tools: An array containing tool definitions for tools that the model can use to
               generate responses. The tool definitions use JSON schema. You can define your
-              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-              that you can only use one built-in tool type in the array (only one of `graph`,
-              `llm`, or `vision`). You can pass multiple custom
-              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-              same request.
+              own functions or use one of the built-in `graph`, `llm`, `translation`, or
+              `vision` tools. Note that you can only use one built-in tool type in the array
+              (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+              [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+              `function` in the same request.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -730,8 +730,8 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -747,8 +747,8 @@ class AsyncChatResource(AsyncAPIResource):
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
 
-          response_format: The response format to use for the chat completion, available with
-              `palmyra-x-004`.
+          response_format: The response format to use for the chat completion, available with `palmyra-x4`
+              and `palmyra-x5`.
 
               `text` is the default response format. [JSON Schema](https://json-schema.org/)
               is supported for structured responses. If you specify `json_schema`, you must
@@ -770,11 +770,11 @@ class AsyncChatResource(AsyncAPIResource):
 
           tools: An array containing tool definitions for tools that the model can use to
               generate responses. The tool definitions use JSON schema. You can define your
-              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-              that you can only use one built-in tool type in the array (only one of `graph`,
-              `llm`, or `vision`). You can pass multiple custom
-              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-              same request.
+              own functions or use one of the built-in `graph`, `llm`, `translation`, or
+              `vision` tools. Note that you can only use one built-in tool type in the array
+              (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+              [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+              `function` in the same request.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with
@@ -826,8 +826,8 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x-004`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
+              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -843,8 +843,8 @@ class AsyncChatResource(AsyncAPIResource):
               single request. This parameter allows for generating multiple responses,
               offering a variety of potential replies from which to choose.
 
-          response_format: The response format to use for the chat completion, available with
-              `palmyra-x-004`.
+          response_format: The response format to use for the chat completion, available with `palmyra-x4`
+              and `palmyra-x5`.
 
               `text` is the default response format. [JSON Schema](https://json-schema.org/)
               is supported for structured responses. If you specify `json_schema`, you must
@@ -866,11 +866,11 @@ class AsyncChatResource(AsyncAPIResource):
 
           tools: An array containing tool definitions for tools that the model can use to
               generate responses. The tool definitions use JSON schema. You can define your
-              own functions or use one of the built-in `graph`, `llm`, or `vision` tools. Note
-              that you can only use one built-in tool type in the array (only one of `graph`,
-              `llm`, or `vision`). You can pass multiple custom
-              tools](https://dev.writer.com/api-guides/tool-calling) of type `function` in the
-              same request.
+              own functions or use one of the built-in `graph`, `llm`, `translation`, or
+              `vision` tools. Note that you can only use one built-in tool type in the array
+              (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
+              [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
+              `function` in the same request.
 
           top_p: Sets the threshold for "nucleus sampling," a technique to focus the model's
               token generation on the most likely subset of tokens. Only tokens with

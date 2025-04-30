@@ -739,7 +739,7 @@ class TestWriter:
                                     "role": "user",
                                 }
                             ],
-                            model="palmyra-x-004",
+                            model="palmyra-x5",
                         ),
                         ChatChatParamsNonStreaming,
                     ),
@@ -768,7 +768,7 @@ class TestWriter:
                                     "role": "user",
                                 }
                             ],
-                            model="palmyra-x-004",
+                            model="palmyra-x5",
                         ),
                         ChatChatParamsNonStreaming,
                     ),
@@ -1559,7 +1559,7 @@ class TestAsyncWriter:
                                     "role": "user",
                                 }
                             ],
-                            model="palmyra-x-004",
+                            model="palmyra-x5",
                         ),
                         ChatChatParamsNonStreaming,
                     ),
@@ -1588,7 +1588,7 @@ class TestAsyncWriter:
                                     "role": "user",
                                 }
                             ],
-                            model="palmyra-x-004",
+                            model="palmyra-x5",
                         ),
                         ChatChatParamsNonStreaming,
                     ),

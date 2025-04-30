@@ -10,7 +10,7 @@ from .chat_completion_usage import ChatCompletionUsage
 from .chat_completion_message import ChatCompletionMessage
 from .shared.tool_call_streaming import ToolCallStreaming
 
-__all__ = ["ChatCompletionChunk", "Choice", "ChoiceDelta", "ChoiceDeltaLlmData"]
+__all__ = ["ChatCompletionChunk", "Choice", "ChoiceDelta", "ChoiceDeltaLlmData", "ChoiceDeltaTranslationData"]
 
 
 class ChoiceDeltaLlmData(BaseModel):
@@ -19,6 +19,17 @@ class ChoiceDeltaLlmData(BaseModel):
 
     prompt: str
     """The prompt processed by the model."""
+
+
+class ChoiceDeltaTranslationData(BaseModel):
+    source_language_code: str
+    """The language code of the source text."""
+
+    source_text: str
+    """The text the tool translated."""
+
+    target_language_code: str
+    """The language code of the target text."""
 
 
 class ChoiceDelta(BaseModel):
@@ -43,6 +54,8 @@ class ChoiceDelta(BaseModel):
     """
 
     tool_calls: Optional[List[ToolCallStreaming]] = None
+
+    translation_data: Optional[ChoiceDeltaTranslationData] = None
 
 
 class Choice(BaseModel):
