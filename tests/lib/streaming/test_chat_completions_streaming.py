@@ -70,7 +70,8 @@ recommend checking a reliable weather website or a weather app.",
             parsed=None,
             refusal=None,
             role='assistant',
-            tool_calls=None
+            tool_calls=None,
+            translation_data=None
         )
     )
 ]
@@ -146,7 +147,8 @@ checking a reliable weather website or a weather app.",
 #                 parsed=Location(city='San Francisco', temperature=61.0, units='f'),
 #                 refusal=None,
 #                 role='assistant',
-#                 tool_calls=[]
+#                 tool_calls=[],
+#                 translation_data=None
 #             )
 #         )
 #     ],
@@ -316,7 +318,8 @@ checking a reliable weather website or a weather app.",
 #             parsed=Location(city='San Francisco', temperature=65.0, units='f'),
 #             refusal=None,
 #             role='assistant',
-#             tool_calls=[]
+#             tool_calls=[],
+#             translation_data=None
 #         )
 #     ),
 #     ParsedChatCompletionChoice[Location](
@@ -329,7 +332,8 @@ checking a reliable weather website or a weather app.",
 #             parsed=Location(city='San Francisco', temperature=61.0, units='f'),
 #             refusal=None,
 #             role='assistant',
-#             tool_calls=[]
+#             tool_calls=[],
+#             translation_data=None
 #         )
 #     ),
 #     ParsedChatCompletionChoice[Location](
@@ -342,7 +346,8 @@ checking a reliable weather website or a weather app.",
 #             parsed=Location(city='San Francisco', temperature=59.0, units='f'),
 #             refusal=None,
 #             role='assistant',
-#             tool_calls=[]
+#             tool_calls=[],
+#             translation_data=None
 #         )
 #     )
 # ]
@@ -416,7 +421,8 @@ checking a reliable weather website or a weather app.",
 #             parsed=None,
 #             refusal="I'm sorry, I can't assist with that request.",
 #             role='assistant',
-#             tool_calls=[]
+#             tool_calls=[],
+#             translation_data=None
 #         )
 #     )
 # ]
@@ -487,7 +493,8 @@ def test_content_logprobs_events(client: Writer, respx_mock: MockRouter, monkeyp
             parsed=None,
             refusal=None,
             role='assistant',
-            tool_calls=None
+            tool_calls=None,
+            translation_data=None
         )
     )
 ]
@@ -579,7 +586,8 @@ def test_refusal_logprobs_events(client: Writer, respx_mock: MockRouter, monkeyp
             parsed=None,
             refusal="I'm very sorry, but I can't assist with that.",
             role='assistant',
-            tool_calls=None
+            tool_calls=None,
+            translation_data=None
         )
     )
 ]
@@ -637,7 +645,8 @@ def test_parse_pydantic_tool(client: Writer, respx_mock: MockRouter, monkeypatch
                     index=0,
                     type='function'
                 )
-            ]
+            ],
+            translation_data=None
         )
     )
 ]
@@ -669,7 +678,8 @@ def test_parse_pydantic_tool(client: Writer, respx_mock: MockRouter, monkeypatch
                     index=0,
                     type='function'
                 )
-            ]
+            ],
+            translation_data=None
         )
     )
 ]
@@ -751,7 +761,8 @@ def test_parse_multiple_pydantic_tools(client: Writer, respx_mock: MockRouter, m
                     index=1,
                     type='function'
                 )
-            ]
+            ],
+            translation_data=None
         )
     )
 ]
@@ -894,7 +905,8 @@ def test_non_pydantic_response_format(client: Writer, respx_mock: MockRouter, mo
             parsed=None,
             refusal=None,
             role='assistant',
-            tool_calls=None
+            tool_calls=None,
+            translation_data=None
         )
     )
 ]
@@ -962,7 +974,8 @@ FunctionToolCallArgumentsDoneEvent(
                     index=0,
                     type='function'
                 )
-            ]
+            ],
+            translation_data=None
         )
     )
 ]
