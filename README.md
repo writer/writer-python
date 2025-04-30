@@ -174,7 +174,7 @@ The SDK also includes helpers to process streams and handle incoming events.
 
 ```python
 with client.chat.stream(
-    model="palmyra-x-004",
+    model="palmyra-x5",
     messages=[{"role": "user", "content": prompt}],
 ) as stream:
     for event in stream:
