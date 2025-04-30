@@ -75,7 +75,7 @@ chat_completion = client.chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-004",
+    model="palmyra-x5",
 )
 print(chat_completion.choices[0].message.content)
 ```
@@ -97,7 +97,7 @@ async def main() -> None:
                 "role": "user",
             }
         ],
-        model="palmyra-x-004",
+        model="palmyra-x5",
     )
     print(chat_completion.choices[0].message.content)
 
@@ -125,7 +125,7 @@ stream = client.chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-004",
+    model="palmyra-x5",
     stream=True,
 )
 
@@ -153,7 +153,7 @@ stream = await client.chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-004",
+    model="palmyra-x5",
     stream=True,
 )
 
@@ -308,7 +308,7 @@ try:
                 "role": "user",
             }
         ],
-        model="palmyra-x-004",
+        model="palmyra-x5",
     )
 except writerai.APIConnectionError as e:
     print("The server could not be reached")
@@ -359,7 +359,7 @@ client.with_options(max_retries=5).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-004",
+    model="palmyra-x5",
 )
 ```
 
@@ -391,7 +391,7 @@ client.with_options(timeout=5.0).chat.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-004",
+    model="palmyra-x5",
 )
 ```
 
@@ -440,7 +440,7 @@ response = client.chat.with_raw_response.chat(
         "content": "Write a haiku about programming",
         "role": "user",
     }],
-    model="palmyra-x-004",
+    model="palmyra-x5",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -464,7 +464,7 @@ with client.chat.with_streaming_response.chat(
             "role": "user",
         }
     ],
-    model="palmyra-x-004",
+    model="palmyra-x5",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
