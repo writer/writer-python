@@ -93,7 +93,7 @@ class FilesResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        file_type: str | NotGiven = NOT_GIVEN,
+        file_types: str | NotGiven = NOT_GIVEN,
         graph_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -116,7 +116,7 @@ class FilesResource(SyncAPIResource):
           before: The ID of the first object in the previous page. This parameter instructs the
               API to return the previous page of results.
 
-          file_type: The extensions of the files to retrieve. Separate multiple extensions with a
+          file_types: The extensions of the files to retrieve. Separate multiple extensions with a
               comma. For example: `pdf,jpg,docx`.
 
           graph_id: The unique identifier of the graph to which the files belong.
@@ -150,7 +150,7 @@ class FilesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "file_type": file_type,
+                        "file_types": file_types,
                         "graph_id": graph_id,
                         "limit": limit,
                         "order": order,
@@ -361,7 +361,7 @@ class AsyncFilesResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        file_type: str | NotGiven = NOT_GIVEN,
+        file_types: str | NotGiven = NOT_GIVEN,
         graph_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -384,7 +384,7 @@ class AsyncFilesResource(AsyncAPIResource):
           before: The ID of the first object in the previous page. This parameter instructs the
               API to return the previous page of results.
 
-          file_type: The extensions of the files to retrieve. Separate multiple extensions with a
+          file_types: The extensions of the files to retrieve. Separate multiple extensions with a
               comma. For example: `pdf,jpg,docx`.
 
           graph_id: The unique identifier of the graph to which the files belong.
@@ -418,7 +418,7 @@ class AsyncFilesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "file_type": file_type,
+                        "file_types": file_types,
                         "graph_id": graph_id,
                         "limit": limit,
                         "order": order,
