@@ -78,6 +78,7 @@ class TestFiles:
         file = client.files.list(
             after="after",
             before="before",
+            file_type="file_type",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
@@ -317,6 +318,7 @@ class TestAsyncFiles:
         file = await async_client.files.list(
             after="after",
             before="before",
+            file_type="file_type",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
