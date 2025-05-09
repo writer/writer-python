@@ -20,7 +20,7 @@ class FileListParams(TypedDict, total=False):
     This parameter instructs the API to return the previous page of results.
     """
 
-    file_type: str
+    file_types: str
     """The extensions of the files to retrieve.
 
     Separate multiple extensions with a comma. For example: `pdf,jpg,docx`.
