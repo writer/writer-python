@@ -255,10 +255,7 @@ client = Writer()
 chat_completion = client.chat.chat(
     messages=[{"role": "user"}],
     model="model",
-    response_format={
-        "type": "text",
-        "json_schema": {},
-    },
+    response_format={"type": "text"},
 )
 print(chat_completion.response_format)
 ```
