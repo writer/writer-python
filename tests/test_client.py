@@ -23,9 +23,7 @@ from pydantic import ValidationError
 
 from writerai import Writer, AsyncWriter, APIResponseValidationError
 from writerai._types import Omit
-from writerai._utils import maybe_transform
 from writerai._models import BaseModel, FinalRequestOptions
-from writerai._constants import RAW_RESPONSE_HEADER
 from writerai._streaming import Stream, AsyncStream
 from writerai._exceptions import WriterError, APIStatusError, APITimeoutError, APIResponseValidationError
 from writerai._base_client import (
@@ -36,7 +34,6 @@ from writerai._base_client import (
     DefaultAsyncHttpxClient,
     make_request_options,
 )
-from writerai.types.chat_chat_params import ChatChatParamsNonStreaming
 
 from .utils import update_env
 
@@ -725,60 +722,21 @@ class TestWriter:
 
     @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Writer) -> None:
         respx_mock.post("/v1/chat").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.post(
-                "/v1/chat",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            messages=[
-                                {
-                                    "content": "Write a haiku about programming",
-                                    "role": "user",
-                                }
-                            ],
-                            model="palmyra-x5",
-                        ),
-                        ChatChatParamsNonStreaming,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.chat.with_streaming_response.chat(messages=[{"role": "user"}], model="model").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Writer) -> None:
         respx_mock.post("/v1/chat").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.post(
-                "/v1/chat",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            messages=[
-                                {
-                                    "content": "Write a haiku about programming",
-                                    "role": "user",
-                                }
-                            ],
-                            model="palmyra-x5",
-                        ),
-                        ChatChatParamsNonStreaming,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.chat.with_streaming_response.chat(messages=[{"role": "user"}], model="model").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1594,60 +1552,25 @@ class TestAsyncWriter:
 
     @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncWriter) -> None:
         respx_mock.post("/v1/chat").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.post(
-                "/v1/chat",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            messages=[
-                                {
-                                    "content": "Write a haiku about programming",
-                                    "role": "user",
-                                }
-                            ],
-                            model="palmyra-x5",
-                        ),
-                        ChatChatParamsNonStreaming,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.chat.with_streaming_response.chat(
+                messages=[{"role": "user"}], model="model"
+            ).__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("writerai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncWriter) -> None:
         respx_mock.post("/v1/chat").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.post(
-                "/v1/chat",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            messages=[
-                                {
-                                    "content": "Write a haiku about programming",
-                                    "role": "user",
-                                }
-                            ],
-                            model="palmyra-x5",
-                        ),
-                        ChatChatParamsNonStreaming,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.chat.with_streaming_response.chat(
+                messages=[{"role": "user"}], model="model"
+            ).__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
