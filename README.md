@@ -1,6 +1,6 @@
 # Writer Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/writer-sdk.svg)](https://pypi.org/project/writer-sdk/)
+[![PyPI version](<https://img.shields.io/pypi/v/writer-sdk.svg?label=pypi%20(stable)>)](https://pypi.org/project/writer-sdk/)
 
 The Writer Python library provides access to the Writer REST API from any Python 3.8+
 application. It includes a set of tools and utilities that make it easy to integrate the capabilities
