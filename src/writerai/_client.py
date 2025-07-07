@@ -36,6 +36,39 @@ from .resources.applications import applications
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Writer", "AsyncWriter", "Client", "AsyncClient"]
 
 
+_SDK_NAMESPACE_PREFIX = "WRITER_SDK_"
+_SDK_HEADER_PREFIX = _SDK_NAMESPACE_PREFIX + "HEADER_"
+
+
+def _extract_sdk_env_headers() -> dict[str, str]:
+    """
+    Collect headers defined through environment variables of the form
+    `WRITER_SDK_HEADER_<HEADER_NAME>`.
+
+    Example
+    --------
+    >>> os.environ["WRITER_SDK_HEADER_X_FOO_BAR"] = "abc123"
+    >>> _extract_sdk_env_headers()
+    {'X-Foo-Bar': 'abc123'}
+    """
+    headers: dict[str, str] = {}
+
+    for key, value in os.environ.items():
+        if not key.startswith(_SDK_HEADER_PREFIX):
+            continue
+
+        # Strip the prefix and convert
+        raw = key[len(_SDK_HEADER_PREFIX):]
+        parts = raw.split("_")
+        canonical = "-".join(
+            word.capitalize() if len(word) > 1 else word.upper()
+            for word in parts
+        )
+        headers[canonical] = value
+
+    return headers
+
+
 class Writer(SyncAPIClient):
     applications: applications.ApplicationsResource
     chat: chat.ChatResource
@@ -92,13 +125,16 @@ class Writer(SyncAPIClient):
         if base_url is None:
             base_url = f"https://api.writer.com"
 
+        env_headers = _extract_sdk_env_headers()
+        merged_headers = {**env_headers, **(default_headers or {})}
+
         super().__init__(
             version=__version__,
             base_url=base_url,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=default_headers,
+            custom_headers=merged_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
@@ -278,13 +314,16 @@ class AsyncWriter(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://api.writer.com"
 
+        env_headers = _extract_sdk_env_headers()
+        merged_headers = {**env_headers, **(default_headers or {})}
+
         super().__init__(
             version=__version__,
             base_url=base_url,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=default_headers,
+            custom_headers=merged_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
