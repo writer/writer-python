@@ -126,7 +126,7 @@ class Writer(SyncAPIClient):
             base_url = f"https://api.writer.com"
 
         env_headers = _extract_sdk_env_headers()
-        merged_headers = {**env_headers, **(default_headers or {})}
+        default_headers = {**env_headers, **(default_headers or {})}
 
         super().__init__(
             version=__version__,
@@ -134,7 +134,7 @@ class Writer(SyncAPIClient):
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=merged_headers,
+            custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
