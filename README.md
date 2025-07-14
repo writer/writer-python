@@ -122,7 +122,6 @@ pip install writer-sdk[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from writerai import DefaultAioHttpClient
 from writerai import AsyncWriter
@@ -130,7 +129,7 @@ from writerai import AsyncWriter
 
 async def main() -> None:
     async with AsyncWriter(
-        api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         chat_completion = await client.chat.chat(
