@@ -107,7 +107,47 @@ asyncio.run(main())
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
 
-## Streaming versus non-streaming responses
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install writer-sdk[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from writerai import DefaultAioHttpClient
+from writerai import AsyncWriter
+
+
+async def main() -> None:
+    async with AsyncWriter(
+        api_key=os.environ.get("WRITER_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        chat_completion = await client.chat.chat(
+            messages=[
+                {
+                    "content": "Write a haiku about programming",
+                    "role": "user",
+                }
+            ],
+            model="palmyra-x5",
+        )
+        print(chat_completion.id)
+
+
+asyncio.run(main())
+```
+
+## Streaming responses
 
 The Writer Python library provides support for streaming responses using Server Side Events (SSE).
 
