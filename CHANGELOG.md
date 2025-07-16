@@ -1,5 +1,59 @@
 # Changelog
 
+## 2.2.1 (2025-07-16)
+
+Full Changelog: [v2.2.0...v2.2.1](https://github.com/writer/writer-python/compare/v2.2.0...v2.2.1)
+
+### Features
+
+* clean up environment call outs ([fc436af](https://github.com/writer/writer-python/commit/fc436af17d30723e147c0cc8198886adfa43d0a1))
+* **client:** add follow_redirects request option ([1bf8218](https://github.com/writer/writer-python/commit/1bf8218881286ddf4bf1c9c2c4c8e8b58837425b))
+* **client:** add support for aiohttp ([843d69d](https://github.com/writer/writer-python/commit/843d69decc9eb5c1cb793fc466c026917e8036ce))
+
+
+### Bug Fixes
+
+* allow utf-8 encoded filename in headers ([27ebc83](https://github.com/writer/writer-python/commit/27ebc83f9eb76b7ab2208ed8ac991bd857773928))
+* **ci:** correct conditional ([7f49d8d](https://github.com/writer/writer-python/commit/7f49d8d55819747831db0b7baa015b274b18108d))
+* **ci:** release-doctor — report correct token name ([0d20a9e](https://github.com/writer/writer-python/commit/0d20a9e7d8be4f8fbc316480335afd314d112a8a))
+* **client:** correctly parse binary response | stream ([55872c2](https://github.com/writer/writer-python/commit/55872c2302ae5458f872ab34809c85781f0f6f17))
+* **client:** don't send Content-Type header on GET requests ([ffcc579](https://github.com/writer/writer-python/commit/ffcc5799423bca552deabaa0cf98dc2e67d11a39))
+* merged_headers -&gt; default_headers to avoid conflicts ([6b7aeb4](https://github.com/writer/writer-python/commit/6b7aeb4335534bcfafc2f9849fa4162f44002075))
+* **package:** support direct resource imports ([2016cda](https://github.com/writer/writer-python/commit/2016cda2813d2b49abf8f6aa2dafbecdcaddfa36))
+* **parsing:** correctly handle nested discriminated unions ([a4774a8](https://github.com/writer/writer-python/commit/a4774a8592d82d03ff1d2947ee61a909ac40d534))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([f5db115](https://github.com/writer/writer-python/commit/f5db1150f0c8b53e9c9b471c1b1f555cfa6be2df))
+
+
+### Chores
+
+* **ci:** change upload type ([9ee05fb](https://github.com/writer/writer-python/commit/9ee05fb02fede8fcba4418c55361080106f5172e))
+* **ci:** enable for pull requests ([2dc262b](https://github.com/writer/writer-python/commit/2dc262bf297d3d0f42489cf2c3e2ea59cb1a17cc))
+* **ci:** fix installation instructions ([b421fd0](https://github.com/writer/writer-python/commit/b421fd089015ede20a5cfa8214c19dc16b66f27c))
+* **ci:** only run for pushes and fork pull requests ([ced5ec3](https://github.com/writer/writer-python/commit/ced5ec33765e4d8454c597a135d20be8b89e0c4e))
+* **ci:** upload sdks to package manager ([bfc448f](https://github.com/writer/writer-python/commit/bfc448fb9516e07a3a5fa903ef04b2e838865a0a))
+* **docs:** grammar improvements ([302e1a8](https://github.com/writer/writer-python/commit/302e1a8fb48a3f0fa83bef9fa1fb5ee2244893f1))
+* **docs:** remove reference to rye shell ([b6a9aff](https://github.com/writer/writer-python/commit/b6a9aff0e0da58c0f19b4634448be6b6d539593c))
+* **docs:** remove unnecessary param examples ([b78bf04](https://github.com/writer/writer-python/commit/b78bf04d813ce51075386f660a0cfa3647db77d3))
+* **internal:** avoid errors for isinstance checks on proxies ([6bec701](https://github.com/writer/writer-python/commit/6bec701344af3c9cd7853cc9dcacfbd959dbf485))
+* **internal:** avoid lint errors in pagination expressions ([abf0203](https://github.com/writer/writer-python/commit/abf02038a3857004cbb061cffaa9f0bf29f841b0))
+* **internal:** bump pinned h11 dep ([383abab](https://github.com/writer/writer-python/commit/383ababb87995f734a70b58178d407b00df130ea))
+* **internal:** codegen related update ([81c98bd](https://github.com/writer/writer-python/commit/81c98bd5948b7b5d0175134f43ced00a559d3f41))
+* **internal:** update conftest.py ([f6aa1eb](https://github.com/writer/writer-python/commit/f6aa1eb979f08b6ee1f9518f19b618e9346c04c6))
+* **package:** mark python 3.13 as supported ([fe9f5d9](https://github.com/writer/writer-python/commit/fe9f5d904f516d1eb37037acd07df4e43e86246a))
+* parse environment variables for default headers ([fd7c358](https://github.com/writer/writer-python/commit/fd7c358ae9671a20c338d6868b4420b8a982fe17))
+* **readme:** fix version rendering on pypi ([b93bb29](https://github.com/writer/writer-python/commit/b93bb292fe04ff647049ef0b1431181435463c92))
+* **readme:** update badges ([52ec704](https://github.com/writer/writer-python/commit/52ec7049643a69006ad01aa7d3c47533e017afd9))
+* **tests:** add tests for httpx client instantiation & proxies ([5e99c8f](https://github.com/writer/writer-python/commit/5e99c8fae8879b664c7982fc88a0f5dfd0f111d7))
+* **tests:** run tests in parallel ([6c8b5ad](https://github.com/writer/writer-python/commit/6c8b5ad718480211ef16b7a81064eadb988c69de))
+* **tests:** skip some failing tests on the latest python versions ([94bb5d6](https://github.com/writer/writer-python/commit/94bb5d63562691568da5e2a48e4890dbbbcda456))
+
+
+### Documentation
+
+* **api:** updates to API spec ([4902642](https://github.com/writer/writer-python/commit/4902642b8d9cc80b3bae1d5a10d44a0959e2d0b0))
+* **api:** updates to API spec ([e704323](https://github.com/writer/writer-python/commit/e7043234b044b7fa0897c2f3d07685d429071c08))
+* **client:** fix httpx.Timeout documentation reference ([f0cc6ef](https://github.com/writer/writer-python/commit/f0cc6ef6ac440627a7ed903142b79d49c3d0a22e))
+
 ## 2.2.0 (2025-04-30)
 
 Full Changelog: [v2.2.0-rc1...v2.2.0](https://github.com/writer/writer-python/compare/v2.2.0-rc1...v2.2.0)

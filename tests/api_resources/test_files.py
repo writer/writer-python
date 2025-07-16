@@ -78,6 +78,7 @@ class TestFiles:
         file = client.files.list(
             after="after",
             before="before",
+            file_types="file_types",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
@@ -270,7 +271,9 @@ class TestFiles:
 
 
 class TestAsyncFiles:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncWriter) -> None:
@@ -320,6 +323,7 @@ class TestAsyncFiles:
         file = await async_client.files.list(
             after="after",
             before="before",
+            file_types="file_types",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
