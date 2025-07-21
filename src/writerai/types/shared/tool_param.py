@@ -70,7 +70,7 @@ class TranslationToolFunction(BaseModel):
     """Whether to use formal or informal language in the translation.
 
     See the
-    [list of languages that support formality](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#formality).
+    [list of languages that support formality](https://dev.writer.com/api-reference/translation-api/language-support#formality).
     If the language does not support formality, this parameter is ignored.
     """
 
@@ -78,7 +78,7 @@ class TranslationToolFunction(BaseModel):
     """Whether to control the length of the translated text.
 
     See the
-    [list of languages that support length control](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#length-control).
+    [list of languages that support length control](https://dev.writer.com/api-reference/translation-api/language-support#length-control).
     If the language does not support length control, this parameter is ignored.
     """
 
@@ -86,7 +86,7 @@ class TranslationToolFunction(BaseModel):
     """Whether to mask profane words in the translated text.
 
     See the
-    [list of languages that do not support profanity masking](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#profanity-masking).
+    [list of languages that do not support profanity masking](https://dev.writer.com/api-reference/translation-api/language-support#profanity-masking).
     If the language does not support profanity masking, this parameter is ignored.
     """
 
@@ -130,7 +130,7 @@ class VisionToolFunctionVariable(BaseModel):
     """The File ID of the image to analyze.
 
     The file must be uploaded to the Writer platform before you use it with the
-    Vision tool.
+    Vision tool. The maximum allowed file size is 7MB.
     """
 
     name: str

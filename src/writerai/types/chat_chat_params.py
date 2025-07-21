@@ -42,8 +42,10 @@ class ChatChatParamsBase(TypedDict, total=False):
     max_tokens: int
     """
     Defines the maximum number of tokens (words and characters) that the model can
-    generate in the response. The default value is set to 16, but it can be adjusted
-    to allow for longer or shorter responses as needed.
+    generate in the response. This can be adjusted to allow for longer or shorter
+    responses as needed. The maximum value varies by model. See the
+    [models overview](/home/models) for more information about the maximum number of
+    tokens for each model.
     """
 
     n: int
@@ -81,10 +83,17 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
     tool_choice: ToolChoice
-    """
-    Configure how the model will call functions: `auto` will allow the model to
-    automatically choose the best tool, `none` disables tool calling. You can also
-    pass a specific previously defined function.
+    """Configure how the model will call functions:
+
+    - `auto`: allows the model to automatically choose the tool to use, or not call
+      a tool
+    - `none`: disables tool calling; the model will instead generate a message
+    - `required`: requires the model to call one or more tools
+
+    You can also use a JSON object to force the model to call a specific tool. For
+    example, `{"type": "function", "function": {"name": "get_current_weather"}}`
+    requires the model to call the `get_current_weather` function, regardless of the
+    prompt.
     """
 
     tools: Iterable[ToolParam]
@@ -94,8 +103,8 @@ class ChatChatParamsBase(TypedDict, total=False):
     own functions or use one of the built-in `graph`, `llm`, `translation`, or
     `vision` tools. Note that you can only use one built-in tool type in the array
     (only one of `graph`, `llm`, `translation`, or `vision`). You can pass multiple
-    [custom tools](https://dev.writer.com/api-guides/tool-calling) of type
-    `function` in the same request.
+    [custom tools](https://dev.writer.com/home/tool-calling) of type `function` in
+    the same request.
     """
 
     top_p: float
@@ -113,8 +122,8 @@ class Message(TypedDict, total=False):
 
     You can provide a system prompt by setting the role to `system`, or specify that
     a message is the result of a
-    [tool call](https://dev.writer.com/api-guides/tool-calling) by setting the role
-    to `tool`.
+    [tool call](https://dev.writer.com/home/tool-calling) by setting the role to
+    `tool`.
     """
 
     content: Optional[str]

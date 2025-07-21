@@ -56,7 +56,7 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Updates the Knowledge Graphs listed and associates them with the no-code agent.
+        Updates the list of Knowledge Graphs associated with a no-code chat agent.
 
         Args:
           graph_ids: A list of Knowledge Graph IDs to associate with the application. Note that this
@@ -150,7 +150,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ApplicationGraphsResponse:
         """
-        Updates the Knowledge Graphs listed and associates them with the no-code agent.
+        Updates the list of Knowledge Graphs associated with a no-code chat agent.
 
         Args:
           graph_ids: A list of Knowledge Graph IDs to associate with the application. Note that this

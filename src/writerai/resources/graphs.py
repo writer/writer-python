@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -27,12 +27,13 @@ from .._response import (
 from .._streaming import Stream, AsyncStream
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.file import File
-from ..types.graph import Graph
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.question import Question
+from ..types.graph_list_response import GraphListResponse
 from ..types.graph_create_response import GraphCreateResponse
 from ..types.graph_delete_response import GraphDeleteResponse
 from ..types.graph_update_response import GraphUpdateResponse
+from ..types.graph_retrieve_response import GraphRetrieveResponse
 from ..types.question_response_chunk import QuestionResponseChunk
 from ..types.graph_remove_file_from_graph_response import GraphRemoveFileFromGraphResponse
 
@@ -114,7 +115,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Graph:
+    ) -> GraphRetrieveResponse:
         """
         Retrieve a Knowledge Graph.
 
@@ -134,7 +135,7 @@ class GraphsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Graph,
+            cast_to=GraphRetrieveResponse,
         )
 
     def update(
@@ -143,6 +144,7 @@ class GraphsResource(SyncAPIResource):
         *,
         description: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        urls: Iterable[graph_update_params.URL] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,6 +162,10 @@ class GraphsResource(SyncAPIResource):
           name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
               the name unchanged.
 
+          urls: An array of web connector URLs to update for this Knowledge Graph. You can only
+              connect URLs to Knowledge Graphs with the type `web`. To clear the list of URLs,
+              set this field to an empty array.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -176,6 +182,7 @@ class GraphsResource(SyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "urls": urls,
                 },
                 graph_update_params.GraphUpdateParams,
             ),
@@ -198,7 +205,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPage[Graph]:
+    ) -> SyncCursorPage[GraphListResponse]:
         """
         Retrieve a list of Knowledge Graphs.
 
@@ -225,7 +232,7 @@ class GraphsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v1/graphs",
-            page=SyncCursorPage[Graph],
+            page=SyncCursorPage[GraphListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -241,7 +248,7 @@ class GraphsResource(SyncAPIResource):
                     graph_list_params.GraphListParams,
                 ),
             ),
-            model=Graph,
+            model=GraphListResponse,
         )
 
     def delete(
@@ -613,7 +620,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Graph:
+    ) -> GraphRetrieveResponse:
         """
         Retrieve a Knowledge Graph.
 
@@ -633,7 +640,7 @@ class AsyncGraphsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Graph,
+            cast_to=GraphRetrieveResponse,
         )
 
     async def update(
@@ -642,6 +649,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         description: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        urls: Iterable[graph_update_params.URL] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -659,6 +667,10 @@ class AsyncGraphsResource(AsyncAPIResource):
           name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
               the name unchanged.
 
+          urls: An array of web connector URLs to update for this Knowledge Graph. You can only
+              connect URLs to Knowledge Graphs with the type `web`. To clear the list of URLs,
+              set this field to an empty array.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -675,6 +687,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "urls": urls,
                 },
                 graph_update_params.GraphUpdateParams,
             ),
@@ -697,7 +710,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Graph, AsyncCursorPage[Graph]]:
+    ) -> AsyncPaginator[GraphListResponse, AsyncCursorPage[GraphListResponse]]:
         """
         Retrieve a list of Knowledge Graphs.
 
@@ -724,7 +737,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v1/graphs",
-            page=AsyncCursorPage[Graph],
+            page=AsyncCursorPage[GraphListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -740,7 +753,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                     graph_list_params.GraphListParams,
                 ),
             ),
-            model=Graph,
+            model=GraphListResponse,
         )
 
     async def delete(
