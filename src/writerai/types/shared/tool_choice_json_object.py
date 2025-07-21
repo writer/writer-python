@@ -9,3 +9,7 @@ __all__ = ["ToolChoiceJsonObject"]
 
 class ToolChoiceJsonObject(BaseModel):
     value: Dict[str, object]
+    """A JSON object that specifies the tool to call.
+
+    For example, `{"type": "function", "function": {"name": "get_current_weather"}}`
+    """

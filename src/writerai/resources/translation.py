@@ -65,15 +65,15 @@ class TranslationResource(SyncAPIResource):
 
         Args:
           formality: Whether to use formal or informal language in the translation. See the
-              [list of languages that support formality](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#formality).
+              [list of languages that support formality](https://dev.writer.com/api-reference/translation-api/language-support#formality).
               If the language does not support formality, this parameter is ignored.
 
           length_control: Whether to control the length of the translated text. See the
-              [list of languages that support length control](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#length-control).
+              [list of languages that support length control](https://dev.writer.com/api-reference/translation-api/language-support#length-control).
               If the language does not support length control, this parameter is ignored.
 
           mask_profanity: Whether to mask profane words in the translated text. See the
-              [list of languages that do not support profanity masking](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#profanity-masking).
+              [list of languages that do not support profanity masking](https://dev.writer.com/api-reference/translation-api/language-support#profanity-masking).
               If the language does not support profanity masking, this parameter is ignored.
 
           model: The model to use for translation.
@@ -84,7 +84,7 @@ class TranslationResource(SyncAPIResource):
               variant, the code appends the two-digit
               [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
               For example, Mexican Spanish is `es-MX`. See the
-              [list of supported languages and language codes](https://dev.writer.com/api-guides/api-reference/translation-api/language-support).
+              [list of supported languages and language codes](https://dev.writer.com/api-reference/translation-api/language-support).
 
           target_language_code: The [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)
               language code of the target language for the translation. For example, `en` for
@@ -92,7 +92,7 @@ class TranslationResource(SyncAPIResource):
               has a variant, the code appends the two-digit
               [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
               For example, Mexican Spanish is `es-MX`. See the
-              [list of supported languages and language codes](https://dev.writer.com/api-guides/api-reference/translation-api/language-support).
+              [list of supported languages and language codes](https://dev.writer.com/api-reference/translation-api/language-support).
 
           text: The text to translate. Maximum of 100,000 words.
 
@@ -167,15 +167,15 @@ class AsyncTranslationResource(AsyncAPIResource):
 
         Args:
           formality: Whether to use formal or informal language in the translation. See the
-              [list of languages that support formality](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#formality).
+              [list of languages that support formality](https://dev.writer.com/api-reference/translation-api/language-support#formality).
               If the language does not support formality, this parameter is ignored.
 
           length_control: Whether to control the length of the translated text. See the
-              [list of languages that support length control](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#length-control).
+              [list of languages that support length control](https://dev.writer.com/api-reference/translation-api/language-support#length-control).
               If the language does not support length control, this parameter is ignored.
 
           mask_profanity: Whether to mask profane words in the translated text. See the
-              [list of languages that do not support profanity masking](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#profanity-masking).
+              [list of languages that do not support profanity masking](https://dev.writer.com/api-reference/translation-api/language-support#profanity-masking).
               If the language does not support profanity masking, this parameter is ignored.
 
           model: The model to use for translation.
@@ -186,7 +186,7 @@ class AsyncTranslationResource(AsyncAPIResource):
               variant, the code appends the two-digit
               [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
               For example, Mexican Spanish is `es-MX`. See the
-              [list of supported languages and language codes](https://dev.writer.com/api-guides/api-reference/translation-api/language-support).
+              [list of supported languages and language codes](https://dev.writer.com/api-reference/translation-api/language-support).
 
           target_language_code: The [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)
               language code of the target language for the translation. For example, `en` for
@@ -194,7 +194,7 @@ class AsyncTranslationResource(AsyncAPIResource):
               has a variant, the code appends the two-digit
               [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
               For example, Mexican Spanish is `es-MX`. See the
-              [list of supported languages and language codes](https://dev.writer.com/api-guides/api-reference/translation-api/language-support).
+              [list of supported languages and language codes](https://dev.writer.com/api-reference/translation-api/language-support).
 
           text: The text to translate. Maximum of 100,000 words.
 

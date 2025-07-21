@@ -10,3 +10,7 @@ __all__ = ["ToolChoiceJsonObject"]
 
 class ToolChoiceJsonObject(TypedDict, total=False):
     value: Required[Dict[str, object]]
+    """A JSON object that specifies the tool to call.
+
+    For example, `{"type": "function", "function": {"name": "get_current_weather"}}`
+    """
