@@ -67,7 +67,8 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
         """
-        Retrieve file
+        Retrieve detailed information about a specific file, including its metadata,
+        status, and associated graphs.
 
         Args:
           extra_headers: Send extra headers
@@ -105,12 +106,12 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncCursorPage[File]:
-        """List files
+        """
+        Retrieve a paginated list of files with optional filtering by status, graph
+        association, and file type.
 
         Args:
-          after: The ID of the last object in the previous page.
-
-        This parameter instructs the API
+          after: The ID of the last object in the previous page. This parameter instructs the API
               to return the next page of results.
 
           before: The ID of the first object in the previous page. This parameter instructs the
@@ -173,8 +174,9 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FileDeleteResponse:
-        """
-        Delete file
+        """Permanently delete a file from the system.
+
+        This action cannot be undone.
 
         Args:
           extra_headers: Send extra headers
@@ -206,8 +208,10 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryAPIResponse:
-        """
-        Download file
+        """Download the binary content of a file.
+
+        The response will contain the file data
+        in the appropriate MIME type.
 
         Args:
           extra_headers: Send extra headers
@@ -240,8 +244,10 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FileRetryResponse:
-        """
-        Retry failed files
+        """Retry processing of files that previously failed to process.
+
+        This will
+        re-attempt the processing of the specified files.
 
         Args:
           file_ids: The unique identifier of the files to retry.
@@ -276,8 +282,10 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
-        """
-        Upload file
+        """Upload a new file to the system.
+
+        Supports various file formats including PDF,
+        DOC, DOCX, PPT, PPTX, JPG, PNG, EML, HTML, SRT, CSV, XLS, and XLSX.
 
         Args:
           extra_headers: Send extra headers
@@ -335,7 +343,8 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
         """
-        Retrieve file
+        Retrieve detailed information about a specific file, including its metadata,
+        status, and associated graphs.
 
         Args:
           extra_headers: Send extra headers
@@ -373,12 +382,12 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[File, AsyncCursorPage[File]]:
-        """List files
+        """
+        Retrieve a paginated list of files with optional filtering by status, graph
+        association, and file type.
 
         Args:
-          after: The ID of the last object in the previous page.
-
-        This parameter instructs the API
+          after: The ID of the last object in the previous page. This parameter instructs the API
               to return the next page of results.
 
           before: The ID of the first object in the previous page. This parameter instructs the
@@ -441,8 +450,9 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FileDeleteResponse:
-        """
-        Delete file
+        """Permanently delete a file from the system.
+
+        This action cannot be undone.
 
         Args:
           extra_headers: Send extra headers
@@ -474,8 +484,10 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncBinaryAPIResponse:
-        """
-        Download file
+        """Download the binary content of a file.
+
+        The response will contain the file data
+        in the appropriate MIME type.
 
         Args:
           extra_headers: Send extra headers
@@ -508,8 +520,10 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FileRetryResponse:
-        """
-        Retry failed files
+        """Retry processing of files that previously failed to process.
+
+        This will
+        re-attempt the processing of the specified files.
 
         Args:
           file_ids: The unique identifier of the files to retry.
@@ -544,8 +558,10 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> File:
-        """
-        Upload file
+        """Upload a new file to the system.
+
+        Supports various file formats including PDF,
+        DOC, DOCX, PPT, PPTX, JPG, PNG, EML, HTML, SRT, CSV, XLS, and XLSX.
 
         Args:
           extra_headers: Send extra headers

@@ -19,6 +19,8 @@ __all__ = [
     "VisionTool",
     "VisionToolFunction",
     "VisionToolFunctionVariable",
+    "WebSearchTool",
+    "WebSearchToolFunction",
 ]
 
 
@@ -158,4 +160,20 @@ class VisionTool(TypedDict, total=False):
     """The type of tool."""
 
 
-ToolParam: TypeAlias = Union[FunctionTool, GraphTool, LlmTool, TranslationTool, VisionTool]
+class WebSearchToolFunction(TypedDict, total=False):
+    exclude_domains: Required[List[str]]
+    """An array of domains to exclude from the search results."""
+
+    include_domains: Required[List[str]]
+    """An array of domains to include in the search results."""
+
+
+class WebSearchTool(TypedDict, total=False):
+    function: Required[WebSearchToolFunction]
+    """A tool that uses web search to find information."""
+
+    type: Required[Literal["web_search"]]
+    """The type of tool."""
+
+
+ToolParam: TypeAlias = Union[FunctionTool, GraphTool, LlmTool, TranslationTool, VisionTool, WebSearchTool]
