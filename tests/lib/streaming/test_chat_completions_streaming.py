@@ -71,7 +71,8 @@ recommend checking a reliable weather website or a weather app.",
             refusal=None,
             role='assistant',
             tool_calls=None,
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -494,7 +495,8 @@ def test_content_logprobs_events(client: Writer, respx_mock: MockRouter, monkeyp
             refusal=None,
             role='assistant',
             tool_calls=None,
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -587,7 +589,8 @@ def test_refusal_logprobs_events(client: Writer, respx_mock: MockRouter, monkeyp
             refusal="I'm very sorry, but I can't assist with that.",
             role='assistant',
             tool_calls=None,
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -646,7 +649,8 @@ def test_parse_pydantic_tool(client: Writer, respx_mock: MockRouter, monkeypatch
                     type='function'
                 )
             ],
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -679,7 +683,8 @@ def test_parse_pydantic_tool(client: Writer, respx_mock: MockRouter, monkeypatch
                     type='function'
                 )
             ],
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -762,7 +767,8 @@ def test_parse_multiple_pydantic_tools(client: Writer, respx_mock: MockRouter, m
                     type='function'
                 )
             ],
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -906,7 +912,8 @@ def test_non_pydantic_response_format(client: Writer, respx_mock: MockRouter, mo
             refusal=None,
             role='assistant',
             tool_calls=None,
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
@@ -975,7 +982,8 @@ FunctionToolCallArgumentsDoneEvent(
                     type='function'
                 )
             ],
-            translation_data=None
+            translation_data=None,
+            web_search_data=None
         )
     )
 ]
