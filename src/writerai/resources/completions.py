@@ -66,8 +66,10 @@ class CompletionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion:
-        """
-        Text generation
+        """Generate text completions using the specified model and prompt.
+
+        This endpoint is
+        useful for text generation tasks that don't require conversational context.
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
@@ -129,8 +131,10 @@ class CompletionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stream[CompletionChunk]:
-        """
-        Text generation
+        """Generate text completions using the specified model and prompt.
+
+        This endpoint is
+        useful for text generation tasks that don't require conversational context.
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
@@ -192,8 +196,10 @@ class CompletionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion | Stream[CompletionChunk]:
-        """
-        Text generation
+        """Generate text completions using the specified model and prompt.
+
+        This endpoint is
+        useful for text generation tasks that don't require conversational context.
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
@@ -322,8 +328,10 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion:
-        """
-        Text generation
+        """Generate text completions using the specified model and prompt.
+
+        This endpoint is
+        useful for text generation tasks that don't require conversational context.
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
@@ -385,8 +393,10 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncStream[CompletionChunk]:
-        """
-        Text generation
+        """Generate text completions using the specified model and prompt.
+
+        This endpoint is
+        useful for text generation tasks that don't require conversational context.
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
@@ -448,8 +458,10 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Completion | AsyncStream[CompletionChunk]:
-        """
-        Text generation
+        """Generate text completions using the specified model and prompt.
+
+        This endpoint is
+        useful for text generation tasks that don't require conversational context.
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating

@@ -31,7 +31,7 @@ class TestChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "content",
+                    "content": "string",
                     "graph_data": {
                         "sources": [
                             {
@@ -137,7 +137,7 @@ class TestChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "content",
+                    "content": "string",
                     "graph_data": {
                         "sources": [
                             {
@@ -249,7 +249,7 @@ class TestAsyncChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "content",
+                    "content": "string",
                     "graph_data": {
                         "sources": [
                             {
@@ -355,7 +355,7 @@ class TestAsyncChat:
             messages=[
                 {
                     "role": "user",
-                    "content": "content",
+                    "content": "string",
                     "graph_data": {
                         "sources": [
                             {

@@ -7,7 +7,7 @@ from .._models import BaseModel
 from .shared.tool_call import ToolCall
 from .shared.graph_data import GraphData
 
-__all__ = ["ChatCompletionMessage", "LlmData", "TranslationData"]
+__all__ = ["ChatCompletionMessage", "LlmData", "TranslationData", "WebSearchData", "WebSearchDataSource"]
 
 
 class LlmData(BaseModel):
@@ -27,6 +27,16 @@ class TranslationData(BaseModel):
 
     target_language_code: str
     """The language code of the target text."""
+
+
+class WebSearchDataSource(BaseModel):
+    raw_content: Optional[str] = None
+
+    url: Optional[str] = None
+
+
+class WebSearchData(BaseModel):
+    sources: List[WebSearchDataSource]
 
 
 class ChatCompletionMessage(BaseModel):
@@ -49,3 +59,5 @@ class ChatCompletionMessage(BaseModel):
     tool_calls: Optional[List[ToolCall]] = None
 
     translation_data: Optional[TranslationData] = None
+
+    web_search_data: Optional[WebSearchData] = None

@@ -14,6 +14,10 @@ from .shared_params.tool_choice_json_object import ToolChoiceJsonObject
 __all__ = [
     "ChatChatParamsBase",
     "Message",
+    "MessageContentUnionMember1",
+    "MessageContentUnionMember1TextFragment",
+    "MessageContentUnionMember1ImageFragment",
+    "MessageContentUnionMember1ImageFragmentImageURL",
     "ResponseFormat",
     "StreamOptions",
     "ToolChoice",
@@ -116,6 +120,35 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
 
+class MessageContentUnionMember1TextFragment(TypedDict, total=False):
+    text: Required[str]
+    """The actual text content of the message fragment."""
+
+    type: Required[Literal["text"]]
+    """The type of content fragment. Must be `text` for text fragments."""
+
+
+class MessageContentUnionMember1ImageFragmentImageURL(TypedDict, total=False):
+    url: Required[str]
+    """The URL pointing to the image file.
+
+    Supports common image formats like JPEG, PNG, GIF, etc.
+    """
+
+
+class MessageContentUnionMember1ImageFragment(TypedDict, total=False):
+    image_url: Required[MessageContentUnionMember1ImageFragmentImageURL]
+    """The image URL object containing the location of the image."""
+
+    type: Required[Literal["image_url"]]
+    """The type of content fragment. Must be `image_url` for image fragments."""
+
+
+MessageContentUnionMember1: TypeAlias = Union[
+    MessageContentUnionMember1TextFragment, MessageContentUnionMember1ImageFragment
+]
+
+
 class Message(TypedDict, total=False):
     role: Required[Literal["user", "assistant", "system", "tool"]]
     """The role of the chat message.
@@ -126,11 +159,21 @@ class Message(TypedDict, total=False):
     `tool`.
     """
 
-    content: Optional[str]
+    content: Union[str, Iterable[MessageContentUnionMember1], None]
+    """The content of the message.
+
+    Can be either a string (for text-only messages) or an array of content fragments
+    (for mixed text and image messages).
+    """
 
     graph_data: Optional[GraphData]
 
     name: Optional[str]
+    """An optional name for the message sender.
+
+    Useful for identifying different users, personas, or tools in multi-participant
+    conversations.
+    """
 
     refusal: Optional[str]
 
