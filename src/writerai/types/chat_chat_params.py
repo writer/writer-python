@@ -14,10 +14,10 @@ from .shared_params.tool_choice_json_object import ToolChoiceJsonObject
 __all__ = [
     "ChatChatParamsBase",
     "Message",
-    "MessageContentUnionMember1",
-    "MessageContentUnionMember1TextFragment",
-    "MessageContentUnionMember1ImageFragment",
-    "MessageContentUnionMember1ImageFragmentImageURL",
+    "MessageContentMixedContent",
+    "MessageContentMixedContentTextFragment",
+    "MessageContentMixedContentImageFragment",
+    "MessageContentMixedContentImageFragmentImageURL",
     "ResponseFormat",
     "StreamOptions",
     "ToolChoice",
@@ -120,7 +120,7 @@ class ChatChatParamsBase(TypedDict, total=False):
     """
 
 
-class MessageContentUnionMember1TextFragment(TypedDict, total=False):
+class MessageContentMixedContentTextFragment(TypedDict, total=False):
     text: Required[str]
     """The actual text content of the message fragment."""
 
@@ -128,7 +128,7 @@ class MessageContentUnionMember1TextFragment(TypedDict, total=False):
     """The type of content fragment. Must be `text` for text fragments."""
 
 
-class MessageContentUnionMember1ImageFragmentImageURL(TypedDict, total=False):
+class MessageContentMixedContentImageFragmentImageURL(TypedDict, total=False):
     url: Required[str]
     """The URL pointing to the image file.
 
@@ -136,16 +136,16 @@ class MessageContentUnionMember1ImageFragmentImageURL(TypedDict, total=False):
     """
 
 
-class MessageContentUnionMember1ImageFragment(TypedDict, total=False):
-    image_url: Required[MessageContentUnionMember1ImageFragmentImageURL]
+class MessageContentMixedContentImageFragment(TypedDict, total=False):
+    image_url: Required[MessageContentMixedContentImageFragmentImageURL]
     """The image URL object containing the location of the image."""
 
     type: Required[Literal["image_url"]]
     """The type of content fragment. Must be `image_url` for image fragments."""
 
 
-MessageContentUnionMember1: TypeAlias = Union[
-    MessageContentUnionMember1TextFragment, MessageContentUnionMember1ImageFragment
+MessageContentMixedContent: TypeAlias = Union[
+    MessageContentMixedContentTextFragment, MessageContentMixedContentImageFragment
 ]
 
 
@@ -159,7 +159,7 @@ class Message(TypedDict, total=False):
     `tool`.
     """
 
-    content: Union[str, Iterable[MessageContentUnionMember1], None]
+    content: Union[str, Iterable[MessageContentMixedContent], None]
     """The content of the message.
 
     Can be either a string (for text-only messages) or an array of content fragments
