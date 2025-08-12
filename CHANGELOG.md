@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.3.0-rc1 (2025-08-12)
+
+Full Changelog: [v2.2.1...v2.3.0-rc1](https://github.com/writer/writer-python/compare/v2.2.1...v2.3.0-rc1)
+
+### Features
+
+* **api:** add web KG and web search ([127319b](https://github.com/writer/writer-python/commit/127319bf155e738a86e344330e3b59a252ae5bd3))
+* **client:** support file upload requests ([aa0d06d](https://github.com/writer/writer-python/commit/aa0d06d2b73d9912a8542de146c8c0d0d0d150b2))
+
+
+### Bug Fixes
+
+* Add web_search_data to streaming tests. ([73f3db7](https://github.com/writer/writer-python/commit/73f3db7b36bde194d971afc2b16812b88e98e079))
+* **parsing:** ignore empty metadata ([8874173](https://github.com/writer/writer-python/commit/8874173e4d0d73c1209bfedee5bb29b5d720c9ec))
+* **parsing:** parse extra field types ([d1f5948](https://github.com/writer/writer-python/commit/d1f5948323742a54080dbd008532ce4be17289ba))
+
+
+### Chores
+
+* **internal:** fix ruff target version ([851522b](https://github.com/writer/writer-python/commit/851522bde50ed18925feb4d07191418be908e6ec))
+* **internal:** update comment in script ([279d7df](https://github.com/writer/writer-python/commit/279d7df957f5fd0b75fcd6a4bbae84e79f1f1288))
+* **project:** add settings file for vscode ([1c5e20c](https://github.com/writer/writer-python/commit/1c5e20ca653e671b71dc5b8e7d82db9a9dd2a51e))
+* update @stainless-api/prism-cli to v5.15.0 ([cdbd4b3](https://github.com/writer/writer-python/commit/cdbd4b3a5551b96ecda64be222ef9ac89e527794))
+
+
+### Documentation
+
+* **api:** updates to API spec ([4482f85](https://github.com/writer/writer-python/commit/4482f8521bf9e126dbe1f51e298efb1b74b2c100))
+* **api:** updates to API spec ([fe26f83](https://github.com/writer/writer-python/commit/fe26f8328201752961a0e1b7d3c418c357b0ccf7))
+* **api:** updates to API spec ([a780648](https://github.com/writer/writer-python/commit/a780648ff3063801cdb349ad5cc275139e7726f9))
+
 ## 2.2.1 (2025-07-16)
 
 Full Changelog: [v2.2.0...v2.2.1](https://github.com/writer/writer-python/compare/v2.2.0...v2.2.1)

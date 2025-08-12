@@ -12,7 +12,7 @@ class TranslationTranslateParams(TypedDict, total=False):
     """Whether to use formal or informal language in the translation.
 
     See the
-    [list of languages that support formality](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#formality).
+    [list of languages that support formality](https://dev.writer.com/api-reference/translation-api/language-support#formality).
     If the language does not support formality, this parameter is ignored.
     """
 
@@ -20,7 +20,7 @@ class TranslationTranslateParams(TypedDict, total=False):
     """Whether to control the length of the translated text.
 
     See the
-    [list of languages that support length control](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#length-control).
+    [list of languages that support length control](https://dev.writer.com/api-reference/translation-api/language-support#length-control).
     If the language does not support length control, this parameter is ignored.
     """
 
@@ -28,7 +28,7 @@ class TranslationTranslateParams(TypedDict, total=False):
     """Whether to mask profane words in the translated text.
 
     See the
-    [list of languages that do not support profanity masking](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#profanity-masking).
+    [list of languages that do not support profanity masking](https://dev.writer.com/api-reference/translation-api/language-support#profanity-masking).
     If the language does not support profanity masking, this parameter is ignored.
     """
 
@@ -43,7 +43,7 @@ class TranslationTranslateParams(TypedDict, total=False):
     variant, the code appends the two-digit
     [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
     For example, Mexican Spanish is `es-MX`. See the
-    [list of supported languages and language codes](https://dev.writer.com/api-guides/api-reference/translation-api/language-support).
+    [list of supported languages and language codes](https://dev.writer.com/api-reference/translation-api/language-support).
     """
 
     target_language_code: Required[str]
@@ -54,7 +54,7 @@ class TranslationTranslateParams(TypedDict, total=False):
     has a variant, the code appends the two-digit
     [ISO-3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
     For example, Mexican Spanish is `es-MX`. See the
-    [list of supported languages and language codes](https://dev.writer.com/api-guides/api-reference/translation-api/language-support).
+    [list of supported languages and language codes](https://dev.writer.com/api-reference/translation-api/language-support).
     """
 
     text: Required[str]

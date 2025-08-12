@@ -19,6 +19,8 @@ __all__ = [
     "VisionTool",
     "VisionToolFunction",
     "VisionToolFunctionVariable",
+    "WebSearchTool",
+    "WebSearchToolFunction",
 ]
 
 
@@ -70,7 +72,7 @@ class TranslationToolFunction(BaseModel):
     """Whether to use formal or informal language in the translation.
 
     See the
-    [list of languages that support formality](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#formality).
+    [list of languages that support formality](https://dev.writer.com/api-reference/translation-api/language-support#formality).
     If the language does not support formality, this parameter is ignored.
     """
 
@@ -78,7 +80,7 @@ class TranslationToolFunction(BaseModel):
     """Whether to control the length of the translated text.
 
     See the
-    [list of languages that support length control](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#length-control).
+    [list of languages that support length control](https://dev.writer.com/api-reference/translation-api/language-support#length-control).
     If the language does not support length control, this parameter is ignored.
     """
 
@@ -86,7 +88,7 @@ class TranslationToolFunction(BaseModel):
     """Whether to mask profane words in the translated text.
 
     See the
-    [list of languages that do not support profanity masking](https://dev.writer.com/api-guides/api-reference/translation-api/language-support#profanity-masking).
+    [list of languages that do not support profanity masking](https://dev.writer.com/api-reference/translation-api/language-support#profanity-masking).
     If the language does not support profanity masking, this parameter is ignored.
     """
 
@@ -130,7 +132,7 @@ class VisionToolFunctionVariable(BaseModel):
     """The File ID of the image to analyze.
 
     The file must be uploaded to the Writer platform before you use it with the
-    Vision tool.
+    Vision tool. The maximum allowed file size is 7MB.
     """
 
     name: str
@@ -158,6 +160,23 @@ class VisionTool(BaseModel):
     """The type of tool."""
 
 
+class WebSearchToolFunction(BaseModel):
+    exclude_domains: List[str]
+    """An array of domains to exclude from the search results."""
+
+    include_domains: List[str]
+    """An array of domains to include in the search results."""
+
+
+class WebSearchTool(BaseModel):
+    function: WebSearchToolFunction
+    """A tool that uses web search to find information."""
+
+    type: Literal["web_search"]
+    """The type of tool."""
+
+
 ToolParam: TypeAlias = Annotated[
-    Union[FunctionTool, GraphTool, LlmTool, TranslationTool, VisionTool], PropertyInfo(discriminator="type")
+    Union[FunctionTool, GraphTool, LlmTool, TranslationTool, VisionTool, WebSearchTool],
+    PropertyInfo(discriminator="type"),
 ]

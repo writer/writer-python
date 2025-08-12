@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from writerai.types import (
     ToolAIDetectResponse,
     ToolParsePdfResponse,
+    ToolWebSearchResponse,
     ToolContextAwareSplittingResponse,
 )
 
@@ -128,6 +129,50 @@ class TestTools:
                 format="text",
             )
 
+    @parametrize
+    def test_method_web_search(self, client: Writer) -> None:
+        tool = client.tools.web_search()
+        assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+    @parametrize
+    def test_method_web_search_with_all_params(self, client: Writer) -> None:
+        tool = client.tools.web_search(
+            chunks_per_source=0,
+            country="afghanistan",
+            days=0,
+            exclude_domains=["string"],
+            include_answer=True,
+            include_domains=["dev.writer.com"],
+            include_raw_content="text",
+            max_results=0,
+            query="How do I get an API key for the Writer API?",
+            search_depth="basic",
+            stream=True,
+            time_range="day",
+            topic="general",
+        )
+        assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+    @parametrize
+    def test_raw_response_web_search(self, client: Writer) -> None:
+        response = client.tools.with_raw_response.web_search()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        tool = response.parse()
+        assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+    @parametrize
+    def test_streaming_response_web_search(self, client: Writer) -> None:
+        with client.tools.with_streaming_response.web_search() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            tool = response.parse()
+            assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncTools:
     parametrize = pytest.mark.parametrize(
@@ -240,3 +285,47 @@ class TestAsyncTools:
                 file_id="",
                 format="text",
             )
+
+    @parametrize
+    async def test_method_web_search(self, async_client: AsyncWriter) -> None:
+        tool = await async_client.tools.web_search()
+        assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+    @parametrize
+    async def test_method_web_search_with_all_params(self, async_client: AsyncWriter) -> None:
+        tool = await async_client.tools.web_search(
+            chunks_per_source=0,
+            country="afghanistan",
+            days=0,
+            exclude_domains=["string"],
+            include_answer=True,
+            include_domains=["dev.writer.com"],
+            include_raw_content="text",
+            max_results=0,
+            query="How do I get an API key for the Writer API?",
+            search_depth="basic",
+            stream=True,
+            time_range="day",
+            topic="general",
+        )
+        assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+    @parametrize
+    async def test_raw_response_web_search(self, async_client: AsyncWriter) -> None:
+        response = await async_client.tools.with_raw_response.web_search()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        tool = await response.parse()
+        assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_web_search(self, async_client: AsyncWriter) -> None:
+        async with async_client.tools.with_streaming_response.web_search() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            tool = await response.parse()
+            assert_matches_type(ToolWebSearchResponse, tool, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

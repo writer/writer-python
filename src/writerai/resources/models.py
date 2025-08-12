@@ -49,7 +49,10 @@ class ModelsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ModelListResponse:
-        """List models"""
+        """
+        Retrieve a list of available models that can be used for text generation, chat
+        completions, and other AI tasks.
+        """
         return self._get(
             "/v1/models",
             options=make_request_options(
@@ -89,7 +92,10 @@ class AsyncModelsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ModelListResponse:
-        """List models"""
+        """
+        Retrieve a list of available models that can be used for text generation, chat
+        completions, and other AI tasks.
+        """
         return await self._get(
             "/v1/models",
             options=make_request_options(

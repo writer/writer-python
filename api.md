@@ -123,7 +123,9 @@ from writerai.types import (
     Question,
     QuestionResponseChunk,
     GraphCreateResponse,
+    GraphRetrieveResponse,
     GraphUpdateResponse,
+    GraphListResponse,
     GraphDeleteResponse,
     GraphRemoveFileFromGraphResponse,
 )
@@ -132,9 +134,9 @@ from writerai.types import (
 Methods:
 
 - <code title="post /v1/graphs">client.graphs.<a href="./src/writerai/resources/graphs.py">create</a>(\*\*<a href="src/writerai/types/graph_create_params.py">params</a>) -> <a href="./src/writerai/types/graph_create_response.py">GraphCreateResponse</a></code>
-- <code title="get /v1/graphs/{graph_id}">client.graphs.<a href="./src/writerai/resources/graphs.py">retrieve</a>(graph_id) -> <a href="./src/writerai/types/graph.py">Graph</a></code>
+- <code title="get /v1/graphs/{graph_id}">client.graphs.<a href="./src/writerai/resources/graphs.py">retrieve</a>(graph_id) -> <a href="./src/writerai/types/graph_retrieve_response.py">GraphRetrieveResponse</a></code>
 - <code title="put /v1/graphs/{graph_id}">client.graphs.<a href="./src/writerai/resources/graphs.py">update</a>(graph_id, \*\*<a href="src/writerai/types/graph_update_params.py">params</a>) -> <a href="./src/writerai/types/graph_update_response.py">GraphUpdateResponse</a></code>
-- <code title="get /v1/graphs">client.graphs.<a href="./src/writerai/resources/graphs.py">list</a>(\*\*<a href="src/writerai/types/graph_list_params.py">params</a>) -> <a href="./src/writerai/types/graph.py">SyncCursorPage[Graph]</a></code>
+- <code title="get /v1/graphs">client.graphs.<a href="./src/writerai/resources/graphs.py">list</a>(\*\*<a href="src/writerai/types/graph_list_params.py">params</a>) -> <a href="./src/writerai/types/graph_list_response.py">SyncCursorPage[GraphListResponse]</a></code>
 - <code title="delete /v1/graphs/{graph_id}">client.graphs.<a href="./src/writerai/resources/graphs.py">delete</a>(graph_id) -> <a href="./src/writerai/types/graph_delete_response.py">GraphDeleteResponse</a></code>
 - <code title="post /v1/graphs/{graph_id}/file">client.graphs.<a href="./src/writerai/resources/graphs.py">add_file_to_graph</a>(graph_id, \*\*<a href="src/writerai/types/graph_add_file_to_graph_params.py">params</a>) -> <a href="./src/writerai/types/file.py">File</a></code>
 - <code title="post /v1/graphs/question">client.graphs.<a href="./src/writerai/resources/graphs.py">question</a>(\*\*<a href="src/writerai/types/graph_question_params.py">params</a>) -> <a href="./src/writerai/types/question.py">Question</a></code>
@@ -166,6 +168,7 @@ from writerai.types import (
     ToolAIDetectResponse,
     ToolContextAwareSplittingResponse,
     ToolParsePdfResponse,
+    ToolWebSearchResponse,
 )
 ```
 
@@ -174,6 +177,7 @@ Methods:
 - <code title="post /v1/tools/ai-detect">client.tools.<a href="./src/writerai/resources/tools/tools.py">ai_detect</a>(\*\*<a href="src/writerai/types/tool_ai_detect_params.py">params</a>) -> <a href="./src/writerai/types/tool_ai_detect_response.py">ToolAIDetectResponse</a></code>
 - <code title="post /v1/tools/context-aware-splitting">client.tools.<a href="./src/writerai/resources/tools/tools.py">context_aware_splitting</a>(\*\*<a href="src/writerai/types/tool_context_aware_splitting_params.py">params</a>) -> <a href="./src/writerai/types/tool_context_aware_splitting_response.py">ToolContextAwareSplittingResponse</a></code>
 - <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.<a href="./src/writerai/resources/tools/tools.py">parse_pdf</a>(file_id, \*\*<a href="src/writerai/types/tool_parse_pdf_params.py">params</a>) -> <a href="./src/writerai/types/tool_parse_pdf_response.py">ToolParsePdfResponse</a></code>
+- <code title="post /v1/tools/web-search">client.tools.<a href="./src/writerai/resources/tools/tools.py">web_search</a>(\*\*<a href="src/writerai/types/tool_web_search_params.py">params</a>) -> <a href="./src/writerai/types/tool_web_search_response.py">ToolWebSearchResponse</a></code>
 
 ## Comprehend
 
