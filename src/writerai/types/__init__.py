@@ -45,6 +45,7 @@ from .tool_ai_detect_params import ToolAIDetectParams as ToolAIDetectParams
 from .tool_parse_pdf_params import ToolParsePdfParams as ToolParsePdfParams
 from .vision_analyze_params import VisionAnalyzeParams as VisionAnalyzeParams
 from .chat_completion_choice import ChatCompletionChoice as ChatCompletionChoice
+from .tool_web_search_params import ToolWebSearchParams as ToolWebSearchParams
 from .application_list_params import ApplicationListParams as ApplicationListParams
 from .chat_completion_message import ChatCompletionMessage as ChatCompletionMessage
 from .graph_retrieve_response import GraphRetrieveResponse as GraphRetrieveResponse
@@ -52,6 +53,7 @@ from .question_response_chunk import QuestionResponseChunk as QuestionResponseCh
 from .tool_ai_detect_response import ToolAIDetectResponse as ToolAIDetectResponse
 from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfResponse
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
+from .tool_web_search_response import ToolWebSearchResponse as ToolWebSearchResponse
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
 from .translation_translate_params import TranslationTranslateParams as TranslationTranslateParams
 from .application_retrieve_response import ApplicationRetrieveResponse as ApplicationRetrieveResponse

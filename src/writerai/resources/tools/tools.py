@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
+from typing import List, Union
 from typing_extensions import Literal
 
 import httpx
 
-from ...types import tool_ai_detect_params, tool_parse_pdf_params, tool_context_aware_splitting_params
+from ...types import (
+    tool_ai_detect_params,
+    tool_parse_pdf_params,
+    tool_web_search_params,
+    tool_context_aware_splitting_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -28,6 +34,7 @@ from ..._response import (
 from ..._base_client import make_request_options
 from ...types.tool_ai_detect_response import ToolAIDetectResponse
 from ...types.tool_parse_pdf_response import ToolParsePdfResponse
+from ...types.tool_web_search_response import ToolWebSearchResponse
 from ...types.tool_context_aware_splitting_response import ToolContextAwareSplittingResponse
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
@@ -177,6 +184,279 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolParsePdfResponse,
         )
 
+    def web_search(
+        self,
+        *,
+        chunks_per_source: int | NotGiven = NOT_GIVEN,
+        country: Literal[
+            "afghanistan",
+            "albania",
+            "algeria",
+            "andorra",
+            "angola",
+            "argentina",
+            "armenia",
+            "australia",
+            "austria",
+            "azerbaijan",
+            "bahamas",
+            "bahrain",
+            "bangladesh",
+            "barbados",
+            "belarus",
+            "belgium",
+            "belize",
+            "benin",
+            "bhutan",
+            "bolivia",
+            "bosnia and herzegovina",
+            "botswana",
+            "brazil",
+            "brunei",
+            "bulgaria",
+            "burkina faso",
+            "burundi",
+            "cambodia",
+            "cameroon",
+            "canada",
+            "cape verde",
+            "central african republic",
+            "chad",
+            "chile",
+            "china",
+            "colombia",
+            "comoros",
+            "congo",
+            "costa rica",
+            "croatia",
+            "cuba",
+            "cyprus",
+            "czech republic",
+            "denmark",
+            "djibouti",
+            "dominican republic",
+            "ecuador",
+            "egypt",
+            "el salvador",
+            "equatorial guinea",
+            "eritrea",
+            "estonia",
+            "ethiopia",
+            "fiji",
+            "finland",
+            "france",
+            "gabon",
+            "gambia",
+            "georgia",
+            "germany",
+            "ghana",
+            "greece",
+            "guatemala",
+            "guinea",
+            "haiti",
+            "honduras",
+            "hungary",
+            "iceland",
+            "india",
+            "indonesia",
+            "iran",
+            "iraq",
+            "ireland",
+            "israel",
+            "italy",
+            "jamaica",
+            "japan",
+            "jordan",
+            "kazakhstan",
+            "kenya",
+            "kuwait",
+            "kyrgyzstan",
+            "latvia",
+            "lebanon",
+            "lesotho",
+            "liberia",
+            "libya",
+            "liechtenstein",
+            "lithuania",
+            "luxembourg",
+            "madagascar",
+            "malawi",
+            "malaysia",
+            "maldives",
+            "mali",
+            "malta",
+            "mauritania",
+            "mauritius",
+            "mexico",
+            "moldova",
+            "monaco",
+            "mongolia",
+            "montenegro",
+            "morocco",
+            "mozambique",
+            "myanmar",
+            "namibia",
+            "nepal",
+            "netherlands",
+            "new zealand",
+            "nicaragua",
+            "niger",
+            "nigeria",
+            "north korea",
+            "north macedonia",
+            "norway",
+            "oman",
+            "pakistan",
+            "panama",
+            "papua new guinea",
+            "paraguay",
+            "peru",
+            "philippines",
+            "poland",
+            "portugal",
+            "qatar",
+            "romania",
+            "russia",
+            "rwanda",
+            "saudi arabia",
+            "senegal",
+            "serbia",
+            "singapore",
+            "slovakia",
+            "slovenia",
+            "somalia",
+            "south africa",
+            "south korea",
+            "south sudan",
+            "spain",
+            "sri lanka",
+            "sudan",
+            "sweden",
+            "switzerland",
+            "syria",
+            "taiwan",
+            "tajikistan",
+            "tanzania",
+            "thailand",
+            "togo",
+            "trinidad and tobago",
+            "tunisia",
+            "turkey",
+            "turkmenistan",
+            "uganda",
+            "ukraine",
+            "united arab emirates",
+            "united kingdom",
+            "united states",
+            "uruguay",
+            "uzbekistan",
+            "venezuela",
+            "vietnam",
+            "yemen",
+            "zambia",
+            "zimbabwe",
+        ]
+        | NotGiven = NOT_GIVEN,
+        days: int | NotGiven = NOT_GIVEN,
+        exclude_domains: List[str] | NotGiven = NOT_GIVEN,
+        include_answer: bool | NotGiven = NOT_GIVEN,
+        include_domains: List[str] | NotGiven = NOT_GIVEN,
+        include_raw_content: Union[Literal["text", "markdown"], bool] | NotGiven = NOT_GIVEN,
+        max_results: int | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        search_depth: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
+        stream: bool | NotGiven = NOT_GIVEN,
+        time_range: Literal["day", "week", "month", "year", "d", "w", "m", "y"] | NotGiven = NOT_GIVEN,
+        topic: Literal["general", "news"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ToolWebSearchResponse:
+        """
+        Search the web for information about a given query and return relevant results
+        with source URLs.
+
+        Args:
+          chunks_per_source: Only applies when `search_depth` is `advanced`. Specifies how many text segments
+              to extract from each source. Limited to 3 chunks maximum.
+
+          country: Localizes search results to a specific country. Only applies to general topic
+              searches.
+
+          days: For news topic searches, specifies how many days of news coverage to include.
+
+          exclude_domains: Domains to exclude from the search. If unset, the search includes all domains.
+
+          include_answer: Whether to include a generated answer to the query in the response. If `false`,
+              only search results are returned.
+
+          include_domains: Domains to include in the search. If unset, the search includes all domains.
+
+          include_raw_content:
+              Controls how raw content is included in search results:
+
+              - `text`: Returns plain text without formatting markup
+              - `markdown`: Returns structured content with markdown formatting (headers,
+                links, bold text)
+              - `true`: Same as `markdown`
+              - `false`: Raw content is not included (default if unset)
+
+          max_results: Limits the number of search results returned. Cannot exceed 20 sources.
+
+          query: The search query.
+
+          search_depth:
+              Controls search comprehensiveness:
+
+              - `basic`: Returns fewer but highly relevant results
+              - `advanced`: Performs a deeper search with more results
+
+          stream: Enables streaming of search results as they become available.
+
+          time_range: Filters results to content published within the specified time range back from
+              the current date. For example, `week` or `w` returns results from the past 7
+              days.
+
+          topic: The search topic category. Use `news` for current events and news articles, or
+              `general` for broader web search.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/tools/web-search",
+            body=maybe_transform(
+                {
+                    "chunks_per_source": chunks_per_source,
+                    "country": country,
+                    "days": days,
+                    "exclude_domains": exclude_domains,
+                    "include_answer": include_answer,
+                    "include_domains": include_domains,
+                    "include_raw_content": include_raw_content,
+                    "max_results": max_results,
+                    "query": query,
+                    "search_depth": search_depth,
+                    "stream": stream,
+                    "time_range": time_range,
+                    "topic": topic,
+                },
+                tool_web_search_params.ToolWebSearchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ToolWebSearchResponse,
+        )
+
 
 class AsyncToolsResource(AsyncAPIResource):
     @cached_property
@@ -322,6 +602,279 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolParsePdfResponse,
         )
 
+    async def web_search(
+        self,
+        *,
+        chunks_per_source: int | NotGiven = NOT_GIVEN,
+        country: Literal[
+            "afghanistan",
+            "albania",
+            "algeria",
+            "andorra",
+            "angola",
+            "argentina",
+            "armenia",
+            "australia",
+            "austria",
+            "azerbaijan",
+            "bahamas",
+            "bahrain",
+            "bangladesh",
+            "barbados",
+            "belarus",
+            "belgium",
+            "belize",
+            "benin",
+            "bhutan",
+            "bolivia",
+            "bosnia and herzegovina",
+            "botswana",
+            "brazil",
+            "brunei",
+            "bulgaria",
+            "burkina faso",
+            "burundi",
+            "cambodia",
+            "cameroon",
+            "canada",
+            "cape verde",
+            "central african republic",
+            "chad",
+            "chile",
+            "china",
+            "colombia",
+            "comoros",
+            "congo",
+            "costa rica",
+            "croatia",
+            "cuba",
+            "cyprus",
+            "czech republic",
+            "denmark",
+            "djibouti",
+            "dominican republic",
+            "ecuador",
+            "egypt",
+            "el salvador",
+            "equatorial guinea",
+            "eritrea",
+            "estonia",
+            "ethiopia",
+            "fiji",
+            "finland",
+            "france",
+            "gabon",
+            "gambia",
+            "georgia",
+            "germany",
+            "ghana",
+            "greece",
+            "guatemala",
+            "guinea",
+            "haiti",
+            "honduras",
+            "hungary",
+            "iceland",
+            "india",
+            "indonesia",
+            "iran",
+            "iraq",
+            "ireland",
+            "israel",
+            "italy",
+            "jamaica",
+            "japan",
+            "jordan",
+            "kazakhstan",
+            "kenya",
+            "kuwait",
+            "kyrgyzstan",
+            "latvia",
+            "lebanon",
+            "lesotho",
+            "liberia",
+            "libya",
+            "liechtenstein",
+            "lithuania",
+            "luxembourg",
+            "madagascar",
+            "malawi",
+            "malaysia",
+            "maldives",
+            "mali",
+            "malta",
+            "mauritania",
+            "mauritius",
+            "mexico",
+            "moldova",
+            "monaco",
+            "mongolia",
+            "montenegro",
+            "morocco",
+            "mozambique",
+            "myanmar",
+            "namibia",
+            "nepal",
+            "netherlands",
+            "new zealand",
+            "nicaragua",
+            "niger",
+            "nigeria",
+            "north korea",
+            "north macedonia",
+            "norway",
+            "oman",
+            "pakistan",
+            "panama",
+            "papua new guinea",
+            "paraguay",
+            "peru",
+            "philippines",
+            "poland",
+            "portugal",
+            "qatar",
+            "romania",
+            "russia",
+            "rwanda",
+            "saudi arabia",
+            "senegal",
+            "serbia",
+            "singapore",
+            "slovakia",
+            "slovenia",
+            "somalia",
+            "south africa",
+            "south korea",
+            "south sudan",
+            "spain",
+            "sri lanka",
+            "sudan",
+            "sweden",
+            "switzerland",
+            "syria",
+            "taiwan",
+            "tajikistan",
+            "tanzania",
+            "thailand",
+            "togo",
+            "trinidad and tobago",
+            "tunisia",
+            "turkey",
+            "turkmenistan",
+            "uganda",
+            "ukraine",
+            "united arab emirates",
+            "united kingdom",
+            "united states",
+            "uruguay",
+            "uzbekistan",
+            "venezuela",
+            "vietnam",
+            "yemen",
+            "zambia",
+            "zimbabwe",
+        ]
+        | NotGiven = NOT_GIVEN,
+        days: int | NotGiven = NOT_GIVEN,
+        exclude_domains: List[str] | NotGiven = NOT_GIVEN,
+        include_answer: bool | NotGiven = NOT_GIVEN,
+        include_domains: List[str] | NotGiven = NOT_GIVEN,
+        include_raw_content: Union[Literal["text", "markdown"], bool] | NotGiven = NOT_GIVEN,
+        max_results: int | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        search_depth: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
+        stream: bool | NotGiven = NOT_GIVEN,
+        time_range: Literal["day", "week", "month", "year", "d", "w", "m", "y"] | NotGiven = NOT_GIVEN,
+        topic: Literal["general", "news"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ToolWebSearchResponse:
+        """
+        Search the web for information about a given query and return relevant results
+        with source URLs.
+
+        Args:
+          chunks_per_source: Only applies when `search_depth` is `advanced`. Specifies how many text segments
+              to extract from each source. Limited to 3 chunks maximum.
+
+          country: Localizes search results to a specific country. Only applies to general topic
+              searches.
+
+          days: For news topic searches, specifies how many days of news coverage to include.
+
+          exclude_domains: Domains to exclude from the search. If unset, the search includes all domains.
+
+          include_answer: Whether to include a generated answer to the query in the response. If `false`,
+              only search results are returned.
+
+          include_domains: Domains to include in the search. If unset, the search includes all domains.
+
+          include_raw_content:
+              Controls how raw content is included in search results:
+
+              - `text`: Returns plain text without formatting markup
+              - `markdown`: Returns structured content with markdown formatting (headers,
+                links, bold text)
+              - `true`: Same as `markdown`
+              - `false`: Raw content is not included (default if unset)
+
+          max_results: Limits the number of search results returned. Cannot exceed 20 sources.
+
+          query: The search query.
+
+          search_depth:
+              Controls search comprehensiveness:
+
+              - `basic`: Returns fewer but highly relevant results
+              - `advanced`: Performs a deeper search with more results
+
+          stream: Enables streaming of search results as they become available.
+
+          time_range: Filters results to content published within the specified time range back from
+              the current date. For example, `week` or `w` returns results from the past 7
+              days.
+
+          topic: The search topic category. Use `news` for current events and news articles, or
+              `general` for broader web search.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/tools/web-search",
+            body=await async_maybe_transform(
+                {
+                    "chunks_per_source": chunks_per_source,
+                    "country": country,
+                    "days": days,
+                    "exclude_domains": exclude_domains,
+                    "include_answer": include_answer,
+                    "include_domains": include_domains,
+                    "include_raw_content": include_raw_content,
+                    "max_results": max_results,
+                    "query": query,
+                    "search_depth": search_depth,
+                    "stream": stream,
+                    "time_range": time_range,
+                    "topic": topic,
+                },
+                tool_web_search_params.ToolWebSearchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ToolWebSearchResponse,
+        )
+
 
 class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
@@ -335,6 +888,9 @@ class ToolsResourceWithRawResponse:
         )
         self.parse_pdf = to_raw_response_wrapper(
             tools.parse_pdf,
+        )
+        self.web_search = to_raw_response_wrapper(
+            tools.web_search,
         )
 
     @cached_property
@@ -355,6 +911,9 @@ class AsyncToolsResourceWithRawResponse:
         self.parse_pdf = async_to_raw_response_wrapper(
             tools.parse_pdf,
         )
+        self.web_search = async_to_raw_response_wrapper(
+            tools.web_search,
+        )
 
     @cached_property
     def comprehend(self) -> AsyncComprehendResourceWithRawResponse:
@@ -374,6 +933,9 @@ class ToolsResourceWithStreamingResponse:
         self.parse_pdf = to_streamed_response_wrapper(
             tools.parse_pdf,
         )
+        self.web_search = to_streamed_response_wrapper(
+            tools.web_search,
+        )
 
     @cached_property
     def comprehend(self) -> ComprehendResourceWithStreamingResponse:
@@ -392,6 +954,9 @@ class AsyncToolsResourceWithStreamingResponse:
         )
         self.parse_pdf = async_to_streamed_response_wrapper(
             tools.parse_pdf,
+        )
+        self.web_search = async_to_streamed_response_wrapper(
+            tools.web_search,
         )
 
     @cached_property

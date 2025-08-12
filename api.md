@@ -168,6 +168,7 @@ from writerai.types import (
     ToolAIDetectResponse,
     ToolContextAwareSplittingResponse,
     ToolParsePdfResponse,
+    ToolWebSearchResponse,
 )
 ```
 
@@ -176,6 +177,7 @@ Methods:
 - <code title="post /v1/tools/ai-detect">client.tools.<a href="./src/writerai/resources/tools/tools.py">ai_detect</a>(\*\*<a href="src/writerai/types/tool_ai_detect_params.py">params</a>) -> <a href="./src/writerai/types/tool_ai_detect_response.py">ToolAIDetectResponse</a></code>
 - <code title="post /v1/tools/context-aware-splitting">client.tools.<a href="./src/writerai/resources/tools/tools.py">context_aware_splitting</a>(\*\*<a href="src/writerai/types/tool_context_aware_splitting_params.py">params</a>) -> <a href="./src/writerai/types/tool_context_aware_splitting_response.py">ToolContextAwareSplittingResponse</a></code>
 - <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.<a href="./src/writerai/resources/tools/tools.py">parse_pdf</a>(file_id, \*\*<a href="src/writerai/types/tool_parse_pdf_params.py">params</a>) -> <a href="./src/writerai/types/tool_parse_pdf_response.py">ToolParsePdfResponse</a></code>
+- <code title="post /v1/tools/web-search">client.tools.<a href="./src/writerai/resources/tools/tools.py">web_search</a>(\*\*<a href="src/writerai/types/tool_web_search_params.py">params</a>) -> <a href="./src/writerai/types/tool_web_search_response.py">ToolWebSearchResponse</a></code>
 
 ## Comprehend
 
