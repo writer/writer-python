@@ -11,12 +11,11 @@ from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
 from writerai.types import (
     File,
+    Graph,
     Question,
-    GraphListResponse,
     GraphCreateResponse,
     GraphDeleteResponse,
     GraphUpdateResponse,
-    GraphRetrieveResponse,
     GraphRemoveFileFromGraphResponse,
 )
 from writerai.pagination import SyncCursorPage, AsyncCursorPage
@@ -65,7 +64,7 @@ class TestGraphs:
         graph = client.graphs.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(GraphRetrieveResponse, graph, path=["response"])
+        assert_matches_type(Graph, graph, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Writer) -> None:
@@ -76,7 +75,7 @@ class TestGraphs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         graph = response.parse()
-        assert_matches_type(GraphRetrieveResponse, graph, path=["response"])
+        assert_matches_type(Graph, graph, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Writer) -> None:
@@ -87,7 +86,7 @@ class TestGraphs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             graph = response.parse()
-            assert_matches_type(GraphRetrieveResponse, graph, path=["response"])
+            assert_matches_type(Graph, graph, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +154,7 @@ class TestGraphs:
     @parametrize
     def test_method_list(self, client: Writer) -> None:
         graph = client.graphs.list()
-        assert_matches_type(SyncCursorPage[GraphListResponse], graph, path=["response"])
+        assert_matches_type(SyncCursorPage[Graph], graph, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Writer) -> None:
@@ -165,7 +164,7 @@ class TestGraphs:
             limit=0,
             order="asc",
         )
-        assert_matches_type(SyncCursorPage[GraphListResponse], graph, path=["response"])
+        assert_matches_type(SyncCursorPage[Graph], graph, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Writer) -> None:
@@ -174,7 +173,7 @@ class TestGraphs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         graph = response.parse()
-        assert_matches_type(SyncCursorPage[GraphListResponse], graph, path=["response"])
+        assert_matches_type(SyncCursorPage[Graph], graph, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Writer) -> None:
@@ -183,7 +182,7 @@ class TestGraphs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             graph = response.parse()
-            assert_matches_type(SyncCursorPage[GraphListResponse], graph, path=["response"])
+            assert_matches_type(SyncCursorPage[Graph], graph, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -449,7 +448,7 @@ class TestAsyncGraphs:
         graph = await async_client.graphs.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(GraphRetrieveResponse, graph, path=["response"])
+        assert_matches_type(Graph, graph, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncWriter) -> None:
@@ -460,7 +459,7 @@ class TestAsyncGraphs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         graph = await response.parse()
-        assert_matches_type(GraphRetrieveResponse, graph, path=["response"])
+        assert_matches_type(Graph, graph, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncWriter) -> None:
@@ -471,7 +470,7 @@ class TestAsyncGraphs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             graph = await response.parse()
-            assert_matches_type(GraphRetrieveResponse, graph, path=["response"])
+            assert_matches_type(Graph, graph, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -539,7 +538,7 @@ class TestAsyncGraphs:
     @parametrize
     async def test_method_list(self, async_client: AsyncWriter) -> None:
         graph = await async_client.graphs.list()
-        assert_matches_type(AsyncCursorPage[GraphListResponse], graph, path=["response"])
+        assert_matches_type(AsyncCursorPage[Graph], graph, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncWriter) -> None:
@@ -549,7 +548,7 @@ class TestAsyncGraphs:
             limit=0,
             order="asc",
         )
-        assert_matches_type(AsyncCursorPage[GraphListResponse], graph, path=["response"])
+        assert_matches_type(AsyncCursorPage[Graph], graph, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncWriter) -> None:
@@ -558,7 +557,7 @@ class TestAsyncGraphs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         graph = await response.parse()
-        assert_matches_type(AsyncCursorPage[GraphListResponse], graph, path=["response"])
+        assert_matches_type(AsyncCursorPage[Graph], graph, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncWriter) -> None:
@@ -567,7 +566,7 @@ class TestAsyncGraphs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             graph = await response.parse()
-            assert_matches_type(AsyncCursorPage[GraphListResponse], graph, path=["response"])
+            assert_matches_type(AsyncCursorPage[Graph], graph, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

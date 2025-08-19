@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.1-rc1 (2025-08-19)
+
+Full Changelog: [v2.3.0...v2.3.1-rc1](https://github.com/writer/writer-python/compare/v2.3.0...v2.3.1-rc1)
+
+### Documentation
+
+* **api:** updates to API spec ([8f5acc8](https://github.com/writer/writer-python/commit/8f5acc859cef51375ed2abf641c7087a36d26e02))
+
 ## 2.3.0 (2025-08-14)
 
 Full Changelog: [v2.3.0-rc1...v2.3.0](https://github.com/writer/writer-python/compare/v2.3.0-rc1...v2.3.0)
