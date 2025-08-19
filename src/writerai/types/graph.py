@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["GraphListResponse", "FileStatus", "URL", "URLStatus"]
+__all__ = ["Graph", "FileStatus", "URL", "URLStatus"]
 
 
 class FileStatus(BaseModel):
@@ -47,7 +47,7 @@ class URL(BaseModel):
     """An array of URLs to exclude from processing within this web connector."""
 
 
-class GraphListResponse(BaseModel):
+class Graph(BaseModel):
     id: str
     """The unique identifier of the Knowledge Graph."""
 
