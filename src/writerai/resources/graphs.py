@@ -27,13 +27,12 @@ from .._response import (
 from .._streaming import Stream, AsyncStream
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.file import File
+from ..types.graph import Graph
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.question import Question
-from ..types.graph_list_response import GraphListResponse
 from ..types.graph_create_response import GraphCreateResponse
 from ..types.graph_delete_response import GraphDeleteResponse
 from ..types.graph_update_response import GraphUpdateResponse
-from ..types.graph_retrieve_response import GraphRetrieveResponse
 from ..types.question_response_chunk import QuestionResponseChunk
 from ..types.graph_remove_file_from_graph_response import GraphRemoveFileFromGraphResponse
 
@@ -115,7 +114,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GraphRetrieveResponse:
+    ) -> Graph:
         """
         Retrieve a Knowledge Graph.
 
@@ -135,7 +134,7 @@ class GraphsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GraphRetrieveResponse,
+            cast_to=Graph,
         )
 
     def update(
@@ -205,7 +204,7 @@ class GraphsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPage[GraphListResponse]:
+    ) -> SyncCursorPage[Graph]:
         """
         Retrieve a list of Knowledge Graphs.
 
@@ -232,7 +231,7 @@ class GraphsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v1/graphs",
-            page=SyncCursorPage[GraphListResponse],
+            page=SyncCursorPage[Graph],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -248,7 +247,7 @@ class GraphsResource(SyncAPIResource):
                     graph_list_params.GraphListParams,
                 ),
             ),
-            model=GraphListResponse,
+            model=Graph,
         )
 
     def delete(
@@ -586,7 +585,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GraphRetrieveResponse:
+    ) -> Graph:
         """
         Retrieve a Knowledge Graph.
 
@@ -606,7 +605,7 @@ class AsyncGraphsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GraphRetrieveResponse,
+            cast_to=Graph,
         )
 
     async def update(
@@ -676,7 +675,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[GraphListResponse, AsyncCursorPage[GraphListResponse]]:
+    ) -> AsyncPaginator[Graph, AsyncCursorPage[Graph]]:
         """
         Retrieve a list of Knowledge Graphs.
 
@@ -703,7 +702,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v1/graphs",
-            page=AsyncCursorPage[GraphListResponse],
+            page=AsyncCursorPage[Graph],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -719,7 +718,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                     graph_list_params.GraphListParams,
                 ),
             ),
-            model=GraphListResponse,
+            model=Graph,
         )
 
     async def delete(
