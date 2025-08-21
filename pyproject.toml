@@ -1,6 +1,6 @@
 [project]
 name = "writer-sdk"
-version = "2.3.1"
+version = "2.3.2"
 description = "The official Python library for the writer API"
 dynamic = ["readme"]
 license = "Apache-2.0"

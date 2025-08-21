@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.2 (2025-08-21)
+
+Full Changelog: [v2.3.1...v2.3.2](https://github.com/writer/writer-python/compare/v2.3.1...v2.3.2)
+
+### Chores
+
+* update github action ([d81d1ec](https://github.com/writer/writer-python/commit/d81d1ec4fe56a7761fd5c3ad2afc65e8b12954fd))
+
 ## 2.3.1 (2025-08-20)
 
 Full Changelog: [v2.3.1-rc1...v2.3.1](https://github.com/writer/writer-python/compare/v2.3.1-rc1...v2.3.1)
