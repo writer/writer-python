@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .function_definition import FunctionDefinition
 
 __all__ = [
@@ -33,7 +34,7 @@ class FunctionTool(TypedDict, total=False):
 
 
 class GraphToolFunction(TypedDict, total=False):
-    graph_ids: Required[List[str]]
+    graph_ids: Required[SequenceNotStr[str]]
     """An array of graph IDs to use in the tool."""
 
     subqueries: Required[bool]
@@ -161,10 +162,10 @@ class VisionTool(TypedDict, total=False):
 
 
 class WebSearchToolFunction(TypedDict, total=False):
-    exclude_domains: Required[List[str]]
+    exclude_domains: Required[SequenceNotStr[str]]
     """An array of domains to exclude from the search results."""
 
-    include_domains: Required[List[str]]
+    include_domains: Required[SequenceNotStr[str]]
     """An array of domains to include in the search results."""
 
 

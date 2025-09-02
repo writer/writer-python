@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["GraphQuestionParamsBase", "GraphQuestionParamsNonStreaming", "GraphQuestionParamsStreaming"]
 
 
 class GraphQuestionParamsBase(TypedDict, total=False):
-    graph_ids: Required[List[str]]
+    graph_ids: Required[SequenceNotStr[str]]
     """The unique identifiers of the Knowledge Graphs to query."""
 
     question: Required[str]

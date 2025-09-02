@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, TypeVar, Iterable
+from typing import Type, Union, TypeVar, Iterable
 from functools import partial
 from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import chat_chat_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -68,7 +68,7 @@ class ChatResource(SyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -176,7 +176,7 @@ class ChatResource(SyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
@@ -283,7 +283,7 @@ class ChatResource(SyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
@@ -389,7 +389,7 @@ class ChatResource(SyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -642,7 +642,7 @@ class AsyncChatResource(AsyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -750,7 +750,7 @@ class AsyncChatResource(AsyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
@@ -857,7 +857,7 @@ class AsyncChatResource(AsyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
@@ -963,7 +963,7 @@ class AsyncChatResource(AsyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         n: int | NotGiven = NOT_GIVEN,
         response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,

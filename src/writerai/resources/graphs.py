@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -14,7 +14,7 @@ from ..types import (
     graph_question_params,
     graph_add_file_to_graph_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -358,7 +358,7 @@ class GraphsResource(SyncAPIResource):
     def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -397,7 +397,7 @@ class GraphsResource(SyncAPIResource):
     def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[True],
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -436,7 +436,7 @@ class GraphsResource(SyncAPIResource):
     def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: bool,
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -475,7 +475,7 @@ class GraphsResource(SyncAPIResource):
     def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -865,7 +865,7 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -904,7 +904,7 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[True],
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -943,7 +943,7 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: bool,
         subqueries: bool | NotGiven = NOT_GIVEN,
@@ -982,7 +982,7 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def question(
         self,
         *,
-        graph_ids: List[str],
+        graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
