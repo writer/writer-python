@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["ToolWebSearchParams"]
 
@@ -192,7 +194,7 @@ class ToolWebSearchParams(TypedDict, total=False):
     days: int
     """For news topic searches, specifies how many days of news coverage to include."""
 
-    exclude_domains: List[str]
+    exclude_domains: SequenceNotStr[str]
     """Domains to exclude from the search. If unset, the search includes all domains."""
 
     include_answer: bool
@@ -201,7 +203,7 @@ class ToolWebSearchParams(TypedDict, total=False):
     If `false`, only search results are returned.
     """
 
-    include_domains: List[str]
+    include_domains: SequenceNotStr[str]
     """Domains to include in the search. If unset, the search includes all domains."""
 
     include_raw_content: Union[Literal["text", "markdown"], bool]

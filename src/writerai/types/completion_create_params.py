@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["CompletionCreateParamsBase", "CompletionCreateParamsNonStreaming", "CompletionCreateParamsStreaming"]
 
@@ -35,7 +37,7 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     reproducibility of the output when the same inputs are provided.
     """
 
-    stop: Union[List[str], str]
+    stop: Union[SequenceNotStr[str], str]
     """Specifies stopping conditions for the model's output generation.
 
     This can be an array of strings or a single string that the model will look for

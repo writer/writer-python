@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .shared_params.tool_call import ToolCall
 from .shared_params.graph_data import GraphData
 from .shared_params.tool_param import ToolParam
@@ -69,7 +70,7 @@ class ChatChatParamsBase(TypedDict, total=False):
     also provide a `json_schema` object.
     """
 
-    stop: Union[List[str], str]
+    stop: Union[SequenceNotStr[str], str]
     """
     A token or sequence of tokens that, when generated, will cause the model to stop
     producing further content. This can be a single token or an array of tokens,

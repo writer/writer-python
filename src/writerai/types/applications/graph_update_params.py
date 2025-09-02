@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["GraphUpdateParams"]
 
 
 class GraphUpdateParams(TypedDict, total=False):
-    graph_ids: Required[List[str]]
+    graph_ids: Required[SequenceNotStr[str]]
     """A list of Knowledge Graph IDs to associate with the application.
 
     Note that this will replace the existing list of Knowledge Graphs associated

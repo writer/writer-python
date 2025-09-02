@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import file_list_params, file_retry_params, file_upload_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -236,7 +235,7 @@ class FilesResource(SyncAPIResource):
     def retry(
         self,
         *,
-        file_ids: List[str],
+        file_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -507,7 +506,7 @@ class AsyncFilesResource(AsyncAPIResource):
     async def retry(
         self,
         *,
-        file_ids: List[str],
+        file_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
