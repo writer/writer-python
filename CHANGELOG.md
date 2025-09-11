@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.3.2-rc1 (2025-09-11)
+
+Full Changelog: [v2.3.1...v2.3.2-rc1](https://github.com/writer/writer-python/compare/v2.3.1...v2.3.2-rc1)
+
+### Features
+
+* improve future compat with pydantic v3 ([74315c4](https://github.com/writer/writer-python/commit/74315c493b0f439614d492378ae34fc0728c8bb1))
+* **types:** replace List[str] with SequenceNotStr in params ([2c1a7de](https://github.com/writer/writer-python/commit/2c1a7de9a61c13b20b7734ba4f87da6ca7771e30))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([4aec590](https://github.com/writer/writer-python/commit/4aec5902d7329039817f2049c299458fa8eb1381))
+* **client:** custom patch to prepare pydantic v3 ([8a26e46](https://github.com/writer/writer-python/commit/8a26e46ec365ea9905be7531bd80ebd9c74b129d))
+
+
+### Chores
+
+* **client:** format ([fa024a5](https://github.com/writer/writer-python/commit/fa024a58b0bc88104744f17279f5ca3819f28284))
+* **client:** update stop params in stream/parse to match chat ([8920408](https://github.com/writer/writer-python/commit/8920408285a5adfe7d0a416bc4539e42326b180e))
+* **internal:** add Sequence related utils ([40901e2](https://github.com/writer/writer-python/commit/40901e2ad2c45f6d8258df2e0666cc88c6c1fa0f))
+* **internal:** change ci workflow machines ([84dcbed](https://github.com/writer/writer-python/commit/84dcbedf80ab51ed3d4379839682b0c584041bb9))
+* **internal:** move mypy configurations to `pyproject.toml` file ([2518950](https://github.com/writer/writer-python/commit/251895049da0d7302cb37c599b0ca23dd0b6d470))
+* **internal:** update pyright exclude list ([815b794](https://github.com/writer/writer-python/commit/815b794df77ae9e20842db345988c93f1f077ee7))
+* **tests:** simplify `get_platform` test ([f1ddbb2](https://github.com/writer/writer-python/commit/f1ddbb236dbc6c1780eb1120e2fba20c0e4c921a))
+* update github action ([d81d1ec](https://github.com/writer/writer-python/commit/d81d1ec4fe56a7761fd5c3ad2afc65e8b12954fd))
+
+
+### Documentation
+
+* **api:** updates to API spec ([daf31d5](https://github.com/writer/writer-python/commit/daf31d587a7bc32c9debe961ac870d08fedef865))
+* **api:** updates to API spec ([5f8a109](https://github.com/writer/writer-python/commit/5f8a109801baff44a41313e2a4774ecc2c7e70bd))
+
 ## 2.3.1 (2025-08-20)
 
 Full Changelog: [v2.3.1-rc1...v2.3.1](https://github.com/writer/writer-python/compare/v2.3.1-rc1...v2.3.1)
