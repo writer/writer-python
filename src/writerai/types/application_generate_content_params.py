@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = [
     "ApplicationGenerateContentParamsBase",
@@ -26,7 +28,7 @@ class Input(TypedDict, total=False):
     input type.
     """
 
-    value: Required[List[str]]
+    value: Required[SequenceNotStr[str]]
     """The value for the input field.
 
     If the input type is "File upload", you must pass the `file_id` of an uploaded

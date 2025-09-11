@@ -35,6 +35,9 @@ class InputOptionsApplicationInputFileOptions(BaseModel):
     max_word_count: int
     """Maximum number of words allowed in text files."""
 
+    upload_types: List[Literal["url", "file_id"]]
+    """List of allowed upload types for file inputs."""
+
 
 class InputOptionsApplicationInputMediaOptions(BaseModel):
     file_types: List[str]

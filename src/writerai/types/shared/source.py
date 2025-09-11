@@ -7,7 +7,10 @@ __all__ = ["Source"]
 
 class Source(BaseModel):
     file_id: str
-    """The unique identifier of the file."""
+    """The unique identifier of the file in your Writer account."""
 
     snippet: str
-    """A snippet of text from the source file."""
+    """
+    The exact text snippet from the source document that was used to support the
+    response.
+    """

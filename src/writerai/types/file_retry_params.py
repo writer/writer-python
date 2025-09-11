@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["FileRetryParams"]
 
 
 class FileRetryParams(TypedDict, total=False):
-    file_ids: Required[List[str]]
+    file_ids: Required[SequenceNotStr[str]]
     """The unique identifier of the files to retry."""

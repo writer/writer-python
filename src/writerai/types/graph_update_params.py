@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["GraphUpdateParams", "URL"]
 
@@ -36,5 +38,5 @@ class URL(TypedDict, total=False):
     url: Required[str]
     """The URL to be processed by the web connector."""
 
-    exclude_urls: List[str]
+    exclude_urls: SequenceNotStr[str]
     """An array of URLs to exclude from processing within this web connector."""

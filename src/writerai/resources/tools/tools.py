@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal
 
 import httpx
@@ -13,7 +13,7 @@ from ...types import (
     tool_web_search_params,
     tool_context_aware_splitting_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .comprehend import (
@@ -358,9 +358,9 @@ class ToolsResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         days: int | NotGiven = NOT_GIVEN,
-        exclude_domains: List[str] | NotGiven = NOT_GIVEN,
+        exclude_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         include_answer: bool | NotGiven = NOT_GIVEN,
-        include_domains: List[str] | NotGiven = NOT_GIVEN,
+        include_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         include_raw_content: Union[Literal["text", "markdown"], bool] | NotGiven = NOT_GIVEN,
         max_results: int | NotGiven = NOT_GIVEN,
         query: str | NotGiven = NOT_GIVEN,
@@ -776,9 +776,9 @@ class AsyncToolsResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         days: int | NotGiven = NOT_GIVEN,
-        exclude_domains: List[str] | NotGiven = NOT_GIVEN,
+        exclude_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         include_answer: bool | NotGiven = NOT_GIVEN,
-        include_domains: List[str] | NotGiven = NOT_GIVEN,
+        include_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         include_raw_content: Union[Literal["text", "markdown"], bool] | NotGiven = NOT_GIVEN,
         max_results: int | NotGiven = NOT_GIVEN,
         query: str | NotGiven = NOT_GIVEN,

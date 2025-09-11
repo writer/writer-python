@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import completion_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
@@ -121,7 +121,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -186,7 +186,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -250,7 +250,7 @@ class CompletionsResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
@@ -317,7 +317,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
@@ -383,7 +383,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -448,7 +448,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -512,7 +512,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[List[str], str] | NotGiven = NOT_GIVEN,
+        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
