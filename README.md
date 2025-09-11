@@ -17,7 +17,7 @@ The REST API documentation can be found on [dev.writer.com](https://dev.writer.c
 
 ```sh
 # install from PyPI
-pip install writer-sdk
+pip install --pre writer-sdk
 ```
 
 ## Usage
@@ -89,7 +89,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install writer-sdk[aiohttp]
+pip install --pre writer-sdk[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
