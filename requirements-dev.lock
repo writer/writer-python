@@ -24,12 +24,12 @@ anyio==4.4.0
     # via writer-sdk
 argcomplete==3.1.2
     # via nox
+asttokens==3.0.0
+    # via inline-snapshot
 async-timeout==5.0.1
     # via aiohttp
 attrs==25.3.0
     # via aiohttp
-asttokens==3.0.0
-    # via inline-snapshot
 certifi==2023.7.22
     # via httpcore
     # via httpx
@@ -43,10 +43,10 @@ distro==1.8.0
 exceptiongroup==1.2.2
     # via anyio
     # via pytest
-executing==2.2.0
-    # via inline-snapshot
 execnet==2.1.1
     # via pytest-xdist
+executing==2.2.0
+    # via inline-snapshot
 filelock==3.12.4
     # via virtualenv
 frozenlist==1.6.2

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, TypeVar, Iterable
+from typing import List, Type, Union, TypeVar, Iterable
 from functools import partial
 from typing_extensions import Literal, overload
 
