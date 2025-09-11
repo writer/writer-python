@@ -279,6 +279,16 @@ class TestGraphs:
         graph = client.graphs.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
+            query_config={
+                "grounding_level": 0,
+                "inline_citations": True,
+                "keyword_threshold": 0,
+                "max_snippets": 1,
+                "max_subquestions": 1,
+                "max_tokens": 100,
+                "search_weight": 0,
+                "semantic_threshold": 0,
+            },
             stream=False,
             subqueries=True,
         )
@@ -325,6 +335,16 @@ class TestGraphs:
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
             stream=True,
+            query_config={
+                "grounding_level": 0,
+                "inline_citations": True,
+                "keyword_threshold": 0,
+                "max_snippets": 1,
+                "max_subquestions": 1,
+                "max_tokens": 100,
+                "search_weight": 0,
+                "semantic_threshold": 0,
+            },
             subqueries=True,
         )
         graph_stream.response.close()
@@ -663,6 +683,16 @@ class TestAsyncGraphs:
         graph = await async_client.graphs.question(
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
+            query_config={
+                "grounding_level": 0,
+                "inline_citations": True,
+                "keyword_threshold": 0,
+                "max_snippets": 1,
+                "max_subquestions": 1,
+                "max_tokens": 100,
+                "search_weight": 0,
+                "semantic_threshold": 0,
+            },
             stream=False,
             subqueries=True,
         )
@@ -709,6 +739,16 @@ class TestAsyncGraphs:
             graph_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             question="question",
             stream=True,
+            query_config={
+                "grounding_level": 0,
+                "inline_citations": True,
+                "keyword_threshold": 0,
+                "max_snippets": 1,
+                "max_subquestions": 1,
+                "max_tokens": 100,
+                "search_weight": 0,
+                "semantic_threshold": 0,
+            },
             subqueries=True,
         )
         await graph_stream.response.aclose()

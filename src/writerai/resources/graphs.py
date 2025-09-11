@@ -360,6 +360,7 @@ class GraphsResource(SyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -376,6 +377,9 @@ class GraphsResource(SyncAPIResource):
           graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
           question: The question to answer using the Knowledge Graph.
+
+          query_config: Configuration options for Knowledge Graph queries, including search parameters
+              and citation settings.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -400,6 +404,7 @@ class GraphsResource(SyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[True],
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -420,6 +425,9 @@ class GraphsResource(SyncAPIResource):
               generated and sent incrementally, which can be useful for real-time
               applications.
 
+          query_config: Configuration options for Knowledge Graph queries, including search parameters
+              and citation settings.
+
           subqueries: Specify whether to include subqueries.
 
           extra_headers: Send extra headers
@@ -439,6 +447,7 @@ class GraphsResource(SyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: bool,
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -459,6 +468,9 @@ class GraphsResource(SyncAPIResource):
               generated and sent incrementally, which can be useful for real-time
               applications.
 
+          query_config: Configuration options for Knowledge Graph queries, including search parameters
+              and citation settings.
+
           subqueries: Specify whether to include subqueries.
 
           extra_headers: Send extra headers
@@ -477,6 +489,7 @@ class GraphsResource(SyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -492,6 +505,7 @@ class GraphsResource(SyncAPIResource):
                 {
                     "graph_ids": graph_ids,
                     "question": question,
+                    "query_config": query_config,
                     "stream": stream,
                     "subqueries": subqueries,
                 },
@@ -867,6 +881,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         stream: Literal[False] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -883,6 +898,9 @@ class AsyncGraphsResource(AsyncAPIResource):
           graph_ids: The unique identifiers of the Knowledge Graphs to query.
 
           question: The question to answer using the Knowledge Graph.
+
+          query_config: Configuration options for Knowledge Graph queries, including search parameters
+              and citation settings.
 
           stream: Determines whether the model's output should be streamed. If true, the output is
               generated and sent incrementally, which can be useful for real-time
@@ -907,6 +925,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[True],
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -927,6 +946,9 @@ class AsyncGraphsResource(AsyncAPIResource):
               generated and sent incrementally, which can be useful for real-time
               applications.
 
+          query_config: Configuration options for Knowledge Graph queries, including search parameters
+              and citation settings.
+
           subqueries: Specify whether to include subqueries.
 
           extra_headers: Send extra headers
@@ -946,6 +968,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: bool,
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -966,6 +989,9 @@ class AsyncGraphsResource(AsyncAPIResource):
               generated and sent incrementally, which can be useful for real-time
               applications.
 
+          query_config: Configuration options for Knowledge Graph queries, including search parameters
+              and citation settings.
+
           subqueries: Specify whether to include subqueries.
 
           extra_headers: Send extra headers
@@ -984,6 +1010,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
+        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
         stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
         subqueries: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -999,6 +1026,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                 {
                     "graph_ids": graph_ids,
                     "question": question,
+                    "query_config": query_config,
                     "stream": stream,
                     "subqueries": subqueries,
                 },
