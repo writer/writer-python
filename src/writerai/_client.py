@@ -58,12 +58,9 @@ def _extract_sdk_env_headers() -> dict[str, str]:
             continue
 
         # Strip the prefix and convert
-        raw = key[len(_SDK_HEADER_PREFIX):]
+        raw = key[len(_SDK_HEADER_PREFIX) :]
         parts = raw.split("_")
-        canonical = "-".join(
-            word.capitalize() if len(word) > 1 else word.upper()
-            for word in parts
-        )
+        canonical = "-".join(word.capitalize() if len(word) > 1 else word.upper() for word in parts)
         headers[canonical] = value
 
     return headers
