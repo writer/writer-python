@@ -12,12 +12,13 @@ __all__ = ["GraphData", "Subquery"]
 
 class Subquery(TypedDict, total=False):
     answer: Required[str]
-    """The answer to the subquery."""
+    """The answer to the subquery based on Knowledge Graph content."""
 
     query: Required[str]
-    """The subquery that was asked."""
+    """The subquery that was generated to help answer the main question."""
 
     sources: Required[Iterable[Optional[Source]]]
+    """Array of source snippets that were used to answer this subquery."""
 
 
 class GraphData(TypedDict, total=False):
