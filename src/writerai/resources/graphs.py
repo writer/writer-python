@@ -14,7 +14,7 @@ from ..types import (
     graph_question_params,
     graph_add_file_to_graph_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, SequenceNotStr, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -62,14 +62,14 @@ class GraphsResource(SyncAPIResource):
     def create(
         self,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphCreateResponse:
         """
         Create a new Knowledge Graph.
@@ -113,7 +113,7 @@ class GraphsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Graph:
         """
         Retrieve a Knowledge Graph.
@@ -141,15 +141,15 @@ class GraphsResource(SyncAPIResource):
         self,
         graph_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        urls: Iterable[graph_update_params.URL] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        urls: Iterable[graph_update_params.URL] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphUpdateResponse:
         """
         Update the name and description of a Knowledge Graph.
@@ -194,16 +194,16 @@ class GraphsResource(SyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPage[Graph]:
         """
         Retrieve a list of Knowledge Graphs.
@@ -259,7 +259,7 @@ class GraphsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphDeleteResponse:
         """
         Delete a Knowledge Graph.
@@ -293,7 +293,7 @@ class GraphsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
         Add a file to a Knowledge Graph.
@@ -360,15 +360,15 @@ class GraphsResource(SyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        stream: Literal[False] | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Question:
         """
         Ask a question to specified Knowledge Graphs.
@@ -404,14 +404,14 @@ class GraphsResource(SyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[True],
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream[QuestionResponseChunk]:
         """
         Ask a question to specified Knowledge Graphs.
@@ -447,14 +447,14 @@ class GraphsResource(SyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: bool,
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Question | Stream[QuestionResponseChunk]:
         """
         Ask a question to specified Knowledge Graphs.
@@ -489,15 +489,15 @@ class GraphsResource(SyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        stream: Literal[False] | Literal[True] | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Question | Stream[QuestionResponseChunk]:
         return self._post(
             "/v1/graphs/question",
@@ -531,7 +531,7 @@ class GraphsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphRemoveFileFromGraphResponse:
         """
         Remove a file from a Knowledge Graph.
@@ -581,14 +581,14 @@ class AsyncGraphsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphCreateResponse:
         """
         Create a new Knowledge Graph.
@@ -632,7 +632,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Graph:
         """
         Retrieve a Knowledge Graph.
@@ -660,15 +660,15 @@ class AsyncGraphsResource(AsyncAPIResource):
         self,
         graph_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        urls: Iterable[graph_update_params.URL] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        urls: Iterable[graph_update_params.URL] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphUpdateResponse:
         """
         Update the name and description of a Knowledge Graph.
@@ -713,16 +713,16 @@ class AsyncGraphsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Graph, AsyncCursorPage[Graph]]:
         """
         Retrieve a list of Knowledge Graphs.
@@ -778,7 +778,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphDeleteResponse:
         """
         Delete a Knowledge Graph.
@@ -812,7 +812,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
         Add a file to a Knowledge Graph.
@@ -881,15 +881,15 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        stream: Literal[False] | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Question:
         """
         Ask a question to specified Knowledge Graphs.
@@ -925,14 +925,14 @@ class AsyncGraphsResource(AsyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: Literal[True],
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncStream[QuestionResponseChunk]:
         """
         Ask a question to specified Knowledge Graphs.
@@ -968,14 +968,14 @@ class AsyncGraphsResource(AsyncAPIResource):
         graph_ids: SequenceNotStr[str],
         question: str,
         stream: bool,
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Question | AsyncStream[QuestionResponseChunk]:
         """
         Ask a question to specified Knowledge Graphs.
@@ -1010,15 +1010,15 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         graph_ids: SequenceNotStr[str],
         question: str,
-        query_config: graph_question_params.QueryConfig | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
-        subqueries: bool | NotGiven = NOT_GIVEN,
+        query_config: graph_question_params.QueryConfig | Omit = omit,
+        stream: Literal[False] | Literal[True] | Omit = omit,
+        subqueries: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Question | AsyncStream[QuestionResponseChunk]:
         return await self._post(
             "/v1/graphs/question",
@@ -1052,7 +1052,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphRemoveFileFromGraphResponse:
         """
         Remove a file from a Knowledge Graph.

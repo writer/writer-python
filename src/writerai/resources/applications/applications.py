@@ -24,7 +24,7 @@ from .graphs import (
     AsyncGraphsResourceWithStreamingResponse,
 )
 from ...types import application_list_params, application_generate_content_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -82,7 +82,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationRetrieveResponse:
         """
         Retrieves detailed information for a specific no-code agent (formerly called
@@ -110,17 +110,17 @@ class ApplicationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        type: Literal["generation"] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        type: Literal["generation"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPage[ApplicationListResponse]:
         """
         Retrieves a paginated list of no-code agents (formerly called no-code
@@ -173,13 +173,13 @@ class ApplicationsResource(SyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[application_generate_content_params.Input],
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
+        stream: Literal[False] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationGenerateContentResponse:
         """
         Generate content from an existing no-code agent (formerly called no-code
@@ -211,7 +211,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream[ApplicationGenerateContentChunk]:
         """
         Generate content from an existing no-code agent (formerly called no-code
@@ -243,7 +243,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationGenerateContentResponse | Stream[ApplicationGenerateContentChunk]:
         """
         Generate content from an existing no-code agent (formerly called no-code
@@ -269,13 +269,13 @@ class ApplicationsResource(SyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[application_generate_content_params.Input],
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
+        stream: Literal[False] | Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationGenerateContentResponse | Stream[ApplicationGenerateContentChunk]:
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
@@ -336,7 +336,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationRetrieveResponse:
         """
         Retrieves detailed information for a specific no-code agent (formerly called
@@ -364,17 +364,17 @@ class AsyncApplicationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        type: Literal["generation"] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        type: Literal["generation"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ApplicationListResponse, AsyncCursorPage[ApplicationListResponse]]:
         """
         Retrieves a paginated list of no-code agents (formerly called no-code
@@ -427,13 +427,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[application_generate_content_params.Input],
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
+        stream: Literal[False] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationGenerateContentResponse:
         """
         Generate content from an existing no-code agent (formerly called no-code
@@ -465,7 +465,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncStream[ApplicationGenerateContentChunk]:
         """
         Generate content from an existing no-code agent (formerly called no-code
@@ -497,7 +497,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationGenerateContentResponse | AsyncStream[ApplicationGenerateContentChunk]:
         """
         Generate content from an existing no-code agent (formerly called no-code
@@ -523,13 +523,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
         application_id: str,
         *,
         inputs: Iterable[application_generate_content_params.Input],
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
+        stream: Literal[False] | Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ApplicationGenerateContentResponse | AsyncStream[ApplicationGenerateContentChunk]:
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")

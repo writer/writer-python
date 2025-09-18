@@ -13,7 +13,7 @@ from ...types import (
     tool_web_search_params,
     tool_context_aware_splitting_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .comprehend import (
@@ -73,7 +73,7 @@ class ToolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolAIDetectResponse:
         """Detects if content is AI- or human-generated, with a confidence score.
 
@@ -111,7 +111,7 @@ class ToolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolContextAwareSplittingResponse:
         """
         Splits a long block of text (maximum 4000 words) into smaller chunks while
@@ -157,7 +157,7 @@ class ToolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolParsePdfResponse:
         """
         Parse PDF to other formats.
@@ -187,7 +187,7 @@ class ToolsResource(SyncAPIResource):
     def web_search(
         self,
         *,
-        chunks_per_source: int | NotGiven = NOT_GIVEN,
+        chunks_per_source: int | Omit = omit,
         country: Literal[
             "afghanistan",
             "albania",
@@ -356,24 +356,24 @@ class ToolsResource(SyncAPIResource):
             "zambia",
             "zimbabwe",
         ]
-        | NotGiven = NOT_GIVEN,
-        days: int | NotGiven = NOT_GIVEN,
-        exclude_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        include_answer: bool | NotGiven = NOT_GIVEN,
-        include_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        include_raw_content: Union[Literal["text", "markdown"], bool] | NotGiven = NOT_GIVEN,
-        max_results: int | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        search_depth: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        time_range: Literal["day", "week", "month", "year", "d", "w", "m", "y"] | NotGiven = NOT_GIVEN,
-        topic: Literal["general", "news"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        days: int | Omit = omit,
+        exclude_domains: SequenceNotStr[str] | Omit = omit,
+        include_answer: bool | Omit = omit,
+        include_domains: SequenceNotStr[str] | Omit = omit,
+        include_raw_content: Union[Literal["text", "markdown"], bool] | Omit = omit,
+        max_results: int | Omit = omit,
+        query: str | Omit = omit,
+        search_depth: Literal["basic", "advanced"] | Omit = omit,
+        stream: bool | Omit = omit,
+        time_range: Literal["day", "week", "month", "year", "d", "w", "m", "y"] | Omit = omit,
+        topic: Literal["general", "news"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolWebSearchResponse:
         """
         Search the web for information about a given query and return relevant results
@@ -491,7 +491,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolAIDetectResponse:
         """Detects if content is AI- or human-generated, with a confidence score.
 
@@ -529,7 +529,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolContextAwareSplittingResponse:
         """
         Splits a long block of text (maximum 4000 words) into smaller chunks while
@@ -575,7 +575,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolParsePdfResponse:
         """
         Parse PDF to other formats.
@@ -605,7 +605,7 @@ class AsyncToolsResource(AsyncAPIResource):
     async def web_search(
         self,
         *,
-        chunks_per_source: int | NotGiven = NOT_GIVEN,
+        chunks_per_source: int | Omit = omit,
         country: Literal[
             "afghanistan",
             "albania",
@@ -774,24 +774,24 @@ class AsyncToolsResource(AsyncAPIResource):
             "zambia",
             "zimbabwe",
         ]
-        | NotGiven = NOT_GIVEN,
-        days: int | NotGiven = NOT_GIVEN,
-        exclude_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        include_answer: bool | NotGiven = NOT_GIVEN,
-        include_domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        include_raw_content: Union[Literal["text", "markdown"], bool] | NotGiven = NOT_GIVEN,
-        max_results: int | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        search_depth: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        time_range: Literal["day", "week", "month", "year", "d", "w", "m", "y"] | NotGiven = NOT_GIVEN,
-        topic: Literal["general", "news"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        days: int | Omit = omit,
+        exclude_domains: SequenceNotStr[str] | Omit = omit,
+        include_answer: bool | Omit = omit,
+        include_domains: SequenceNotStr[str] | Omit = omit,
+        include_raw_content: Union[Literal["text", "markdown"], bool] | Omit = omit,
+        max_results: int | Omit = omit,
+        query: str | Omit = omit,
+        search_depth: Literal["basic", "advanced"] | Omit = omit,
+        stream: bool | Omit = omit,
+        time_range: Literal["day", "week", "month", "year", "d", "w", "m", "y"] | Omit = omit,
+        topic: Literal["general", "news"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolWebSearchResponse:
         """
         Search the web for information about a given query and return relevant results
