@@ -45,7 +45,7 @@ class ComprehendResource(SyncAPIResource):
         return ComprehendResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis."
+        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis. See documentation at dev.writer.com for more information."
     )
     def medical(
         self,
@@ -115,7 +115,7 @@ class AsyncComprehendResource(AsyncAPIResource):
         return AsyncComprehendResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis."
+        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis. See documentation at dev.writer.com for more information."
     )
     async def medical(
         self,
