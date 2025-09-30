@@ -45,7 +45,7 @@ class TranslationResource(SyncAPIResource):
         return TranslationResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities."
+        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities. See documentation at dev.writer.com for more information."
     )
     def translate(
         self,
@@ -150,7 +150,7 @@ class AsyncTranslationResource(AsyncAPIResource):
         return AsyncTranslationResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities."
+        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities. See documentation at dev.writer.com for more information."
     )
     async def translate(
         self,

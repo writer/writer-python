@@ -65,7 +65,9 @@ class ToolsResource(SyncAPIResource):
         """
         return ToolsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
+    )
     def ai_detect(
         self,
         *,
@@ -103,7 +105,9 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolAIDetectResponse,
         )
 
-    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
+    )
     def context_aware_splitting(
         self,
         *,
@@ -151,7 +155,7 @@ class ToolsResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for updates."
+        "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for more information."
     )
     def parse_pdf(
         self,
@@ -191,7 +195,7 @@ class ToolsResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. Migrate to `chat.chat` with the web search tool for web search capabilities."
+        "Will be removed in a future release. Migrate to `chat.chat` with the web search tool for web search capabilities. See documentation at dev.writer.com for more information."
     )
     def web_search(
         self,
@@ -491,7 +495,9 @@ class AsyncToolsResource(AsyncAPIResource):
         """
         return AsyncToolsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
+    )
     async def ai_detect(
         self,
         *,
@@ -529,7 +535,9 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolAIDetectResponse,
         )
 
-    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
+    )
     async def context_aware_splitting(
         self,
         *,
@@ -577,7 +585,7 @@ class AsyncToolsResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for updates."
+        "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for more information."
     )
     async def parse_pdf(
         self,
@@ -617,7 +625,7 @@ class AsyncToolsResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Will be removed in a future release. Migrate to `chat.chat` with the web search tool for web search capabilities."
+        "Will be removed in a future release. Migrate to `chat.chat` with the web search tool for web search capabilities. See documentation at dev.writer.com for more information."
     )
     async def web_search(
         self,
