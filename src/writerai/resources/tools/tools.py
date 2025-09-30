@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union
 from typing_extensions import Literal
 
@@ -64,6 +65,7 @@ class ToolsResource(SyncAPIResource):
         """
         return ToolsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
     def ai_detect(
         self,
         *,
@@ -101,6 +103,7 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolAIDetectResponse,
         )
 
+    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
     def context_aware_splitting(
         self,
         *,
@@ -147,6 +150,9 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolContextAwareSplittingResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for updates."
+    )
     def parse_pdf(
         self,
         file_id: str,
@@ -184,6 +190,9 @@ class ToolsResource(SyncAPIResource):
             cast_to=ToolParsePdfResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the web search tool for web search capabilities."
+    )
     def web_search(
         self,
         *,
@@ -482,6 +491,7 @@ class AsyncToolsResource(AsyncAPIResource):
         """
         return AsyncToolsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
     async def ai_detect(
         self,
         *,
@@ -519,6 +529,7 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolAIDetectResponse,
         )
 
+    @typing_extensions.deprecated("Will be removed in a future release. Please migrate to alternative solutions.")
     async def context_aware_splitting(
         self,
         *,
@@ -565,6 +576,9 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolContextAwareSplittingResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for updates."
+    )
     async def parse_pdf(
         self,
         file_id: str,
@@ -602,6 +616,9 @@ class AsyncToolsResource(AsyncAPIResource):
             cast_to=ToolParsePdfResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the web search tool for web search capabilities."
+    )
     async def web_search(
         self,
         *,
@@ -880,17 +897,25 @@ class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = to_raw_response_wrapper(
-            tools.ai_detect,
+        self.ai_detect = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tools.ai_detect,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.context_aware_splitting = to_raw_response_wrapper(
-            tools.context_aware_splitting,
+        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.parse_pdf = to_raw_response_wrapper(
-            tools.parse_pdf,
+        self.parse_pdf = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tools.parse_pdf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.web_search = to_raw_response_wrapper(
-            tools.web_search,
+        self.web_search = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tools.web_search,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -902,17 +927,25 @@ class AsyncToolsResourceWithRawResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = async_to_raw_response_wrapper(
-            tools.ai_detect,
+        self.ai_detect = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tools.ai_detect,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.context_aware_splitting = async_to_raw_response_wrapper(
-            tools.context_aware_splitting,
+        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.parse_pdf = async_to_raw_response_wrapper(
-            tools.parse_pdf,
+        self.parse_pdf = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tools.parse_pdf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.web_search = async_to_raw_response_wrapper(
-            tools.web_search,
+        self.web_search = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tools.web_search,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -924,17 +957,25 @@ class ToolsResourceWithStreamingResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = to_streamed_response_wrapper(
-            tools.ai_detect,
+        self.ai_detect = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tools.ai_detect,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.context_aware_splitting = to_streamed_response_wrapper(
-            tools.context_aware_splitting,
+        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.parse_pdf = to_streamed_response_wrapper(
-            tools.parse_pdf,
+        self.parse_pdf = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tools.parse_pdf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.web_search = to_streamed_response_wrapper(
-            tools.web_search,
+        self.web_search = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tools.web_search,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -946,17 +987,25 @@ class AsyncToolsResourceWithStreamingResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = async_to_streamed_response_wrapper(
-            tools.ai_detect,
+        self.ai_detect = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tools.ai_detect,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.context_aware_splitting = async_to_streamed_response_wrapper(
-            tools.context_aware_splitting,
+        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.parse_pdf = async_to_streamed_response_wrapper(
-            tools.parse_pdf,
+        self.parse_pdf = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tools.parse_pdf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.web_search = async_to_streamed_response_wrapper(
-            tools.web_search,
+        self.web_search = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tools.web_search,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

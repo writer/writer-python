@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing_extensions import Literal
 
 import httpx
@@ -43,6 +44,9 @@ class TranslationResource(SyncAPIResource):
         """
         return TranslationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities."
+    )
     def translate(
         self,
         *,
@@ -145,6 +149,9 @@ class AsyncTranslationResource(AsyncAPIResource):
         """
         return AsyncTranslationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities."
+    )
     async def translate(
         self,
         *,
@@ -231,8 +238,10 @@ class TranslationResourceWithRawResponse:
     def __init__(self, translation: TranslationResource) -> None:
         self._translation = translation
 
-        self.translate = to_raw_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -240,8 +249,10 @@ class AsyncTranslationResourceWithRawResponse:
     def __init__(self, translation: AsyncTranslationResource) -> None:
         self._translation = translation
 
-        self.translate = async_to_raw_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -249,8 +260,10 @@ class TranslationResourceWithStreamingResponse:
     def __init__(self, translation: TranslationResource) -> None:
         self._translation = translation
 
-        self.translate = to_streamed_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -258,6 +271,8 @@ class AsyncTranslationResourceWithStreamingResponse:
     def __init__(self, translation: AsyncTranslationResource) -> None:
         self._translation = translation
 
-        self.translate = async_to_streamed_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
