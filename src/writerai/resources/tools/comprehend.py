@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing_extensions import Literal
 
 import httpx
@@ -43,6 +44,9 @@ class ComprehendResource(SyncAPIResource):
         """
         return ComprehendResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis."
+    )
     def medical(
         self,
         *,
@@ -110,6 +114,9 @@ class AsyncComprehendResource(AsyncAPIResource):
         """
         return AsyncComprehendResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis."
+    )
     async def medical(
         self,
         *,
@@ -161,8 +168,10 @@ class ComprehendResourceWithRawResponse:
     def __init__(self, comprehend: ComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = to_raw_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -170,8 +179,10 @@ class AsyncComprehendResourceWithRawResponse:
     def __init__(self, comprehend: AsyncComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = async_to_raw_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -179,8 +190,10 @@ class ComprehendResourceWithStreamingResponse:
     def __init__(self, comprehend: ComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = to_streamed_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -188,6 +201,8 @@ class AsyncComprehendResourceWithStreamingResponse:
     def __init__(self, comprehend: AsyncComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = async_to_streamed_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
