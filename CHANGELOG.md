@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.3.2-rc2 (2025-10-01)
+
+Full Changelog: [v2.3.2-rc1...v2.3.2-rc2](https://github.com/writer/writer-python/compare/v2.3.2-rc1...v2.3.2-rc2)
+
+### Features
+
+* **api:** manual updates ([4fb84e2](https://github.com/writer/writer-python/commit/4fb84e2d911b8a32a2fc34bb88bcd7ac7b15d2f2))
+* **api:** manual updates ([d7b4637](https://github.com/writer/writer-python/commit/d7b463727d2d9b3cd90fcab9e7d5376a3d5a1a38))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([7912ae2](https://github.com/writer/writer-python/commit/7912ae28b073194868bbcdc59bbff92b49a50f60))
+* **internal:** update pydantic dependency ([c2f8537](https://github.com/writer/writer-python/commit/c2f85373ed1ed9e0e80a3b3d182794dc619d8b87))
+* **types:** change optional parameter type from NotGiven to Omit ([702d003](https://github.com/writer/writer-python/commit/702d003ebd5c955986898f7afadc425f9a9c4fd1))
+* update more locations to use Omit ([5f1a99c](https://github.com/writer/writer-python/commit/5f1a99c3546308523ce977ce3bf1f145209ad44b))
+
+
+### Documentation
+
+* **api:** updates to API spec ([7e349a9](https://github.com/writer/writer-python/commit/7e349a9c9782b10803ef932ee7eaf9c618750d2b))
+
 ## 2.3.2-rc1 (2025-09-11)
 
 Full Changelog: [v2.3.1...v2.3.2-rc1](https://github.com/writer/writer-python/compare/v2.3.1...v2.3.2-rc1)
