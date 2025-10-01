@@ -27,7 +27,7 @@ from ._events import (
     FunctionToolCallArgumentsDeltaEvent,
 )
 from .._deltas import accumulate_delta
-from ...._types import NOT_GIVEN, IncEx, NotGiven
+from ...._types import Omit, IncEx, omit
 from ...._utils import is_given, consume_sync_iterator, consume_async_iterator
 from ...._compat import model_dump
 from ...._models import build, construct_type
@@ -59,9 +59,9 @@ class ChatCompletionStream(Generic[ResponseFormatT]):
         self,
         *,
         raw_stream: Stream[ChatCompletionChunk],
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
-        input_tools: Iterable[ToolParam] | NotGiven,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
+        input_tools: Iterable[ToolParam] | Omit,
     ) -> None:
         self._raw_stream = raw_stream
         self._response = raw_stream.response
@@ -139,9 +139,9 @@ class ChatCompletionStreamManager(Generic[ResponseFormatT]):
         self,
         api_request: Callable[[], Stream[ChatCompletionChunk]],
         *,
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
-        input_tools: Iterable[ToolParam] | NotGiven,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
+        input_tools: Iterable[ToolParam] | Omit,
     ) -> None:
         self.__stream: ChatCompletionStream[ResponseFormatT] | None = None
         self.__api_request = api_request
@@ -180,9 +180,9 @@ class AsyncChatCompletionStream(Generic[ResponseFormatT]):
         self,
         *,
         raw_stream: AsyncStream[ChatCompletionChunk],
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
-        input_tools: Iterable[ToolParam] | NotGiven,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
+        input_tools: Iterable[ToolParam] | Omit,
     ) -> None:
         self._raw_stream = raw_stream
         self._response = raw_stream.response
@@ -260,9 +260,9 @@ class AsyncChatCompletionStreamManager(Generic[ResponseFormatT]):
         self,
         api_request: Awaitable[AsyncStream[ChatCompletionChunk]],
         *,
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
-        input_tools: Iterable[ToolParam] | NotGiven,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
+        input_tools: Iterable[ToolParam] | Omit,
     ) -> None:
         self.__stream: AsyncChatCompletionStream[ResponseFormatT] | None = None
         self.__api_request = api_request
@@ -294,16 +294,16 @@ class ChatCompletionStreamState(Generic[ResponseFormatT]):
     def __init__(
         self,
         *,
-        input_tools: Iterable[ToolParam] | NotGiven,
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
+        input_tools: Iterable[ToolParam] | Omit,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
     ) -> None:
         self.__current_completion_snapshot: ParsedChatCompletionSnapshot | None = None
         self.__choice_event_states: list[ChoiceEventState] = []
 
         self._input_tools = [tool for tool in input_tools] if is_given(input_tools) else []
         self._response_format = response_format
-        self._rich_response_format: type | NotGiven = response_format if inspect.isclass(response_format) else NOT_GIVEN
+        self._rich_response_format: type | Omit = response_format if inspect.isclass(response_format) else omit
 
     def get_final_completion(self) -> ParsedChatCompletion[ResponseFormatT]:
         return parse_chat_completion(
@@ -575,8 +575,8 @@ class ChoiceEventState:
         *,
         choice_chunk: ChoiceChunk,
         choice_snapshot: ParsedChatCompletionChoiceSnapshot,
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
     ) -> list[ChatCompletionStreamEvent[ResponseFormatT]]:
         events_to_fire: list[ChatCompletionStreamEvent[ResponseFormatT]] = []
 
@@ -616,8 +616,8 @@ class ChoiceEventState:
         self,
         *,
         choice_snapshot: ParsedChatCompletionChoiceSnapshot,
-        # response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-        response_format: type[ResponseFormatT] | NotGiven,
+        # response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+        response_format: type[ResponseFormatT] | Omit,
     ) -> list[ChatCompletionStreamEvent[ResponseFormatT]]:
         events_to_fire: list[ChatCompletionStreamEvent[ResponseFormatT]] = []
 
