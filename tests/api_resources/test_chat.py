@@ -33,6 +33,25 @@ class TestChat:
                     "role": "user",
                     "content": "string",
                     "graph_data": {
+                        "references": {
+                            "files": [
+                                {
+                                    "file_id": "fileId",
+                                    "score": 0,
+                                    "text": "text",
+                                    "cite": "cite",
+                                    "page": 0,
+                                }
+                            ],
+                            "web": [
+                                {
+                                    "score": 0,
+                                    "text": "text",
+                                    "title": "title",
+                                    "url": "https://example.com",
+                                }
+                            ],
+                        },
                         "sources": [
                             {
                                 "file_id": "file_id",
@@ -139,6 +158,25 @@ class TestChat:
                     "role": "user",
                     "content": "string",
                     "graph_data": {
+                        "references": {
+                            "files": [
+                                {
+                                    "file_id": "fileId",
+                                    "score": 0,
+                                    "text": "text",
+                                    "cite": "cite",
+                                    "page": 0,
+                                }
+                            ],
+                            "web": [
+                                {
+                                    "score": 0,
+                                    "text": "text",
+                                    "title": "title",
+                                    "url": "https://example.com",
+                                }
+                            ],
+                        },
                         "sources": [
                             {
                                 "file_id": "file_id",
@@ -251,6 +289,25 @@ class TestAsyncChat:
                     "role": "user",
                     "content": "string",
                     "graph_data": {
+                        "references": {
+                            "files": [
+                                {
+                                    "file_id": "fileId",
+                                    "score": 0,
+                                    "text": "text",
+                                    "cite": "cite",
+                                    "page": 0,
+                                }
+                            ],
+                            "web": [
+                                {
+                                    "score": 0,
+                                    "text": "text",
+                                    "title": "title",
+                                    "url": "https://example.com",
+                                }
+                            ],
+                        },
                         "sources": [
                             {
                                 "file_id": "file_id",
@@ -357,6 +414,25 @@ class TestAsyncChat:
                     "role": "user",
                     "content": "string",
                     "graph_data": {
+                        "references": {
+                            "files": [
+                                {
+                                    "file_id": "fileId",
+                                    "score": 0,
+                                    "text": "text",
+                                    "cite": "cite",
+                                    "page": 0,
+                                }
+                            ],
+                            "web": [
+                                {
+                                    "score": 0,
+                                    "text": "text",
+                                    "title": "title",
+                                    "url": "https://example.com",
+                                }
+                            ],
+                        },
                         "sources": [
                             {
                                 "file_id": "file_id",

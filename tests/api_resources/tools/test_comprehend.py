@@ -11,6 +11,8 @@ from writerai import Writer, AsyncWriter
 from tests.utils import assert_matches_type
 from writerai.types.tools import ComprehendMedicalResponse
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -19,18 +21,21 @@ class TestComprehend:
 
     @parametrize
     def test_method_medical(self, client: Writer) -> None:
-        comprehend = client.tools.comprehend.medical(
-            content="content",
-            response_type="Entities",
-        )
+        with pytest.warns(DeprecationWarning):
+            comprehend = client.tools.comprehend.medical(
+                content="content",
+                response_type="Entities",
+            )
+
         assert_matches_type(ComprehendMedicalResponse, comprehend, path=["response"])
 
     @parametrize
     def test_raw_response_medical(self, client: Writer) -> None:
-        response = client.tools.comprehend.with_raw_response.medical(
-            content="content",
-            response_type="Entities",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.tools.comprehend.with_raw_response.medical(
+                content="content",
+                response_type="Entities",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -39,15 +44,16 @@ class TestComprehend:
 
     @parametrize
     def test_streaming_response_medical(self, client: Writer) -> None:
-        with client.tools.comprehend.with_streaming_response.medical(
-            content="content",
-            response_type="Entities",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.tools.comprehend.with_streaming_response.medical(
+                content="content",
+                response_type="Entities",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            comprehend = response.parse()
-            assert_matches_type(ComprehendMedicalResponse, comprehend, path=["response"])
+                comprehend = response.parse()
+                assert_matches_type(ComprehendMedicalResponse, comprehend, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -59,18 +65,21 @@ class TestAsyncComprehend:
 
     @parametrize
     async def test_method_medical(self, async_client: AsyncWriter) -> None:
-        comprehend = await async_client.tools.comprehend.medical(
-            content="content",
-            response_type="Entities",
-        )
+        with pytest.warns(DeprecationWarning):
+            comprehend = await async_client.tools.comprehend.medical(
+                content="content",
+                response_type="Entities",
+            )
+
         assert_matches_type(ComprehendMedicalResponse, comprehend, path=["response"])
 
     @parametrize
     async def test_raw_response_medical(self, async_client: AsyncWriter) -> None:
-        response = await async_client.tools.comprehend.with_raw_response.medical(
-            content="content",
-            response_type="Entities",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.tools.comprehend.with_raw_response.medical(
+                content="content",
+                response_type="Entities",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,14 +88,15 @@ class TestAsyncComprehend:
 
     @parametrize
     async def test_streaming_response_medical(self, async_client: AsyncWriter) -> None:
-        async with async_client.tools.comprehend.with_streaming_response.medical(
-            content="content",
-            response_type="Entities",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.tools.comprehend.with_streaming_response.medical(
+                content="content",
+                response_type="Entities",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            comprehend = await response.parse()
-            assert_matches_type(ComprehendMedicalResponse, comprehend, path=["response"])
+                comprehend = await response.parse()
+                assert_matches_type(ComprehendMedicalResponse, comprehend, path=["response"])
 
         assert cast(Any, response.is_closed) is True

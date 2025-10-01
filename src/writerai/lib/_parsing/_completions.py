@@ -7,7 +7,7 @@ from typing_extensions import TypeVar, TypeGuard, assert_never
 import pydantic
 
 from .._tools import PydanticFunctionTool
-from ..._types import NOT_GIVEN, NotGiven
+from ..._types import Omit, omit
 from ..._utils import is_dict, is_given
 from ..._compat import PYDANTIC_V1, model_parse_json
 from ..._models import construct_type_unchecked
@@ -35,7 +35,7 @@ _default_response_format: None = None
 
 
 def validate_input_tools(
-    tools: Iterable[ChatCompletionToolParam] | NotGiven = NOT_GIVEN,
+    tools: Iterable[ChatCompletionToolParam] | Omit = omit,
 ) -> None:
     if not is_given(tools):
         return
@@ -55,8 +55,8 @@ def validate_input_tools(
 
 def parse_chat_completion(
     *,
-    response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
-    input_tools: Iterable[ChatCompletionToolParam] | NotGiven,
+    response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
+    input_tools: Iterable[ChatCompletionToolParam] | Omit,
     chat_completion: ChatCompletion | ParsedChatCompletion[object],
 ) -> ParsedChatCompletion[ResponseFormatT]:
     if is_given(input_tools):
@@ -153,7 +153,7 @@ def parse_function_tool_arguments(
 
 def maybe_parse_content(
     *,
-    response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
+    response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
     message: ChatCompletionMessage | ParsedChatCompletionMessage[object],
 ) -> ResponseFormatT | None:
     if has_rich_response_format(response_format) and message.content and not message.refusal:
@@ -163,7 +163,7 @@ def maybe_parse_content(
 
 
 def solve_response_format_t(
-    response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
+    response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
 ) -> type[ResponseFormatT]:
     """Return the runtime type for the given response format.
 
@@ -178,8 +178,8 @@ def solve_response_format_t(
 
 def has_parseable_input(
     *,
-    response_format: type | ResponseFormatParam | NotGiven,
-    input_tools: Iterable[ChatCompletionToolParam] | NotGiven = NOT_GIVEN,
+    response_format: type | ResponseFormatParam | Omit,
+    input_tools: Iterable[ChatCompletionToolParam] | Omit = omit,
 ) -> bool:
     if has_rich_response_format(response_format):
         return True
@@ -192,7 +192,7 @@ def has_parseable_input(
 
 
 def has_rich_response_format(
-    response_format: type[ResponseFormatT] | ResponseFormatParam | NotGiven,
+    response_format: type[ResponseFormatT] | ResponseFormatParam | Omit,
 ) -> TypeGuard[type[ResponseFormatT]]:
     if not is_given(response_format):
         return False
@@ -229,10 +229,10 @@ def _parse_content(response_format: type[ResponseFormatT], content: str) -> Resp
 
 
 def type_to_response_format_param(
-    response_format: type | ResponseFormatParam | NotGiven,
-) -> ResponseFormatParam | NotGiven:
+    response_format: type | ResponseFormatParam | Omit,
+) -> ResponseFormatParam | Omit:
     if not is_given(response_format):
-        return NOT_GIVEN
+        return omit
 
     if is_response_format_param(response_format):
         return response_format

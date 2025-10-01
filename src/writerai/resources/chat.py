@@ -9,7 +9,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..types import chat_chat_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -27,6 +27,7 @@ from ..lib._parsing import (
     parse_chat_completion,
     type_to_response_format_param,
 )
+from .._utils._utils import is_given
 from ..types.parsed_chat import ParsedChatCompletion
 from ..lib.streaming.chat import ChatCompletionStreamManager, AsyncChatCompletionStreamManager
 from ..types.chat_completion import ChatCompletion
@@ -64,23 +65,23 @@ class ChatResource(SyncAPIResource):
         *,
         messages: Iterable[chat_chat_params.Message],
         model: str,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletion:
         """Generate a chat completion based on the provided messages.
 
@@ -172,22 +173,22 @@ class ChatResource(SyncAPIResource):
         messages: Iterable[chat_chat_params.Message],
         model: str,
         stream: Literal[True],
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
@@ -279,22 +280,22 @@ class ChatResource(SyncAPIResource):
         messages: Iterable[chat_chat_params.Message],
         model: str,
         stream: bool,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletion | Stream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
@@ -385,23 +386,23 @@ class ChatResource(SyncAPIResource):
         *,
         messages: Iterable[chat_chat_params.Message],
         model: str,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Literal[True] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletion | Stream[ChatCompletionChunk]:
         return self._post(
             "/v1/chat",
@@ -437,20 +438,20 @@ class ChatResource(SyncAPIResource):
         model: str,
         messages: Iterable[chat_chat_params.Message],
         response_format: Type[T],
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParsedChatCompletion[T]:
         """
         Generate a chat completion with a structured response based on the provided messages.
@@ -537,7 +538,7 @@ class ChatResource(SyncAPIResource):
 
         return parse_chat_completion(
             response_format=response_format,
-            input_tools=tools if tools is not NOT_GIVEN else [],
+            input_tools=tools if is_given(tools) else [],
             chat_completion=chat_completion,
         )
 
@@ -546,21 +547,21 @@ class ChatResource(SyncAPIResource):
         *,
         messages: Iterable[chat_chat_params.Message],
         model: str,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletionStreamManager[ResponseFormatT]:
         """Wrapper over the `client.chat.chat(stream=True)` method that provides a more granular event API
         and automatic accumulation of each delta.
@@ -607,7 +608,7 @@ class ChatResource(SyncAPIResource):
         )
         return ChatCompletionStreamManager(
             api_request,
-            response_format=NOT_GIVEN,
+            response_format=omit,
             input_tools=tools,
         )
 
@@ -638,23 +639,23 @@ class AsyncChatResource(AsyncAPIResource):
         *,
         messages: Iterable[chat_chat_params.Message],
         model: str,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletion:
         """Generate a chat completion based on the provided messages.
 
@@ -746,22 +747,22 @@ class AsyncChatResource(AsyncAPIResource):
         messages: Iterable[chat_chat_params.Message],
         model: str,
         stream: Literal[True],
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncStream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
@@ -853,22 +854,22 @@ class AsyncChatResource(AsyncAPIResource):
         messages: Iterable[chat_chat_params.Message],
         model: str,
         stream: bool,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletion | AsyncStream[ChatCompletionChunk]:
         """Generate a chat completion based on the provided messages.
 
@@ -959,23 +960,23 @@ class AsyncChatResource(AsyncAPIResource):
         *,
         messages: Iterable[chat_chat_params.Message],
         model: str,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        response_format: chat_chat_params.ResponseFormat | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        response_format: chat_chat_params.ResponseFormat | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Literal[True] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCompletion | AsyncStream[ChatCompletionChunk]:
         return await self._post(
             "/v1/chat",
@@ -1011,20 +1012,20 @@ class AsyncChatResource(AsyncAPIResource):
         model: str,
         messages: Iterable[chat_chat_params.Message],
         response_format: Type[T],
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParsedChatCompletion[T]:
         """
         Generate a chat completion with a structured response based on the provided messages.
@@ -1111,7 +1112,7 @@ class AsyncChatResource(AsyncAPIResource):
 
         return parse_chat_completion(
             response_format=response_format,
-            input_tools=tools if tools is not NOT_GIVEN else [],
+            input_tools=tools if is_given(tools) else [],
             chat_completion=chat_completion,
         )
 
@@ -1120,21 +1121,21 @@ class AsyncChatResource(AsyncAPIResource):
         *,
         messages: Iterable[chat_chat_params.Message],
         model: str,
-        logprobs: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        n: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream_options: chat_chat_params.StreamOptions | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tool_choice: chat_chat_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[ToolParam] | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        logprobs: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        n: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream_options: chat_chat_params.StreamOptions | Omit = omit,
+        temperature: float | Omit = omit,
+        tool_choice: chat_chat_params.ToolChoice | Omit = omit,
+        tools: Iterable[ToolParam] | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncChatCompletionStreamManager[ResponseFormatT]:
         """Wrapper over the `client.chat.chat(stream=True)` method that provides a more granular event API
         and automatic accumulation of each delta.
@@ -1180,7 +1181,7 @@ class AsyncChatResource(AsyncAPIResource):
         )
         return AsyncChatCompletionStreamManager(
             api_request,
-            response_format=NOT_GIVEN,
+            response_format=omit,
             input_tools=tools,
         )
 

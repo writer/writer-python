@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..types import completion_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -52,19 +52,19 @@ class CompletionsResource(SyncAPIResource):
         *,
         model: str,
         prompt: str,
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Completion:
         """Generate text completions using the specified model and prompt.
 
@@ -118,18 +118,18 @@ class CompletionsResource(SyncAPIResource):
         model: str,
         prompt: str,
         stream: Literal[True],
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream[CompletionChunk]:
         """Generate text completions using the specified model and prompt.
 
@@ -183,18 +183,18 @@ class CompletionsResource(SyncAPIResource):
         model: str,
         prompt: str,
         stream: bool,
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Completion | Stream[CompletionChunk]:
         """Generate text completions using the specified model and prompt.
 
@@ -247,19 +247,19 @@ class CompletionsResource(SyncAPIResource):
         *,
         model: str,
         prompt: str,
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Literal[True] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Completion | Stream[CompletionChunk]:
         return self._post(
             "/v1/completions",
@@ -314,19 +314,19 @@ class AsyncCompletionsResource(AsyncAPIResource):
         *,
         model: str,
         prompt: str,
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Completion:
         """Generate text completions using the specified model and prompt.
 
@@ -380,18 +380,18 @@ class AsyncCompletionsResource(AsyncAPIResource):
         model: str,
         prompt: str,
         stream: Literal[True],
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncStream[CompletionChunk]:
         """Generate text completions using the specified model and prompt.
 
@@ -445,18 +445,18 @@ class AsyncCompletionsResource(AsyncAPIResource):
         model: str,
         prompt: str,
         stream: bool,
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Completion | AsyncStream[CompletionChunk]:
         """Generate text completions using the specified model and prompt.
 
@@ -509,19 +509,19 @@ class AsyncCompletionsResource(AsyncAPIResource):
         *,
         model: str,
         prompt: str,
-        best_of: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        random_seed: int | NotGiven = NOT_GIVEN,
-        stop: Union[SequenceNotStr[str], str] | NotGiven = NOT_GIVEN,
-        stream: Literal[False] | Literal[True] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        best_of: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        random_seed: int | Omit = omit,
+        stop: Union[SequenceNotStr[str], str] | Omit = omit,
+        stream: Literal[False] | Literal[True] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Completion | AsyncStream[CompletionChunk]:
         return await self._post(
             "/v1/completions",

@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import translation_translate_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Query, Headers, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -43,6 +44,9 @@ class TranslationResource(SyncAPIResource):
         """
         return TranslationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities. See documentation at dev.writer.com for more information."
+    )
     def translate(
         self,
         *,
@@ -58,7 +62,7 @@ class TranslationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationResponse:
         """
         Translate text from one language to another.
@@ -145,6 +149,9 @@ class AsyncTranslationResource(AsyncAPIResource):
         """
         return AsyncTranslationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the translate tool for translation capabilities. See documentation at dev.writer.com for more information."
+    )
     async def translate(
         self,
         *,
@@ -160,7 +167,7 @@ class AsyncTranslationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationResponse:
         """
         Translate text from one language to another.
@@ -231,8 +238,10 @@ class TranslationResourceWithRawResponse:
     def __init__(self, translation: TranslationResource) -> None:
         self._translation = translation
 
-        self.translate = to_raw_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -240,8 +249,10 @@ class AsyncTranslationResourceWithRawResponse:
     def __init__(self, translation: AsyncTranslationResource) -> None:
         self._translation = translation
 
-        self.translate = async_to_raw_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -249,8 +260,10 @@ class TranslationResourceWithStreamingResponse:
     def __init__(self, translation: TranslationResource) -> None:
         self._translation = translation
 
-        self.translate = to_streamed_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -258,6 +271,8 @@ class AsyncTranslationResourceWithStreamingResponse:
     def __init__(self, translation: AsyncTranslationResource) -> None:
         self._translation = translation
 
-        self.translate = async_to_streamed_response_wrapper(
-            translation.translate,
+        self.translate = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                translation.translate,  # pyright: ignore[reportDeprecated],
+            )
         )

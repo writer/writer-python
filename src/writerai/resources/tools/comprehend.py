@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -43,6 +44,9 @@ class ComprehendResource(SyncAPIResource):
         """
         return ComprehendResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis. See documentation at dev.writer.com for more information."
+    )
     def medical(
         self,
         *,
@@ -53,7 +57,7 @@ class ComprehendResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ComprehendMedicalResponse:
         """
         Analyze unstructured medical text to extract entities labeled with standardized
@@ -110,6 +114,9 @@ class AsyncComprehendResource(AsyncAPIResource):
         """
         return AsyncComprehendResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Will be removed in a future release. Migrate to `chat.chat` with the LLM tool using the `palmyra-med` model for medical analysis. See documentation at dev.writer.com for more information."
+    )
     async def medical(
         self,
         *,
@@ -120,7 +127,7 @@ class AsyncComprehendResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ComprehendMedicalResponse:
         """
         Analyze unstructured medical text to extract entities labeled with standardized
@@ -161,8 +168,10 @@ class ComprehendResourceWithRawResponse:
     def __init__(self, comprehend: ComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = to_raw_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -170,8 +179,10 @@ class AsyncComprehendResourceWithRawResponse:
     def __init__(self, comprehend: AsyncComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = async_to_raw_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -179,8 +190,10 @@ class ComprehendResourceWithStreamingResponse:
     def __init__(self, comprehend: ComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = to_streamed_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -188,6 +201,8 @@ class AsyncComprehendResourceWithStreamingResponse:
     def __init__(self, comprehend: AsyncComprehendResource) -> None:
         self._comprehend = comprehend
 
-        self.medical = async_to_streamed_response_wrapper(
-            comprehend.medical,
+        self.medical = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                comprehend.medical,  # pyright: ignore[reportDeprecated],
+            )
         )
