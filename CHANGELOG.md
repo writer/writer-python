@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.2 (2025-10-03)
+
+Full Changelog: [v2.3.2-rc2...v2.3.2](https://github.com/writer/writer-python/compare/v2.3.2-rc2...v2.3.2)
+
 ## 2.3.2-rc2 (2025-10-01)
 
 Full Changelog: [v2.3.2-rc1...v2.3.2-rc2](https://github.com/writer/writer-python/compare/v2.3.2-rc1...v2.3.2-rc2)
