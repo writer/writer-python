@@ -19,7 +19,7 @@ To install the package from PyPI, use `pip`:
 
 ```sh
 # install from PyPI
-pip install --pre writer-sdk
+pip install writer-sdk
 ```
 
 ## Prequisites
@@ -116,7 +116,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre writer-sdk[aiohttp]
+pip install writer-sdk[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
