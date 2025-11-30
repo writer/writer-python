@@ -57,8 +57,10 @@ class VisionResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VisionResponse:
-        """
-        Submit images and a prompt to generate an analysis of the images.
+        """Submit images and documents with a prompt to generate an analysis.
+
+        Supports JPG,
+        PNG, PDF, and TXT files up to 7MB each.
 
         Args:
           model: The model to use for image analysis.
@@ -125,8 +127,10 @@ class AsyncVisionResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VisionResponse:
-        """
-        Submit images and a prompt to generate an analysis of the images.
+        """Submit images and documents with a prompt to generate an analysis.
+
+        Supports JPG,
+        PNG, PDF, and TXT files up to 7MB each.
 
         Args:
           model: The model to use for image analysis.
