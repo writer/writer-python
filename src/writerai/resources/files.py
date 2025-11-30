@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import file_list_params, file_retry_params
+from ..types import file_list_params, file_retry_params, file_upload_params
 from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -274,6 +274,7 @@ class FilesResource(SyncAPIResource):
         content: FileTypes,
         content_disposition: str,
         content_type: str,
+        graph_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,6 +288,13 @@ class FilesResource(SyncAPIResource):
         DOC, DOCX, PPT, PPTX, JPG, PNG, EML, HTML, SRT, CSV, XLS, and XLSX.
 
         Args:
+          graph_id: The unique identifier of the Knowledge Graph to associate the uploaded file
+              with.
+
+              Note: The response from the upload endpoint does not include the `graphId`
+              field, but the association will be visible when you retrieve the file using the
+              file retrieval endpoint.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -303,7 +311,11 @@ class FilesResource(SyncAPIResource):
         return self._post(
             "/v1/files",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"graph_id": graph_id}, file_upload_params.FileUploadParams),
             ),
             binary_request=content,
             cast_to=File,
@@ -550,6 +562,7 @@ class AsyncFilesResource(AsyncAPIResource):
         content: FileTypes,
         content_disposition: str,
         content_type: str,
+        graph_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,6 +576,13 @@ class AsyncFilesResource(AsyncAPIResource):
         DOC, DOCX, PPT, PPTX, JPG, PNG, EML, HTML, SRT, CSV, XLS, and XLSX.
 
         Args:
+          graph_id: The unique identifier of the Knowledge Graph to associate the uploaded file
+              with.
+
+              Note: The response from the upload endpoint does not include the `graphId`
+              field, but the association will be visible when you retrieve the file using the
+              file retrieval endpoint.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -579,7 +599,11 @@ class AsyncFilesResource(AsyncAPIResource):
         return await self._post(
             "/v1/files",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"graph_id": graph_id}, file_upload_params.FileUploadParams),
             ),
             binary_request=content,
             cast_to=File,

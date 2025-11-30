@@ -16,7 +16,13 @@ class File(BaseModel):
     """The timestamp when the file was uploaded."""
 
     graph_ids: List[str]
-    """A list of Knowledge Graph IDs that the file is associated with."""
+    """A list of Knowledge Graph IDs that the file is associated with.
+
+    If you provided a `graphId` during upload, the file is associated with that
+    Knowledge Graph. However, the `graph_ids` field in the upload response is an
+    empty list. The association will be visible in the `graph_ids` list when you
+    retrieve the file using the file retrieval endpoint.
+    """
 
     name: str
     """The name of the file."""

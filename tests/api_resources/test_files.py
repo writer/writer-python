@@ -241,6 +241,17 @@ class TestFiles:
 
     @pytest.mark.skip(reason="requests with binary data not yet supported in test environment")
     @parametrize
+    def test_method_upload_with_all_params(self, client: Writer) -> None:
+        file = client.files.upload(
+            content=b"raw file contents",
+            content_disposition="Content-Disposition",
+            content_type="Content-Type",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(File, file, path=["response"])
+
+    @pytest.mark.skip(reason="requests with binary data not yet supported in test environment")
+    @parametrize
     def test_raw_response_upload(self, client: Writer) -> None:
         response = client.files.with_raw_response.upload(
             content=b"raw file contents",
@@ -481,6 +492,17 @@ class TestAsyncFiles:
             content=b"raw file contents",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
+        )
+        assert_matches_type(File, file, path=["response"])
+
+    @pytest.mark.skip(reason="requests with binary data not yet supported in test environment")
+    @parametrize
+    async def test_method_upload_with_all_params(self, async_client: AsyncWriter) -> None:
+        file = await async_client.files.upload(
+            content=b"raw file contents",
+            content_disposition="Content-Disposition",
+            content_type="Content-Type",
+            graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(File, file, path=["response"])
 

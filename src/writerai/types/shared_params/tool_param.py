@@ -204,10 +204,11 @@ class TranslationTool(TypedDict, total=False):
 
 class VisionToolFunctionVariable(TypedDict, total=False):
     file_id: Required[str]
-    """The File ID of the image to analyze.
+    """The File ID of the file to analyze.
 
     The file must be uploaded to the Writer platform before you use it with the
-    Vision tool. The maximum allowed file size is 7MB.
+    Vision tool. Supported file types: JPG, PNG, PDF, TXT. The maximum allowed file
+    size is 7MB.
     """
 
     name: Required[str]
@@ -229,7 +230,10 @@ class VisionToolFunction(TypedDict, total=False):
 
 class VisionTool(TypedDict, total=False):
     function: Required[VisionToolFunction]
-    """A tool that uses Palmyra Vision to analyze images."""
+    """A tool that uses Palmyra Vision to analyze images and documents.
+
+    Supports JPG, PNG, PDF, and TXT files up to 7MB each.
+    """
 
     type: Required[Literal["vision"]]
     """The type of tool."""
