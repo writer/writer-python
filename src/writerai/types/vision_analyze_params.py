@@ -25,10 +25,10 @@ class VisionAnalyzeParams(TypedDict, total=False):
 
 class Variable(TypedDict, total=False):
     file_id: Required[str]
-    """The File ID of the image to analyze.
+    """The File ID of the file to analyze.
 
     The file must be uploaded to the Writer platform before it can be used in a
-    vision request.
+    vision request. Supported file types: JPG, PNG, PDF, TXT (max 7MB each).
     """
 
     name: Required[str]

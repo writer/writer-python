@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.3.3-rc1 (2025-12-01)
+
+Full Changelog: [v2.3.2...v2.3.3-rc1](https://github.com/writer/writer-python/compare/v2.3.2...v2.3.3-rc1)
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([31e3903](https://github.com/writer/writer-python/commit/31e39034cab026c34c9509757a27d9e2221c0c5b))
+* compat with Python 3.14 ([56db271](https://github.com/writer/writer-python/commit/56db2716054e1ba6a23071e172584e7c2433ba87))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([1fb3322](https://github.com/writer/writer-python/commit/1fb332284ab2c7ff87afeb686176df1efcf262db))
+* ensure streams are always closed ([23c7971](https://github.com/writer/writer-python/commit/23c7971d69301956cef01d0041120a848818fa5a))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([f2ef07d](https://github.com/writer/writer-python/commit/f2ef07dbe6ffd744bf58a6c7b5f3dac8b73a8805))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([74b4799](https://github.com/writer/writer-python/commit/74b479957daea7272bfd0a7533125b0bd42c17dd))
+* **internal/tests:** avoid race condition with implicit client cleanup ([828ac4d](https://github.com/writer/writer-python/commit/828ac4d2a57d4f623d4fe2aef25390c5f0051b96))
+* **internal:** codegen related update ([3b5b4a6](https://github.com/writer/writer-python/commit/3b5b4a69314e7c3853018233796b05a4035710fb))
+* **internal:** detect missing future annotations with ruff ([9df4451](https://github.com/writer/writer-python/commit/9df44512304949e6193e7ff33390342e26d065c6))
+* **internal:** grammar fix (it's -&gt; its) ([e8b1113](https://github.com/writer/writer-python/commit/e8b11131528095f8acf847d126fda21cec0b66c6))
+* **package:** drop Python 3.8 support ([9b204ce](https://github.com/writer/writer-python/commit/9b204ced5e50fa180e24b3d05ec271b8bbd7baff))
+
+
+### Documentation
+
+* **api:** updates to API spec ([04fe076](https://github.com/writer/writer-python/commit/04fe0769dcba588b421d5d6fe3fd5b7cf10a726d))
+
 ## 2.3.2 (2025-10-03)
 
 Full Changelog: [v2.3.2-rc2...v2.3.2](https://github.com/writer/writer-python/compare/v2.3.2-rc2...v2.3.2)

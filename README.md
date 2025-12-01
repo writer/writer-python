@@ -3,7 +3,7 @@
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/writer-sdk.svg?label=pypi%20(stable))](https://pypi.org/project/writer-sdk/)
 
-The Writer Python library provides access to the Writer REST API from any Python 3.8+
+The Writer Python library provides access to the Writer REST API from any Python 3.9+
 application. It includes a set of tools and utilities that make it easy to integrate the capabilities
 of Writer into your projects.
 
@@ -19,7 +19,7 @@ To install the package from PyPI, use `pip`:
 
 ```sh
 # install from PyPI
-pip install writer-sdk
+pip install --pre writer-sdk
 ```
 
 ## Prequisites
@@ -116,7 +116,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install writer-sdk[aiohttp]
+pip install --pre writer-sdk[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
