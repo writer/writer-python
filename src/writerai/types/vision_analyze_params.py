@@ -24,6 +24,13 @@ class VisionAnalyzeParams(TypedDict, total=False):
 
 
 class Variable(TypedDict, total=False):
+    """An array of file variables required for the analysis.
+
+    The files must be uploaded to the Writer platform before they can be used in a vision request. Learn how to upload files using the [Files API](https://dev.writer.com/api-reference/file-api/upload-files).
+
+    Supported file types: JPG, PNG, PDF, TXT. The maximum allowed file size for each file is 7MB.
+    """
+
     file_id: Required[str]
     """The File ID of the file to analyze.
 

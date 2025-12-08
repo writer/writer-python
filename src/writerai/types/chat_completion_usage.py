@@ -16,6 +16,11 @@ class PromptTokenDetails(BaseModel):
 
 
 class ChatCompletionUsage(BaseModel):
+    """Usage information for the chat completion response.
+
+    Please note that at this time Knowledge Graph tool usage is not included in this object.
+    """
+
     completion_tokens: int
 
     prompt_tokens: int
