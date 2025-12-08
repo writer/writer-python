@@ -18,11 +18,15 @@ __all__ = [
 
 
 class InputOptionsApplicationInputDropdownOptions(BaseModel):
+    """Configuration options specific to dropdown-type input fields."""
+
     list: List[str]
     """List of available options in the dropdown menu."""
 
 
 class InputOptionsApplicationInputFileOptions(BaseModel):
+    """Configuration options specific to file upload input fields."""
+
     file_types: List[str]
     """List of allowed file extensions."""
 
@@ -40,6 +44,8 @@ class InputOptionsApplicationInputFileOptions(BaseModel):
 
 
 class InputOptionsApplicationInputMediaOptions(BaseModel):
+    """Configuration options specific to media upload input fields."""
+
     file_types: List[str]
     """List of allowed media file types."""
 
@@ -48,6 +54,8 @@ class InputOptionsApplicationInputMediaOptions(BaseModel):
 
 
 class InputOptionsApplicationInputTextOptions(BaseModel):
+    """Configuration options specific to text input fields."""
+
     max_fields: int
     """Maximum number of text fields allowed."""
 
@@ -64,6 +72,8 @@ InputOptions: TypeAlias = Union[
 
 
 class Input(BaseModel):
+    """Configuration for an individual input field in the application."""
+
     input_type: Literal["text", "dropdown", "file", "media"]
     """Type of input field determining its behavior and validation rules."""
 
@@ -81,6 +91,8 @@ class Input(BaseModel):
 
 
 class ApplicationRetrieveResponse(BaseModel):
+    """Detailed application object including its input configuration."""
+
     id: str
     """Unique identifier for the application."""
 

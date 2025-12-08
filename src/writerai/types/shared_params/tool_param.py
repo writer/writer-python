@@ -35,6 +35,10 @@ class FunctionTool(TypedDict, total=False):
 
 
 class GraphToolFunctionQueryConfig(TypedDict, total=False):
+    """
+    Configuration options for Knowledge Graph queries, including search parameters and citation settings.
+    """
+
     grounding_level: float
     """
     Level of grounding required for responses, controlling how closely answers must
@@ -102,6 +106,8 @@ class GraphToolFunctionQueryConfig(TypedDict, total=False):
 
 
 class GraphToolFunction(TypedDict, total=False):
+    """A tool that uses Knowledge Graphs as context for responses."""
+
     graph_ids: Required[SequenceNotStr[str]]
     """An array of graph IDs to use in the tool."""
 
@@ -127,6 +133,8 @@ class GraphTool(TypedDict, total=False):
 
 
 class LlmToolFunction(TypedDict, total=False):
+    """A tool that uses another Writer model to generate a response."""
+
     description: Required[str]
     """A description of the model to use."""
 
@@ -143,6 +151,8 @@ class LlmTool(TypedDict, total=False):
 
 
 class TranslationToolFunction(TypedDict, total=False):
+    """A tool that uses Palmyra Translate to translate text."""
+
     formality: Required[bool]
     """Whether to use formal or informal language in the translation.
 
@@ -195,6 +205,11 @@ class TranslationToolFunction(TypedDict, total=False):
 
 
 class TranslationTool(TypedDict, total=False):
+    """A tool that uses Palmyra Translate to translate text.
+
+    Note that this tool does not stream results. The response is returned after the translation is complete.
+    """
+
     function: Required[TranslationToolFunction]
     """A tool that uses Palmyra Translate to translate text."""
 
@@ -222,6 +237,11 @@ class VisionToolFunctionVariable(TypedDict, total=False):
 
 
 class VisionToolFunction(TypedDict, total=False):
+    """A tool that uses Palmyra Vision to analyze images and documents.
+
+    Supports JPG, PNG, PDF, and TXT files up to 7MB each.
+    """
+
     model: Required[Literal["palmyra-vision"]]
     """The model to use for image analysis."""
 
@@ -240,6 +260,8 @@ class VisionTool(TypedDict, total=False):
 
 
 class WebSearchToolFunction(TypedDict, total=False):
+    """A tool that uses web search to find information."""
+
     exclude_domains: Required[SequenceNotStr[str]]
     """An array of domains to exclude from the search results."""
 

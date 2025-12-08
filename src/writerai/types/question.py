@@ -11,6 +11,10 @@ __all__ = ["Question", "References", "ReferencesFile", "ReferencesWeb", "Subquer
 
 
 class ReferencesFile(BaseModel):
+    """
+    A file-based reference containing text snippets from uploaded documents in the Knowledge Graph.
+    """
+
     file_id: str = FieldInfo(alias="fileId")
     """The unique identifier of the file in your Writer account."""
 
@@ -37,6 +41,10 @@ class ReferencesFile(BaseModel):
 
 
 class ReferencesWeb(BaseModel):
+    """
+    A web-based reference containing text snippets from online sources accessed during the query.
+    """
+
     score: float
     """
     Internal score used during the retrieval process for ranking and selecting
@@ -57,6 +65,10 @@ class ReferencesWeb(BaseModel):
 
 
 class References(BaseModel):
+    """
+    Detailed source information organized by reference type, providing comprehensive metadata about the sources used to generate the response.
+    """
+
     files: Optional[List[ReferencesFile]] = None
     """Array of file-based references from uploaded documents in the Knowledge Graph."""
 
@@ -65,6 +77,10 @@ class References(BaseModel):
 
 
 class Subquery(BaseModel):
+    """
+    A sub-question generated to break down complex queries into more manageable parts, along with its answer and supporting sources.
+    """
+
     answer: str
     """The answer to the subquery based on Knowledge Graph content."""
 

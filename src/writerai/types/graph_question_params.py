@@ -28,6 +28,10 @@ class GraphQuestionParamsBase(TypedDict, total=False):
 
 
 class QueryConfig(TypedDict, total=False):
+    """
+    Configuration options for Knowledge Graph queries, including search parameters and citation settings.
+    """
+
     grounding_level: float
     """
     Level of grounding required for responses, controlling how closely answers must

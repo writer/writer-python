@@ -40,6 +40,11 @@ class WebSearchData(BaseModel):
 
 
 class ChatCompletionMessage(BaseModel):
+    """The chat completion message from the model.
+
+    Note: this field is deprecated for streaming. Use `delta` instead.
+    """
+
     content: str
     """The text content produced by the model.
 

@@ -10,6 +10,8 @@ __all__ = ["FunctionDefinition"]
 
 
 class FunctionDefinition(TypedDict, total=False):
+    """A tool that uses a custom function."""
+
     name: Required[str]
     """Name of the function."""
 

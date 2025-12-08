@@ -8,6 +8,10 @@ __all__ = ["LogprobsToken", "TopLogprob"]
 
 
 class TopLogprob(BaseModel):
+    """
+    An array of mappings for each token to its top log probabilities, showing detailed prediction probabilities.
+    """
+
     token: str
 
     logprob: float
