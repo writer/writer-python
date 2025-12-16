@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -21,8 +21,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import chat, files, graphs, models, vision, completions, translation
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import WriterError, APIStatusError
 from ._base_client import (
@@ -30,8 +30,18 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.tools import tools
-from .resources.applications import applications
+
+if TYPE_CHECKING:
+    from .resources import chat, files, tools, graphs, models, vision, completions, translation, applications
+    from .resources.chat import ChatResource, AsyncChatResource
+    from .resources.files import FilesResource, AsyncFilesResource
+    from .resources.graphs import GraphsResource, AsyncGraphsResource
+    from .resources.models import ModelsResource, AsyncModelsResource
+    from .resources.vision import VisionResource, AsyncVisionResource
+    from .resources.completions import CompletionsResource, AsyncCompletionsResource
+    from .resources.tools.tools import ToolsResource, AsyncToolsResource
+    from .resources.translation import TranslationResource, AsyncTranslationResource
+    from .resources.applications.applications import ApplicationsResource, AsyncApplicationsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Writer", "AsyncWriter", "Client", "AsyncClient"]
 
@@ -67,18 +77,6 @@ def _extract_sdk_env_headers() -> dict[str, str]:
 
 
 class Writer(SyncAPIClient):
-    applications: applications.ApplicationsResource
-    chat: chat.ChatResource
-    completions: completions.CompletionsResource
-    models: models.ModelsResource
-    graphs: graphs.GraphsResource
-    files: files.FilesResource
-    tools: tools.ToolsResource
-    translation: translation.TranslationResource
-    vision: vision.VisionResource
-    with_raw_response: WriterWithRawResponse
-    with_streaming_response: WriterWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -138,17 +136,67 @@ class Writer(SyncAPIClient):
 
         self._default_stream_cls = Stream
 
-        self.applications = applications.ApplicationsResource(self)
-        self.chat = chat.ChatResource(self)
-        self.completions = completions.CompletionsResource(self)
-        self.models = models.ModelsResource(self)
-        self.graphs = graphs.GraphsResource(self)
-        self.files = files.FilesResource(self)
-        self.tools = tools.ToolsResource(self)
-        self.translation = translation.TranslationResource(self)
-        self.vision = vision.VisionResource(self)
-        self.with_raw_response = WriterWithRawResponse(self)
-        self.with_streaming_response = WriterWithStreamedResponse(self)
+    @cached_property
+    def applications(self) -> ApplicationsResource:
+        from .resources.applications import ApplicationsResource
+
+        return ApplicationsResource(self)
+
+    @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
+    def completions(self) -> CompletionsResource:
+        from .resources.completions import CompletionsResource
+
+        return CompletionsResource(self)
+
+    @cached_property
+    def models(self) -> ModelsResource:
+        from .resources.models import ModelsResource
+
+        return ModelsResource(self)
+
+    @cached_property
+    def graphs(self) -> GraphsResource:
+        from .resources.graphs import GraphsResource
+
+        return GraphsResource(self)
+
+    @cached_property
+    def files(self) -> FilesResource:
+        from .resources.files import FilesResource
+
+        return FilesResource(self)
+
+    @cached_property
+    def tools(self) -> ToolsResource:
+        from .resources.tools import ToolsResource
+
+        return ToolsResource(self)
+
+    @cached_property
+    def translation(self) -> TranslationResource:
+        from .resources.translation import TranslationResource
+
+        return TranslationResource(self)
+
+    @cached_property
+    def vision(self) -> VisionResource:
+        from .resources.vision import VisionResource
+
+        return VisionResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> WriterWithRawResponse:
+        return WriterWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> WriterWithStreamedResponse:
+        return WriterWithStreamedResponse(self)
 
     @property
     @override
@@ -256,18 +304,6 @@ class Writer(SyncAPIClient):
 
 
 class AsyncWriter(AsyncAPIClient):
-    applications: applications.AsyncApplicationsResource
-    chat: chat.AsyncChatResource
-    completions: completions.AsyncCompletionsResource
-    models: models.AsyncModelsResource
-    graphs: graphs.AsyncGraphsResource
-    files: files.AsyncFilesResource
-    tools: tools.AsyncToolsResource
-    translation: translation.AsyncTranslationResource
-    vision: vision.AsyncVisionResource
-    with_raw_response: AsyncWriterWithRawResponse
-    with_streaming_response: AsyncWriterWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -327,17 +363,67 @@ class AsyncWriter(AsyncAPIClient):
 
         self._default_stream_cls = AsyncStream
 
-        self.applications = applications.AsyncApplicationsResource(self)
-        self.chat = chat.AsyncChatResource(self)
-        self.completions = completions.AsyncCompletionsResource(self)
-        self.models = models.AsyncModelsResource(self)
-        self.graphs = graphs.AsyncGraphsResource(self)
-        self.files = files.AsyncFilesResource(self)
-        self.tools = tools.AsyncToolsResource(self)
-        self.translation = translation.AsyncTranslationResource(self)
-        self.vision = vision.AsyncVisionResource(self)
-        self.with_raw_response = AsyncWriterWithRawResponse(self)
-        self.with_streaming_response = AsyncWriterWithStreamedResponse(self)
+    @cached_property
+    def applications(self) -> AsyncApplicationsResource:
+        from .resources.applications import AsyncApplicationsResource
+
+        return AsyncApplicationsResource(self)
+
+    @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
+    def completions(self) -> AsyncCompletionsResource:
+        from .resources.completions import AsyncCompletionsResource
+
+        return AsyncCompletionsResource(self)
+
+    @cached_property
+    def models(self) -> AsyncModelsResource:
+        from .resources.models import AsyncModelsResource
+
+        return AsyncModelsResource(self)
+
+    @cached_property
+    def graphs(self) -> AsyncGraphsResource:
+        from .resources.graphs import AsyncGraphsResource
+
+        return AsyncGraphsResource(self)
+
+    @cached_property
+    def files(self) -> AsyncFilesResource:
+        from .resources.files import AsyncFilesResource
+
+        return AsyncFilesResource(self)
+
+    @cached_property
+    def tools(self) -> AsyncToolsResource:
+        from .resources.tools import AsyncToolsResource
+
+        return AsyncToolsResource(self)
+
+    @cached_property
+    def translation(self) -> AsyncTranslationResource:
+        from .resources.translation import AsyncTranslationResource
+
+        return AsyncTranslationResource(self)
+
+    @cached_property
+    def vision(self) -> AsyncVisionResource:
+        from .resources.vision import AsyncVisionResource
+
+        return AsyncVisionResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncWriterWithRawResponse:
+        return AsyncWriterWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncWriterWithStreamedResponse:
+        return AsyncWriterWithStreamedResponse(self)
 
     @property
     @override
@@ -445,55 +531,247 @@ class AsyncWriter(AsyncAPIClient):
 
 
 class WriterWithRawResponse:
+    _client: Writer
+
     def __init__(self, client: Writer) -> None:
-        self.applications = applications.ApplicationsResourceWithRawResponse(client.applications)
-        self.chat = chat.ChatResourceWithRawResponse(client.chat)
-        self.completions = completions.CompletionsResourceWithRawResponse(client.completions)
-        self.models = models.ModelsResourceWithRawResponse(client.models)
-        self.graphs = graphs.GraphsResourceWithRawResponse(client.graphs)
-        self.files = files.FilesResourceWithRawResponse(client.files)
-        self.tools = tools.ToolsResourceWithRawResponse(client.tools)
-        self.translation = translation.TranslationResourceWithRawResponse(client.translation)
-        self.vision = vision.VisionResourceWithRawResponse(client.vision)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.ApplicationsResourceWithRawResponse:
+        from .resources.applications import ApplicationsResourceWithRawResponse
+
+        return ApplicationsResourceWithRawResponse(self._client.applications)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def completions(self) -> completions.CompletionsResourceWithRawResponse:
+        from .resources.completions import CompletionsResourceWithRawResponse
+
+        return CompletionsResourceWithRawResponse(self._client.completions)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithRawResponse:
+        from .resources.models import ModelsResourceWithRawResponse
+
+        return ModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def graphs(self) -> graphs.GraphsResourceWithRawResponse:
+        from .resources.graphs import GraphsResourceWithRawResponse
+
+        return GraphsResourceWithRawResponse(self._client.graphs)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithRawResponse:
+        from .resources.files import FilesResourceWithRawResponse
+
+        return FilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def tools(self) -> tools.ToolsResourceWithRawResponse:
+        from .resources.tools import ToolsResourceWithRawResponse
+
+        return ToolsResourceWithRawResponse(self._client.tools)
+
+    @cached_property
+    def translation(self) -> translation.TranslationResourceWithRawResponse:
+        from .resources.translation import TranslationResourceWithRawResponse
+
+        return TranslationResourceWithRawResponse(self._client.translation)
+
+    @cached_property
+    def vision(self) -> vision.VisionResourceWithRawResponse:
+        from .resources.vision import VisionResourceWithRawResponse
+
+        return VisionResourceWithRawResponse(self._client.vision)
 
 
 class AsyncWriterWithRawResponse:
+    _client: AsyncWriter
+
     def __init__(self, client: AsyncWriter) -> None:
-        self.applications = applications.AsyncApplicationsResourceWithRawResponse(client.applications)
-        self.chat = chat.AsyncChatResourceWithRawResponse(client.chat)
-        self.completions = completions.AsyncCompletionsResourceWithRawResponse(client.completions)
-        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
-        self.graphs = graphs.AsyncGraphsResourceWithRawResponse(client.graphs)
-        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.tools = tools.AsyncToolsResourceWithRawResponse(client.tools)
-        self.translation = translation.AsyncTranslationResourceWithRawResponse(client.translation)
-        self.vision = vision.AsyncVisionResourceWithRawResponse(client.vision)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.AsyncApplicationsResourceWithRawResponse:
+        from .resources.applications import AsyncApplicationsResourceWithRawResponse
+
+        return AsyncApplicationsResourceWithRawResponse(self._client.applications)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def completions(self) -> completions.AsyncCompletionsResourceWithRawResponse:
+        from .resources.completions import AsyncCompletionsResourceWithRawResponse
+
+        return AsyncCompletionsResourceWithRawResponse(self._client.completions)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        from .resources.models import AsyncModelsResourceWithRawResponse
+
+        return AsyncModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def graphs(self) -> graphs.AsyncGraphsResourceWithRawResponse:
+        from .resources.graphs import AsyncGraphsResourceWithRawResponse
+
+        return AsyncGraphsResourceWithRawResponse(self._client.graphs)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        from .resources.files import AsyncFilesResourceWithRawResponse
+
+        return AsyncFilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def tools(self) -> tools.AsyncToolsResourceWithRawResponse:
+        from .resources.tools import AsyncToolsResourceWithRawResponse
+
+        return AsyncToolsResourceWithRawResponse(self._client.tools)
+
+    @cached_property
+    def translation(self) -> translation.AsyncTranslationResourceWithRawResponse:
+        from .resources.translation import AsyncTranslationResourceWithRawResponse
+
+        return AsyncTranslationResourceWithRawResponse(self._client.translation)
+
+    @cached_property
+    def vision(self) -> vision.AsyncVisionResourceWithRawResponse:
+        from .resources.vision import AsyncVisionResourceWithRawResponse
+
+        return AsyncVisionResourceWithRawResponse(self._client.vision)
 
 
 class WriterWithStreamedResponse:
+    _client: Writer
+
     def __init__(self, client: Writer) -> None:
-        self.applications = applications.ApplicationsResourceWithStreamingResponse(client.applications)
-        self.chat = chat.ChatResourceWithStreamingResponse(client.chat)
-        self.completions = completions.CompletionsResourceWithStreamingResponse(client.completions)
-        self.models = models.ModelsResourceWithStreamingResponse(client.models)
-        self.graphs = graphs.GraphsResourceWithStreamingResponse(client.graphs)
-        self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.tools = tools.ToolsResourceWithStreamingResponse(client.tools)
-        self.translation = translation.TranslationResourceWithStreamingResponse(client.translation)
-        self.vision = vision.VisionResourceWithStreamingResponse(client.vision)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.ApplicationsResourceWithStreamingResponse:
+        from .resources.applications import ApplicationsResourceWithStreamingResponse
+
+        return ApplicationsResourceWithStreamingResponse(self._client.applications)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def completions(self) -> completions.CompletionsResourceWithStreamingResponse:
+        from .resources.completions import CompletionsResourceWithStreamingResponse
+
+        return CompletionsResourceWithStreamingResponse(self._client.completions)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithStreamingResponse:
+        from .resources.models import ModelsResourceWithStreamingResponse
+
+        return ModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def graphs(self) -> graphs.GraphsResourceWithStreamingResponse:
+        from .resources.graphs import GraphsResourceWithStreamingResponse
+
+        return GraphsResourceWithStreamingResponse(self._client.graphs)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithStreamingResponse:
+        from .resources.files import FilesResourceWithStreamingResponse
+
+        return FilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def tools(self) -> tools.ToolsResourceWithStreamingResponse:
+        from .resources.tools import ToolsResourceWithStreamingResponse
+
+        return ToolsResourceWithStreamingResponse(self._client.tools)
+
+    @cached_property
+    def translation(self) -> translation.TranslationResourceWithStreamingResponse:
+        from .resources.translation import TranslationResourceWithStreamingResponse
+
+        return TranslationResourceWithStreamingResponse(self._client.translation)
+
+    @cached_property
+    def vision(self) -> vision.VisionResourceWithStreamingResponse:
+        from .resources.vision import VisionResourceWithStreamingResponse
+
+        return VisionResourceWithStreamingResponse(self._client.vision)
 
 
 class AsyncWriterWithStreamedResponse:
+    _client: AsyncWriter
+
     def __init__(self, client: AsyncWriter) -> None:
-        self.applications = applications.AsyncApplicationsResourceWithStreamingResponse(client.applications)
-        self.chat = chat.AsyncChatResourceWithStreamingResponse(client.chat)
-        self.completions = completions.AsyncCompletionsResourceWithStreamingResponse(client.completions)
-        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
-        self.graphs = graphs.AsyncGraphsResourceWithStreamingResponse(client.graphs)
-        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.tools = tools.AsyncToolsResourceWithStreamingResponse(client.tools)
-        self.translation = translation.AsyncTranslationResourceWithStreamingResponse(client.translation)
-        self.vision = vision.AsyncVisionResourceWithStreamingResponse(client.vision)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.AsyncApplicationsResourceWithStreamingResponse:
+        from .resources.applications import AsyncApplicationsResourceWithStreamingResponse
+
+        return AsyncApplicationsResourceWithStreamingResponse(self._client.applications)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def completions(self) -> completions.AsyncCompletionsResourceWithStreamingResponse:
+        from .resources.completions import AsyncCompletionsResourceWithStreamingResponse
+
+        return AsyncCompletionsResourceWithStreamingResponse(self._client.completions)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        from .resources.models import AsyncModelsResourceWithStreamingResponse
+
+        return AsyncModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def graphs(self) -> graphs.AsyncGraphsResourceWithStreamingResponse:
+        from .resources.graphs import AsyncGraphsResourceWithStreamingResponse
+
+        return AsyncGraphsResourceWithStreamingResponse(self._client.graphs)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        from .resources.files import AsyncFilesResourceWithStreamingResponse
+
+        return AsyncFilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def tools(self) -> tools.AsyncToolsResourceWithStreamingResponse:
+        from .resources.tools import AsyncToolsResourceWithStreamingResponse
+
+        return AsyncToolsResourceWithStreamingResponse(self._client.tools)
+
+    @cached_property
+    def translation(self) -> translation.AsyncTranslationResourceWithStreamingResponse:
+        from .resources.translation import AsyncTranslationResourceWithStreamingResponse
+
+        return AsyncTranslationResourceWithStreamingResponse(self._client.translation)
+
+    @cached_property
+    def vision(self) -> vision.AsyncVisionResourceWithStreamingResponse:
+        from .resources.vision import AsyncVisionResourceWithStreamingResponse
+
+        return AsyncVisionResourceWithStreamingResponse(self._client.vision)
 
 
 Client = Writer
