@@ -7,7 +7,7 @@ OVERRIDE_CAST_TO_HEADER = "____stainless_override_cast_to"
 
 # default timeout is 3 minutes
 DEFAULT_TIMEOUT = httpx.Timeout(timeout=180, connect=5.0)
-DEFAULT_MAX_RETRIES = 2
+DEFAULT_MAX_RETRIES = 7
 DEFAULT_CONNECTION_LIMITS = httpx.Limits(max_connections=100, max_keepalive_connections=20)
 
 INITIAL_RETRY_DELAY = 1.0
