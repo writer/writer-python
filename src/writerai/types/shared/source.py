@@ -6,6 +6,8 @@ __all__ = ["Source"]
 
 
 class Source(BaseModel):
+    """A source snippet containing text and fileId from Knowledge Graph content."""
+
     file_id: str
     """The unique identifier of the file in your Writer account."""
 

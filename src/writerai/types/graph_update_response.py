@@ -10,6 +10,8 @@ __all__ = ["GraphUpdateResponse", "URL", "URLStatus"]
 
 
 class URLStatus(BaseModel):
+    """The current status of the URL processing."""
+
     status: Literal["validating", "success", "error"]
     """The current status of the URL processing."""
 

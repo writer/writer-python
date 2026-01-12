@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.4.0-rc1 (2026-01-12)
+
+Full Changelog: [v2.3.3-rc1...v2.4.0-rc1](https://github.com/writer/writer-python/compare/v2.3.3-rc1...v2.4.0-rc1)
+
+### Features
+
+* **api:** manual updates ([26cd543](https://github.com/writer/writer-python/commit/26cd543764608a8d44ac5415a89ea98953672e08))
+* **api:** manual updates ([f95b625](https://github.com/writer/writer-python/commit/f95b6253dbc413b744cc5943c383b2ecbc0ccd44))
+
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([d1f6535](https://github.com/writer/writer-python/commit/d1f6535dcef1167e31b53c4e0c030e9f7459821b))
+* use async_to_httpx_files in patch method ([a6fbc3c](https://github.com/writer/writer-python/commit/a6fbc3c52c4afe6ce8ce234ac5c9d8464bae2463))
+
+
+### Chores
+
+* add missing docstrings ([a3c938c](https://github.com/writer/writer-python/commit/a3c938c5ad76f43870d9f48145d5a10a7757bcd1))
+* **docs:** use environment variables for authentication in code snippets ([534af15](https://github.com/writer/writer-python/commit/534af15961290aaae496780d712eaffa82d569e8))
+* **internal:** add `--fix` argument to lint script ([4b3b067](https://github.com/writer/writer-python/commit/4b3b06799d69c1bf79a1cc92b3d4083a1f0317bc))
+* **internal:** add missing files argument to base client ([9672ca2](https://github.com/writer/writer-python/commit/9672ca2a93a1f8b2545da624a88109e9d7f7bcc3))
+* **internal:** codegen related update ([ddab89d](https://github.com/writer/writer-python/commit/ddab89ddfaf2901c80213110584ed6509001c96b))
+* speedup initial import ([4ae973c](https://github.com/writer/writer-python/commit/4ae973c1bd3100e4a071f18f0d46ab22684eb9ef))
+* update lockfile ([abd7b3d](https://github.com/writer/writer-python/commit/abd7b3dd4ab2ab0f64359a806fd8aafc16f476dc))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([8ed50d2](https://github.com/writer/writer-python/commit/8ed50d2ee1c708254dc4d8c34fc563eed7b946dd))
+
 ## 2.3.3-rc1 (2025-12-01)
 
 Full Changelog: [v2.3.2...v2.3.3-rc1](https://github.com/writer/writer-python/compare/v2.3.2...v2.3.3-rc1)

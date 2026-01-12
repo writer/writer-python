@@ -9,6 +9,8 @@ __all__ = ["FunctionDefinition"]
 
 
 class FunctionDefinition(BaseModel):
+    """A tool that uses a custom function."""
+
     name: str
     """Name of the function."""
 

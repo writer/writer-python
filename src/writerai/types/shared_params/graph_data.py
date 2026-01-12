@@ -12,6 +12,10 @@ __all__ = ["GraphData", "References", "ReferencesFile", "ReferencesWeb", "Subque
 
 
 class ReferencesFile(TypedDict, total=False):
+    """
+    A file-based reference containing text snippets from uploaded documents in the Knowledge Graph.
+    """
+
     file_id: Required[Annotated[str, PropertyInfo(alias="fileId")]]
     """The unique identifier of the file in your Writer account."""
 
@@ -38,6 +42,10 @@ class ReferencesFile(TypedDict, total=False):
 
 
 class ReferencesWeb(TypedDict, total=False):
+    """
+    A web-based reference containing text snippets from online sources accessed during the query.
+    """
+
     score: Required[float]
     """
     Internal score used during the retrieval process for ranking and selecting
@@ -58,6 +66,10 @@ class ReferencesWeb(TypedDict, total=False):
 
 
 class References(TypedDict, total=False):
+    """
+    Detailed source information organized by reference type, providing comprehensive metadata about the sources used to generate the response.
+    """
+
     files: Iterable[ReferencesFile]
     """Array of file-based references from uploaded documents in the Knowledge Graph."""
 
@@ -66,6 +78,10 @@ class References(TypedDict, total=False):
 
 
 class Subquery(TypedDict, total=False):
+    """
+    A sub-question generated to break down complex queries into more manageable parts, along with its answer and supporting sources.
+    """
+
     answer: Required[str]
     """The answer to the subquery based on Knowledge Graph content."""
 

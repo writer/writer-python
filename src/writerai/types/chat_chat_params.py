@@ -122,6 +122,8 @@ class ChatChatParamsBase(TypedDict, total=False):
 
 
 class MessageContentMixedContentTextFragment(TypedDict, total=False):
+    """Represents a text content fragment within a chat message."""
+
     text: Required[str]
     """The actual text content of the message fragment."""
 
@@ -130,6 +132,8 @@ class MessageContentMixedContentTextFragment(TypedDict, total=False):
 
 
 class MessageContentMixedContentImageFragmentImageURL(TypedDict, total=False):
+    """The image URL object containing the location of the image."""
+
     url: Required[str]
     """The URL pointing to the image file.
 
@@ -138,6 +142,11 @@ class MessageContentMixedContentImageFragmentImageURL(TypedDict, total=False):
 
 
 class MessageContentMixedContentImageFragment(TypedDict, total=False):
+    """Represents an image content fragment within a chat message.
+
+    Note: This content type is only supported with the Palmyra X5 model.
+    """
+
     image_url: Required[MessageContentMixedContentImageFragmentImageURL]
     """The image URL object containing the location of the image."""
 
@@ -184,6 +193,12 @@ class Message(TypedDict, total=False):
 
 
 class ResponseFormat(TypedDict, total=False):
+    """
+    The response format to use for the chat completion, available with `palmyra-x4` and `palmyra-x5`.
+
+    `text` is the default response format. [JSON Schema](https://json-schema.org/) is supported for structured responses. If you specify `json_schema`, you must also provide a `json_schema` object.
+    """
+
     type: Required[Literal["text", "json_schema"]]
     """The type of response format to use."""
 
@@ -192,6 +207,8 @@ class ResponseFormat(TypedDict, total=False):
 
 
 class StreamOptions(TypedDict, total=False):
+    """Additional options for streaming."""
+
     include_usage: Required[bool]
     """Indicate whether to include usage information."""
 

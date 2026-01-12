@@ -10,6 +10,8 @@ __all__ = ["Graph", "FileStatus", "URL", "URLStatus"]
 
 
 class FileStatus(BaseModel):
+    """The processing status of files in the Knowledge Graph."""
+
     completed: int
     """The number of files that have been successfully processed."""
 
@@ -24,6 +26,8 @@ class FileStatus(BaseModel):
 
 
 class URLStatus(BaseModel):
+    """The current status of the URL processing."""
+
     status: Literal["validating", "success", "error"]
     """The current status of the URL processing."""
 
