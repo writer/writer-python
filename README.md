@@ -383,9 +383,9 @@ Error codes are as follows:
 
 ### Retries
 
-The library automatically retries certain errors two times by default, with a short exponential backoff.
-Connection errors (for example, due to a network connectivity problem), `408 Request Timeout`, `409 Conflict`,
-`429 Rate Limit`, and `>=500 Internal errors` are all retried by default.
+Certain errors are automatically retried 7 times by default, with a short exponential backoff.
+Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
+429 Rate Limit, and >=500 Internal errors are all retried by default.
 
 You can use the `max_retries` option to configure or disable retry settings:
 
