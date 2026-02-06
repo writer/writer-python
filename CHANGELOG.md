@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.0 (2026-02-06)
+
+Full Changelog: [v2.4.0-rc1...v2.4.0](https://github.com/writer/writer-python/compare/v2.4.0-rc1...v2.4.0)
+
+### Chores
+
+* **internal:** codegen related update ([071f9af](https://github.com/writer/writer-python/commit/071f9af0beb68fb8cdc52546e034ebe3666021e4))
+
 ## 2.4.0-rc1 (2026-01-12)
 
 Full Changelog: [v2.3.3-rc1...v2.4.0-rc1](https://github.com/writer/writer-python/compare/v2.3.3-rc1...v2.4.0-rc1)
