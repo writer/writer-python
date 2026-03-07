@@ -233,7 +233,7 @@ class TestFiles:
     @parametrize
     def test_method_upload(self, client: Writer) -> None:
         file = client.files.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
         )
@@ -243,7 +243,7 @@ class TestFiles:
     @parametrize
     def test_method_upload_with_all_params(self, client: Writer) -> None:
         file = client.files.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -254,7 +254,7 @@ class TestFiles:
     @parametrize
     def test_raw_response_upload(self, client: Writer) -> None:
         response = client.files.with_raw_response.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
         )
@@ -268,7 +268,7 @@ class TestFiles:
     @parametrize
     def test_streaming_response_upload(self, client: Writer) -> None:
         with client.files.with_streaming_response.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
         ) as response:
@@ -489,7 +489,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_upload(self, async_client: AsyncWriter) -> None:
         file = await async_client.files.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
         )
@@ -499,7 +499,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_upload_with_all_params(self, async_client: AsyncWriter) -> None:
         file = await async_client.files.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -510,7 +510,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_raw_response_upload(self, async_client: AsyncWriter) -> None:
         response = await async_client.files.with_raw_response.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
         )
@@ -524,7 +524,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_streaming_response_upload(self, async_client: AsyncWriter) -> None:
         async with async_client.files.with_streaming_response.upload(
-            content=b"raw file contents",
+            content=b"Example data",
             content_disposition="Content-Disposition",
             content_type="Content-Type",
         ) as response:
