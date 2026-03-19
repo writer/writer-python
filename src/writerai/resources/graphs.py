@@ -15,7 +15,7 @@ from ..types import (
     graph_add_file_to_graph_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -130,7 +130,7 @@ class GraphsResource(SyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return self._get(
-            f"/v1/graphs/{graph_id}",
+            path_template("/v1/graphs/{graph_id}", graph_id=graph_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -176,7 +176,7 @@ class GraphsResource(SyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return self._put(
-            f"/v1/graphs/{graph_id}",
+            path_template("/v1/graphs/{graph_id}", graph_id=graph_id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -276,7 +276,7 @@ class GraphsResource(SyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return self._delete(
-            f"/v1/graphs/{graph_id}",
+            path_template("/v1/graphs/{graph_id}", graph_id=graph_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -312,7 +312,7 @@ class GraphsResource(SyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return self._post(
-            f"/v1/graphs/{graph_id}/file",
+            path_template("/v1/graphs/{graph_id}/file", graph_id=graph_id),
             body=maybe_transform({"file_id": file_id}, graph_add_file_to_graph_params.GraphAddFileToGraphParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -516,7 +516,7 @@ class GraphsResource(SyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return self._delete(
-            f"/v1/graphs/{graph_id}/file/{file_id}",
+            path_template("/v1/graphs/{graph_id}/file/{file_id}", graph_id=graph_id, file_id=file_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -615,7 +615,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return await self._get(
-            f"/v1/graphs/{graph_id}",
+            path_template("/v1/graphs/{graph_id}", graph_id=graph_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -661,7 +661,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return await self._put(
-            f"/v1/graphs/{graph_id}",
+            path_template("/v1/graphs/{graph_id}", graph_id=graph_id),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -761,7 +761,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return await self._delete(
-            f"/v1/graphs/{graph_id}",
+            path_template("/v1/graphs/{graph_id}", graph_id=graph_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -797,7 +797,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         if not graph_id:
             raise ValueError(f"Expected a non-empty value for `graph_id` but received {graph_id!r}")
         return await self._post(
-            f"/v1/graphs/{graph_id}/file",
+            path_template("/v1/graphs/{graph_id}/file", graph_id=graph_id),
             body=await async_maybe_transform(
                 {"file_id": file_id}, graph_add_file_to_graph_params.GraphAddFileToGraphParams
             ),
@@ -1003,7 +1003,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return await self._delete(
-            f"/v1/graphs/{graph_id}/file/{file_id}",
+            path_template("/v1/graphs/{graph_id}/file/{file_id}", graph_id=graph_id, file_id=file_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
