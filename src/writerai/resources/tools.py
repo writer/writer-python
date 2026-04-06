@@ -8,44 +8,25 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    tool_ai_detect_params,
-    tool_parse_pdf_params,
-    tool_web_search_params,
-    tool_context_aware_splitting_params,
-)
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from .comprehend import (
-    ComprehendResource,
-    AsyncComprehendResource,
-    ComprehendResourceWithRawResponse,
-    AsyncComprehendResourceWithRawResponse,
-    ComprehendResourceWithStreamingResponse,
-    AsyncComprehendResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import tool_parse_pdf_params, tool_web_search_params
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from .._utils import path_template, maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.tool_ai_detect_response import ToolAIDetectResponse
-from ...types.tool_parse_pdf_response import ToolParsePdfResponse
-from ...types.tool_web_search_response import ToolWebSearchResponse
-from ...types.tool_context_aware_splitting_response import ToolContextAwareSplittingResponse
+from .._base_client import make_request_options
+from ..types.tool_parse_pdf_response import ToolParsePdfResponse
+from ..types.tool_web_search_response import ToolWebSearchResponse
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
 
 
 class ToolsResource(SyncAPIResource):
-    @cached_property
-    def comprehend(self) -> ComprehendResource:
-        return ComprehendResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> ToolsResourceWithRawResponse:
         """
@@ -64,95 +45,6 @@ class ToolsResource(SyncAPIResource):
         For more information, see https://www.github.com/writer/writer-python#with_streaming_response
         """
         return ToolsResourceWithStreamingResponse(self)
-
-    @typing_extensions.deprecated(
-        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
-    )
-    def ai_detect(
-        self,
-        *,
-        input: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolAIDetectResponse:
-        """Detects if content is AI- or human-generated, with a confidence score.
-
-        Content
-        must have at least 350 characters
-
-        Args:
-          input: The content to determine if it is AI- or human-generated. Content must have at
-              least 350 characters.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/v1/tools/ai-detect",
-            body=maybe_transform({"input": input}, tool_ai_detect_params.ToolAIDetectParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ToolAIDetectResponse,
-        )
-
-    @typing_extensions.deprecated(
-        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
-    )
-    def context_aware_splitting(
-        self,
-        *,
-        strategy: Literal["llm_split", "fast_split", "hybrid_split"],
-        text: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolContextAwareSplittingResponse:
-        """
-        Splits a long block of text (maximum 4000 words) into smaller chunks while
-        preserving the semantic meaning of the text and context between the chunks.
-
-        Args:
-          strategy: The strategy to use for splitting the text into chunks. `llm_split` uses the
-              language model to split the text, `fast_split` uses a fast heuristic-based
-              approach, and `hybrid_split` combines both strategies.
-
-          text: The text to split into chunks.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/v1/tools/context-aware-splitting",
-            body=maybe_transform(
-                {
-                    "strategy": strategy,
-                    "text": text,
-                },
-                tool_context_aware_splitting_params.ToolContextAwareSplittingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ToolContextAwareSplittingResponse,
-        )
 
     @typing_extensions.deprecated(
         "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for more information."
@@ -473,10 +365,6 @@ class ToolsResource(SyncAPIResource):
 
 class AsyncToolsResource(AsyncAPIResource):
     @cached_property
-    def comprehend(self) -> AsyncComprehendResource:
-        return AsyncComprehendResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncToolsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -494,95 +382,6 @@ class AsyncToolsResource(AsyncAPIResource):
         For more information, see https://www.github.com/writer/writer-python#with_streaming_response
         """
         return AsyncToolsResourceWithStreamingResponse(self)
-
-    @typing_extensions.deprecated(
-        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
-    )
-    async def ai_detect(
-        self,
-        *,
-        input: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolAIDetectResponse:
-        """Detects if content is AI- or human-generated, with a confidence score.
-
-        Content
-        must have at least 350 characters
-
-        Args:
-          input: The content to determine if it is AI- or human-generated. Content must have at
-              least 350 characters.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/v1/tools/ai-detect",
-            body=await async_maybe_transform({"input": input}, tool_ai_detect_params.ToolAIDetectParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ToolAIDetectResponse,
-        )
-
-    @typing_extensions.deprecated(
-        "Will be removed in a future release. Please migrate to alternative solutions. See documentation at dev.writer.com for more information."
-    )
-    async def context_aware_splitting(
-        self,
-        *,
-        strategy: Literal["llm_split", "fast_split", "hybrid_split"],
-        text: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolContextAwareSplittingResponse:
-        """
-        Splits a long block of text (maximum 4000 words) into smaller chunks while
-        preserving the semantic meaning of the text and context between the chunks.
-
-        Args:
-          strategy: The strategy to use for splitting the text into chunks. `llm_split` uses the
-              language model to split the text, `fast_split` uses a fast heuristic-based
-              approach, and `hybrid_split` combines both strategies.
-
-          text: The text to split into chunks.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/v1/tools/context-aware-splitting",
-            body=await async_maybe_transform(
-                {
-                    "strategy": strategy,
-                    "text": text,
-                },
-                tool_context_aware_splitting_params.ToolContextAwareSplittingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ToolContextAwareSplittingResponse,
-        )
 
     @typing_extensions.deprecated(
         "Will be removed in a future release. A replacement PDF parsing tool for chat completions is planned; see documentation at dev.writer.com for more information."
@@ -905,16 +704,6 @@ class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                tools.ai_detect,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.parse_pdf = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 tools.parse_pdf,  # pyright: ignore[reportDeprecated],
@@ -925,26 +714,12 @@ class ToolsResourceWithRawResponse:
                 tools.web_search,  # pyright: ignore[reportDeprecated],
             )
         )
-
-    @cached_property
-    def comprehend(self) -> ComprehendResourceWithRawResponse:
-        return ComprehendResourceWithRawResponse(self._tools.comprehend)
 
 
 class AsyncToolsResourceWithRawResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                tools.ai_detect,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.parse_pdf = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 tools.parse_pdf,  # pyright: ignore[reportDeprecated],
@@ -955,26 +730,12 @@ class AsyncToolsResourceWithRawResponse:
                 tools.web_search,  # pyright: ignore[reportDeprecated],
             )
         )
-
-    @cached_property
-    def comprehend(self) -> AsyncComprehendResourceWithRawResponse:
-        return AsyncComprehendResourceWithRawResponse(self._tools.comprehend)
 
 
 class ToolsResourceWithStreamingResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                tools.ai_detect,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.parse_pdf = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 tools.parse_pdf,  # pyright: ignore[reportDeprecated],
@@ -985,26 +746,12 @@ class ToolsResourceWithStreamingResponse:
                 tools.web_search,  # pyright: ignore[reportDeprecated],
             )
         )
-
-    @cached_property
-    def comprehend(self) -> ComprehendResourceWithStreamingResponse:
-        return ComprehendResourceWithStreamingResponse(self._tools.comprehend)
 
 
 class AsyncToolsResourceWithStreamingResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
-        self.ai_detect = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                tools.ai_detect,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.context_aware_splitting = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                tools.context_aware_splitting,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.parse_pdf = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 tools.parse_pdf,  # pyright: ignore[reportDeprecated],
@@ -1015,7 +762,3 @@ class AsyncToolsResourceWithStreamingResponse:
                 tools.web_search,  # pyright: ignore[reportDeprecated],
             )
         )
-
-    @cached_property
-    def comprehend(self) -> AsyncComprehendResourceWithStreamingResponse:
-        return AsyncComprehendResourceWithStreamingResponse(self._tools.comprehend)
