@@ -34,11 +34,11 @@ if TYPE_CHECKING:
     from .resources import chat, files, tools, graphs, models, vision, completions, translation, applications
     from .resources.chat import ChatResource, AsyncChatResource
     from .resources.files import FilesResource, AsyncFilesResource
+    from .resources.tools import ToolsResource, AsyncToolsResource
     from .resources.graphs import GraphsResource, AsyncGraphsResource
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.vision import VisionResource, AsyncVisionResource
     from .resources.completions import CompletionsResource, AsyncCompletionsResource
-    from .resources.tools.tools import ToolsResource, AsyncToolsResource
     from .resources.translation import TranslationResource, AsyncTranslationResource
     from .resources.applications.applications import ApplicationsResource, AsyncApplicationsResource
 
