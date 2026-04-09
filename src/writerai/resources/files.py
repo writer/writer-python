@@ -311,7 +311,6 @@ class FilesResource(SyncAPIResource):
         }
         return self._post(
             "/v1/files",
-            body=get_file_content(_transform_file(content)),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -319,6 +318,7 @@ class FilesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"graph_id": graph_id}, file_upload_params.FileUploadParams),
             ),
+            binary_request=content,
             cast_to=File,
         )
 
@@ -599,7 +599,6 @@ class AsyncFilesResource(AsyncAPIResource):
         }
         return await self._post(
             "/v1/files",
-            body=get_file_content(await _async_transform_file(content)),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -607,6 +606,7 @@ class AsyncFilesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"graph_id": graph_id}, file_upload_params.FileUploadParams),
             ),
+            binary_request=content,
             cast_to=File,
         )
 
