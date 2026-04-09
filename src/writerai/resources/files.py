@@ -7,7 +7,6 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import file_list_params, file_retry_params, file_upload_params
-from .._files import _transform_file, get_file_content, _async_transform_file
 from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property

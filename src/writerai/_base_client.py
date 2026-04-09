@@ -510,7 +510,6 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         params = _merge_mappings(self.default_query, options.params)
         content_type = headers.get("Content-Type")
         files = options.files
-        content = options.content
 
         # If the given Content-Type header is multipart/form-data then it
         # has to be removed so that httpx can generate the header with
@@ -581,7 +580,6 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             # so that passing a `TypedDict` doesn't cause an error.
             # https://github.com/microsoft/pyright/issues/3526#event-6715453066
             params=self.qs.stringify(cast(Mapping[str, Any], params)) if params else None,
-            content=content,
             **kwargs,
         )
 
@@ -1290,11 +1288,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             url=path,
             json_data=body,
             files=to_httpx_files(files),
-            content=(
-                get_file_content(_transform_file(binary_request))
-                if binary_request is not None
-                else content
-            ),
+            content=(get_file_content(_transform_file(binary_request)) if binary_request is not None else content),
             **options,
         )
         return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
@@ -1876,9 +1870,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
             json_data=body,
             files=await async_to_httpx_files(files),
             content=(
-                get_file_content(await _async_transform_file(binary_request))
-                if binary_request is not None
-                else content
+                get_file_content(await _async_transform_file(binary_request)) if binary_request is not None else content
             ),
             **options,
         )
