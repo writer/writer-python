@@ -1,5 +1,64 @@
 # Changelog
 
+## 3.0.0-rc1 (2026-04-13)
+
+Full Changelog: [v2.4.0...v3.0.0-rc1](https://github.com/writer/writer-python/compare/v2.4.0...v3.0.0-rc1)
+
+### Features
+
+* **api:** Deprecate AI Detection, Medical Comprehend, and Context-Aware Text Splitting ([c6bee06](https://github.com/writer/writer-python/commit/c6bee0669b39c1563d313929d9461887cf88258a))
+* **client:** add custom JSON encoder for extended type support ([a855555](https://github.com/writer/writer-python/commit/a85555525a3f1188ee8ea9627f965df7a4fd0c87))
+* **client:** add support for binary request streaming ([56bd96e](https://github.com/writer/writer-python/commit/56bd96eb78fa32be252ec513660151c9fead3714))
+* **internal:** implement indices array format for query and form serialization ([898e230](https://github.com/writer/writer-python/commit/898e2309062a9fd1983a34319653b7d54a651fcd))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([70761a4](https://github.com/writer/writer-python/commit/70761a47b5d5ac574ce7d8e2938562e1cb2fe2a9))
+* **deps:** bump minimum typing-extensions version ([e8e396e](https://github.com/writer/writer-python/commit/e8e396e83491bf46064cc5612fa29336e666d83d))
+* **docs:** fix mcp installation instructions for remote servers ([b448904](https://github.com/writer/writer-python/commit/b4489040d3c7fe661bdefa8e8faf4889cac984b2))
+* ensure file data are only sent as 1 parameter ([ae4c4ad](https://github.com/writer/writer-python/commit/ae4c4ad8931aed11cd3e06fccc735b6ef6318884))
+* **pydantic:** do not pass `by_alias` unless set ([f8a82fe](https://github.com/writer/writer-python/commit/f8a82feefe1355e507a7d0d5f6612ce543e9bad7))
+* remove custom binary_request handling superseded by codegen ([#28](https://github.com/writer/writer-python/issues/28)) ([763afaf](https://github.com/writer/writer-python/commit/763afaf1977954a9f5ccce9df9716e7f72a13389))
+* resolve duplicate code ([#29](https://github.com/writer/writer-python/issues/29)) ([57837bc](https://github.com/writer/writer-python/commit/57837bc12ba7bf9e83c333c39fe4f6524d229be6))
+* sanitize endpoint path params ([e87c2a0](https://github.com/writer/writer-python/commit/e87c2a052e70b421c2ccad30451853ce900d7cd0))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([e8479c1](https://github.com/writer/writer-python/commit/e8479c17eef94d004ce86f08956f608ff75102cd))
+* **ci:** skip uploading artifacts on stainless-internal branches ([f8763df](https://github.com/writer/writer-python/commit/f8763df9664747b5bdc35bb2dfde35f4bb8f7d21))
+* **ci:** upgrade `actions/github-script` ([aa28320](https://github.com/writer/writer-python/commit/aa283208404097945e299db4ffd23c36d973f414))
+* format all `api.md` files ([0d10457](https://github.com/writer/writer-python/commit/0d10457e3978e1d3f8b7cbedb634d2f68a4812b7))
+* **internal:** add request options to SSE classes ([fead372](https://github.com/writer/writer-python/commit/fead372f0986f9ab11cae22d2ce38e0f1dc094aa))
+* **internal:** bump dependencies ([6d39e6e](https://github.com/writer/writer-python/commit/6d39e6eef109d47d142224a93819407d353841e1))
+* **internal:** fix lint error on Python 3.14 ([0cf9c5f](https://github.com/writer/writer-python/commit/0cf9c5fdad07b9bba6a7d8c6540014280e7b97c6))
+* **internal:** make `test_proxy_environment_variables` more resilient ([00a019f](https://github.com/writer/writer-python/commit/00a019f36477624456cc047acfe9756c1a7977cd))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([2ec43af](https://github.com/writer/writer-python/commit/2ec43afcb5384be2428913f2d11db43892a336f6))
+* **internal:** tweak CI branches ([cff7016](https://github.com/writer/writer-python/commit/cff70161f1868dd4ea441b40fb3f9845459791c5))
+* **internal:** update `actions/checkout` version ([4de949f](https://github.com/writer/writer-python/commit/4de949f0dfba55067898bd3b25cdc6dceb193541))
+* **internal:** update gitignore ([c1351cf](https://github.com/writer/writer-python/commit/c1351cf85cf3959c5b5894731da9841fa8ffcf76))
+* **internal:** version bump ([6733bea](https://github.com/writer/writer-python/commit/6733bea446f6f96314b8df1a6f612f51bf12cbec))
+* **test:** do not count install time for mock server timeout ([ca18be8](https://github.com/writer/writer-python/commit/ca18be8d1efe67d932ae376ca2dead4b50da25b0))
+* **tests:** bump steady to v0.19.4 ([57552b1](https://github.com/writer/writer-python/commit/57552b1487456e52b7f6bc9a04021469426131a1))
+* **tests:** bump steady to v0.19.5 ([ec60cc4](https://github.com/writer/writer-python/commit/ec60cc49a2df464fda427fc53202eaa178a5c0ce))
+* **tests:** bump steady to v0.19.6 ([54e2229](https://github.com/writer/writer-python/commit/54e22299884a96539e861759286846c1cf6368e0))
+* **tests:** bump steady to v0.19.7 ([9b78194](https://github.com/writer/writer-python/commit/9b78194c51ddcdc933bc476e6c8d73ef9cdd8aeb))
+* **tests:** bump steady to v0.20.1 ([09fa209](https://github.com/writer/writer-python/commit/09fa209274456cab49225fde9ffef8f1e0e11406))
+* **tests:** bump steady to v0.20.2 ([4bb6605](https://github.com/writer/writer-python/commit/4bb6605e9837929848711e27b57c93e7c33b0e40))
+* update mock server docs ([dd5b8a9](https://github.com/writer/writer-python/commit/dd5b8a9924b13047e661e4c1ea59b59aa2b3bfef))
+* update placeholder string ([3d66005](https://github.com/writer/writer-python/commit/3d66005c744fec16d503b28342511b06caabee87))
+
+
+### Documentation
+
+* **api:** updates to API spec ([832318c](https://github.com/writer/writer-python/commit/832318cd702f5cd3e8150d0a09ec227685decee9))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([b63e313](https://github.com/writer/writer-python/commit/b63e3135f77a4c73063118be89244c6b8674fbc5))
+
 ## 2.4.0 (2026-02-06)
 
 Full Changelog: [v2.4.0-rc1...v2.4.0](https://github.com/writer/writer-python/compare/v2.4.0-rc1...v2.4.0)
