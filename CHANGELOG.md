@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.0.0-rc2 (2026-04-27)
+
+Full Changelog: [v3.0.0-rc1...v3.0.0-rc2](https://github.com/writer/writer-python/compare/v3.0.0-rc1...v3.0.0-rc2)
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([0fc449c](https://github.com/writer/writer-python/commit/0fc449c31140dc028795b5dec9e96108d383e644))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([9f217a1](https://github.com/writer/writer-python/commit/9f217a150d0f2035bd3d84256886bb3fe23b9db4))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([cec8c09](https://github.com/writer/writer-python/commit/cec8c0965b639b633a5d53a1a5a33780cd00af48))
+* **tests:** bump steady to v0.22.1 ([8989979](https://github.com/writer/writer-python/commit/898997940ea34e3d3eddaf69556195ad64a17ab3))
+
 ## 3.0.0-rc1 (2026-04-13)
 
 Full Changelog: [v2.4.0...v3.0.0-rc1](https://github.com/writer/writer-python/compare/v2.4.0...v3.0.0-rc1)
