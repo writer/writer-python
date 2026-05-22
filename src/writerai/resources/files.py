@@ -2,12 +2,26 @@
 
 from __future__ import annotations
 
+import os
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import file_list_params, file_retry_params, file_upload_params
-from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, SequenceNotStr, omit, not_given
+from .._files import read_file_content, async_read_file_content
+from .._types import (
+    Body,
+    Omit,
+    Query,
+    Headers,
+    NotGiven,
+    BinaryTypes,
+    FileContent,
+    SequenceNotStr,
+    AsyncBinaryTypes,
+    omit,
+    not_given,
+)
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -270,8 +284,8 @@ class FilesResource(SyncAPIResource):
 
     def upload(
         self,
+        content: FileContent | BinaryTypes,
         *,
-        content: FileTypes,
         content_disposition: str,
         graph_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -303,9 +317,10 @@ class FilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Content-Disposition": content_disposition, **(extra_headers or {})}
+        extra_headers["Content-Type"] = "text/plain"
         return self._post(
             "/v1/files",
-            body=maybe_transform(content, file_upload_params.FileUploadParams),
+            content=read_file_content(content) if isinstance(content, os.PathLike) else content,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -553,8 +568,8 @@ class AsyncFilesResource(AsyncAPIResource):
 
     async def upload(
         self,
+        content: FileContent | AsyncBinaryTypes,
         *,
-        content: FileTypes,
         content_disposition: str,
         graph_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -586,9 +601,10 @@ class AsyncFilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Content-Disposition": content_disposition, **(extra_headers or {})}
+        extra_headers["Content-Type"] = "text/plain"
         return await self._post(
             "/v1/files",
-            body=await async_maybe_transform(content, file_upload_params.FileUploadParams),
+            content=await async_read_file_content(content) if isinstance(content, os.PathLike) else content,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
