@@ -270,8 +270,8 @@ class FilesResource(SyncAPIResource):
 
     def upload(
         self,
-        *,
         content: FileTypes,
+        *,
         content_disposition: str,
         content_type: str,
         graph_id: str | Omit = omit,
@@ -308,6 +308,7 @@ class FilesResource(SyncAPIResource):
             "Content-Type": content_type,
             **(extra_headers or {}),
         }
+        extra_headers["Content-Type"] = "text/plain"
         return self._post(
             "/v1/files",
             options=make_request_options(
@@ -558,8 +559,8 @@ class AsyncFilesResource(AsyncAPIResource):
 
     async def upload(
         self,
-        *,
         content: FileTypes,
+        *,
         content_disposition: str,
         content_type: str,
         graph_id: str | Omit = omit,
@@ -596,6 +597,7 @@ class AsyncFilesResource(AsyncAPIResource):
             "Content-Type": content_type,
             **(extra_headers or {}),
         }
+        extra_headers["Content-Type"] = "text/plain"
         return await self._post(
             "/v1/files",
             options=make_request_options(
