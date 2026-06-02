@@ -1,5 +1,33 @@
 # Changelog
 
+## 3.0.0 (2026-06-02)
+
+Full Changelog: [v3.0.0-rc1...v3.0.0](https://github.com/writer/writer-python/compare/v3.0.0-rc1...v3.0.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([324b108](https://github.com/writer/writer-python/commit/324b1081959e99879dca3ff2e26681904e83963a))
+* support setting headers via env ([78f3187](https://github.com/writer/writer-python/commit/78f3187470d4e515c1c6f7d05b6eb1ea5bc52c7c))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([958f3ee](https://github.com/writer/writer-python/commit/958f3eee1c5a1e719871f2c8bb3cd56384107756))
+* treat text/plan with format: binary as raw upload ([71e3e9e](https://github.com/writer/writer-python/commit/71e3e9eced88dc65ff3e19375f9396b4ee39f76e))
+* use correct field name format for multipart file arrays ([0fc449c](https://github.com/writer/writer-python/commit/0fc449c31140dc028795b5dec9e96108d383e644))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([9f217a1](https://github.com/writer/writer-python/commit/9f217a150d0f2035bd3d84256886bb3fe23b9db4))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([cec8c09](https://github.com/writer/writer-python/commit/cec8c0965b639b633a5d53a1a5a33780cd00af48))
+* **internal:** reformat pyproject.toml ([ddec191](https://github.com/writer/writer-python/commit/ddec1911c7f2bf22dbc508da84081f787a22293a))
+* **tests:** bump steady to v0.22.1 ([8989979](https://github.com/writer/writer-python/commit/898997940ea34e3d3eddaf69556195ad64a17ab3))
+
 ## 3.0.0-rc1 (2026-04-13)
 
 Full Changelog: [v2.4.0...v3.0.0-rc1](https://github.com/writer/writer-python/compare/v2.4.0...v3.0.0-rc1)
