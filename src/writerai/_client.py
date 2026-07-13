@@ -35,7 +35,7 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, files, tools, graphs, models, vision, completions, translation, applications
+    from .resources import chat, files, tools, graphs, models, vision, completions, applications
     from .resources.chat import ChatResource, AsyncChatResource
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.tools import ToolsResource, AsyncToolsResource
@@ -43,7 +43,6 @@ if TYPE_CHECKING:
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.vision import VisionResource, AsyncVisionResource
     from .resources.completions import CompletionsResource, AsyncCompletionsResource
-    from .resources.translation import TranslationResource, AsyncTranslationResource
     from .resources.applications.applications import ApplicationsResource, AsyncApplicationsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Writer", "AsyncWriter", "Client", "AsyncClient"]
@@ -156,12 +155,6 @@ class Writer(SyncAPIClient):
         from .resources.tools import ToolsResource
 
         return ToolsResource(self)
-
-    @cached_property
-    def translation(self) -> TranslationResource:
-        from .resources.translation import TranslationResource
-
-        return TranslationResource(self)
 
     @cached_property
     def vision(self) -> VisionResource:
@@ -391,12 +384,6 @@ class AsyncWriter(AsyncAPIClient):
         return AsyncToolsResource(self)
 
     @cached_property
-    def translation(self) -> AsyncTranslationResource:
-        from .resources.translation import AsyncTranslationResource
-
-        return AsyncTranslationResource(self)
-
-    @cached_property
     def vision(self) -> AsyncVisionResource:
         from .resources.vision import AsyncVisionResource
 
@@ -564,12 +551,6 @@ class WriterWithRawResponse:
         return ToolsResourceWithRawResponse(self._client.tools)
 
     @cached_property
-    def translation(self) -> translation.TranslationResourceWithRawResponse:
-        from .resources.translation import TranslationResourceWithRawResponse
-
-        return TranslationResourceWithRawResponse(self._client.translation)
-
-    @cached_property
     def vision(self) -> vision.VisionResourceWithRawResponse:
         from .resources.vision import VisionResourceWithRawResponse
 
@@ -623,12 +604,6 @@ class AsyncWriterWithRawResponse:
         from .resources.tools import AsyncToolsResourceWithRawResponse
 
         return AsyncToolsResourceWithRawResponse(self._client.tools)
-
-    @cached_property
-    def translation(self) -> translation.AsyncTranslationResourceWithRawResponse:
-        from .resources.translation import AsyncTranslationResourceWithRawResponse
-
-        return AsyncTranslationResourceWithRawResponse(self._client.translation)
 
     @cached_property
     def vision(self) -> vision.AsyncVisionResourceWithRawResponse:
@@ -686,12 +661,6 @@ class WriterWithStreamedResponse:
         return ToolsResourceWithStreamingResponse(self._client.tools)
 
     @cached_property
-    def translation(self) -> translation.TranslationResourceWithStreamingResponse:
-        from .resources.translation import TranslationResourceWithStreamingResponse
-
-        return TranslationResourceWithStreamingResponse(self._client.translation)
-
-    @cached_property
     def vision(self) -> vision.VisionResourceWithStreamingResponse:
         from .resources.vision import VisionResourceWithStreamingResponse
 
@@ -745,12 +714,6 @@ class AsyncWriterWithStreamedResponse:
         from .resources.tools import AsyncToolsResourceWithStreamingResponse
 
         return AsyncToolsResourceWithStreamingResponse(self._client.tools)
-
-    @cached_property
-    def translation(self) -> translation.AsyncTranslationResourceWithStreamingResponse:
-        from .resources.translation import AsyncTranslationResourceWithStreamingResponse
-
-        return AsyncTranslationResourceWithStreamingResponse(self._client.translation)
 
     @cached_property
     def vision(self) -> vision.AsyncVisionResourceWithStreamingResponse:
