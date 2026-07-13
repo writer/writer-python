@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.0.1-rc1 (2026-07-13)
+
+Full Changelog: [v3.0.0...v3.0.1-rc1](https://github.com/writer/writer-python/compare/v3.0.0...v3.0.1-rc1)
+
+### Chores
+
+* **deps:** bump idna in the uv group across 1 directory ([#259](https://github.com/writer/writer-python/issues/259)) ([a01835e](https://github.com/writer/writer-python/commit/a01835e46b00ae3c13497bc816fa59dba5079ea2))
+
+
+### Documentation
+
+* **api:** updates to API spec ([3215a51](https://github.com/writer/writer-python/commit/3215a513ababca91f8ba90df70bd4e2f991f5d60))
+
 ## 3.0.0 (2026-06-02)
 
 Full Changelog: [v3.0.0-rc1...v3.0.0](https://github.com/writer/writer-python/compare/v3.0.0-rc1...v3.0.0)
