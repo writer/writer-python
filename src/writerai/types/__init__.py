@@ -34,7 +34,6 @@ from .graph_create_params import GraphCreateParams as GraphCreateParams
 from .graph_update_params import GraphUpdateParams as GraphUpdateParams
 from .model_list_response import ModelListResponse as ModelListResponse
 from .file_delete_response import FileDeleteResponse as FileDeleteResponse
-from .translation_response import TranslationResponse as TranslationResponse
 from .chat_completion_chunk import ChatCompletionChunk as ChatCompletionChunk
 from .chat_completion_usage import ChatCompletionUsage as ChatCompletionUsage
 from .graph_create_response import GraphCreateResponse as GraphCreateResponse
@@ -52,7 +51,6 @@ from .tool_parse_pdf_response import ToolParsePdfResponse as ToolParsePdfRespons
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
 from .tool_web_search_response import ToolWebSearchResponse as ToolWebSearchResponse
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
-from .translation_translate_params import TranslationTranslateParams as TranslationTranslateParams
 from .application_retrieve_response import ApplicationRetrieveResponse as ApplicationRetrieveResponse
 from .graph_add_file_to_graph_params import GraphAddFileToGraphParams as GraphAddFileToGraphParams
 from .application_generate_content_chunk import ApplicationGenerateContentChunk as ApplicationGenerateContentChunk
