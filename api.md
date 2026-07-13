@@ -170,18 +170,6 @@ Methods:
 - <code title="post /v1/tools/pdf-parser/{file_id}">client.tools.<a href="./src/writerai/resources/tools.py">parse_pdf</a>(file_id, \*\*<a href="src/writerai/types/tool_parse_pdf_params.py">params</a>) -> <a href="./src/writerai/types/tool_parse_pdf_response.py">ToolParsePdfResponse</a></code>
 - <code title="post /v1/tools/web-search">client.tools.<a href="./src/writerai/resources/tools.py">web_search</a>(\*\*<a href="src/writerai/types/tool_web_search_params.py">params</a>) -> <a href="./src/writerai/types/tool_web_search_response.py">ToolWebSearchResponse</a></code>
 
-# Translation
-
-Types:
-
-```python
-from writerai.types import TranslationRequest, TranslationResponse
-```
-
-Methods:
-
-- <code title="post /v1/translation">client.translation.<a href="./src/writerai/resources/translation.py">translate</a>(\*\*<a href="src/writerai/types/translation_translate_params.py">params</a>) -> <a href="./src/writerai/types/translation_response.py">TranslationResponse</a></code>
-
 # Vision
 
 Types:
