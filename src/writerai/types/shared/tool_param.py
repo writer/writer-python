@@ -132,7 +132,7 @@ class GraphTool(BaseModel):
 
 
 class LlmToolFunction(BaseModel):
-    """A tool that uses another Writer model to generate a response."""
+    """A tool that uses another model to generate a response."""
 
     description: str
     """A description of the model to use."""
@@ -143,7 +143,7 @@ class LlmToolFunction(BaseModel):
 
 class LlmTool(BaseModel):
     function: LlmToolFunction
-    """A tool that uses another Writer model to generate a response."""
+    """A tool that uses another model to generate a response."""
 
     type: Literal["llm"]
     """The type of tool."""

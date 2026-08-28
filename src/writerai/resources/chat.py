@@ -82,8 +82,10 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+              `palmyra-x4`, or the ID of an
+              [external model](https://dev.writer.com/home/external-models) configured for
+              your organization.
 
           logprobs: Specifies whether to return log probabilities of the output tokens.
 
@@ -189,8 +191,10 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+              `palmyra-x4`, or the ID of an
+              [external model](https://dev.writer.com/home/external-models) configured for
+              your organization.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -296,8 +300,10 @@ class ChatResource(SyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+              `palmyra-x4`, or the ID of an
+              [external model](https://dev.writer.com/home/external-models) configured for
+              your organization.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -476,8 +482,10 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+              `palmyra-x4`, or the ID of an
+              [external model](https://dev.writer.com/home/external-models) configured for
+              your organization.
 
           logprobs: Specifies whether to return log probabilities of the output tokens.
 
@@ -583,8 +591,10 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+              `palmyra-x4`, or the ID of an
+              [external model](https://dev.writer.com/home/external-models) configured for
+              your organization.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for
@@ -690,8 +700,10 @@ class AsyncChatResource(AsyncAPIResource):
               the model to respond to. The array must contain at least one message.
 
           model: The [ID of the model](https://dev.writer.com/home/models) to use for creating
-              the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-              `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+              the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+              `palmyra-x4`, or the ID of an
+              [external model](https://dev.writer.com/home/external-models) configured for
+              your organization.
 
           stream: Indicates whether the response should be streamed incrementally as it is
               generated or only returned once fully complete. Streaming can be useful for

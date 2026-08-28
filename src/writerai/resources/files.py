@@ -300,6 +300,9 @@ class FilesResource(SyncAPIResource):
         Supports various file formats including PDF,
         DOC, DOCX, PPT, PPTX, JPG, PNG, EML, HTML, SRT, CSV, XLS, and XLSX.
 
+        File uploads do not accept team parameters. When you attach a file to a
+        Knowledge Graph, the file inherits the team scope of that Knowledge Graph.
+
         Args:
           graph_id: The unique identifier of the Knowledge Graph to associate the uploaded file
               with.
@@ -583,6 +586,9 @@ class AsyncFilesResource(AsyncAPIResource):
 
         Supports various file formats including PDF,
         DOC, DOCX, PPT, PPTX, JPG, PNG, EML, HTML, SRT, CSV, XLS, and XLSX.
+
+        File uploads do not accept team parameters. When you attach a file to a
+        Knowledge Graph, the file inherits the team scope of that Knowledge Graph.
 
         Args:
           graph_id: The unique identifier of the Knowledge Graph to associate the uploaded file

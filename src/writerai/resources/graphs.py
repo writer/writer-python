@@ -64,6 +64,7 @@ class GraphsResource(SyncAPIResource):
         *,
         description: str | Omit = omit,
         name: str | Omit = omit,
+        team_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,12 +75,25 @@ class GraphsResource(SyncAPIResource):
         """
         Create a new Knowledge Graph.
 
+        By default, the new Knowledge Graph is org-wide (accessible to every team in the
+        organization). To deploy the Knowledge Graph to specific teams instead, provide
+        a `team_ids` array in the request body. When the request is authenticated with a
+        team-scoped API key, the new Knowledge Graph is automatically assigned to that
+        key's team and `team_ids` in the body is not accepted.
+
         Args:
           description: A description of the Knowledge Graph (max 255 characters). Omitting this field
               leaves the description unchanged.
 
           name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
               the name unchanged.
+
+          team_ids: Optional list of team IDs to deploy the Knowledge Graph to. Omit the field or
+              pass an empty array to create an org-wide Knowledge Graph (accessible to every
+              team in the organization), which is the default. Provide one or more team IDs to
+              scope the Knowledge Graph to those teams. Only applies when using an org-scoped
+              API key; requests made with a team-scoped API key ignore this field and always
+              assign the graph to that key's team.
 
           extra_headers: Send extra headers
 
@@ -95,6 +109,7 @@ class GraphsResource(SyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "team_ids": team_ids,
                 },
                 graph_create_params.GraphCreateParams,
             ),
@@ -143,6 +158,7 @@ class GraphsResource(SyncAPIResource):
         *,
         description: str | Omit = omit,
         name: str | Omit = omit,
+        team_ids: Iterable[int] | Omit = omit,
         urls: Iterable[graph_update_params.URL] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -152,7 +168,13 @@ class GraphsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphUpdateResponse:
         """
-        Update the name and description of a Knowledge Graph.
+        Update the name, description, web connector URLs, or team assignment of a
+        Knowledge Graph.
+
+        Including a `team_ids` array replaces the whole team assignment: an empty array
+        makes the Knowledge Graph org-wide, one or more team IDs scope it to exactly
+        those teams. Omitting `team_ids` leaves the current team assignment unchanged.
+        Team-scoped API keys cannot change the team assignment of a Knowledge Graph.
 
         Args:
           description: A description of the Knowledge Graph (max 255 characters). Omitting this field
@@ -160,6 +182,12 @@ class GraphsResource(SyncAPIResource):
 
           name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
               the name unchanged.
+
+          team_ids: Optional list of team IDs the Knowledge Graph is deployed to. Omitting this
+              field leaves the current team assignment unchanged. Passing an array replaces
+              the whole team assignment: an empty array makes the graph org-wide, one or more
+              team IDs scope it to exactly those teams. Not accepted from team-scoped API
+              keys.
 
           urls: An array of web connector URLs to update for this Knowledge Graph. You can only
               connect URLs to Knowledge Graphs with the type `web`. To clear the list of URLs,
@@ -181,6 +209,7 @@ class GraphsResource(SyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "team_ids": team_ids,
                     "urls": urls,
                 },
                 graph_update_params.GraphUpdateParams,
@@ -198,6 +227,7 @@ class GraphsResource(SyncAPIResource):
         before: str | Omit = omit,
         limit: int | Omit = omit,
         order: Literal["asc", "desc"] | Omit = omit,
+        team_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -207,6 +237,12 @@ class GraphsResource(SyncAPIResource):
     ) -> SyncCursorPage[Graph]:
         """
         Retrieve a list of Knowledge Graphs.
+
+        By default, the response contains only org-wide Knowledge Graphs. To include
+        Knowledge Graphs that are deployed to specific teams, pass one or more team IDs
+        in the `team_ids` query parameter. Requests authenticated with a team-scoped API
+        key always return only that key's team; passing a different value in `team_ids`
+        is rejected.
 
         Args:
           after: The ID of the last object in the previous page. This parameter instructs the API
@@ -220,6 +256,12 @@ class GraphsResource(SyncAPIResource):
 
           order: Specifies the order of the results. Valid values are asc for ascending and desc
               for descending.
+
+          team_ids: Filter results to Knowledge Graphs deployed to any of the specified teams.
+              Repeat the query parameter to pass multiple IDs (for example,
+              `?team_ids=42&team_ids=43`). Omitting this parameter returns only org-wide
+              Knowledge Graphs; Knowledge Graphs deployed to specific teams are excluded
+              unless the caller opts them in via `team_ids`.
 
           extra_headers: Send extra headers
 
@@ -243,6 +285,7 @@ class GraphsResource(SyncAPIResource):
                         "before": before,
                         "limit": limit,
                         "order": order,
+                        "team_ids": team_ids,
                     },
                     graph_list_params.GraphListParams,
                 ),
@@ -295,8 +338,10 @@ class GraphsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
-        """
-        Add a file to a Knowledge Graph.
+        """Add a file to a Knowledge Graph.
+
+        Team access is inherited from the Knowledge
+        Graph; the file itself does not carry team parameters.
 
         Args:
           file_id: The unique identifier of the file.
@@ -549,6 +594,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         description: str | Omit = omit,
         name: str | Omit = omit,
+        team_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,12 +605,25 @@ class AsyncGraphsResource(AsyncAPIResource):
         """
         Create a new Knowledge Graph.
 
+        By default, the new Knowledge Graph is org-wide (accessible to every team in the
+        organization). To deploy the Knowledge Graph to specific teams instead, provide
+        a `team_ids` array in the request body. When the request is authenticated with a
+        team-scoped API key, the new Knowledge Graph is automatically assigned to that
+        key's team and `team_ids` in the body is not accepted.
+
         Args:
           description: A description of the Knowledge Graph (max 255 characters). Omitting this field
               leaves the description unchanged.
 
           name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
               the name unchanged.
+
+          team_ids: Optional list of team IDs to deploy the Knowledge Graph to. Omit the field or
+              pass an empty array to create an org-wide Knowledge Graph (accessible to every
+              team in the organization), which is the default. Provide one or more team IDs to
+              scope the Knowledge Graph to those teams. Only applies when using an org-scoped
+              API key; requests made with a team-scoped API key ignore this field and always
+              assign the graph to that key's team.
 
           extra_headers: Send extra headers
 
@@ -580,6 +639,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "team_ids": team_ids,
                 },
                 graph_create_params.GraphCreateParams,
             ),
@@ -628,6 +688,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         *,
         description: str | Omit = omit,
         name: str | Omit = omit,
+        team_ids: Iterable[int] | Omit = omit,
         urls: Iterable[graph_update_params.URL] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -637,7 +698,13 @@ class AsyncGraphsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphUpdateResponse:
         """
-        Update the name and description of a Knowledge Graph.
+        Update the name, description, web connector URLs, or team assignment of a
+        Knowledge Graph.
+
+        Including a `team_ids` array replaces the whole team assignment: an empty array
+        makes the Knowledge Graph org-wide, one or more team IDs scope it to exactly
+        those teams. Omitting `team_ids` leaves the current team assignment unchanged.
+        Team-scoped API keys cannot change the team assignment of a Knowledge Graph.
 
         Args:
           description: A description of the Knowledge Graph (max 255 characters). Omitting this field
@@ -645,6 +712,12 @@ class AsyncGraphsResource(AsyncAPIResource):
 
           name: The name of the Knowledge Graph (max 255 characters). Omitting this field leaves
               the name unchanged.
+
+          team_ids: Optional list of team IDs the Knowledge Graph is deployed to. Omitting this
+              field leaves the current team assignment unchanged. Passing an array replaces
+              the whole team assignment: an empty array makes the graph org-wide, one or more
+              team IDs scope it to exactly those teams. Not accepted from team-scoped API
+              keys.
 
           urls: An array of web connector URLs to update for this Knowledge Graph. You can only
               connect URLs to Knowledge Graphs with the type `web`. To clear the list of URLs,
@@ -666,6 +739,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "team_ids": team_ids,
                     "urls": urls,
                 },
                 graph_update_params.GraphUpdateParams,
@@ -683,6 +757,7 @@ class AsyncGraphsResource(AsyncAPIResource):
         before: str | Omit = omit,
         limit: int | Omit = omit,
         order: Literal["asc", "desc"] | Omit = omit,
+        team_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -692,6 +767,12 @@ class AsyncGraphsResource(AsyncAPIResource):
     ) -> AsyncPaginator[Graph, AsyncCursorPage[Graph]]:
         """
         Retrieve a list of Knowledge Graphs.
+
+        By default, the response contains only org-wide Knowledge Graphs. To include
+        Knowledge Graphs that are deployed to specific teams, pass one or more team IDs
+        in the `team_ids` query parameter. Requests authenticated with a team-scoped API
+        key always return only that key's team; passing a different value in `team_ids`
+        is rejected.
 
         Args:
           after: The ID of the last object in the previous page. This parameter instructs the API
@@ -705,6 +786,12 @@ class AsyncGraphsResource(AsyncAPIResource):
 
           order: Specifies the order of the results. Valid values are asc for ascending and desc
               for descending.
+
+          team_ids: Filter results to Knowledge Graphs deployed to any of the specified teams.
+              Repeat the query parameter to pass multiple IDs (for example,
+              `?team_ids=42&team_ids=43`). Omitting this parameter returns only org-wide
+              Knowledge Graphs; Knowledge Graphs deployed to specific teams are excluded
+              unless the caller opts them in via `team_ids`.
 
           extra_headers: Send extra headers
 
@@ -728,6 +815,7 @@ class AsyncGraphsResource(AsyncAPIResource):
                         "before": before,
                         "limit": limit,
                         "order": order,
+                        "team_ids": team_ids,
                     },
                     graph_list_params.GraphListParams,
                 ),
@@ -780,8 +868,10 @@ class AsyncGraphsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
-        """
-        Add a file to a Knowledge Graph.
+        """Add a file to a Knowledge Graph.
+
+        Team access is inherited from the Knowledge
+        Graph; the file itself does not carry team parameters.
 
         Args:
           file_id: The unique identifier of the file.

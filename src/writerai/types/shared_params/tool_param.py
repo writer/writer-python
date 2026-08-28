@@ -133,7 +133,7 @@ class GraphTool(TypedDict, total=False):
 
 
 class LlmToolFunction(TypedDict, total=False):
-    """A tool that uses another Writer model to generate a response."""
+    """A tool that uses another model to generate a response."""
 
     description: Required[str]
     """A description of the model to use."""
@@ -144,7 +144,7 @@ class LlmToolFunction(TypedDict, total=False):
 
 class LlmTool(TypedDict, total=False):
     function: Required[LlmToolFunction]
-    """A tool that uses another Writer model to generate a response."""
+    """A tool that uses another model to generate a response."""
 
     type: Required[Literal["llm"]]
     """The type of tool."""

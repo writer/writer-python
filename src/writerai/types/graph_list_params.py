@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["GraphListParams"]
@@ -30,4 +31,13 @@ class GraphListParams(TypedDict, total=False):
     """Specifies the order of the results.
 
     Valid values are asc for ascending and desc for descending.
+    """
+
+    team_ids: Iterable[int]
+    """Filter results to Knowledge Graphs deployed to any of the specified teams.
+
+    Repeat the query parameter to pass multiple IDs (for example,
+    `?team_ids=42&team_ids=43`). Omitting this parameter returns only org-wide
+    Knowledge Graphs; Knowledge Graphs deployed to specific teams are excluded
+    unless the caller opts them in via `team_ids`.
     """

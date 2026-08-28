@@ -23,6 +23,15 @@ class GraphUpdateParams(TypedDict, total=False):
     Omitting this field leaves the name unchanged.
     """
 
+    team_ids: Iterable[int]
+    """Optional list of team IDs the Knowledge Graph is deployed to.
+
+    Omitting this field leaves the current team assignment unchanged. Passing an
+    array replaces the whole team assignment: an empty array makes the graph
+    org-wide, one or more team IDs scope it to exactly those teams. Not accepted
+    from team-scoped API keys.
+    """
+
     urls: Iterable[URL]
     """An array of web connector URLs to update for this Knowledge Graph.
 
