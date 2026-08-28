@@ -73,8 +73,9 @@ class CompletionsResource(SyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              text. This can be a Palmyra model such as `palmyra-x5` or `palmyra-x4`, or the
+              ID of an [external model](https://dev.writer.com/home/external-models)
+              configured for your organization.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -138,8 +139,9 @@ class CompletionsResource(SyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              text. This can be a Palmyra model such as `palmyra-x5` or `palmyra-x4`, or the
+              ID of an [external model](https://dev.writer.com/home/external-models)
+              configured for your organization.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -203,8 +205,9 @@ class CompletionsResource(SyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              text. This can be a Palmyra model such as `palmyra-x5` or `palmyra-x4`, or the
+              ID of an [external model](https://dev.writer.com/home/external-models)
+              configured for your organization.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -335,8 +338,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              text. This can be a Palmyra model such as `palmyra-x5` or `palmyra-x4`, or the
+              ID of an [external model](https://dev.writer.com/home/external-models)
+              configured for your organization.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -400,8 +404,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              text. This can be a Palmyra model such as `palmyra-x5` or `palmyra-x4`, or the
+              ID of an [external model](https://dev.writer.com/home/external-models)
+              configured for your organization.
 
           prompt: The input text that the model will process to generate a response.
 
@@ -465,8 +470,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
         Args:
           model: The [ID of the model](https://dev.writer.com/home/models) to use for generating
-              text. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`, `palmyra-med`,
-              `palmyra-creative`, and `palmyra-x-003-instruct`.
+              text. This can be a Palmyra model such as `palmyra-x5` or `palmyra-x4`, or the
+              ID of an [external model](https://dev.writer.com/home/external-models)
+              configured for your organization.
 
           prompt: The input text that the model will process to generate a response.
 
