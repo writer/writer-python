@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.1.0-rc1 (2026-08-28)
+
+Full Changelog: [v3.0.1-rc1...v3.1.0-rc1](https://github.com/writer/writer-python/compare/v3.0.1-rc1...v3.1.0-rc1)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([0f7b7ff](https://github.com/writer/writer-python/commit/0f7b7ff8229f80d3347633316bdeee99f628bef9))
+
+
+### Documentation
+
+* **api:** updates to API spec ([b1f349a](https://github.com/writer/writer-python/commit/b1f349a4e9fe4ca8684f5c7e89ccd64e743dd080))
+
 ## 3.0.1-rc1 (2026-07-13)
 
 Full Changelog: [v3.0.0...v3.0.1-rc1](https://github.com/writer/writer-python/compare/v3.0.0...v3.0.1-rc1)
