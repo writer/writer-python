@@ -37,8 +37,10 @@ class ChatChatParamsBase(TypedDict, total=False):
     model: Required[str]
     """
     The [ID of the model](https://dev.writer.com/home/models) to use for creating
-    the chat completion. Supports `palmyra-x5`, `palmyra-x4`, `palmyra-fin`,
-    `palmyra-med`, `palmyra-creative`, and `palmyra-x-003-instruct`.
+    the chat completion. This can be a Palmyra model such as `palmyra-x5` or
+    `palmyra-x4`, or the ID of an
+    [external model](https://dev.writer.com/home/external-models) configured for
+    your organization.
     """
 
     logprobs: bool

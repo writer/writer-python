@@ -48,5 +48,12 @@ class GraphCreateResponse(BaseModel):
     description: Optional[str] = None
     """A description of the Knowledge Graph (max 255 characters)."""
 
+    team_ids: Optional[List[int]] = None
+    """The team IDs the Knowledge Graph is deployed to.
+
+    An empty array indicates an org-wide Knowledge Graph accessible to every team in
+    the organization.
+    """
+
     urls: Optional[List[URL]] = None
     """An array of web connector URLs associated with this Knowledge Graph."""

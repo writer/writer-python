@@ -36,6 +36,7 @@ class TestGraphs:
         graph = client.graphs.create(
             description="description",
             name="name",
+            team_ids=[0],
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
@@ -110,6 +111,7 @@ class TestGraphs:
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="description",
             name="name",
+            team_ids=[0],
             urls=[
                 {
                     "type": "single_page",
@@ -163,6 +165,7 @@ class TestGraphs:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
+            team_ids=[0],
         )
         assert_matches_type(SyncCursorPage[Graph], graph, path=["response"])
 
@@ -440,6 +443,7 @@ class TestAsyncGraphs:
         graph = await async_client.graphs.create(
             description="description",
             name="name",
+            team_ids=[0],
         )
         assert_matches_type(GraphCreateResponse, graph, path=["response"])
 
@@ -514,6 +518,7 @@ class TestAsyncGraphs:
             graph_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="description",
             name="name",
+            team_ids=[0],
             urls=[
                 {
                     "type": "single_page",
@@ -567,6 +572,7 @@ class TestAsyncGraphs:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=0,
             order="asc",
+            team_ids=[0],
         )
         assert_matches_type(AsyncCursorPage[Graph], graph, path=["response"])
 
